@@ -1,0 +1,22 @@
+{
+  "name": "@natu/smooth-scroll",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "license": "MIT",
+  "files": [
+    "index.ts"
+  ],
+  "scripts": {
+    "eslint:format": "eslint src --fix"
+  },
+  "devDependencies": {
+    "eslint-config-custom": "*",
+    "tsconfig": "*"
+  },
+  "dependencies": {
+    "@natu/ui": "*",
+    "@studio-freight/lenis": "1.0.33"
+  }
+}

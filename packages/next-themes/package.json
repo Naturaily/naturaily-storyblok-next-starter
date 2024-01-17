@@ -1,0 +1,23 @@
+{
+  "name": "@natu/next-themes",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "license": "MIT",
+  "files": [
+    "index.ts"
+  ],
+  "scripts": {
+    "eslint:format": "eslint src --fix"
+  },
+  "devDependencies": {
+    "eslint-config-custom": "*",
+    "tsconfig": "*",
+    "tailwind-config": "*"
+  },
+  "dependencies": {
+    "@natu/ui": "*",
+    "next-themes": "0.2.1"
+  }
+}

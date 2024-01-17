@@ -1,0 +1,23 @@
+{
+  "name": "tailwind-config",
+  "version": "0.0.0",
+  "license": "MIT",
+  "files": [
+    "postcss.config.js",
+    "tailwind.config.js",
+    "global.css"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "@tailwindcss/line-clamp": "0.4.4",
+    "@tailwindcss/typography": "0.5.10",
+    "autoprefixer": "10.4.16",
+    "postcss": "8.4.33",
+    "prettier-plugin-tailwindcss": "0.5.11",
+    "tailwindcss": "3.4.1",
+    "tailwindcss-animate": "1.0.7"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

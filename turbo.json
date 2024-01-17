@@ -1,0 +1,31 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": ["**/.env.*local"],
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [".next/**", "!.next/cache/**"],
+      "env": [
+        "NODE_ENV",
+        "SKIP_ENV_VALIDATION",
+        "NEXT_PUBLIC_APP_URL",
+        "NEXT_PUBLIC_STORYBLOK_TOKEN_VERSION",
+        "NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN",
+        "NEXT_PUBLIC_STORYBLOK_MAIN_APP_FOLDER",
+        "NEXT_PUBLIC_STORYBLOK_EXCLUDED_FOLDERS_FROM_ROUTING",
+        "NEXT_PUBLIC_STORYBLOK_API_URL"
+      ]
+    },
+    "eslint:format": {
+      "cache": false,
+      "persistent": true
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "codegen": {
+      "cache": false
+    }
+  }
+}

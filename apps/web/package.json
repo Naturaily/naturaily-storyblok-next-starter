@@ -1,0 +1,32 @@
+{
+  "name": "web",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "eslint:format": "eslint src --fix"
+  },
+  "dependencies": {
+    "@natu/env": "*",
+    "@natu/fonts": "*",
+    "@natu/middleware-chain": "*",
+    "@natu/next-themes": "*",
+    "@natu/react-query-gql": "*",
+    "@natu/smooth-scroll": "*",
+    "@natu/storyblok-api": "*",
+    "@natu/storyblok-preview": "*",
+    "@natu/storyblok-ui": "*",
+    "@natu/storyblok-utils": "*",
+    "@natu/ui": "*",
+    "@natu/utils": "*",
+    "@natu/storyblok-revalidate": "*",
+    "next": "^14.0.1"
+  },
+  "devDependencies": {
+    "eslint-config-custom": "*",
+    "tailwind-config": "*",
+    "tsconfig": "*"
+  }
+}

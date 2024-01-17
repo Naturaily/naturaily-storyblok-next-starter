@@ -1,0 +1,38 @@
+query getContentNodes(
+  $relations: String = ""
+  $perPage: Int = 12
+  $page: Int = 1
+  $startsWith: String = ""
+  $excludingSlugs: String = ""
+  $withTag: String = ""
+  $searchTerm: String = ""
+  $filterQuery: JsonScalar = {}
+  $sortBy: String = ""
+  $skipContent: Boolean = false
+) {
+  ContentNodes(
+    page: $page
+    resolve_relations: $relations
+    per_page: $perPage
+    starts_with: $startsWith
+    excluding_slugs: $excludingSlugs
+    search_term: $searchTerm
+    with_tag: $withTag
+    filter_query: $filterQuery
+    sort_by: $sortBy
+  ) {
+    total
+    items {
+      content @skip(if: $skipContent)
+      created_at
+      first_published_at
+      full_slug
+      id
+      name
+      path
+      published_at
+      slug
+      uuid
+    }
+  }
+}

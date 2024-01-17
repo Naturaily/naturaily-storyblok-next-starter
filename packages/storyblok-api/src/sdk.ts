@@ -1,0 +1,112 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { print } from 'graphql/language/printer';
+
+import { ApiFetcher } from '@natu/react-query-gql';
+
+import {
+  GetContentNodeQueryVariables,
+  GetContentNodeQuery,
+  GetContentNode,
+  GetContentNodesQueryVariables,
+  GetContentNodesQuery,
+  GetContentNodes,
+  GetLinks,
+  GetLinksQuery,
+  GetLinksQueryVariables,
+} from './generated/graphql';
+
+interface FetchOptions extends Omit<RequestInit, 'body' | 'method'> {
+  next?: NextFetchRequestConfig;
+}
+
+export type SdkFunctionWrapper = <T>(
+  action: (requestHeaders?: FetchOptions) => Promise<T>,
+  operationName: string,
+  operationType?: string,
+) => Promise<T>;
+
+const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationType) => action();
+
+export function getSdk(
+  fetcher: ApiFetcher['fetcher'],
+  withWrapper: SdkFunctionWrapper = defaultWrapper,
+) {
+  return {
+    getContentNode(
+      variables: GetContentNodeQueryVariables,
+      { headers, ...restFetchOptions }: FetchOptions = {},
+    ): Promise<GetContentNodeQuery> {
+      return withWrapper(
+        async wrapperOptions => {
+          const { headers: wrapperHeaders, ...restWrapperOptions } = wrapperOptions || {};
+          const { data } = await fetcher<GetContentNodeQuery, GetContentNodeQueryVariables>({
+            query: print(GetContentNode),
+            variables,
+            headers: {
+              ...wrapperHeaders,
+              ...headers,
+            },
+            ...restWrapperOptions,
+            ...restFetchOptions,
+          });
+
+          return data;
+        },
+        'getContentNode',
+        'query',
+      );
+    },
+    getContentNodes(
+      variables: GetContentNodesQueryVariables,
+      { headers, ...restFetchOptions }: FetchOptions = {},
+    ): Promise<GetContentNodesQuery> {
+      return withWrapper(
+        async wrapperOptions => {
+          const { headers: wrapperHeaders, ...restWrapperOptions } = wrapperOptions || {};
+          const { data } = await fetcher<GetContentNodeQuery, GetContentNodesQueryVariables>({
+            query: print(GetContentNodes),
+            variables,
+            headers: {
+              ...wrapperHeaders,
+              ...headers,
+            },
+            ...restWrapperOptions,
+            ...restFetchOptions,
+          });
+
+          return data;
+        },
+        'getContentNodes',
+        'query',
+      );
+    },
+    getLinks(
+      variables: GetLinksQueryVariables,
+      { headers, ...restFetchOptions }: FetchOptions = {},
+    ): Promise<GetLinksQuery> {
+      return withWrapper(
+        async wrapperOptions => {
+          const { headers: wrapperHeaders, ...restWrapperOptions } = wrapperOptions || {};
+
+          const { data } = await fetcher<GetContentNodeQuery, GetLinksQueryVariables>({
+            query: print(GetLinks),
+            variables,
+            headers: {
+              ...wrapperHeaders,
+              ...headers,
+            },
+            ...restWrapperOptions,
+            ...restFetchOptions,
+          });
+
+          return data;
+        },
+        'getLinks',
+        'query',
+      );
+    },
+    // Add more
+  };
+}
+
+export type Sdk = ReturnType<typeof getSdk>;

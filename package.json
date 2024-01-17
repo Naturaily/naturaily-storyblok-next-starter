@@ -1,0 +1,44 @@
+{
+  "name": "shopify-storyblok",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=18.17.1"
+  },
+  "packageManager": "yarn@1.22.19",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev --concurrency 24",
+    "prettier:format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "eslint:format": "turbo run eslint:format",
+    "prepare": "husky install",
+    "codegen": "turbo run codegen",
+    "storybook": "yarn workspace @natu/storybook-ui storybook",
+    "storybook:build": "yarn workspace @natu/storybook-ui storybook:build"
+  },
+  "devDependencies": {
+    "eslint-config-custom": "*",
+    "husky": "8.0.3",
+    "lint-staged": "15.2.0",
+    "prettier": "^3.0.3",
+    "tsconfig": "*",
+    "turbo": "1.11.3"
+  },
+  "lint-staged": {
+    "apps/**/*": [
+      "yarn prettier:format",
+      "eslint --fix"
+    ],
+    "packages/**/*": [
+      "yarn prettier:format",
+      "eslint --fix"
+    ],
+    "*.json": [
+      "yarn prettier:format"
+    ]
+  }
+}

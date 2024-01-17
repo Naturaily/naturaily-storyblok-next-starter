@@ -1,0 +1,16 @@
+{
+  "name": "tsconfig",
+  "version": "0.0.0",
+  "private": true,
+  "files": [
+    "base.json",
+    "nextjs.json",
+    "nestjs.json",
+    "node.json"
+  ],
+  "devDependencies": {
+    "@tsconfig/node18": "^18.2.2",
+    "tsconfig-paths": "4.2.0",
+    "typescript": "5.3.3"
+  }
+}

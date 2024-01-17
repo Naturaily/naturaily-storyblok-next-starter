@@ -1,0 +1,27 @@
+{
+  "name": "@natu/storyblok-richtext",
+  "version": "0.0.0",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "license": "MIT",
+  "files": [
+    "index.ts"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "eslint:format": "eslint src --fix"
+  },
+  "dependencies": {
+    "@natu/next-link": "*",
+    "@natu/storyblok-utils": "*",
+    "@natu/ui": "*",
+    "storyblok-rich-text-react-renderer": "2.9.1"
+  },
+  "devDependencies": {
+    "eslint-config-custom": "*",
+    "tailwind-config": "*",
+    "tsconfig": "*"
+  }
+}

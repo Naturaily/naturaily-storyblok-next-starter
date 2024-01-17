@@ -1,0 +1,17 @@
+{
+  "name": "@natu/storybook-ui",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "eslint:format": "eslint src --fix",
+    "storybook": "storybook dev -p 6006",
+    "storybook:build": "storybook build"
+  },
+  "devDependencies": {
+    "eslint-config-custom": "*",
+    "tailwind-config": "*",
+    "tsconfig": "*",
+    "@natu/storybook": "*"
+  }
+}

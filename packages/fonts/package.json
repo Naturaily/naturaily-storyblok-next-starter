@@ -1,0 +1,15 @@
+{
+  "name": "@natu/fonts",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "license": "MIT",
+  "scripts": {
+    "eslint:format": "eslint src --fix"
+  },
+  "devDependencies": {
+    "eslint-config-custom": "*",
+    "tsconfig": "*"
+  }
+}

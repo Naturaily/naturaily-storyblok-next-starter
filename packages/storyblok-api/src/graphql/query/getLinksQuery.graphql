@@ -1,0 +1,10 @@
+query getLinks($startsWith: String = "") {
+  Links(starts_with: $startsWith) {
+    items {
+      isFolder
+      isStartpage
+      slug
+      published
+    }
+  }
+}

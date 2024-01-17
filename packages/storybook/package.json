@@ -1,0 +1,21 @@
+{
+  "name": "@natu/storybook",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "license": "MIT",
+  "devDependencies": {
+    "@storybook/addon-a11y": "7.6.9",
+    "@storybook/addon-essentials": "7.6.9",
+    "@storybook/addon-interactions": "7.6.9",
+    "@storybook/addon-links": "7.6.9",
+    "@storybook/blocks": "7.6.9",
+    "@storybook/nextjs": "7.6.9",
+    "@storybook/react": "7.6.9",
+    "eslint-config-custom": "*",
+    "storybook": "7.6.9",
+    "tailwind-config": "*",
+    "tsconfig": "*"
+  }
+}
