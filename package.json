@@ -7,7 +7,7 @@
     "packages/*"
   ],
   "engines": {
-    "node": ">=18.17.1"
+    "node": ">=20.11.0"
   },
   "packageManager": "yarn@1.22.19",
   "scripts": {
