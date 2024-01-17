@@ -5,8 +5,8 @@ import { ReactNode } from 'react';
 import { env } from '@natu/env';
 import { poppinsFont } from '@natu/fonts';
 import { TAGS, getStoryblokApi, relations } from '@natu/storyblok-api';
-import { componentsMap } from '@natu/storyblok-ui';
-import { DynamicRender, StoryblokProvider, getSlugWithAppName } from '@natu/storyblok-utils';
+import { StoryblokProvider } from '@natu/storyblok-ui';
+import { DynamicRender, getSlugWithAppName } from '@natu/storyblok-utils';
 import { Layout } from '@natu/ui';
 
 import { Providers } from './Providers';
@@ -34,20 +34,18 @@ const RootLayout = async ({ children }: RootLayoutProps) => {
     },
   );
 
-  const { header, footer, enableSmoothScroll, defaultTheme, forcedTheme } =
-    configData.ContentNode?.content || {};
+  const { header, footer, defaultTheme, forcedTheme } = configData.ContentNode?.content || {};
 
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={poppinsFont.variable} suppressHydrationWarning>
-        <StoryblokProvider componentsMap={componentsMap}>
+        <StoryblokProvider>
           <Providers
             darkModeOptions={{
               defaultTheme,
               forcedTheme,
             }}
             draftMode={isEnabled}
-            enableSmoothScroll={enableSmoothScroll}
           >
             <Layout
               header={<DynamicRender data={header?.content} />}

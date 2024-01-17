@@ -8,24 +8,23 @@ import { ReactNode } from 'react';
 
 import { env } from '@natu/env';
 
+import { componentsMap } from '../componentsMap';
+
+storyblokInit({
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  accessToken: env.NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN,
+  components: componentsMap,
+});
+
 interface StoryblokProviderProps {
   children?: ReactNode;
-  componentsMap: Record<string, unknown>;
 }
 
 // eslint-disable-next-line react/jsx-no-useless-fragment
-export const StoryblokProvider = ({ children, componentsMap }: StoryblokProviderProps) => {
-  storyblokInit({
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    accessToken: env.NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN,
-    components: componentsMap,
-  });
-
-  return (
-    <>
-      {children}
-      <StoryblokBridgeLoader />
-    </>
-  );
-};
+export const StoryblokProvider = ({ children }: StoryblokProviderProps) => (
+  <>
+    {children}
+    <StoryblokBridgeLoader />
+  </>
+);

@@ -11,12 +11,9 @@ module.exports = [
   `/^${appPrefix}/storyblok-ui/`,
   `/^${appPrefix}/storyblok-richtext/`,
   `/^${appPrefix}/env/`,
-  `/^${appPrefix}/responsive-image/`,
   `/^${appPrefix}/middleware-chain/`,
   `/^${appPrefix}/storybook/`,
   `/^${appPrefix}/fonts/`,
-  `/^${appPrefix}/smooth-scroll/`,
   `/^${appPrefix}/next-themes/`,
-  `/^${appPrefix}/theme-customizer/`,
   `/^${appPrefix}/storyblok-revalidate/`,
 ];

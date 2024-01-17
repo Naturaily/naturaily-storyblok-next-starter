@@ -4,7 +4,6 @@ import { ReactNode } from 'react';
 
 import { ThemeProvider } from '@natu/next-themes';
 import { ReactQueryProvider, queryClient } from '@natu/react-query-gql';
-import { SmoothScroll } from '@natu/smooth-scroll';
 import { DraftModeProvider } from '@natu/storyblok-preview';
 
 interface DarkModeOptions {
@@ -15,16 +14,10 @@ interface DarkModeOptions {
 interface ProvidersProps {
   children?: ReactNode;
   draftMode?: boolean;
-  enableSmoothScroll?: boolean;
   darkModeOptions?: DarkModeOptions;
 }
 
-export const Providers = ({
-  children,
-  draftMode,
-  enableSmoothScroll = true,
-  darkModeOptions,
-}: ProvidersProps) => (
+export const Providers = ({ children, draftMode, darkModeOptions }: ProvidersProps) => (
   <ReactQueryProvider client={queryClient}>
     <ThemeProvider
       attribute="class"
@@ -33,7 +26,6 @@ export const Providers = ({
       enableSystem
       disableTransitionOnChange
     >
-      {enableSmoothScroll && <SmoothScroll />}
       <DraftModeProvider draftMode={draftMode}>{children}</DraftModeProvider>
     </ThemeProvider>
   </ReactQueryProvider>

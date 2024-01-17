@@ -36,7 +36,11 @@ const Page = async ({ params }: PageProps) => {
     return notFound();
   }
 
-  return <DynamicRender data={story?.ContentNode?.content} />;
+  return (
+    <div>
+      <DynamicRender data={story?.ContentNode?.content} />
+    </div>
+  );
 };
 
 export default Page;
