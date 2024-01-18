@@ -1,0 +1,84 @@
+import { MetadataRoute } from 'next';
+import { draftMode } from 'next/headers';
+
+import { env } from '@natu/env';
+import { getStoryblokApi } from '@natu/storyblok-api';
+import { getSlugWithAppName, getSlugWithoutAppName } from '@natu/storyblok-utils';
+
+// add more -> "page,other-content-type,other"
+const validSitemapComponents = 'page';
+
+const Sitemap = async (): Promise<MetadataRoute.Sitemap> => {
+  // Google's limit is 50,000 URLs per sitemap
+  const { isEnabled } = draftMode();
+  const { getContentNodes } = getStoryblokApi({ draftMode: isEnabled });
+
+  const perPage = 100;
+  const requests = [];
+
+  const initial = await getContentNodes({
+    startsWith: env.NEXT_PUBLIC_STORYBLOK_MAIN_APP_FOLDER,
+    perPage: 1,
+    page: 1,
+    skipContent: true,
+    excludingSlugs: getSlugWithAppName({
+      slug: `${env.NEXT_PUBLIC_STORYBLOK_EXCLUDED_FOLDERS_FROM_ROUTING}/*`,
+    }),
+    filterQuery: {
+      component: {
+        in: validSitemapComponents,
+      },
+    },
+  });
+
+  const totalPostItems = initial?.ContentNodes?.total || 100;
+  const totalPages = Math.ceil(totalPostItems / perPage);
+
+  // eslint-disable-next-line no-plusplus
+  for (let i = 1; i <= totalPages; i++) {
+    requests.push(
+      getContentNodes({
+        startsWith: env.NEXT_PUBLIC_STORYBLOK_MAIN_APP_FOLDER,
+        perPage,
+        page: i,
+        excludingSlugs: getSlugWithAppName({
+          slug: `${env.NEXT_PUBLIC_STORYBLOK_EXCLUDED_FOLDERS_FROM_ROUTING}/*`,
+        }),
+        filterQuery: {
+          component: {
+            in: validSitemapComponents,
+          },
+        },
+      }),
+    );
+  }
+
+  const responses = await Promise.all(requests).catch(err => {
+    throw new Error(`Generate sitemap error -> ${err}`);
+  });
+
+  if (!Array.isArray(responses)) {
+    throw new Error('Generate sitemap error');
+  }
+
+  const allItems = responses.map(res => res?.ContentNodes?.items).flat();
+
+  return allItems
+    .filter(item => {
+      const [seo] = item?.content?.seo || [];
+
+      if (seo?.noIndex) {
+        return false;
+      }
+
+      return true;
+    })
+    .map(item => ({
+      url: `${env.NEXT_PUBLIC_APP_URL}${getSlugWithoutAppName(item?.full_slug)}`,
+      lastModified: item?.published_at || item?.first_published_at || new Date(),
+      changeFrequency: 'weekly',
+      priority: 1,
+    }));
+};
+
+export default Sitemap;
