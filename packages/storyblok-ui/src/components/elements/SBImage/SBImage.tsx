@@ -17,6 +17,7 @@ interface SBImageProps {
   aspectRatioY?: string;
   priority?: boolean;
   link?: StoryblokLink;
+  label?: string;
   mtMobile?: Spacing;
   mtTablet?: Spacing;
   mtDesktop?: Spacing;
@@ -42,6 +43,7 @@ export const SBImage = ({ blok }: SBProps<SBImageProps>) => {
     mtTablet,
     mtDesktop,
     fullWidth,
+    label,
     width: customWidth,
     height: customHeight,
   } = blok;
@@ -78,6 +80,7 @@ export const SBImage = ({ blok }: SBProps<SBImageProps>) => {
             fill
           />
         </AspectRatio>
+        {label && linkProps.href && <span className="sr-only">{label}</span>}
       </ConditionalLink>
     );
   }
@@ -94,6 +97,7 @@ export const SBImage = ({ blok }: SBProps<SBImageProps>) => {
         height={Number(customHeight) || height}
         priority={priority}
       />
+      {label && linkProps.href && <span className="sr-only">{label}</span>}
     </ConditionalLink>
   );
 };
