@@ -17,14 +17,17 @@ interface RootLayoutProps {
 
 const RootLayout = async ({ children }: RootLayoutProps) => {
   const { isEnabled } = draftMode();
-  const { getContentNode } = getStoryblokApi({ draftMode: isEnabled });
+  const { getConfigNode } = getStoryblokApi({ draftMode: isEnabled });
 
-  // Get config data
-  const configData = await getContentNode(
+  const configSlug = getSlugWithAppName({
+    slug: env.NEXT_PUBLIC_STORYBLOK_EXCLUDED_FOLDERS_FROM_ROUTING,
+  });
+
+  const configData = await getConfigNode(
     {
-      slug: getSlugWithAppName({
-        slug: env.NEXT_PUBLIC_STORYBLOK_EXCLUDED_FOLDERS_FROM_ROUTING,
-      }),
+      slug: configSlug,
+      skipNotFoundPage: true,
+      skipSeo: true,
       relations,
     },
     {
@@ -34,7 +37,7 @@ const RootLayout = async ({ children }: RootLayoutProps) => {
     },
   );
 
-  const { header, footer, defaultTheme, forcedTheme } = configData.ContentNode?.content || {};
+  const { header, footer, defaultTheme, forcedTheme } = configData.ConfigItem?.content || {};
 
   return (
     <html lang="en" suppressHydrationWarning>
