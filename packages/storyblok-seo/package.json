@@ -1,0 +1,26 @@
+{
+  "name": "@natu/storyblok-seo",
+  "version": "0.0.0",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "license": "MIT",
+  "files": [
+    "index.ts"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "eslint:format": "eslint src --fix"
+  },
+  "dependencies": {
+    "@natu/storyblok-api": "*",
+    "@natu/storyblok-utils": "*",
+    "@natu/ui": "*",
+    "@natu/utils": "*"
+  },
+  "devDependencies": {
+    "eslint-config-custom": "*",
+    "tsconfig": "*"
+  }
+}

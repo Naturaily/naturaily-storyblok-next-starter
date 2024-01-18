@@ -45,8 +45,11 @@ export type ConfigComponent = {
   defaultTheme?: Maybe<Scalars['String']['output']>;
   footer?: Maybe<Story>;
   forcedTheme?: Maybe<Scalars['String']['output']>;
+  googleVerificationId?: Maybe<Scalars['String']['output']>;
   header?: Maybe<Story>;
   notFoundPage?: Maybe<Story>;
+  siteName?: Maybe<Scalars['String']['output']>;
+  twitterCreator?: Maybe<Scalars['String']['output']>;
 };
 
 export type ConfigComponentFooterArgs = {
@@ -71,8 +74,11 @@ export type ConfigFilterQuery = {
   defaultTheme?: InputMaybe<FilterQueryOperations>;
   footer?: InputMaybe<FilterQueryOperations>;
   forcedTheme?: InputMaybe<FilterQueryOperations>;
+  googleVerificationId?: InputMaybe<FilterQueryOperations>;
   header?: InputMaybe<FilterQueryOperations>;
   notFoundPage?: InputMaybe<FilterQueryOperations>;
+  siteName?: InputMaybe<FilterQueryOperations>;
+  twitterCreator?: InputMaybe<FilterQueryOperations>;
 };
 
 export type ConfigItem = {
@@ -634,6 +640,9 @@ export type GetConfigNodeQuery = {
       _editable?: string | null;
       _uid?: string | null;
       defaultSeo?: any | null;
+      twitterCreator?: string | null;
+      googleVerificationId?: string | null;
+      siteName?: string | null;
       defaultTheme?: string | null;
       forcedTheme?: string | null;
       header?: { __typename?: 'Story'; content?: any | null } | null;
@@ -739,6 +748,9 @@ export const GetConfigNode = gql`
           content
         }
         defaultSeo @skip(if: $skipSeo)
+        twitterCreator @skip(if: $skipSeo)
+        googleVerificationId @skip(if: $skipSeo)
+        siteName @skip(if: $skipSeo)
         defaultTheme
         forcedTheme
       }

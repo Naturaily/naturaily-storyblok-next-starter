@@ -20,6 +20,9 @@ query getConfigNode(
         content
       }
       defaultSeo @skip(if: $skipSeo)
+      twitterCreator @skip(if: $skipSeo)
+      googleVerificationId @skip(if: $skipSeo)
+      siteName @skip(if: $skipSeo)
       defaultTheme
       forcedTheme
     }

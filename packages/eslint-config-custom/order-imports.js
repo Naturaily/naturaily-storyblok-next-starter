@@ -16,4 +16,5 @@ module.exports = [
   `/^${appPrefix}/fonts/`,
   `/^${appPrefix}/next-themes/`,
   `/^${appPrefix}/storyblok-revalidate/`,
+  `/^${appPrefix}/storyblok-seo/`,
 ];

@@ -16,6 +16,7 @@
     "@natu/react-query-gql": "*",
     "@natu/storyblok-api": "*",
     "@natu/storyblok-preview": "*",
+    "@natu/storyblok-seo": "*",
     "@natu/storyblok-ui": "*",
     "@natu/storyblok-utils": "*",
     "@natu/ui": "*",
