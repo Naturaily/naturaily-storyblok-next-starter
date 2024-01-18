@@ -7,7 +7,7 @@ import { relations, getStoryblokApi } from '@natu/storyblok-api';
 import { getStoryblokSeoData } from '@natu/storyblok-seo';
 import { DynamicRender } from '@natu/storyblok-utils';
 
-export async function generateMetadata(): Promise<Metadata> {
+export const generateMetadata = async (): Promise<Metadata> => {
   const { isEnabled } = draftMode();
   const { getContentNode } = getStoryblokApi({ draftMode: isEnabled });
 
@@ -19,7 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return getStoryblokSeoData(configData.ContentNode?.content.seo, {
     slug: '/',
   });
-}
+};
 
 const Page = async () => {
   const { isEnabled } = draftMode();

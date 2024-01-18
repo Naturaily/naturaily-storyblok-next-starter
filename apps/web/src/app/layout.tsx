@@ -13,7 +13,7 @@ import { Layout } from '@natu/ui';
 import { Providers } from './Providers';
 import { StoryblokProvider } from './StoryblokProvider';
 
-export async function generateMetadata(): Promise<Metadata> {
+export const generateMetadata = async (): Promise<Metadata> => {
   const { isEnabled } = draftMode();
   const { getConfigNode } = getStoryblokApi({ draftMode: isEnabled });
 
@@ -43,7 +43,7 @@ export async function generateMetadata(): Promise<Metadata> {
     googleVerificationId: configData.ConfigItem?.content?.googleVerificationId || '',
     siteName: configData.ConfigItem?.content?.siteName || '',
   });
-}
+};
 
 interface RootLayoutProps {
   children: ReactNode;

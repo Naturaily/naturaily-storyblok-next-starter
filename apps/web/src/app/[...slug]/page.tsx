@@ -22,7 +22,7 @@ interface PageProps {
   };
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export const generateMetadata = async ({ params }: PageProps): Promise<Metadata> => {
   const { isEnabled } = draftMode();
   const { getContentNode } = getStoryblokApi({ draftMode: isEnabled });
 
@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return getStoryblokSeoData(configData.ContentNode?.content.seo, {
     slug: `/${getSlugFromParams(params.slug)}`,
   });
-}
+};
 
 const Page = async ({ params }: PageProps) => {
   const { isEnabled } = draftMode();
@@ -54,11 +54,7 @@ const Page = async ({ params }: PageProps) => {
     return notFound();
   }
 
-  return (
-    <div>
-      <DynamicRender data={story?.ContentNode?.content} />
-    </div>
-  );
+  return <DynamicRender data={story?.ContentNode?.content} />;
 };
 
 export default Page;

@@ -23,7 +23,7 @@ export const getStoryblokSeoData = (data?: StoryblokSeoComponent[], config?: Con
     return {};
   }
 
-  const [{ metaDescription, metaImage, metaTitle }] = data;
+  const [{ metaDescription, metaImage, metaTitle, noIndex, noFollow }] = data;
   const { googleVerificationId, slug, twitterCreator, siteName } = config || {};
 
   return {
@@ -32,6 +32,10 @@ export const getStoryblokSeoData = (data?: StoryblokSeoComponent[], config?: Con
     description: metaDescription,
     alternates: {
       canonical: slug,
+    },
+    robots: {
+      follow: !noFollow,
+      index: !noIndex,
     },
     openGraph: {
       title: metaTitle,
