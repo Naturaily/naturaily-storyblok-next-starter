@@ -8,18 +8,19 @@ import { getSlugWithAppName, getSlugWithoutAppName } from '@natu/storyblok-utils
 // add more -> "page,other-content-type,other"
 const validSitemapComponents = 'page';
 
+// Google's limit is 50,000 URLs per sitemap
 const Sitemap = async (): Promise<MetadataRoute.Sitemap> => {
-  // Google's limit is 50,000 URLs per sitemap
   const { isEnabled } = draftMode();
   const { getContentNodes } = getStoryblokApi({ draftMode: isEnabled });
 
   const perPage = 100;
+  const index = 1;
   const requests = [];
 
   const initial = await getContentNodes({
     startsWith: env.NEXT_PUBLIC_STORYBLOK_MAIN_APP_FOLDER,
-    perPage: 1,
     page: 1,
+    perPage: 1,
     skipContent: true,
     excludingSlugs: getSlugWithAppName({
       slug: `${env.NEXT_PUBLIC_STORYBLOK_EXCLUDED_FOLDERS_FROM_ROUTING}/*`,
@@ -31,11 +32,11 @@ const Sitemap = async (): Promise<MetadataRoute.Sitemap> => {
     },
   });
 
-  const totalPostItems = initial?.ContentNodes?.total || 100;
+  const totalPostItems = initial?.ContentNodes?.total || perPage;
   const totalPages = Math.ceil(totalPostItems / perPage);
 
   // eslint-disable-next-line no-plusplus
-  for (let i = 1; i <= totalPages; i++) {
+  for (let i = index; i <= totalPages; i++) {
     requests.push(
       getContentNodes({
         startsWith: env.NEXT_PUBLIC_STORYBLOK_MAIN_APP_FOLDER,
