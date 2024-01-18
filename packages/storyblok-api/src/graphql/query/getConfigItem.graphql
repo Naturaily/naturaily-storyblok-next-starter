@@ -1,0 +1,39 @@
+query getConfigNode(
+  $slug: ID!
+  $relations: String = ""
+  $skipHeader: Boolean = false
+  $skipFooter: Boolean = false
+  $skipNotFoundPage: Boolean = false
+  $skipSeo: Boolean = false
+) {
+  ConfigItem(id: $slug, resolve_relations: $relations) {
+    content {
+      _editable
+      _uid
+      header @skip(if: $skipHeader) {
+        content
+      }
+      footer @skip(if: $skipFooter) {
+        content
+      }
+      notFoundPage @skip(if: $skipNotFoundPage) {
+        content
+      }
+      defaultSeo @skip(if: $skipSeo)
+      twitterCreator @skip(if: $skipSeo)
+      googleVerificationId @skip(if: $skipSeo)
+      siteName @skip(if: $skipSeo)
+      defaultTheme
+      forcedTheme
+    }
+    created_at
+    first_published_at
+    full_slug
+    id
+    name
+    path
+    published_at
+    release_id
+    uuid
+  }
+}

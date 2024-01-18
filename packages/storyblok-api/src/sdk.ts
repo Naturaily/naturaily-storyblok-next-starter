@@ -13,6 +13,9 @@ import {
   GetLinks,
   GetLinksQuery,
   GetLinksQueryVariables,
+  GetConfigNode,
+  GetConfigNodeQuery,
+  GetConfigNodeQueryVariables,
 } from './generated/graphql';
 
 interface FetchOptions extends Omit<RequestInit, 'body' | 'method'> {
@@ -102,6 +105,31 @@ export function getSdk(
           return data;
         },
         'getLinks',
+        'query',
+      );
+    },
+    getConfigNode(
+      variables: GetConfigNodeQueryVariables,
+      { headers, ...restFetchOptions }: FetchOptions = {},
+    ): Promise<GetConfigNodeQuery> {
+      return withWrapper(
+        async wrapperOptions => {
+          const { headers: wrapperHeaders, ...restWrapperOptions } = wrapperOptions || {};
+
+          const { data } = await fetcher<GetConfigNodeQuery, GetConfigNodeQueryVariables>({
+            query: print(GetConfigNode),
+            variables,
+            headers: {
+              ...wrapperHeaders,
+              ...headers,
+            },
+            ...restWrapperOptions,
+            ...restFetchOptions,
+          });
+
+          return data;
+        },
+        'getConfigNode',
         'query',
       );
     },

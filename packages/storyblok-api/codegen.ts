@@ -8,6 +8,7 @@ const config: CodegenConfig = {
       'https://gapi.storyblok.com/v1/api': {
         headers: {
           Token: NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN as string,
+          // Token: '8jdRSQvLvPDA9cQmIU3RAAtt',
           Version: 'draft',
         },
       },

@@ -7,8 +7,8 @@ import { ReactQueryProvider, queryClient } from '@natu/react-query-gql';
 import { DraftModeProvider } from '@natu/storyblok-preview';
 
 interface DarkModeOptions {
-  defaultTheme?: 'light' | 'dark' | 'system';
-  forcedTheme?: 'light' | 'dark';
+  defaultTheme?: 'light' | 'dark' | 'system' | null | string;
+  forcedTheme?: 'light' | 'dark' | null | string;
 }
 
 interface ProvidersProps {
@@ -21,8 +21,8 @@ export const Providers = ({ children, draftMode, darkModeOptions }: ProvidersPro
   <ReactQueryProvider client={queryClient}>
     <ThemeProvider
       attribute="class"
-      defaultTheme={darkModeOptions?.defaultTheme}
-      forcedTheme={darkModeOptions?.forcedTheme}
+      defaultTheme={darkModeOptions?.defaultTheme || undefined}
+      forcedTheme={darkModeOptions?.forcedTheme || undefined}
       enableSystem
       disableTransitionOnChange
     >

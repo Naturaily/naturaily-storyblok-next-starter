@@ -6,14 +6,20 @@ import { DynamicRender, getSlugWithAppName } from '@natu/storyblok-utils';
 
 const NotFound = async () => {
   const { isEnabled } = draftMode();
-  const { getContentNode } = getStoryblokApi({ draftMode: isEnabled });
+  const { getConfigNode } = getStoryblokApi({ draftMode: isEnabled });
 
   const slug = getSlugWithAppName({
     slug: env.NEXT_PUBLIC_STORYBLOK_EXCLUDED_FOLDERS_FROM_ROUTING,
   });
 
-  const { ContentNode } = await getContentNode(
-    { slug, relations },
+  const configData = await getConfigNode(
+    {
+      slug,
+      skipFooter: true,
+      skipHeader: true,
+      skipSeo: true,
+      relations,
+    },
     {
       next: {
         tags: [TAGS.SB_CONFIG],
@@ -21,7 +27,7 @@ const NotFound = async () => {
     },
   );
 
-  return <DynamicRender data={ContentNode?.content?.notFoundPage?.content} />;
+  return <DynamicRender data={configData.ConfigItem?.content?.notFoundPage?.content} />;
 };
 
 export default NotFound;
