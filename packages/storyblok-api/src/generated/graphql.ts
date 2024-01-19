@@ -305,6 +305,7 @@ export type PageComponent = {
   _uid?: Maybe<Scalars['String']['output']>;
   body?: Maybe<Scalars['BlockScalar']['output']>;
   component?: Maybe<Scalars['String']['output']>;
+  seo?: Maybe<Scalars['BlockScalar']['output']>;
 };
 
 export type PageItem = {
@@ -355,6 +356,8 @@ export type QueryType = {
   PageItem?: Maybe<PageItem>;
   PageItems?: Maybe<PageItems>;
   RateLimit?: Maybe<RateLimit>;
+  RedirectItem?: Maybe<RedirectItem>;
+  RedirectItems?: Maybe<RedirectItems>;
   Space?: Maybe<Space>;
   Tags?: Maybe<Tags>;
 };
@@ -552,6 +555,42 @@ export type QueryTypePageItemsArgs = {
   with_tag?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type QueryTypeRedirectItemArgs = {
+  find_by?: InputMaybe<Scalars['String']['input']>;
+  from_release?: InputMaybe<Scalars['Int']['input']>;
+  id: Scalars['ID']['input'];
+  language?: InputMaybe<Scalars['String']['input']>;
+  resolve_links?: InputMaybe<Scalars['String']['input']>;
+  resolve_relations?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type QueryTypeRedirectItemsArgs = {
+  by_slugs?: InputMaybe<Scalars['String']['input']>;
+  by_uuids?: InputMaybe<Scalars['String']['input']>;
+  by_uuids_ordered?: InputMaybe<Scalars['String']['input']>;
+  excluding_fields?: InputMaybe<Scalars['String']['input']>;
+  excluding_ids?: InputMaybe<Scalars['String']['input']>;
+  excluding_slugs?: InputMaybe<Scalars['String']['input']>;
+  fallback_lang?: InputMaybe<Scalars['String']['input']>;
+  filter_query?: InputMaybe<Scalars['JsonScalar']['input']>;
+  filter_query_v2?: InputMaybe<RedirectFilterQuery>;
+  first_published_at_gt?: InputMaybe<Scalars['String']['input']>;
+  first_published_at_lt?: InputMaybe<Scalars['String']['input']>;
+  from_release?: InputMaybe<Scalars['String']['input']>;
+  is_startpage?: InputMaybe<Scalars['String']['input']>;
+  language?: InputMaybe<Scalars['String']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  per_page?: InputMaybe<Scalars['Int']['input']>;
+  published_at_gt?: InputMaybe<Scalars['String']['input']>;
+  published_at_lt?: InputMaybe<Scalars['String']['input']>;
+  resolve_links?: InputMaybe<Scalars['String']['input']>;
+  resolve_relations?: InputMaybe<Scalars['String']['input']>;
+  search_term?: InputMaybe<Scalars['String']['input']>;
+  sort_by?: InputMaybe<Scalars['String']['input']>;
+  starts_with?: InputMaybe<Scalars['String']['input']>;
+  with_tag?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type QueryTypeTagsArgs = {
   starts_with?: InputMaybe<Scalars['String']['input']>;
 };
@@ -559,6 +598,54 @@ export type QueryTypeTagsArgs = {
 export type RateLimit = {
   __typename?: 'RateLimit';
   maxCost: Scalars['Int']['output'];
+};
+
+export type RedirectComponent = {
+  __typename?: 'RedirectComponent';
+  _editable?: Maybe<Scalars['String']['output']>;
+  _uid?: Maybe<Scalars['String']['output']>;
+  component?: Maybe<Scalars['String']['output']>;
+  newPath?: Maybe<Scalars['String']['output']>;
+  oldPath?: Maybe<Scalars['String']['output']>;
+  status?: Maybe<Scalars['String']['output']>;
+};
+
+export type RedirectFilterQuery = {
+  newPath?: InputMaybe<FilterQueryOperations>;
+  oldPath?: InputMaybe<FilterQueryOperations>;
+  status?: InputMaybe<FilterQueryOperations>;
+};
+
+export type RedirectItem = {
+  __typename?: 'RedirectItem';
+  alternates?: Maybe<Array<Maybe<Alternate>>>;
+  content?: Maybe<RedirectComponent>;
+  created_at?: Maybe<Scalars['String']['output']>;
+  default_full_slug?: Maybe<Scalars['String']['output']>;
+  first_published_at?: Maybe<Scalars['String']['output']>;
+  full_slug?: Maybe<Scalars['String']['output']>;
+  group_id?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  is_startpage?: Maybe<Scalars['Boolean']['output']>;
+  lang?: Maybe<Scalars['String']['output']>;
+  meta_data?: Maybe<Scalars['JsonScalar']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  parent_id?: Maybe<Scalars['Int']['output']>;
+  path?: Maybe<Scalars['String']['output']>;
+  position?: Maybe<Scalars['Int']['output']>;
+  published_at?: Maybe<Scalars['String']['output']>;
+  release_id?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  sort_by_date?: Maybe<Scalars['String']['output']>;
+  tag_list?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  translated_slugs?: Maybe<Array<Maybe<TranslatedSlug>>>;
+  uuid?: Maybe<Scalars['String']['output']>;
+};
+
+export type RedirectItems = {
+  __typename?: 'RedirectItems';
+  items?: Maybe<Array<Maybe<RedirectItem>>>;
+  total?: Maybe<Scalars['Int']['output']>;
 };
 
 export type Space = {
@@ -725,6 +812,29 @@ export type GetLinksQuery = {
   } | null;
 };
 
+export type GetRedirectsItemsQueryVariables = Exact<{
+  perPage?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  startsWith?: InputMaybe<Scalars['String']['input']>;
+  filterQuery?: InputMaybe<Scalars['JsonScalar']['input']>;
+}>;
+
+export type GetRedirectsItemsQuery = {
+  __typename?: 'QueryType';
+  RedirectItems?: {
+    __typename?: 'RedirectItems';
+    items?: Array<{
+      __typename?: 'RedirectItem';
+      content?: {
+        __typename?: 'RedirectComponent';
+        status?: string | null;
+        destination?: string | null;
+        source?: string | null;
+      } | null;
+    } | null> | null;
+  } | null;
+};
+
 export const GetConfigNode = gql`
   query getConfigNode(
     $slug: ID!
@@ -828,6 +938,29 @@ export const GetLinks = gql`
         isStartpage
         slug
         published
+      }
+    }
+  }
+`;
+export const GetRedirectsItems = gql`
+  query getRedirectsItems(
+    $perPage: Int = 12
+    $page: Int = 1
+    $startsWith: String = ""
+    $filterQuery: JsonScalar = {}
+  ) {
+    RedirectItems(
+      page: $page
+      per_page: $perPage
+      starts_with: $startsWith
+      filter_query: $filterQuery
+    ) {
+      items {
+        content {
+          destination: newPath
+          source: oldPath
+          status
+        }
       }
     }
   }

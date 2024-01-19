@@ -1,0 +1,21 @@
+query getRedirectsItems(
+  $perPage: Int = 12
+  $page: Int = 1
+  $startsWith: String = ""
+  $filterQuery: JsonScalar = {}
+) {
+  RedirectItems(
+    page: $page
+    per_page: $perPage
+    starts_with: $startsWith
+    filter_query: $filterQuery
+  ) {
+    items {
+      content {
+        destination: newPath
+        source: oldPath
+        status
+      }
+    }
+  }
+}
