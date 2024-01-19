@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+import { Metadata, ResolvingMetadata } from 'next';
 
 import { env } from '@natu/env';
 import { SbComponentType, StoryblokAsset } from '@natu/storyblok-utils';
@@ -16,6 +16,7 @@ interface Config {
   twitterCreator?: string;
   googleVerificationId?: string;
   siteName?: string;
+  prevData?: Awaited<ResolvingMetadata>;
 }
 
 export const getStoryblokSeoData = (data?: StoryblokSeoComponent[], config?: Config): Metadata => {
@@ -24,12 +25,16 @@ export const getStoryblokSeoData = (data?: StoryblokSeoComponent[], config?: Con
   }
 
   const [{ metaDescription, metaImage, metaTitle, noIndex, noFollow }] = data;
-  const { googleVerificationId, slug, twitterCreator, siteName } = config || {};
+  const { googleVerificationId, slug, twitterCreator, siteName, prevData } = config || {};
+
+  const prevTitle = prevData?.title || '';
+  const prevDescription = prevData?.description || '';
+  const prevTwitter = prevData?.twitter;
 
   return {
     metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
-    title: metaTitle,
-    description: metaDescription,
+    title: metaTitle || prevTitle,
+    description: metaDescription || prevDescription,
     alternates: {
       canonical: slug,
     },
@@ -38,8 +43,8 @@ export const getStoryblokSeoData = (data?: StoryblokSeoComponent[], config?: Con
       index: !noIndex,
     },
     openGraph: {
-      title: metaTitle,
-      description: metaDescription,
+      title: metaTitle || prevTitle,
+      description: metaDescription || prevDescription,
       url: slug,
       siteName,
       ...(metaImage?.filename && {
@@ -52,21 +57,22 @@ export const getStoryblokSeoData = (data?: StoryblokSeoComponent[], config?: Con
       }),
       type: 'website',
     },
-    twitter: {
-      card: 'summary_large_image',
-      title: metaTitle,
-      description: metaDescription,
-      site: twitterCreator,
-      creator: twitterCreator,
-      ...(metaImage?.filename && {
-        images: [
-          {
-            url: metaImage.filename,
-            alt: metaImage.alt,
-          },
-        ],
-      }),
-    },
+    twitter:
+      {
+        card: 'summary_large_image',
+        title: metaTitle || prevTitle,
+        description: metaDescription || prevDescription,
+        site: twitterCreator,
+        creator: twitterCreator,
+        ...(metaImage?.filename && {
+          images: [
+            {
+              url: metaImage.filename,
+              alt: metaImage.alt,
+            },
+          ],
+        }),
+      } || prevTwitter,
     ...(googleVerificationId && {
       verification: {
         google: `google-site-verification=${googleVerificationId}`,

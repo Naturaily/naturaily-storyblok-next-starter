@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+import { Metadata, ResolvingMetadata } from 'next';
 import { draftMode } from 'next/headers';
 import { notFound } from 'next/navigation';
 
@@ -22,12 +22,16 @@ interface PageProps {
   };
 }
 
-export const generateMetadata = async ({ params }: PageProps): Promise<Metadata> => {
+export const generateMetadata = async (
+  { params }: PageProps,
+  parent: ResolvingMetadata,
+): Promise<Metadata> => {
   const { isEnabled } = draftMode();
   const { getContentNode } = getStoryblokApi({ draftMode: isEnabled });
 
   const slug = getSlugWithAppName({ slug: getSlugFromParams(params.slug) });
 
+  const prevData = await parent;
   const configData = await getContentNode({
     slug,
     relations,
@@ -35,6 +39,7 @@ export const generateMetadata = async ({ params }: PageProps): Promise<Metadata>
 
   return getStoryblokSeoData(configData.ContentNode?.content.seo, {
     slug: `/${getSlugFromParams(params.slug)}`,
+    prevData,
   });
 };
 

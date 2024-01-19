@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+import { Metadata, ResolvingMetadata } from 'next';
 import { draftMode } from 'next/headers';
 import { notFound } from 'next/navigation';
 
@@ -7,10 +7,14 @@ import { relations, getStoryblokApi } from '@natu/storyblok-api';
 import { getStoryblokSeoData } from '@natu/storyblok-seo';
 import { DynamicRender } from '@natu/storyblok-utils';
 
-export const generateMetadata = async (): Promise<Metadata> => {
+export const generateMetadata = async (
+  _: unknown,
+  parent: ResolvingMetadata,
+): Promise<Metadata> => {
   const { isEnabled } = draftMode();
   const { getContentNode } = getStoryblokApi({ draftMode: isEnabled });
 
+  const prevData = await parent;
   const configData = await getContentNode({
     slug: env.NEXT_PUBLIC_STORYBLOK_MAIN_APP_FOLDER,
     relations,
@@ -18,6 +22,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
 
   return getStoryblokSeoData(configData.ContentNode?.content.seo, {
     slug: '/',
+    prevData,
   });
 };
 
