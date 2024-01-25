@@ -1,4 +1,3 @@
-// const StoryblokClient = require('storyblok-js-client');
 import StoryblokClient from 'storyblok-js-client';
 
 const getStoryblokRedirects = async () => {
