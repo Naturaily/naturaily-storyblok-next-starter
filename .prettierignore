@@ -12,3 +12,4 @@ migrations
 favicon.ico
 packages/fonts/src/Bariol/files
 packages/fonts/src/BariolSerif/files
+.eslintignore

@@ -4,12 +4,12 @@
     "noEmit": true,
     "plugins": [
       {
-        "name": "next"
-      }
+        "name": "next",
+      },
     ],
-    "moduleResolution": "node"
+    "moduleResolution": "node",
   },
   "extends": "tsconfig/nextjs.json",
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules", ".next", "coverage", ".turbo"]
+  "exclude": ["node_modules", ".next", "coverage", ".turbo"],
 }

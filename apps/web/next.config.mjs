@@ -1,4 +1,5 @@
 import '@natu/env/src/env/env.mjs';
+const { getStoryblokRedirects } = await import('./getStoryblokRedirects.mjs');
 
 /** @type {import("next").NextConfig} */
 const config = {
@@ -13,6 +14,11 @@ const config = {
   },
   reactStrictMode: true,
   transpilePackages: ['@natu/env', '@natu/ui'],
+  async redirects() {
+    const storyblokRedirectsItems = await getStoryblokRedirects();
+
+    return [...storyblokRedirectsItems];
+  },
   async rewrites() {
     return [
       {

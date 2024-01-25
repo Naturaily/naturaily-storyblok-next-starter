@@ -6,15 +6,15 @@
   "types": "./index.ts",
   "license": "MIT",
   "devDependencies": {
-    "@storybook/addon-a11y": "7.6.9",
-    "@storybook/addon-essentials": "7.6.9",
-    "@storybook/addon-interactions": "7.6.9",
-    "@storybook/addon-links": "7.6.9",
-    "@storybook/blocks": "7.6.9",
-    "@storybook/nextjs": "7.6.9",
-    "@storybook/react": "7.6.9",
+    "@storybook/addon-a11y": "7.6.10",
+    "@storybook/addon-essentials": "7.6.10",
+    "@storybook/addon-interactions": "7.6.10",
+    "@storybook/addon-links": "7.6.10",
+    "@storybook/blocks": "7.6.10",
+    "@storybook/nextjs": "7.6.10",
+    "@storybook/react": "7.6.10",
     "eslint-config-custom": "*",
-    "storybook": "7.6.9",
+    "storybook": "7.6.10",
     "tailwind-config": "*",
     "tsconfig": "*"
   }
