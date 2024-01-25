@@ -16,9 +16,6 @@ import {
   GetConfigNode,
   GetConfigNodeQuery,
   GetConfigNodeQueryVariables,
-  GetRedirectsItemsQueryVariables,
-  GetRedirectsItemsQuery,
-  GetRedirectsItems,
 } from './generated/graphql';
 
 interface FetchOptions extends Omit<RequestInit, 'body' | 'method'> {
@@ -133,31 +130,6 @@ export function getSdk(
           return data;
         },
         'getConfigNode',
-        'query',
-      );
-    },
-    getRedirectsItems(
-      variables: GetRedirectsItemsQueryVariables,
-      { headers, ...restFetchOptions }: FetchOptions = {},
-    ): Promise<GetRedirectsItemsQuery> {
-      return withWrapper(
-        async wrapperOptions => {
-          const { headers: wrapperHeaders, ...restWrapperOptions } = wrapperOptions || {};
-
-          const { data } = await fetcher<GetRedirectsItemsQuery, GetRedirectsItemsQueryVariables>({
-            query: print(GetRedirectsItems),
-            variables,
-            headers: {
-              ...wrapperHeaders,
-              ...headers,
-            },
-            ...restWrapperOptions,
-            ...restFetchOptions,
-          });
-
-          return data;
-        },
-        'getRedirectsItems',
         'query',
       );
     },
