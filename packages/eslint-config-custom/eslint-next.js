@@ -77,22 +77,4 @@ module.exports = {
       },
     ],
   },
-  overrides: [
-    {
-      // eslint-plugin-testing-library rules or preset only for matching files!
-      env: {
-        jest: true,
-      },
-      files: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
-      extends: ['plugin:testing-library/react', 'plugin:jest/recommended'],
-      rules: {
-        'no-console': 1,
-        'no-magic-numbers': 0,
-        'import/no-extraneous-dependencies': [
-          0,
-          { devDependencies: ['**/?(*.)+(spec|test).[jt]s?(x)'] },
-        ],
-      },
-    },
-  ],
 };

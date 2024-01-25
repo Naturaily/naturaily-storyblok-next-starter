@@ -11,6 +11,10 @@ export interface YoutubeVideoProps {
   playLabel?: string;
 }
 
-export const YoutubeVideo = ({ videoid, params, playLabel, ...rest }: YoutubeVideoProps) => (
-  <YouTubeEmbed videoid={videoid} params={params} playlabel={playLabel} {...rest} />
-);
+export const YoutubeVideo = ({ videoid, params, playLabel, ...rest }: YoutubeVideoProps) => {
+  if (!videoid) {
+    return null;
+  }
+
+  return <YouTubeEmbed videoid={videoid} params={params} playlabel={playLabel} {...rest} />;
+};

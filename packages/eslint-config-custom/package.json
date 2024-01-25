@@ -8,13 +8,13 @@
     "eslint-next.js"
   ],
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "6.19.0",
+    "@typescript-eslint/eslint-plugin": "6.19.1",
     "@typescript-eslint/parser": "6.19.0",
     "eslint": "8.56.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-config-airbnb-typescript": "17.1.0",
-    "eslint-config-next": "14.0.4",
+    "eslint-config-next": "14.1.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-config-turbo": "1.11.3",
     "eslint-plugin-import": "2.29.1",
@@ -26,5 +26,6 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "dependencies": {}
 }

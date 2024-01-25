@@ -13,7 +13,7 @@
   },
   "scripts": {
     "eslint:format": "eslint src --fix",
-    "codegen": "yarn graphql-code-generator --config codegen.ts"
+    "codegen": "yarn graphql-code-generator --config ./codegen.ts -r dotenv/config"
   },
   "devDependencies": {
     "eslint-config-custom": "*",

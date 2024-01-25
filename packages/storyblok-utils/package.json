@@ -21,6 +21,6 @@
   "dependencies": {
     "@natu/env": "*",
     "@natu/utils": "*",
-    "@storyblok/react": "3.0.7"
+    "@storyblok/react": "3.0.8"
   }
 }

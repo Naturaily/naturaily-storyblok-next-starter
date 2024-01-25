@@ -1,14 +1,11 @@
 import { CodegenConfig } from '@graphql-codegen/cli';
 
-const { NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN } = process.env;
-
 const config: CodegenConfig = {
   schema: [
     {
-      'https://gapi.storyblok.com/v1/api': {
+      [process.env.NEXT_PUBLIC_STORYBLOK_API_URL!]: {
         headers: {
-          Token: NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN as string,
-          // Token: '8jdRSQvLvPDA9cQmIU3RAAtt',
+          Token: process.env.NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN!,
           Version: 'draft',
         },
       },

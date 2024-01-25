@@ -1,4 +1,5 @@
 **/node_modules/*
+node_modules/*
 **/out/*
 **/.next/*
 coverage
@@ -19,3 +20,4 @@ favicon.ico
 global.css
 styles.module.css
 **/*.graphql
+getStoryblokRedirects.mjs
