@@ -1,13 +1,20 @@
-import { setupDatasources } from './steps/setupDatasources.ts';
-// import fs from 'fs'
-// import StoryblokClient from 'storyblok-js-client'
+import StoryblokClient from 'storyblok-js-client';
 
-// const Storyblok = new StoryblokClient({
-//   accessToken: '',
-// });
+import { setStoryblokPart } from './setStoryblokPart.ts';
+// import fs from 'fs'
+
+const Storyblok = new StoryblokClient({
+  oauthToken: process.env.STORYBLOK_PERSONAL_ACCESS_TOKEN,
+});
 
 export const setup = (() => {
-  setupDatasources();
+  if (!process.env.STORYBLOK_SPACE_ID) {
+    console.log('Storyblok Space ID was not provided.');
+
+    return;
+  }
+
+  setStoryblokPart(Storyblok, process.env.STORYBLOK_SPACE_ID, 'datasources', {});
 
   // Storyblok.get('cdn/stories', {
   //   per_page: 100

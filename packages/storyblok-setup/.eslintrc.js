@@ -6,6 +6,7 @@ module.exports = {
   rules: {
     'import/export': 0,
     'import/extensions': 0,
+    'no-console': 0,
   },
   extends: ['eslint-config-custom/eslint-next.js'],
 };
