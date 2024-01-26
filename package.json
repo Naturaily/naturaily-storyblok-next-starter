@@ -17,6 +17,7 @@
     "eslint:format": "turbo run eslint:format",
     "prepare": "husky install",
     "codegen": "turbo run codegen",
+    "storyblok:setup": "yarn workspace @natu/storyblok-setup setup",
     "storybook": "yarn workspace @natu/storybook-ui storybook",
     "storybook:build": "yarn workspace @natu/storybook-ui storybook:build"
   },

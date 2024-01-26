@@ -1,0 +1,24 @@
+{
+  "name": "@natu/storyblok-setup",
+  "private": true,
+  "version": "0.0.0",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "license": "MIT",
+  "files": [
+    "index.ts"
+  ],
+  "scripts": {
+    "setup": "ts-node-esm index.ts",
+    "eslint:format": "eslint src --fix"
+  },
+  "dependencies": {
+    "plop": "^4.0.1",
+    "ts-node": "^10.9.2",
+    "storyblok-js-client": "^6.6.3"
+  },
+  "devDependencies": {
+    "eslint-config-custom": "*",
+    "tsconfig": "*"
+  }
+}
