@@ -5,9 +5,8 @@ import { TypographyVariant } from './Typography.type';
 import { typographyVariantsMobile } from './utils/getTypographyVariantStyles';
 
 const meta: Meta<typeof Typography> = {
-  title: 'Components/Atoms/Typography',
+  title: 'Components/Typography',
   component: Typography,
-  tags: ['autodocs'],
   args: {
     children: 'Lorem ipsum dolor sit ament',
     variant: 'text-base',

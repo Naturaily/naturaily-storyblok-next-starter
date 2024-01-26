@@ -4,9 +4,8 @@ import { Button } from '../Button';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './Tooltip';
 
 const meta: Meta<typeof Tooltip> = {
-  title: 'Components/Atoms/Tooltip',
+  title: 'Components/Tooltip',
   component: Tooltip,
-  tags: ['autodocs'],
   args: {
     delayDuration: 300,
   },

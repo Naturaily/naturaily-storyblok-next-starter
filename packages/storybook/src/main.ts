@@ -12,6 +12,6 @@ export const rootConfig: Omit<StorybookConfig, 'stories'> = {
     options: {},
   },
   docs: {
-    autodocs: true, // Generate docs automatically for each story
+    autodocs: false, // Generate docs automatically for each story
   },
 };
