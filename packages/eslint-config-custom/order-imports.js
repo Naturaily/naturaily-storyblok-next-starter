@@ -5,6 +5,7 @@ module.exports = [
   `/^${appPrefix}/next-link/`,
   `/^${appPrefix}/utils/`,
   `/^${appPrefix}/react-query-gql/`,
+  `/^${appPrefix}/next-api-fetcher/`,
   `/^${appPrefix}/storyblok-preview/`,
   `/^${appPrefix}/storyblok-utils/`,
   `/^${appPrefix}/storyblok-api/`,

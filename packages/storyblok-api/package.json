@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@natu/env": "*",
-    "@natu/react-query-gql": "*",
+    "@natu/next-api-fetcher": "*",
     "@natu/storyblok-preview": "*"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "@natu/react-query-gql",
+  "name": "@natu/next-api-fetcher",
   "version": "0.0.0",
   "private": true,
   "main": "./index.ts",
@@ -12,18 +12,16 @@
     "eslint:format": "eslint src --fix"
   },
   "devDependencies": {
+    "eslint-config-custom": "*",
+    "tsconfig": "*",
     "@graphql-codegen/add": "5.0.0",
     "@graphql-codegen/cli": "5.0.0",
     "@graphql-codegen/typescript": "4.0.1",
     "@graphql-codegen/typescript-document-nodes": "4.0.1",
     "@graphql-codegen/typescript-operations": "4.0.1",
-    "cross-env": "7.0.3",
-    "eslint-config-custom": "*",
-    "tsconfig": "*"
+    "cross-env": "7.0.3"
   },
   "dependencies": {
-    "@tanstack/react-query": "5.17.19",
-    "@tanstack/react-query-devtools": "5.17.21",
     "graphql": "16.8.1"
   }
 }

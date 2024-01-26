@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { print } from 'graphql/language/printer';
 
-import { ApiFetcher } from '@natu/react-query-gql';
+import { ApiFetcher } from '@natu/next-api-fetcher';
 
 import {
   GetContentNodeQueryVariables,

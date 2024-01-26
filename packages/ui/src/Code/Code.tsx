@@ -8,7 +8,8 @@ import { useEffect, useState } from 'react';
 
 import { cn } from '@natu/utils';
 
-import { Button, Typography } from '../../atoms';
+import { Button } from '../Button';
+import { Typography } from '../Typography';
 
 type Language =
   | 'jsx'
