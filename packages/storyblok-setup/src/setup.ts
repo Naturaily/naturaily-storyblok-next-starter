@@ -1,27 +1,17 @@
-import StoryblokClient from 'storyblok-js-client';
+import { setDatasources } from './datasource/setDatasource.ts';
+import { checkEnv } from './utils/checkEnv.ts';
+import { color } from './utils/color.ts';
 
-import { setStoryblokPart } from './setStoryblokPart.ts';
-// import fs from 'fs'
+const setup = async () => {
+  console.log(color('info', '▶️  Starting setup...'));
 
-const Storyblok = new StoryblokClient({
-  oauthToken: process.env.STORYBLOK_PERSONAL_ACCESS_TOKEN,
-});
-
-export const setup = (() => {
-  if (!process.env.STORYBLOK_SPACE_ID) {
-    console.log('Storyblok Space ID was not provided.');
-
+  if (!checkEnv()) {
     return;
   }
 
-  setStoryblokPart(Storyblok, process.env.STORYBLOK_SPACE_ID, 'datasources', {});
+  await setDatasources();
 
-  // Storyblok.get('cdn/stories', {
-  //   per_page: 100
-  // })
-  // .then(response => {
-  //   fs.writeFileSync('data.json', JSON.stringify(response.data.stories));
-  // }).catch(error => {
-  //   console.log(error)
-  // })
-})();
+  console.log(color('success', '✅  Setup complete...'))
+};
+
+setup();

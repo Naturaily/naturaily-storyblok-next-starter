@@ -1,4 +1,7 @@
-export const getDatasources = () => [
+
+import StoryblokClient from "storyblok-js-client";
+
+const getDatasources = () => [
   {
     name: 'Align Items',
     slug: 'align-items',
@@ -102,4 +105,85 @@ export const getDatasources = () => [
   },
 ];
 
+const styles = {
+  success: {open: '\u001b[32;1m', close: '\u001b[0m'},
+  danger: {open: '\u001b[31;1m', close: '\u001b[0m'},
+  info: {open: '\u001b[36;1m', close: '\u001b[0m'},
+  subtitle: {open: '\u001b[2;1m', close: '\u001b[0m'},
+}
 
+type Color =  keyof typeof styles; 
+
+const color = (modifier:Color, string:string) =>  styles[modifier].open + string + styles[modifier].close
+
+const storyblok = new StoryblokClient({
+  oauthToken: process.env.STORYBLOK_PERSONAL_ACCESS_TOKEN,
+});
+
+const DATASOURCES_ENDPOINT = `spaces/${process.env.STORYBLOK_SPACE_ID}/datasources/`;
+const DATASOURCES_ENTRY_ENDPOINT = `spaces/${process.env.STORYBLOK_SPACE_ID}/datasource_entries/`;
+
+export const setDatasources = async () => {
+  console.log(color('info', '▶️ Starting workshop on datasources setup...'));
+  const datasources = getDatasources();
+  const requests = [];
+
+  for (const datasource of datasources) {
+    requests.push(storyblok.post(DATASOURCES_ENDPOINT, datasource));
+  }
+
+  let datasourcesRes;
+
+  try {
+    datasourcesRes = await Promise.all(requests);
+  } catch (err) {
+    console.error(color('danger', `🚨  Datasources error - ${JSON.stringify(err)}`));
+  }
+
+  if (!datasourcesRes) {
+    console.error(color('danger', '🚨  Datasources error - Empty datasourcesRes array'));
+
+    return;
+  }
+
+  console.log(color('success', '✅  Datasources setup complete.'));
+  console.log(color('info', '▶️ Starting workshop on datasources entry setup...'));
+
+  const datasourcesEntryRequests: Promise<unknown>[] = [];
+
+  for (const datasourceItem of datasourcesRes) {
+    // @ts-ignore
+    const { id, slug } = datasourceItem.data.datasource || {};
+
+    if (!slug || !id) {
+      return;
+    }
+
+    const currentDatasource = datasources.find(datasource => datasource.slug === slug);
+
+    if (!currentDatasource) {
+      return;
+    }
+
+    currentDatasource.dimensions.forEach(item => {
+      datasourcesEntryRequests.push(
+        storyblok.post(DATASOURCES_ENTRY_ENDPOINT, {
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          datasource_entry: {
+            ...item,
+            datasource_id: id,
+          },
+        }),
+      );
+    });
+  }
+
+  try {
+    datasourcesRes = await Promise.all(datasourcesEntryRequests);
+  } catch (err) {
+    console.error(color('danger', `🚨  DatasourcesEntry - ${JSON.stringify(err)}`));
+  }
+
+  console.log(color('success', '✅  DatasourcesEntry setup complete.'));
+};
