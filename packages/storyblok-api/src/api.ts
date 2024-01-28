@@ -1,5 +1,5 @@
 import { env } from '@natu/env';
-import { ApiFetcher } from '@natu/react-query-gql';
+import { ApiFetcher } from '@natu/next-api-fetcher';
 import { isDraftMode } from '@natu/storyblok-preview';
 
 import { Sdk, SdkFunctionWrapper, getSdk } from './sdk';

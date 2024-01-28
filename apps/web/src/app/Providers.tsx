@@ -3,7 +3,6 @@
 import { ReactNode } from 'react';
 
 import { ThemeProvider } from '@natu/next-themes';
-import { ReactQueryProvider, queryClient } from '@natu/react-query-gql';
 import { DraftModeProvider } from '@natu/storyblok-preview';
 
 interface DarkModeOptions {
@@ -18,15 +17,13 @@ interface ProvidersProps {
 }
 
 export const Providers = ({ children, draftMode, darkModeOptions }: ProvidersProps) => (
-  <ReactQueryProvider client={queryClient}>
-    <ThemeProvider
-      attribute="class"
-      defaultTheme={darkModeOptions?.defaultTheme || undefined}
-      forcedTheme={darkModeOptions?.forcedTheme || undefined}
-      enableSystem
-      disableTransitionOnChange
-    >
-      <DraftModeProvider draftMode={draftMode}>{children}</DraftModeProvider>
-    </ThemeProvider>
-  </ReactQueryProvider>
+  <ThemeProvider
+    attribute="class"
+    defaultTheme={darkModeOptions?.defaultTheme || undefined}
+    forcedTheme={darkModeOptions?.forcedTheme || undefined}
+    enableSystem
+    disableTransitionOnChange
+  >
+    <DraftModeProvider draftMode={draftMode}>{children}</DraftModeProvider>
+  </ThemeProvider>
 );
