@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "dotenv": "16.4.1",
-    "plop": "^4.0.1",
     "storyblok-js-client": "^6.6.3",
     "ts-node": "^10.9.2"
   },

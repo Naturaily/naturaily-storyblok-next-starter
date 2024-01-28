@@ -1,4 +1,3 @@
-
 import StoryblokClient from "storyblok-js-client";
 
 const getDatasources = () => [
@@ -168,7 +167,6 @@ export const setDatasources = async () => {
     currentDatasource.dimensions.forEach(item => {
       datasourcesEntryRequests.push(
         storyblok.post(DATASOURCES_ENTRY_ENDPOINT, {
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
           datasource_entry: {
             ...item,
