@@ -261,7 +261,7 @@ The link should start with "/"`,
           required: true,
           description:
             'The default theme for users who visit your website for the first time. They can overwrite it individually. Their re-entry to the page will set the value they set.',
-          default_value: 'System',
+          default_value: 'system',
           options: [
             {
               name: 'System',

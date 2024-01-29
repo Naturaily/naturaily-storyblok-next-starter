@@ -5,12 +5,12 @@ import { components } from './components.ts';
 
 const COMPONENTS_ENDPOINT = `spaces/${process.env.STORYBLOK_SPACE_ID}/components/`;
 
-interface SetContentTypeComponentsInput {
+interface SetComponentsInput {
   componentGroups?: ComponentGroup[];
 }
 
-export const setComponents = async ({ componentGroups }: SetContentTypeComponentsInput) => {
-  console.log(color('info', '▶️ Starting workshop on component Content Type setup...'));
+export const setComponents = async ({ componentGroups }: SetComponentsInput) => {
+  console.log(color('info', '▶️ Starting workshop on components setup...'));
 
   const requests = [];
 
