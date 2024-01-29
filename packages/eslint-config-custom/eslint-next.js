@@ -35,6 +35,7 @@ module.exports = {
   rules: {
     'global-require': 0,
     'no-underscore-dangle': 0,
+    'no-plusplus': 0,
     // react
     'no-console': 2,
     'react/react-in-jsx-scope': 0,

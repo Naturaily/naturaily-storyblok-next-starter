@@ -35,7 +35,6 @@ const Sitemap = async (): Promise<MetadataRoute.Sitemap> => {
   const totalPostItems = initial?.ContentNodes?.total || perPage;
   const totalPages = Math.ceil(totalPostItems / perPage);
 
-  // eslint-disable-next-line no-plusplus
   for (let i = index; i <= totalPages; i++) {
     requests.push(
       getContentNodes({
