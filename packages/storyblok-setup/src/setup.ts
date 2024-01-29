@@ -10,7 +10,7 @@ const setup = async () => {
     return;
   }
 
-  // await setDatasources();
+  await setDatasources();
   const componentsGroup = await setComponentGroups();
 
   console.log(color('success', '🔥  Setup complete!'));
