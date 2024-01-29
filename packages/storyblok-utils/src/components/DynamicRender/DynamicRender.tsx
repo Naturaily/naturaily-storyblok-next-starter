@@ -1,5 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-
 // @ts-ignore
 import { StoryblokComponent } from '@storyblok/react/rsc';
 

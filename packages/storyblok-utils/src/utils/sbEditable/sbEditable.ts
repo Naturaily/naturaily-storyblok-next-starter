@@ -14,7 +14,6 @@ import { SbComponentType } from '../../types';
  * property, an empty object is returned.
  */
 export const sbEditable = (blok?: SbComponentType) => {
-  // eslint-disable-next-line no-underscore-dangle
   if (!blok || !blok?._editable) {
     return {};
   }
