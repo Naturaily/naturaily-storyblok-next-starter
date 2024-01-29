@@ -14,9 +14,10 @@ module.exports = {
     'plugin:import/errors',
     'plugin:import/warnings',
     'plugin:import/typescript',
+    'plugin:security/recommended-legacy',
     'prettier',
   ],
-  plugins: ['import', 'eslint-plugin-import-helpers', '@typescript-eslint'],
+  plugins: ['import', 'eslint-plugin-import-helpers', '@typescript-eslint', 'security'],
   settings: {
     next: {
       rootDir: ['apps/*/', 'packages/*/'],
@@ -38,6 +39,7 @@ module.exports = {
     'react/react-in-jsx-scope': 0,
     'import/prefer-default-export': 0,
     'import/no-extraneous-dependencies': 0,
+    'no-eval': 0,
     'react/prop-types': 0,
     'react/button-has-type': 0,
     'react/require-default-props': 0,
