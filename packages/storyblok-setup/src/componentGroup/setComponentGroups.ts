@@ -1,4 +1,6 @@
-import StoryblokClient from 'storyblok-js-client';
+import { color } from '../utils/color.ts';
+import { componentGroups } from './componentsGroup.ts';
+import { storyblok } from '../utils/client.ts';
 
 interface ComponentGroup {
   name: string;
@@ -6,33 +8,7 @@ interface ComponentGroup {
   uuid: string;
 }
 
-const styles = {
-  success: { open: '\u001b[32;1m', close: '\u001b[0m' },
-  danger: { open: '\u001b[31;1m', close: '\u001b[0m' },
-  info: { open: '\u001b[36;1m', close: '\u001b[0m' },
-  subtitle: { open: '\u001b[2;1m', close: '\u001b[0m' },
-};
-
-type Color = keyof typeof styles;
-
-const color = (modifier: Color, string: string) =>
-  styles[modifier].open + string + styles[modifier].close;
-
-const componentGroups = [
-  { name: 'atoms' },
-  { name: 'molecules' },
-  { name: 'organisms' },
-  { name: 'content type' },
-  { name: 'layout' },
-  { name: 'seo' },
-  { name: 'templates' },
-];
-
 const DATASOURCES_ENDPOINT = `spaces/${process.env.STORYBLOK_SPACE_ID}/component_groups/`;
-
-const storyblok = new StoryblokClient({
-  oauthToken: process.env.STORYBLOK_PERSONAL_ACCESS_TOKEN,
-});
 
 export const setComponentGroups = async (): Promise<ComponentGroup[] | undefined> => {
   console.log(color('info', '▶️ Starting workshop on component group setup...'));
