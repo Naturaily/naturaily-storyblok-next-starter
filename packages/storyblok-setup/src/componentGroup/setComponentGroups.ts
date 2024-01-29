@@ -1,8 +1,8 @@
+import { storyblok } from '../utils/client.ts';
 import { color } from '../utils/color.ts';
 import { componentGroups } from './componentsGroup.ts';
-import { storyblok } from '../utils/client.ts';
 
-interface ComponentGroup {
+export interface ComponentGroup {
   name: string;
   id: number;
   uuid: string;

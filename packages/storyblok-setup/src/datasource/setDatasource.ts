@@ -11,6 +11,7 @@ export const setDatasources = async () => {
   const requests = [];
 
   for (const datasource of datasources) {
+    // @ts-ignore
     requests.push(storyblok.post(DATASOURCES_ENDPOINT, datasource));
   }
 

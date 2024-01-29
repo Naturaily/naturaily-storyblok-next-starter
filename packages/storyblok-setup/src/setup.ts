@@ -1,5 +1,6 @@
 import { setComponentGroups } from './componentGroup/setComponentGroups.ts';
-import { setDatasources } from './datasource/setDatasource.ts';
+import { setComponents } from './components/setComponents.ts';
+// import { setDatasources } from './datasource/setDatasource.ts';
 import { checkEnv } from './utils/checkEnv.ts';
 import { color } from './utils/color.ts';
 
@@ -10,9 +11,11 @@ const setup = async () => {
     return;
   }
 
-  await setDatasources();
-  // setComponentGroups returns array of components groups
-  await setComponentGroups();
+  // await setDatasources();
+
+  const componentGroups = await setComponentGroups();
+
+  await setComponents({ componentGroups });
 
   console.log(color('success', '🔥  Setup complete!'));
 };
