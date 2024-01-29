@@ -40,7 +40,6 @@ module.exports = {
     'import/no-extraneous-dependencies': 0,
     'react/prop-types': 0,
     'react/button-has-type': 0,
-    'no-magic-numbers': 1,
     'react/require-default-props': 0,
     'newline-before-return': 2,
     '@typescript-eslint/no-var-requires': 1,
@@ -52,6 +51,7 @@ module.exports = {
     ],
     'react/jsx-props-no-spreading': 0,
     '@next/next/no-html-link-for-pages': 0,
+    '@typescript-eslint/ban-ts-comment': 0,
     'import-helpers/order-imports': [
       2,
       {

@@ -22,8 +22,6 @@ export const NodeImage = (_: ReactNode, { alt, src: imageSrc, title }: NodeImage
     return null;
   }
 
-  // TODO Fix that
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   return <ResponsiveImage {...image} />;
 };
