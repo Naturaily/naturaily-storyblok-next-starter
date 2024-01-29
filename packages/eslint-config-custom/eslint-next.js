@@ -42,6 +42,7 @@ module.exports = {
     'import/prefer-default-export': 0,
     'import/no-extraneous-dependencies': 0,
     'no-eval': 0,
+    'react/destructuring-assignment': 0,
     'react/prop-types': 0,
     'react/button-has-type': 0,
     'react/require-default-props': 0,
