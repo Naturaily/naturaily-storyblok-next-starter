@@ -1,13 +1,4 @@
-const styles = {
-  success: {open: '\u001b[32;1m', close: '\u001b[0m'},
-  danger: {open: '\u001b[31;1m', close: '\u001b[0m'},
-  info: {open: '\u001b[36;1m', close: '\u001b[0m'},
-  subtitle: {open: '\u001b[2;1m', close: '\u001b[0m'},
-}
-
-type Color =  keyof typeof styles; 
-
-const color = (modifier:Color, string:string) =>  styles[modifier].open + string + styles[modifier].close
+import { color } from './color.ts';
 
 /**
  * The function checks if the required environment variables STORYBLOK_SPACE_ID and
@@ -19,18 +10,18 @@ const color = (modifier:Color, string:string) =>  styles[modifier].open + string
  */
 export const checkEnv = () => {
   console.log(color('info', '▶️ Starting to check the correctness of environmental variables'));
- 
-  if(!process.env.STORYBLOK_SPACE_ID || !process.env.STORYBLOK_PERSONAL_ACCESS_TOKEN) {
+
+  if (!process.env.STORYBLOK_SPACE_ID || !process.env.STORYBLOK_PERSONAL_ACCESS_TOKEN) {
     console.error(color('danger', '🚨  The environmental variables are incorrect.'));
     console.table({
       STORYBLOK_SPACE_ID: process.env.STORYBLOK_SPACE_ID,
       STORYBLOK_PERSONAL_ACCESS_TOKEN: process.env.STORYBLOK_PERSONAL_ACCESS_TOKEN,
     });
-        
-    return false
+
+    return false;
   }
 
   console.log(color('success', '✅  The environmental variables are correct.'));
-  
-  return true
-}
+
+  return true;
+};
