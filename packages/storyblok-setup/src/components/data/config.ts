@@ -1,5 +1,5 @@
 import { ComponentSchema } from '../components.types.ts';
-import { CONTENT_TYPE_COLOR } from '../consts';
+import { CONTENT_TYPE_COLOR } from '../consts.ts';
 
 export const config: ComponentSchema = {
   componentGroup: 'content type',

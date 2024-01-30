@@ -1,5 +1,5 @@
-import { ComponentSchema } from '../components.types';
-import { ATOMS_COLOR } from '../consts';
+import { ComponentSchema } from '../components.types.ts';
+import { ATOMS_COLOR } from '../consts.ts';
 
 export const cta: ComponentSchema = {
   componentGroup: 'atoms',
