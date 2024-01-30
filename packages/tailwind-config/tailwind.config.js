@@ -10,6 +10,17 @@ const tailwindConfig = {
       fontFamily: {
         primary: ['var(--font-primary)'],
       },
+      typography: theme => ({
+        DEFAULT: {
+          css: {
+            'ul, ol': {
+              '& > li > p': {
+                margin: '0',
+              },
+            },
+          },
+        },
+      }),
     },
   },
   variants: {
