@@ -33,10 +33,10 @@ interface SBTypographyProps {
 export const SBTypography = ({ blok }: SBProps<SBTypographyProps>) => {
   const {
     content,
+    tag,
     fontSizeMobile,
     fontSizeTablet,
     fontSizeDesktop,
-    tag,
     fontWeight,
     textAlignMobile,
     textAlignTablet,

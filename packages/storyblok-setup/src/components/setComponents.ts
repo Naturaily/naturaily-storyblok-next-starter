@@ -14,22 +14,6 @@ export const setComponents = async ({ componentGroups }: SetComponentsInput) => 
 
   const requests = [];
 
-  // TEST
-
-  // await storyblok
-  //   .get(`spaces/218794/components/`, {})
-  //   // .get(`spaces/${process.env.STORYBLOK_SPACE_ID}/components/`, {})
-  //   .then(response => {
-  //     // @ts-ignore
-  //     // eslint-disable-next-line no-unsafe-optional-chaining
-  //     console.log(response.data.components.find(comp => comp.name === 'config').schema.header);
-  //   })
-  //   .catch(error => {
-  //     console.log(error);
-  //   });
-
-  // return;
-
   for (const component of components) {
     const componentGroup = componentGroups?.find(group => group.name === component.componentGroup);
 
@@ -49,4 +33,6 @@ export const setComponents = async ({ componentGroups }: SetComponentsInput) => 
   } catch (err) {
     console.error(color('danger', `🚨 Component -> ContentType - ${JSON.stringify(err)}`));
   }
+
+  console.log(color('success', '✅  Components setup complete.'));
 };

@@ -11,11 +11,11 @@ interface ComponentGroupElement {
   name: ComponentName;
 }
 export const componentGroups: ComponentGroupElement[] = [
-  // { name: 'atoms' },
-  // { name: 'molecules' },
-  // { name: 'organisms' },
+  { name: 'atoms' },
+  { name: 'molecules' },
+  { name: 'organisms' },
   { name: 'content type' },
   { name: 'layout' },
   { name: 'seo' },
-  // { name: 'templates' },
+  { name: 'templates' },
 ];
