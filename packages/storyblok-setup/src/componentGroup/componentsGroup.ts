@@ -1,4 +1,4 @@
-export type ComponentName =
+export type ComponentGroupName =
   | 'atoms'
   | 'molecules'
   | 'organisms'
@@ -8,7 +8,7 @@ export type ComponentName =
   | 'templates';
 
 interface ComponentGroupElement {
-  name: ComponentName;
+  name: ComponentGroupName;
 }
 export const componentGroups: ComponentGroupElement[] = [
   { name: 'atoms' },
