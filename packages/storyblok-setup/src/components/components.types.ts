@@ -103,6 +103,20 @@ export type FieldSchema =
   | SectionFieldSchema
   | OptionFieldSchema;
 
+type Icon =
+  | 'block-resize-fc'
+  | 'block-center-m'
+  | 'block-text-img-c'
+  | 'block-table-2'
+  | 'block-text-l'
+  | 'block-sticker'
+  | 'block-text-c'
+  | 'block-image'
+  | 'block-arrow-pointer'
+  | 'block-monitor'
+  | 'block-buildin'
+  | 'block-wallet';
+
 export interface ComponentSchema {
   componentGroup: ComponentGroupName;
   data: {
@@ -112,6 +126,6 @@ export interface ComponentSchema {
     is_root: boolean;
     is_nestable: boolean;
     color?: string;
-    icon?: string;
+    icon?: Icon;
   };
 }
