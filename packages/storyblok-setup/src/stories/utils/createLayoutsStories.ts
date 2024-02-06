@@ -8,7 +8,7 @@ export interface LayoutStoryData {
   slug: string;
 }
 interface CreateLayoutsStoriesInput {
-  parentFolderID?: number;
+  parentFolderID?: number | null;
   homepageUUID?: string;
   NEXT_PUBLIC_STORYBLOK_MAIN_APP_FOLDER?: string;
 }

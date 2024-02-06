@@ -3,13 +3,13 @@ import { color } from '../../utils/color.ts';
 import { STORIES_ENDPOINT } from '../../utils/endpoints.ts';
 import { specialPagesContent } from '../data/specialPagesContent.ts';
 
-export interface SpecialPagesUUIDData {
+interface SpecialPagesUUIDData {
   uuid: string;
   slug: string;
 }
 
 interface CreateSpecialPagesStoriesInput {
-  parentFolderID?: number;
+  parentFolderID?: number | null;
   homepageUUID?: string;
   NEXT_PUBLIC_STORYBLOK_MAIN_APP_FOLDER?: string;
 }
