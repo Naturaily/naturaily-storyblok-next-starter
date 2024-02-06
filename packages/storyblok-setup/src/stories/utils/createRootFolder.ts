@@ -4,8 +4,7 @@ import slugify from 'slugify';
 import { capitalizeFirstLetter } from '../../utils/capitalizeFirstLetter.ts';
 import { storyblok } from '../../utils/client.ts';
 import { color } from '../../utils/color.ts';
-
-const STORIES_ENDPOINT = `spaces/${process.env.STORYBLOK_SPACE_ID}/stories/`;
+import { STORIES_ENDPOINT } from '../../utils/endpoints.ts';
 
 interface CreateRootFolderOutput {
   rootAppFolderID?: number;

@@ -1,8 +1,7 @@
 import { storyblok } from '../../utils/client.ts';
+import { STORIES_ENDPOINT } from '../../utils/endpoints.ts';
 import { configContent } from '../data/configContent.ts';
 import { LayoutStoryData } from './createLayoutsStories.ts';
-
-const STORIES_ENDPOINT = `spaces/${process.env.STORYBLOK_SPACE_ID}/stories/`;
 
 interface CreateConfigInput {
   parentFolderID?: number;

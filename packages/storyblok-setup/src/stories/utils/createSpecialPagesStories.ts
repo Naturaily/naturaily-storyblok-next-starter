@@ -1,5 +1,6 @@
 import { storyblok } from '../../utils/client.ts';
 import { color } from '../../utils/color.ts';
+import { STORIES_ENDPOINT } from '../../utils/endpoints.ts';
 import { specialPagesContent } from '../data/specialPagesContent.ts';
 
 export interface SpecialPagesUUIDData {
@@ -16,7 +17,6 @@ interface CreateSpecialPagesStoriesInput {
 interface CreateSpecialPagesStoriesOutput {
   specialPagesUUID?: SpecialPagesUUIDData[];
 }
-const STORIES_ENDPOINT = `spaces/${process.env.STORYBLOK_SPACE_ID}/stories/`;
 
 export const createSpecialPagesStories = async ({
   parentFolderID,

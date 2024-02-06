@@ -1,5 +1,6 @@
 import { storyblok } from '../../utils/client.ts';
 import { color } from '../../utils/color.ts';
+import { STORIES_ENDPOINT } from '../../utils/endpoints.ts';
 import { layoutContent } from '../data/layoutContent.ts';
 
 export interface LayoutStoryData {
@@ -14,8 +15,6 @@ interface CreateLayoutsStoriesInput {
 interface CreateLayoutsStoriesOutput {
   layoutsUUID?: LayoutStoryData[];
 }
-
-const STORIES_ENDPOINT = `spaces/${process.env.STORYBLOK_SPACE_ID}/stories/`;
 
 export const createLayoutsStories = async ({
   parentFolderID,

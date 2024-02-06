@@ -1,7 +1,7 @@
 import { storyblok } from '../../utils/client.ts';
 import { color } from '../../utils/color.ts';
+import { STORIES_ENDPOINT } from '../../utils/endpoints.ts';
 
-const STORIES_ENDPOINT = `spaces/${process.env.STORYBLOK_SPACE_ID}/stories/`;
 const rootSlug = 'configuration-a93cfcb3';
 
 interface CreateConfigFolderInput {

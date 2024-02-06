@@ -1,12 +1,11 @@
 import { storyblok } from '../../utils/client.ts';
 import { color } from '../../utils/color.ts';
+import { STORIES_ENDPOINT } from '../../utils/endpoints.ts';
 import { homepageContent } from '../data/homepageContent.ts';
 
 interface CreateHomepageInput {
   parentFolderID?: number;
 }
-
-const STORIES_ENDPOINT = `spaces/${process.env.STORYBLOK_SPACE_ID}/stories/`;
 
 export const createHomepage = async ({ parentFolderID }: CreateHomepageInput) => {
   let homepageUUID;

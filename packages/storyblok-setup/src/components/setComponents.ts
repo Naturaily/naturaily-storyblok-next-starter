@@ -1,9 +1,8 @@
 import { ComponentGroup } from '../componentGroup/setComponentGroups.ts';
 import { storyblok } from '../utils/client.ts';
 import { color } from '../utils/color.ts';
+import { COMPONENTS_ENDPOINT } from '../utils/endpoints.ts';
 import { components } from './components.ts';
-
-const COMPONENTS_ENDPOINT = `spaces/${process.env.STORYBLOK_SPACE_ID}/components/`;
 
 interface SetComponentsInput {
   componentGroups?: ComponentGroup[];

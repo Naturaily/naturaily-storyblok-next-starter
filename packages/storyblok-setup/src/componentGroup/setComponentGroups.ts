@@ -1,5 +1,6 @@
 import { storyblok } from '../utils/client.ts';
 import { color } from '../utils/color.ts';
+import { COMPONENTS_GROUP_ENDPOINT } from '../utils/endpoints.ts';
 import { componentGroups } from './componentsGroup.ts';
 
 export interface ComponentGroup {
@@ -8,8 +9,6 @@ export interface ComponentGroup {
   uuid: string;
 }
 
-const DATASOURCES_ENDPOINT = `spaces/${process.env.STORYBLOK_SPACE_ID}/component_groups/`;
-
 export const setComponentGroups = async (): Promise<ComponentGroup[] | undefined> => {
   console.log(color('info', '▶️ Starting workshop on component group setup...'));
 
@@ -17,7 +16,7 @@ export const setComponentGroups = async (): Promise<ComponentGroup[] | undefined
 
   for (const group of componentGroups) {
     requests.push(
-      storyblok.post(DATASOURCES_ENDPOINT, {
+      storyblok.post(COMPONENTS_GROUP_ENDPOINT, {
         // @ts-ignore
         component_group: {
           name: group.name,
