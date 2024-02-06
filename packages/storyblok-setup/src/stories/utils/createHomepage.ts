@@ -9,6 +9,8 @@ interface CreateHomepageInput {
 const STORIES_ENDPOINT = `spaces/${process.env.STORYBLOK_SPACE_ID}/stories/`;
 
 export const createHomepage = async ({ parentFolderID }: CreateHomepageInput) => {
+  let homepageUUID;
+
   try {
     const res = await storyblok.post(STORIES_ENDPOINT, {
       story: {
@@ -23,8 +25,13 @@ export const createHomepage = async ({ parentFolderID }: CreateHomepageInput) =>
       },
       publish: 1,
     });
-    console.log(res);
+    // @ts-ignore
+    homepageUUID = res.data.story.uuid;
   } catch (err) {
     console.error(color('danger', `🚨  CreateHomepage - ${JSON.stringify(err)}`));
   }
+
+  return {
+    homepageUUID,
+  };
 };

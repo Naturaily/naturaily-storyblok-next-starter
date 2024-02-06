@@ -1,50 +1,49 @@
 import { storyblok } from '../../utils/client.ts';
 import { color } from '../../utils/color.ts';
-import { layoutContent } from '../data/layoutContent.ts';
+import { specialPagesContent } from '../data/specialPagesContent.ts';
 
-export interface LayoutStoryData {
+export interface SpecialPagesUUIDData {
   uuid: string;
   slug: string;
 }
-interface CreateLayoutsStoriesInput {
+
+interface CreateSpecialPagesStoriesInput {
   parentFolderID?: number;
   homepageUUID?: string;
   NEXT_PUBLIC_STORYBLOK_MAIN_APP_FOLDER?: string;
 }
-interface CreateLayoutsStoriesOutput {
-  layoutsUUID?: LayoutStoryData[];
-}
 
+interface CreateSpecialPagesStoriesOutput {
+  specialPagesUUID?: SpecialPagesUUIDData[];
+}
 const STORIES_ENDPOINT = `spaces/${process.env.STORYBLOK_SPACE_ID}/stories/`;
 
-export const createLayoutsStories = async ({
+export const createSpecialPagesStories = async ({
   parentFolderID,
-  homepageUUID,
   NEXT_PUBLIC_STORYBLOK_MAIN_APP_FOLDER,
-}: CreateLayoutsStoriesInput): Promise<CreateLayoutsStoriesOutput> => {
+  homepageUUID,
+}: CreateSpecialPagesStoriesInput): Promise<CreateSpecialPagesStoriesOutput> => {
   const requests = [];
 
-  for (const layout of layoutContent({
+  for (const story of specialPagesContent({
     homepageUUID,
     NEXT_PUBLIC_STORYBLOK_MAIN_APP_FOLDER: `${NEXT_PUBLIC_STORYBLOK_MAIN_APP_FOLDER}/`,
   })) {
     requests.push(
       storyblok.post(STORIES_ENDPOINT, {
         story: {
-          ...layout,
+          ...story,
           parent_id: `${parentFolderID}`,
         },
         publish: 1,
       }),
     );
   }
-
-  let layoutsUUID;
+  let specialPagesUUID;
 
   try {
     const res = await Promise.all(requests);
-
-    layoutsUUID = res.map(item => ({
+    specialPagesUUID = res.map(item => ({
       // @ts-ignore
       uuid: item.data.story.uuid,
       // @ts-ignore
@@ -54,7 +53,5 @@ export const createLayoutsStories = async ({
     console.error(color('danger', `🚨  Layout stories - ${JSON.stringify(err)}`));
   }
 
-  return {
-    layoutsUUID,
-  };
+  return { specialPagesUUID };
 };
