@@ -14,13 +14,13 @@ export const checkEnv = () => {
   if (
     !process.env.STORYBLOK_SPACE_ID ||
     !process.env.STORYBLOK_PERSONAL_ACCESS_TOKEN ||
-    !process.env.NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN
+    !process.env.STORYBLOK_REGION
   ) {
     console.error(color('danger', '🚨  The environmental variables are incorrect.'));
     console.table({
       STORYBLOK_SPACE_ID: process.env.STORYBLOK_SPACE_ID,
       STORYBLOK_PERSONAL_ACCESS_TOKEN: process.env.STORYBLOK_PERSONAL_ACCESS_TOKEN,
-      NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN: process.env.NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN,
+      STORYBLOK_REGION: process.env.STORYBLOK_REGION,
     });
 
     return false;

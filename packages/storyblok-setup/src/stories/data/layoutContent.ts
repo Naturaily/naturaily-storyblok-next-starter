@@ -803,7 +803,7 @@ export const layoutContent = ({
                 {
                   tag: 'p',
 
-                  content: '© 2024 Your Company, Inc. All rights reserved.',
+                  content: '© 2024 Naturaily 🧡',
                   mbMobile: '',
                   mbTablet: '',
                   mtMobile: '',

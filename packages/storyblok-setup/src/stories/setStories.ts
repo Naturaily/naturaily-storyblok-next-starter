@@ -37,11 +37,10 @@ export const setStories = async () => {
 
   await createConfig({ parentFolderID: rootConfigFolderID, layoutsUUID, specialPagesUUID });
 
-  console.log('ENV:');
-  console.table({
+  console.log(color('success', '✅  Stories setup complete.'));
+
+  return {
     NEXT_PUBLIC_STORYBLOK_MAIN_APP_FOLDER,
     NEXT_PUBLIC_STORYBLOK_EXCLUDED_FOLDERS_FROM_ROUTING,
-  });
-
-  console.log(color('success', '✅  Stories setup complete.'));
+  };
 };
