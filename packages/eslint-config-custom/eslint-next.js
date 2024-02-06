@@ -14,9 +14,10 @@ module.exports = {
     'plugin:import/errors',
     'plugin:import/warnings',
     'plugin:import/typescript',
+    'plugin:security/recommended-legacy',
     'prettier',
   ],
-  plugins: ['import', 'eslint-plugin-import-helpers', '@typescript-eslint'],
+  plugins: ['import', 'eslint-plugin-import-helpers', '@typescript-eslint', 'security'],
   settings: {
     next: {
       rootDir: ['apps/*/', 'packages/*/'],
@@ -33,14 +34,16 @@ module.exports = {
   },
   rules: {
     'global-require': 0,
-    // react
+    'no-underscore-dangle': 0,
+    'no-plusplus': 0,
     'no-console': 2,
+    // react
     'react/react-in-jsx-scope': 0,
     'import/prefer-default-export': 0,
     'import/no-extraneous-dependencies': 0,
     'react/prop-types': 0,
     'react/button-has-type': 0,
-    'no-magic-numbers': 1,
+    'react/destructuring-assignment': 0,
     'react/require-default-props': 0,
     'newline-before-return': 2,
     '@typescript-eslint/no-var-requires': 1,
@@ -52,6 +55,7 @@ module.exports = {
     ],
     'react/jsx-props-no-spreading': 0,
     '@next/next/no-html-link-for-pages': 0,
+    '@typescript-eslint/ban-ts-comment': 0,
     'import-helpers/order-imports': [
       2,
       {
