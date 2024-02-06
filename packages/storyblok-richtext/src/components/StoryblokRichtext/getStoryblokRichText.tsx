@@ -6,6 +6,7 @@ import {
   NODE_HEADING,
   MARK_CODE,
   NODE_CODEBLOCK,
+  NODE_LI,
 } from 'storyblok-rich-text-react-renderer';
 
 import { DefaultBlokResolver } from '../DefaultBlokResolver';
@@ -14,6 +15,7 @@ import { MarkLink } from '../MarkLink';
 import { NodeCodeblock } from '../NodeCodeblock';
 import { NodeHeading } from '../NodeHeading';
 import { NodeImage } from '../NodeImage';
+import { NodeLi } from '../NodeLi';
 
 export const getStoryblokRichText = (data: ISbRichtext) =>
   render(data, {
@@ -25,6 +27,7 @@ export const getStoryblokRichText = (data: ISbRichtext) =>
       [NODE_HEADING]: NodeHeading,
       [NODE_IMAGE]: NodeImage,
       [NODE_CODEBLOCK]: NodeCodeblock,
+      [NODE_LI]: NodeLi,
     },
     defaultBlokResolver: DefaultBlokResolver,
   });

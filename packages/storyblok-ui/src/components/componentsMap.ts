@@ -14,15 +14,15 @@ import { SBTypography } from './elements/SBTypography';
 
 const elements = {
   cta: SBCta,
-  richtext: SBRichtext,
-  typography: SBTypography,
   image: SBImage,
+  richtext: SBRichtext,
+  table: SBTable,
   container: SBContainer,
+  themeModeSwitcher: SBThemeModeSwitcher,
+  typography: SBTypography,
   grid: SBGrid,
   column: SBColumn,
   row: SBRow,
-  table: SBTable,
-  themeModeSwitcher: SBThemeModeSwitcher,
 };
 
 const contentTypes = {
