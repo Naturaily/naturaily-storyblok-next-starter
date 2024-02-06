@@ -107,15 +107,6 @@ export const homepageContent = {
                               },
                             ],
                           },
-                          {
-                            type: 'list_item',
-                            content: [
-                              {
-                                type: 'paragraph',
-                                content: [{ text: 'Image.', type: 'text' }],
-                              },
-                            ],
-                          },
                         ],
                       },
                       {
