@@ -1,9 +1,7 @@
 import { storyblok } from '../utils/client.ts';
 import { color } from '../utils/color.ts';
+import { DATASOURCES_ENDPOINT, DATASOURCES_ENTRY_ENDPOINT } from '../utils/endpoints.ts';
 import { getDatasources } from './datasource.ts';
-
-const DATASOURCES_ENDPOINT = `spaces/${process.env.STORYBLOK_SPACE_ID}/datasources/`;
-const DATASOURCES_ENTRY_ENDPOINT = `spaces/${process.env.STORYBLOK_SPACE_ID}/datasource_entries/`;
 
 export const setDatasources = async () => {
   console.log(color('info', '▶️ Starting workshop on datasources setup...'));
@@ -11,7 +9,6 @@ export const setDatasources = async () => {
   const requests = [];
 
   for (const datasource of datasources) {
-    // @ts-ignore
     requests.push(storyblok.post(DATASOURCES_ENDPOINT, datasource));
   }
 

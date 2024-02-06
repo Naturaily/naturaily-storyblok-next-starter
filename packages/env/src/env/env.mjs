@@ -14,7 +14,7 @@ export const env = createEnv({
     NEXT_PUBLIC_STORYBLOK_API_URL: z.string(),
     NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN: z.string(),
     NEXT_PUBLIC_STORYBLOK_EXCLUDED_FOLDERS_FROM_ROUTING: z.string(),
-    NEXT_PUBLIC_STORYBLOK_MAIN_APP_FOLDER: z.union([z.literal('app')]),
+    NEXT_PUBLIC_STORYBLOK_MAIN_APP_FOLDER: z.string(),
     NEXT_PUBLIC_STORYBLOK_TOKEN_VERSION: z
       .union([z.literal('draft'), z.literal('published')])
       .nullish(),

@@ -11,11 +11,16 @@ import { color } from './color.ts';
 export const checkEnv = () => {
   console.log(color('info', '▶️ Starting to check the correctness of environmental variables'));
 
-  if (!process.env.STORYBLOK_SPACE_ID || !process.env.STORYBLOK_PERSONAL_ACCESS_TOKEN) {
+  if (
+    !process.env.STORYBLOK_SPACE_ID ||
+    !process.env.STORYBLOK_PERSONAL_ACCESS_TOKEN ||
+    !process.env.NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN
+  ) {
     console.error(color('danger', '🚨  The environmental variables are incorrect.'));
     console.table({
       STORYBLOK_SPACE_ID: process.env.STORYBLOK_SPACE_ID,
       STORYBLOK_PERSONAL_ACCESS_TOKEN: process.env.STORYBLOK_PERSONAL_ACCESS_TOKEN,
+      NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN: process.env.NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN,
     });
 
     return false;
