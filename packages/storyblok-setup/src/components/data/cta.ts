@@ -1,0 +1,107 @@
+import { ComponentSchema } from '../components.types.ts';
+import { ATOMS_COLOR } from '../consts.ts';
+
+export const cta: ComponentSchema = {
+  componentGroup: 'atoms',
+  data: {
+    name: 'cta',
+    display_name: 'CTA',
+    is_nestable: true,
+    is_root: false,
+    color: ATOMS_COLOR,
+    icon: 'block-arrow-pointer',
+    schema: {
+      link: {
+        type: 'multilink',
+        email_link_type: true,
+        show_anchor: true,
+        allow_target_blank: true,
+        force_link_scope: true,
+        link_scope: '{0}/',
+        pos: 1,
+        description: 'Field required. If not filled out, the component will not render.',
+      },
+      content: {
+        type: 'text',
+        pos: 1,
+      },
+      variant: {
+        type: 'option',
+        use_uuid: true,
+        description: 'Change the styles for component',
+        source: 'internal',
+        datasource_slug: 'cta',
+        default_value: 'default',
+      },
+      size: {
+        type: 'option',
+        use_uuid: true,
+        options: [
+          { name: 'default', value: 'default' },
+          { name: 'sm', value: 'sm' },
+          { name: 'lg', value: 'lg' },
+          { name: 'icon', value: 'icon' },
+          { name: 'link', value: 'link' },
+        ],
+        default_value: 'default',
+      },
+      tab: {
+        display_name: 'Styles',
+        keys: [
+          'marginTopGroup',
+          'mtMobile',
+          'mtTablet',
+          'mtDesktop',
+          'marginBottomGroup',
+          'mbMobile',
+          'mbTablet',
+          'mbDesktop',
+        ],
+        pos: 0,
+        type: 'tab',
+      },
+      marginTopGroup: { type: 'section', keys: ['mtMobile', 'mtTablet', 'mtDesktop'] },
+      mtMobile: {
+        type: 'option',
+        use_uuid: true,
+        source: 'internal',
+        datasource_slug: 'space',
+      },
+      mtTablet: {
+        type: 'option',
+        use_uuid: true,
+        source: 'internal',
+        datasource_slug: 'space',
+        description: 'If not set - mobile value will be used',
+      },
+      mtDesktop: {
+        type: 'option',
+        use_uuid: true,
+        description: 'If not set - tablet value will be used',
+        source: 'internal',
+        datasource_slug: 'space',
+      },
+      marginBottomGroup: { type: 'section', keys: ['mbDesktop', 'mbTablet', 'mbMobile'] },
+      mbMobile: {
+        type: 'option',
+        use_uuid: true,
+        source: 'internal',
+        datasource_slug: 'space',
+      },
+      mbTablet: {
+        type: 'option',
+        use_uuid: true,
+        description: 'If not set - mobile value will be used',
+        source: 'internal',
+        datasource_slug: 'space',
+      },
+      mbDesktop: {
+        type: 'option',
+        use_uuid: true,
+        source: 'internal',
+        description: 'If not set - tablet value will be used',
+        datasource_slug: 'space',
+      },
+    },
+  },
+};
