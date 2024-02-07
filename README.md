@@ -78,9 +78,9 @@ To start using the Turbo Repo with Node.js and Yarn, follow these steps:
    ![Create space](https://a.storyblok.com/f/218794/3950x694/f7ebe8c1f8/screenshot-2024-02-07-at-10-19-52-am.png)
    ![Create space](https://a.storyblok.com/f/218794/764x735/57281ddcf4/screenshot-2024-02-07-at-10-24-38-am.png)
 
-   Depending on the selection in the `Server Location` field, you will need to create the appropriate variable in the .env file in the 4 step.
+   Depending on the selection in the `Server Location` field, you will need to create the appropriate variable in the .env file in the next step.
 
-3. Create new Personal Access Token (PAT) in your Storyblok's account settings.
+3. Create new Personal Access Token (PAT) in your Storyblok's account settings. Generate Preview Token also in your space settings.
 
    ![Personal access token](https://a.storyblok.com/f/218794/2644x2216/4639ed2028/screenshot-2024-02-07-at-10-29-53-am.png)
 
@@ -90,7 +90,7 @@ To start using the Turbo Repo with Node.js and Yarn, follow these steps:
 
    `STORYBLOK_PERSONAL_ACCESS_TOKEN` - The token generated in step 3.
 
-   `STORYBLOK_REGION` - The value `en` or `us`, depending on the region you chose when creating the space in step 2.
+   `STORYBLOK_REGION` - The value 'en' or 'us', depending on the region you chose when creating the space in step 2.
 
    `STORYBLOK_SPACE_ID` - ou can find this value in the `settings` tab in Storyblok. Note: `STORYBLOK_SPACE_ID` should not contain `#`
 
@@ -127,6 +127,29 @@ To start using the Turbo Repo with Node.js and Yarn, follow these steps:
    - The basic page structure in the content tab, which includes `homepage`, `global header`, `global footer`, `configuration story`, `not found page`, `redirects`
 
    The script will also create a `.env` file in the `apps/web/.env` directory based on your data. Finally, the command `yarn dev` will be automatically executed.
+
+7. Deploy on Vercel
+
+Import the repository.
+
+![Vercel](https://a.storyblok.com/f/218794/2452x2052/aa7c8a613b/screenshot-2024-02-07-at-1-02-08-pm.png)
+
+- Ensure that the `root directory` is set to `apps/web` (it should be the default).
+
+- Add environment variables. You will find all the variables after successfully completing the setup process at this path: `apps/web/.env`
+
+8. Set the preview domain
+
+If the deployment process was successful, copy the page address and add it to Storyblok.
+
+![Vercel success](https://a.storyblok.com/f/218794/1253x620/479645ff1c/screenshot-2024-02-07-at-1-13-31-pm.png)
+![Vercel success](https://a.storyblok.com/f/218794/3836x1382/5b93525f3d/screenshot-2024-02-07-at-1-15-37-pm.png)
+
+9. Setup revalidate webhook
+
+A webhook allows for updating pages without the need to rebuild the entire project.
+
+![Vercel success](https://a.storyblok.com/f/218794/4074x2210/4e93a36a57/screenshot-2024-02-07-at-1-21-22-pm.png)
 
 ## 🤝 Contributing
 
