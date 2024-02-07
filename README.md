@@ -31,7 +31,7 @@
 ## 👌 Requirements to get started
 
 ```bash
-node - v18.16.0
+node - v18.17.1
 yarn - v1.22.17
 ```
 
@@ -49,7 +49,7 @@ Once installed, you can check the version using the following command:
 node --version
 ```
 
-Ensure that the command returns `v18.16.0` to confirm that you have the correct version installed.
+Ensure that the command returns `v18.17.1` to confirm that you have the correct version installed.
 
 ### ✅ Yarn
 
