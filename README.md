@@ -149,7 +149,11 @@ If the deployment process was successful, copy the page address and add it to St
 
 A webhook allows for updating pages without the need to rebuild the entire project.
 
-![Vercel success](https://a.storyblok.com/f/218794/4074x2210/4e93a36a57/screenshot-2024-02-07-at-1-21-22-pm.png)
+As the endpoint URL, pass: `https://[your-domain]/api/revalidate?token=NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN`
+
+You will find the token under the variable `NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN` in the file `apps/web/.env`
+
+![Vercel success](https://a.storyblok.com/f/218794/4074x2210/0826083bdc/screenshot-2024-02-07-at-1-21-22-pm.png)
 
 ## 🤝 Contributing
 
