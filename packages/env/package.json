@@ -19,6 +19,6 @@
     "tsconfig": "*"
   },
   "dependencies": {
-    "@t3-oss/env-nextjs": "0.8.0"
+    "@t3-oss/env-nextjs": "0.9.2"
   }
 }
