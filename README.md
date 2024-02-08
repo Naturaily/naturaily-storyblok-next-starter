@@ -20,7 +20,6 @@
 - 🚀 **[GitHub Actions](https://github.com/features/actions)** - Pre-configured actions for smooth workflows.
 - 💻 **[T3 Env](https://env.t3.gg/)** - Manage your validation for type-safe environment variables (`env` package).
 - 🧬 **[Codegen](https://the-guild.dev/graphql/codegen)** - Generate code from your GraphQL schema.
-- 🖥️ **[TanStack Query (react-query)](https://tanstack.com/query/latest/)** - Powerful asynchronous state management for TS/JS.
 - 🔥 **[Framer motion](https://www.framer.com/motion/)** - Powerful animation library.
 
 ## 🔥 Difference between `apps` and `packages`
