@@ -2696,12 +2696,12 @@
   dependencies:
     "@storyblok/js" "^3.0.6"
 
-"@storybook/addon-a11y@7.6.10":
-  version "7.6.10"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-a11y/-/addon-a11y-7.6.10.tgz#ad2a266d52c0b9909f221133ea41b9ffb0e7d9f7"
-  integrity sha512-TP17m4TAWLSSd2x9cWNg7d0MCZZCojYIG83RZMXAb55jt8gKJBMDbupOoDLydBsABQa5Uk9ZP0D/CvumMon8RA==
+"@storybook/addon-a11y@7.6.13":
+  version "7.6.13"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-a11y/-/addon-a11y-7.6.13.tgz#a5d0a0b0cd75b5a73c00057b94007a7d76900bea"
+  integrity sha512-6Qf+tzt1MXXHDUpSVz3P+e7j5HkilXG1VI0UDWPsN9ztjVkK72PIE9LcHSt/ojcrHAzhNlpZaWf7CblciRs2ag==
   dependencies:
-    "@storybook/addon-highlight" "7.6.10"
+    "@storybook/addon-highlight" "7.6.13"
     axe-core "^4.2.0"
 
 "@storybook/addon-actions@7.6.13":
@@ -2778,13 +2778,6 @@
     "@storybook/node-logger" "7.6.13"
     "@storybook/preview-api" "7.6.13"
     ts-dedent "^2.0.0"
-
-"@storybook/addon-highlight@7.6.10":
-  version "7.6.10"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-highlight/-/addon-highlight-7.6.10.tgz#19cad3d67655e9b9eef3d2f6760789fc29ba0790"
-  integrity sha512-dIuS5QmoT1R+gFOcf6CoBa6D9UR5/wHCfPqPRH8dNNcCLtIGSHWQ4v964mS5OCq1Huj7CghmR15lOUk7SaYwUA==
-  dependencies:
-    "@storybook/global" "^5.0.0"
 
 "@storybook/addon-highlight@7.6.13":
   version "7.6.13"
