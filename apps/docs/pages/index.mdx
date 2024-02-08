@@ -1,11 +1,49 @@
+import { Cards, Card } from 'nextra/components';
+
 # Introduction
 
-Welcome to Nextra! This is a basic docs template. You can use it as a starting point for your own project :)
+**Welcome to the Naturaily Storyblok starter documentation!**
 
-## What is Nextra?
+## What is our project?
 
-A **simple**, **powerful** and **flexible** site generation framework with everything you love from Next.js.
+We created this starter to accelerate our work by providing a ready-made set of tools, templates, and examples that facilitate the initiation of a project or task. With it, we can avoid the need for continuously recreating the same basic elements from scratch, saving time and effort. This starter serves as a solid foundation upon which we can quickly build our solution, focusing primarily on its development and customization to specific requirements, rather than wasting time on repeating the same initial steps.
 
-## Documentation
+## 📚 Features and tech stack
 
-The documentation is available at [https://nextra.site](https://nextra.site).
+- 💎 **[Atomic Design ↗](https://atomicdesign.bradfrost.com/chapter-2/)** - Consistent, reusable, and atomic design system.
+- 🙌 **[Turborepo ↗](https://turbo.build/repo)** - High-performance build system for JavaScript and TypeScript codebases.
+- 🏎️ **[Next.js ↗](https://nextjs.org/)** - Fast by default, with config optimized for performance (app routing).
+- 🌈 **[Turborepo ↗](https://turbo.build/repo)** - Turborepo is a high-performance build system for JavaScript and TypeScript codebases.
+- 💅 **[Tailwind CSS ↗](https://tailwindcss.com/)** - A utility-first CSS framework for rapid UI development.
+- ✨ **[ESlint ↗](https://eslint.org/)** and **[Prettier ↗](https://prettier.io/)** - For clean, consistent, and error-free code (`eslint-config-custom` package).
+- 📕 **[Storybook ↗](https://storybook.js.org/)** - Create, test, and showcase your components.
+- 🚀 **[GitHub Actions ↗](https://github.com/features/actions)** - Pre-configured actions for smooth workflows.
+- 💻 **[T3 Env ↗](https://env.t3.gg/)** - Manage your validation for type-safe environment variables (`env` package).
+- 🧬 **[Codegen ↗](https://the-guild.dev/graphql/codegen)** - Generate code from your GraphQL schema.
+- 🔥 **[Framer motion ↗](https://www.framer.com/motion/)** - Powerful animation library.
+- 📚 **[Storyblok ↗](https://www.storyblok.com/)** - Ready to use integration with Storyblok headless CMS. Including:
+  - **[Ready to use Setup script ↗](https://www.storyblok.com/docs/guide/essentials/visual-editor)** - In the scope of `storyblok-setup` package. Setting basic datasources used in stories, blocks, stories themselves, and webhook that revalidates front-end routes on story publish.
+  - **[Preview handled ↗](https://www.storyblok.com/docs/guide/essentials/visual-editor)** - In the scope of `storyblok-preview` package.
+  - **[Storyblok's GraphQL integration ↗](https://gapi-browser.storyblok.com/?token=insert-here-your-access-token)** - In the scope of `storyblok-api` package.
+  - **[Ready to use SEO configuration ↗](https://www.storyblok.com/apps/seo)** - In the scope of `storyblok-seo` package.
+  - **[Storyblok RichText support ↗](https://www.storyblok.com/docs/richtext-field)** - In the scope of `storyblok-richtext` package.
+  - **[Basic Storyblok blocks ready to use ↗](https://www.storyblok.com/docs/richtext-field)** - In the scope of `storyblok-ui` package.
+  - **[Revalidation webhook handler ↗](https://www.storyblok.com/docs/richtext-field)** - In the scope of `storyblok-revalidation` package.
+  - **[And some useful utils ↗](https://www.storyblok.com/docs/richtext-field)** - In the scope of `storyblok-utils` package.
+
+## How to Use These Docs
+
+On the left side of the screen, you'll find the docs navbar. The pages of the docs are organized sequentially, from basic to advanced, so you can follow them step-by-step when building your application. However, you can read them in any order or skip to the pages that apply to your use case.
+
+On the right side of the screen, you'll see a table of contents that makes it easier to navigate between sections of a page. If you need to quickly find a page, you can use the search bar at the top, or the search shortcut (Ctrl+K or Cmd+K).
+
+To get started, checkout the [Requirements](/getting-started/requirements) guide.
+
+---
+
+<Cards>
+  <Card title="Requirements" href="/getting-started/requirements" arrow />
+  <Card title="Installation" href="/getting-started/installation" arrow />
+  <Card title="Deploy on Vercel" href="/getting-started/deploy-on-vercel" arrow />
+  <Card title="Project structure" href="/project-structure" arrow />
+</Cards>

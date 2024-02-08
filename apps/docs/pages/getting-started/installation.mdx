@@ -1,0 +1,84 @@
+import { Steps, Callout } from 'nextra/components';
+
+## 🎯 Getting Started
+
+To start using the Turbo Repo with Node.js and Yarn, follow these steps:
+
+<Steps>
+### Install project dependencies
+
+```bash copy
+yarn install
+```
+
+### Create new Storyblok space
+
+![Create space](https://a.storyblok.com/f/218794/3950x694/f7ebe8c1f8/screenshot-2024-02-07-at-10-19-52-am.png)
+
+![Create space](https://a.storyblok.com/f/218794/764x735/57281ddcf4/screenshot-2024-02-07-at-10-24-38-am.png)
+
+Depending on the selection in the `Server Location` field, you will need to create the appropriate variable in the `.env` file in the 4 step.
+
+### Create new Personal Access Token (PAT) in your Storyblok's account settings
+
+![Personal access token](https://a.storyblok.com/f/218794/2644x2216/4639ed2028/screenshot-2024-02-07-at-10-29-53-am.png)
+
+Copy the `token` and save it. We will need it in the next step.
+
+### Fill in the required environment variables.
+
+`STORYBLOK_PERSONAL_ACCESS_TOKEN` - The token was generated in step 3.
+
+`STORYBLOK_REGION` - The value `en` or `us`, depending on the region you chose when creating the space in step 2.
+
+`STORYBLOK_SPACE_ID` - ou can find this value in the `settings` tab in Storyblok.
+
+<Callout type="warning" emoji="⚠️">
+  `STORYBLOK_SPACE_ID` should not contain `#`!
+</Callout>
+
+_Example:_
+
+```bash filename="packages/storyblok-setup/.env" copy
+STORYBLOK_PERSONAL_ACCESS_TOKEN="r7zigOmTasdymmQq7QtQziasq-122378-iaoKPHf-6tWJ9e8WWas1"
+STORYBLOK_REGION="eu"
+STORYBLOK_SPACE_ID="123456"
+```
+
+### Delete unnecessary items in your space
+
+When creating a new space in Storyblok, it adds several default components and a Home page story. We don't want this. The script you will run in the next step will create these items anew.
+
+#### Remove story
+
+![Remove story](https://a.storyblok.com/f/218794/3794x908/adc1f04376/screenshot-2024-02-07-at-10-46-59-am.png)
+
+#### Remove components
+
+![Remove components](https://a.storyblok.com/f/218794/3804x1250/60d1caefc5/screenshot-2024-02-07-at-10-49-45-am.png)
+
+### Run the `storyblok-setup` script
+
+```bash copy
+  yarn storyblok:setup
+```
+
+#### The script will create several items for you in Storyblok CMS:
+
+- Datasources,
+- Few components in block library,
+- The basic page structure in the content tab, which includes `homepage`, `global header`, `global footer`, `configuration story`, `not found page`, `redirects`
+
+The script will also create a `.env` file in the `apps/web/.env` directory based on your data. Finally, the command `yarn dev` will be automatically executed.
+
+```bash filename="apps/web/.env"
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+NEXT_PUBLIC_STORYBLOK_API_URL=https://gapi.storyblok.com/v1/api
+NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN=*************
+NEXT_PUBLIC_STORYBLOK_MAIN_APP_FOLDER=natu-root
+NEXT_PUBLIC_STORYBLOK_EXCLUDED_FOLDERS_FROM_ROUTING=configuration-a93cfcb3
+```
+
+</Steps
+
+>

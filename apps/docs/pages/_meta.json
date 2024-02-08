@@ -1,6 +1,14 @@
 {
-  "index": "Introduction",
-  "another": "Another Page",
+  "index": {
+    "display": "hidden"
+  },
+  "getting-started": "Getting Started",
+  "project-structure": "",
+  "folder-structure": {
+    "title": "Package and application architecture",
+    "type": "separator"
+  },
+  "apps": "Apps",
   "packages": "Packages",
   "about": {
     "title": "About",

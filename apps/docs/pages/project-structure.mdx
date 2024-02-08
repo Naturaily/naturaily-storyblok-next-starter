@@ -1,0 +1,38 @@
+import { FileTree } from 'nextra/components';
+
+# Project structure
+
+### 🔥 Difference between `apps` and `packages`
+
+- `apps` are reusable applications. Each of them is deployable.
+- `packages` in turn are shared between apps - this is the place where reusable logic lays.
+
+<FileTree>
+  <FileTree.Folder name="apps" defaultOpen>
+    <FileTree.Folder name="web" />
+    <FileTree.Folder name="docs" />
+    <FileTree.Folder name="storybook-ui" />
+  </FileTree.Folder>
+  <FileTree.Folder name="packages">
+    <FileTree.Folder name="env" />
+    <FileTree.Folder name="eslint-config-custom" />
+    <FileTree.Folder name="fonts" />
+    <FileTree.Folder name="middleware-chain" />
+    <FileTree.Folder name="next-api-fetcher" />
+    <FileTree.Folder name="next-link" />
+    <FileTree.Folder name="next-themes" />
+    <FileTree.Folder name="storyblok-api" />
+    <FileTree.Folder name="storyblok-preview" />
+    <FileTree.Folder name="storyblok-revalidate" />
+    <FileTree.Folder name="storyblok-richtext" />
+    <FileTree.Folder name="storyblok-seo" />
+    <FileTree.Folder name="storyblok-setup" />
+    <FileTree.Folder name="storyblok-ui" />
+    <FileTree.Folder name="storyblok-utils" />
+    <FileTree.Folder name="storybook" />
+    <FileTree.Folder name="tailwind-config" />
+    <FileTree.Folder name="tsconfig" />
+    <FileTree.Folder name="ui" />
+    <FileTree.Folder name="utils" />
+  </FileTree.Folder>
+</FileTree>
