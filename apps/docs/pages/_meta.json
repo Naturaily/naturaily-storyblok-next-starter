@@ -1,6 +1,18 @@
 {
-  "index": "Introduction",
-  "another": "Another Page",
+  "index": {
+    "display": "hidden"
+  },
+  "start": {
+    "title": "Getting Started",
+    "type": "separator"
+  },
+  "installation": "Installation",
+  "project-structure": "",
+  "folder-structure": {
+    "title": "Building Your Application",
+    "type": "separator"
+  },
+  "apps": "Apps",
   "packages": "Packages",
   "about": {
     "title": "About",
