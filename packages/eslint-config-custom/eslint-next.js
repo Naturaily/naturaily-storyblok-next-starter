@@ -23,7 +23,7 @@ module.exports = {
       rootDir: ['apps/*/', 'packages/*/'],
     },
     'import/parsers': {
-      '@typescript-eslint/parser': ['.ts', '.tsx'],
+      '@typescript-eslint/parser': ['.ts', '.tsx', '.mdx'],
     },
     'import/resolver': {
       typescript: {
@@ -83,6 +83,14 @@ module.exports = {
   },
   overrides: [
     {
+      settings: {
+        next: {
+          rootDir: ['apps/*/', 'packages/*/'],
+        },
+        'import/parsers': {
+          '@typescript-eslint/parser': ['.mdx'],
+        },
+      },
       files: '*.mdx',
       parser: 'eslint-mdx',
     },
