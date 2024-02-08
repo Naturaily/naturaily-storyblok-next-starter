@@ -9,6 +9,7 @@
     "eslint:format": "eslint src --fix"
   },
   "devDependencies": {
+    "autoprefixer": "10.4.17",
     "eslint-config-custom": "*",
     "tsconfig": "*"
   }

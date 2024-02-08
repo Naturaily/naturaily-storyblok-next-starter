@@ -40,7 +40,7 @@ yarn - v1.22.17
 To install Node.js, you can follow the nvm documentation available at [https://github.com/nvm-sh/nvm](https://github.com/nvm-sh/nvm).
 
 ```bash
-nvm use 18
+nvm use 18.17.1
 ```
 
 Once installed, you can check the version using the following command:
