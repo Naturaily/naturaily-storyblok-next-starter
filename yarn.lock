@@ -1355,13 +1355,13 @@
   resolved "https://registry.yarnpkg.com/@floating-ui/utils/-/utils-0.2.1.tgz#16308cea045f0fc777b6ff20a9f25474dd8293d2"
   integrity sha512-9TANp6GPoMtYzQdt54kfAyMmz1+osLlXdg2ENroU7zzrtflTLrrC/lgrIfaSe+Wu0b89GKccT7vxXA0MoAIO+Q==
 
-"@graphql-codegen/add@5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@graphql-codegen/add/-/add-5.0.0.tgz#578ebaf4fa87c1e934c381cd679bcedcf79feaba"
-  integrity sha512-ynWDOsK2yxtFHwcJTB9shoSkUd7YXd6ZE57f0nk7W5cu/nAgxZZpEsnTPEpZB/Mjf14YRGe2uJHQ7AfElHjqUQ==
+"@graphql-codegen/add@5.0.2":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/add/-/add-5.0.2.tgz#71b3ae0465a4537172dddb84531b6967ca5545f2"
+  integrity sha512-ouBkSvMFUhda5VoKumo/ZvsZM9P5ZTyDsI8LW18VxSNWOjrTeLXBWHG8Gfaai0HwhflPtCYVABbriEcOmrRShQ==
   dependencies:
-    "@graphql-codegen/plugin-helpers" "^5.0.0"
-    tslib "~2.5.0"
+    "@graphql-codegen/plugin-helpers" "^5.0.3"
+    tslib "~2.6.0"
 
 "@graphql-codegen/cli@5.0.0":
   version "5.0.0"
