@@ -161,6 +161,12 @@ You will find the token under the variable `NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN`
 3. Commit your changes: `git commit -m 'feat: Add some awesome contribution'`,
 4. Push to the branch: `git push origin my-awesome-contribution`.
 
+## License
+
+Licensed under the MIT License, Copyright © 2024
+
+See [LICENSE](LICENSE) for more information.
+
 ---
 
 Made with much 🧡 and 💪 by <a href="https://naturaily.com/">Naturaily</a>
