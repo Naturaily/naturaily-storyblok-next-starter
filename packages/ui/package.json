@@ -39,7 +39,7 @@
     "@radix-ui/react-tooltip": "1.0.7",
     "class-variance-authority": "0.7.0",
     "framer-motion": "11.0.3",
-    "lucide-react": "0.315.0",
+    "lucide-react": "0.323.0",
     "prism-react-renderer": "2.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0"
