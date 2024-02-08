@@ -1,5 +1,6 @@
 **/node_modules/*
 node_modules/*
+apps/docs/*
 **/out/*
 **/.next/*
 coverage
@@ -14,8 +15,6 @@ dist
 README.md
 storybook-static
 schema.gql
-migrations
-schema.prisma
 favicon.ico
 global.css
 styles.module.css

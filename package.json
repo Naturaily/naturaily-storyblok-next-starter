@@ -13,7 +13,8 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --concurrency 24",
-    "prettier:format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "dev:docs": "yarn workspace docs dev:docs",
+    "prettier:format": "prettier --write \"**/*.{ts,tsx,md,mdx}\"",
     "eslint:format": "turbo run eslint:format --concurrency 24",
     "prepare": "husky install",
     "codegen": "turbo run codegen",
@@ -32,11 +33,11 @@
   "lint-staged": {
     "apps/**/*": [
       "yarn prettier:format",
-      "eslint --fix"
+      "eslint --fix --ext js,ts,jsx,tsx,md,mdx"
     ],
     "packages/**/*": [
       "yarn prettier:format",
-      "eslint --fix"
+      "eslint --fix --ext js,ts,jsx,tsx,md,mdx"
     ],
     "*.json": [
       "yarn prettier:format"

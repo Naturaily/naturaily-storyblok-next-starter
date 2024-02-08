@@ -1,0 +1,15 @@
+{
+  "index": "Introduction",
+  "another": "Another Page",
+  "packages": "Packages",
+  "about": {
+    "title": "About",
+    "type": "page"
+  },
+  "naturaily": {
+    "title": "Naturaily.com ↗",
+    "type": "page",
+    "href": "https://naturaily.com/",
+    "newWindow": true
+  }
+}
