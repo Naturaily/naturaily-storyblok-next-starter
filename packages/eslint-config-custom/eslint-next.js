@@ -81,4 +81,10 @@ module.exports = {
       },
     ],
   },
+  overrides: [
+    {
+      files: '*.mdx',
+      parser: 'eslint-mdx',
+    },
+  ],
 };

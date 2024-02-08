@@ -13,6 +13,7 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --concurrency 24",
+    "dev:docs": "yarn workspace docs dev",
     "prettier:format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "eslint:format": "turbo run eslint:format --concurrency 24",
     "prepare": "husky install",
