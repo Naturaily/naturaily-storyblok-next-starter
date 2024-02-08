@@ -14,7 +14,7 @@
     "build": "turbo run build",
     "dev": "turbo run dev --concurrency 24",
     "prettier:format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "eslint:format": "turbo run eslint:format",
+    "eslint:format": "turbo run eslint:format --concurrency 24",
     "prepare": "husky install",
     "codegen": "turbo run codegen",
     "storyblok:setup": "yarn workspace @natu/storyblok-setup setup",
