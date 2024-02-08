@@ -2,14 +2,10 @@
   "index": {
     "display": "hidden"
   },
-  "start": {
-    "title": "Getting Started",
-    "type": "separator"
-  },
-  "installation": "Installation",
+  "getting-started": "Getting Started",
   "project-structure": "",
   "folder-structure": {
-    "title": "Building Your Application",
+    "title": "Package and application architecture",
     "type": "separator"
   },
   "apps": "Apps",

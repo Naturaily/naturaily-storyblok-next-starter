@@ -1,0 +1,46 @@
+import { Steps, Callout } from 'nextra/components';
+
+<Steps>
+### Import repository
+
+![Vercel](https://a.storyblok.com/f/218794/2452x2052/aa7c8a613b/screenshot-2024-02-07-at-1-02-08-pm.png)
+
+- Ensure that the `root directory` is set to `apps/web` (it should be the default).
+
+- Add environment variables. You will find all the variables after successfully completing the setup process at this path: `apps/web/.env`
+
+### Set the preview domain in Storyblok CMS
+
+If the deployment process was successful, copy the page address and add it to Storyblok.
+
+Copy `URL` from Vercel:
+![Vercel success](https://a.storyblok.com/f/218794/1253x620/479645ff1c/screenshot-2024-02-07-at-1-13-31-pm.png)
+
+Paste `URL` in Storyblok:
+![Vercel success](https://a.storyblok.com/f/218794/3836x1382/5b93525f3d/screenshot-2024-02-07-at-1-15-37-pm.png)
+
+<Callout type="warning" emoji="⚠️">
+  `URL` should end with `/` **slash**.
+
+_Example:_
+`https://<your-domain-name>.vercel.app/`
+
+</Callout>
+
+### Setup revalidate webhook
+
+A webhook allows for updating pages without the need to rebuild the entire project.
+
+As the endpoint URL, pass:
+
+`https://<your-domain>/api/revalidate?token=NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN`
+
+You will find the token under the variable `NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN` in the file `apps/web/.env`
+
+![Vercel success](https://a.storyblok.com/f/218794/4074x2210/0826083bdc/screenshot-2024-02-07-at-1-21-22-pm.png)
+
+<Callout type="warning" emoji="⚠️">
+  Remember to check all the checkboxes in the `Story` accordion
+</Callout>
+
+</Steps>
