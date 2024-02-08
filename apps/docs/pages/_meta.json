@@ -1,6 +1,9 @@
 {
   "index": {
-    "display": "hidden"
+    "display": "hidden",
+    "theme": {
+      "breadcrumb": false
+    }
   },
   "getting-started": "Getting Started",
   "project-structure": "",
