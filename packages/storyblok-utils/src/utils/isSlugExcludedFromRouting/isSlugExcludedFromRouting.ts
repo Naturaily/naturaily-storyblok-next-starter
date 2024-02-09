@@ -16,5 +16,5 @@ export const isSlugExcludedFromRouting = (slug: string) => {
     return false;
   }
 
-  return excludingSlugsFromRouting.some(excludedSlug => slug.includes(excludedSlug));
+  return excludingSlugsFromRouting.some((excludedSlug: string) => slug.includes(excludedSlug));
 };
