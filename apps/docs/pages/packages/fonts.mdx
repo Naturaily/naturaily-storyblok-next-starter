@@ -1,3 +1,65 @@
 # @natu/fonts
 
-TBD
+## 💻 Custom Fonts handling
+
+This package is using [next/font](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to handle
+and optimize custom fonts usage.
+
+## ➕ Adding new font
+
+To add the new custom font to the package, add it to the package's `/src` folder.
+
+In `/src/FONT_NAME/FONT_NAME.ts` file import the font from Google Fonts or local (according
+to [next/font docs](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts)).
+
+```ts
+import { Poppins } from 'next/font/google';
+
+export const poppinsFont = Poppins({
+  weight: ['400', '700'],
+  subsets: ['latin-ext'],
+  display: 'swap',
+  variable: '--font-primary',
+});
+```
+
+## 🎨 Adjusting Tailwind config
+
+To use custom fonts you need to include their variables in `tailwind.config.js` file. It can be the done both:
+
+- **globally** in the tailwind-config package: `/packages/tailwind-config/tailwind.config.js`, or
+- **in particular app** config: `/apps/APP_NAME/tailwind.config.js`.
+
+```js
+const tailwindConfig = {
+  theme: {
+    extend: {
+      fontFamily: {
+        primary: ['var(--font-primary)'],
+      },
+    },
+  },
+};
+```
+
+## 🤓 Font usage
+
+To use custom fonts in the app import this package as a dependency in its individual `package.json` file:
+
+```json
+"dependencies": {
+    "@natu/fonts": "*",
+}
+```
+
+Then import the particular font defined in the package in the place where you want to use it:
+
+```ts
+import { poppinsFont } from '@natu/fonts';
+```
+
+And use it's variable as a component's className:
+
+```ts
+  className={poppinsFont.variable}
+```
