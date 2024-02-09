@@ -1,3 +1,35 @@
 # @natu/eslint-config-custom
 
-TBD
+## 💻 Custom ESlint configuration
+
+[ESlint](https://eslint.org/) and [Prettier](https://prettier.io/) are tools that analyzes your code and helps you to keep it clean,
+consistent, and error-free. This package is used as one source of truth for default ESlint configuration.
+
+This package includes:
+
+- ESlint configuration in `eslint-next.js` file,
+- ordering imports schema in `order-imports.js` file.
+
+It can be extended if needed for particular package or app purposes.
+Extended config will inherit all the traits of this package's configuration (ex. rules, plugins, and language options)
+and add or modify some of the options.
+
+## 🤓 Usage
+
+To use this package in other package or app you need to import it as dev dependency in its individual `package.json` file:
+
+```json
+"devDependencies": {
+    "eslint-config-custom": "*",
+}
+```
+
+Then include it in its individual `.eslintrc` file as the extended config:
+
+```js
+module.exports = {
+  extends: ['eslint-config-custom/eslint-next.js'],
+};
+```
+
+If you need to extend this ESlint configuration particularly for app or package, this is also the place to do so.
