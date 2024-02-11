@@ -1,3 +1,575 @@
+import { Callout } from 'nextra/components';
+
 # @natu/storyblok-utils
 
-tbd
+A package containing components and functions supporting work with a `Storyblok CMS`
+
+## Components
+
+### **DynamicRender**
+
+A component that can render other block story components (`blocks` field in the CMS panel)
+
+_Example:_
+
+```tsx copy filename="SBContainer.tsx" /DynamicRender/ {1,12}
+import { BlokItem, DynamicRender, SBProps, sbEditable } from '@natu/storyblok-utils';
+
+interface SBContainerProps {
+  body?: BlokItem[]; // <- bloks field in Storyblok CMS
+}
+
+export const SBContainer = ({ blok }: SBProps<SBContainerProps>) => {
+  const { body } = blok;
+
+  return (
+    <div {...sbEditable(blok)}>
+      <DynamicRender data={body} />
+    </div>
+  );
+};
+```
+
+API Reference:
+
+| Prop        |           Type            | Default | Description                                                                     |
+| :---------- | :-----------------------: | ------: | ------------------------------------------------------------------------------- |
+| data        | `BlokItem`, `BlokItem[]`  |       - | Storyblok components                                                            |
+| asListItem  |         `boolean`         | `false` | If `true` it will render the components as a list items (`li`)                  |
+| parentProps | `Record<string, unknown>` |       - | `Props` passed down from a parent. For example, props like `slug` from Next.js. |
+
+---
+
+## Types
+
+### **SBProps**
+
+A generic type that returns the typed props of the component
+
+It accepts 2 optional parameters
+
+- `Component props` - The type of the component props (`storyblok component schema`)
+- `Component name` (You don't always have to pass it on. It will be useful when making `guards`)
+
+_Example:_
+
+```tsx copy filename="SBComponent.tsx" /SBProps/ {1,8}
+import { SBProps, sbEditable } from '@natu/storyblok-utils';
+
+interface SBComponentProps {
+  text?: string;
+  description?: string;
+}
+
+export const SBComponent = ({ blok }: SBProps<SBComponentProps>) => {
+  const { text, description } = blok; // valid
+  //const {text, description, image} = blok <- TS error - Property 'image' does not exist on type 'SBComponentProps'
+
+  // typeof blok.component === 'string' <-- type
+
+  return (
+    <div {...sbEditable(blok)}>
+      <h2>{text}</h2>
+      <p>{description}</p>
+    </div>
+  );
+};
+```
+
+_Example second parametr:_
+
+```tsx copy filename="SBComponent.tsx" /SBProps/ /myStoryblokComponent/ {1,10}
+import { SBProps, sbEditable } from '@natu/storyblok-utils';
+
+interface SBComponentProps {
+  text?: string;
+  description?: string;
+}
+
+export const MyStoryblokComponent = ({
+  blok,
+}: SBProps<SBMyStoryblokComponent, 'myStoryblokComponent '>) => {
+  const { text, description } = blok;
+
+  // typeof blok.component === 'myStoryblokComponent'  <-- type
+
+  return (
+    <div {...sbEditable(blok)}>
+      <h2>{text}</h2>
+      <p>{description}</p>
+    </div>
+  );
+};
+```
+
+### **StoryblokTable**
+
+The StoryblokTable type is a TypeScript interface representing a table component in the Storyblok CMS context.
+
+_Example:_
+
+```tsx copy filename="SBTable.tsx" /StoryblokTable/ {1,13,17,23,30,36}
+import { SBProps, StoryblokTable, sbEditable } from '@natu/storyblok-utils';
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@natu/ui';
+
+interface SBTableProps {
+  table?: StoryblokTable;
+}
+
+export const SBTable = ({ blok }: SBProps<SBTableProps>) => {
+  const { table } = blok;
+
+  if (!table) {
+    return null;
+  }
+
+  const { tbody, thead } = table;
+
+  return (
+    <Table className={className} {...sbEditable(blok)}>
+      {caption && <TableCaption>{caption}</TableCaption>}
+      <TableHeader>
+        <TableRow>
+          {thead?.map(item => <TableHead key={item._uid}>{item.value}</TableHead>)}
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {tbody?.map(rowItem => (
+          <TableRow key={rowItem._uid}>
+            {rowItem.body?.map(cellItem => (
+              <TableCell key={cellItem._uid}>{cellItem.value}</TableCell>
+            ))}
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  );
+};
+```
+
+### **StoryblokAsset**
+
+An interface describing the storyblock asset object and an auxiliary function that normalizes the data
+
+_Example:_
+
+```tsx copy filename="SBImage.tsx" /StoryblokAsset/ {4,10,16,22}
+import { ResponsiveImage } from '@natu/responsive-image';
+import {
+  SBProps,
+  StoryblokAsset,
+  getImagePropsFromStoryblok,
+  sbEditable,
+} from '@natu/storyblok-utils';
+
+interface SBImageProps {
+  asset?: StoryblokAsset; // <- asset field in Storyblok CMS
+}
+
+export const SBImage = ({ blok }: SBProps<SBImageProps>) => {
+  const { asset } = blok;
+
+  const image = getAssetFromStoryblok(asset, { type: 'image' });
+
+  if (!image.src) {
+    return null;
+  }
+
+  const { alt, src, title, height, width } = image;
+
+  return (
+    <ResponsiveImage
+      src={src}
+      alt={alt}
+      title={title}
+      width={width}
+      height={height}
+      priority={priority}
+      {...sbEditable(blok)}
+    />
+  );
+};
+```
+
+### **StoryblokLink**
+
+Depending on what the user selects in the storyblok (`url link, internal link, emial`), a different object will be returned by the CMS next to the link field. This function normalizes it.
+
+![link options](https://a.storyblok.com/f/218794/728x618/131c268a6f/screenshot-2024-02-11-at-6-27-38-pm.png)
+
+_Example:_
+
+```tsx copy filename="SBLink.tsx" /StoryblokLink/ {3,11,18}
+import {
+  SBProps,
+  StoryblokLink,
+  getLinkPropsFromStoryblok,
+  sbEditable,
+} from '@natu/storyblok-utils';
+import { Link } from '@natu/next-link';
+
+interface SBLinkProps {
+  label?: string;
+  link?: StoryblokLink; //<- link field in Storyblok CMS
+}
+
+export const SBLink = ({ blok }: SBProps<SBLinkProps>) => {
+  const { label, link } = blok;
+
+  // Returns object with href, target options
+  const linkProps = getLinkPropsFromStoryblok(link);
+
+  return (
+    <Link {...linkProps} {...sbEditable(blok)}>
+      {label}
+    </Link>
+  );
+};
+```
+
+---
+
+## Utils
+
+### **sbEditable**
+
+A feature that allows you to add a specific border for a storyblock (`preview mode support`). After clicking on such a component in the CMS, you will jump to it and we will be able to quickly edit it.
+
+<Callout type="warning" emoji="⚠️">
+  **It should always be passed to the Storyblok Component**
+</Callout>
+
+_Example:_
+
+```tsx copy filename="SBPage.tsx" /sbEditable/ {1,11}
+import { BlokItem, DynamicRender, SBProps, sbEditable } from '@natu/storyblok-utils';
+
+interface SBPageProps {
+  body?: BlokItem[];
+}
+
+export const SBPage = ({ blok }: SBProps<SBPageProps>) => {
+  const { body } = blok;
+
+  return (
+    <div {...sbEditable(blok)}>
+      <DynamicRender data={body} />
+    </div>
+  );
+};
+```
+
+_Result:_
+
+![sbEditable](https://a.storyblok.com/f/218794/2516x248/442bf2587d/screenshot-2024-02-11-at-6-39-13-pm.png)
+
+API Reference:
+
+| Prop |       Type        | Default | Description             |
+| :--- | :---------------: | ------: | ----------------------- |
+| blok | `SbComponentType` |       - | Storyblok `blok` object |
+
+### **getAssetFromStoryblok**
+
+The `getAssetFromStoryblok` function is an exported function that takes two arguments: `asset` and `config`.
+
+_Example:_
+
+```tsx copy filename="SBImage.tsx" /getAssetFromStoryblok/ {4,10}
+import { getAssetFromStoryblok } from '@natu/storyblok-utils';
+
+const image = getAssetFromStoryblok(asset, { type: 'image' });
+```
+
+<Callout type="info" emoji="ℹ️">
+  See an [example](/packages/storyblok/storyblok-utils#storyblokasset) of usage in a component.
+</Callout>
+
+API Reference:
+
+| Prop   |       Type       |           Default | Description                                                                                                |
+| :----- | :--------------: | ----------------: | ---------------------------------------------------------------------------------------------------------- |
+| asset  | `StoryblokAsset` |                 - | Storyblok asset field.                                                                                     |
+| config |     `Config`     | `{ type: image }` | The config argument is an object with a single field type, which can take the value of 'image' or 'video'. |
+
+### **getLinkPropsFromStoryblok**
+
+Depending on what the user selects in the storyblok (`url link, internal link, emial`), a different object will be returned by the CMS next to the link field. This function normalizes it.
+
+<Callout type="info" emoji="ℹ️">
+  See an [example](/packages/storyblok/storyblok-utils#storybloklink) of usage in a component.
+</Callout>
+
+API Reference:
+
+| Prop |      Type       | Default | Description              |
+| :--- | :-------------: | ------: | ------------------------ |
+| link | `StoryblokLink` |       - | Storyblok `link` object. |
+
+### **getSlugWithoutAppName**
+
+A function that truncates the application prefix.
+
+In our starter, the main `first folder` defines the application. The Storyblok API returns us the full slug. When we add links to the page, we want to remove the `prefix` of our application.
+
+Root apps folders:
+![root folders](https://a.storyblok.com/f/218794/2952x844/9f00339abb/screenshot-2024-02-11-at-7-12-13-pm.png)
+
+- First app: `https://naturaily.com`
+- Second app: `https://other.com`
+
+_The function is used for example in [getLinkPropsFromStoryblok](/packages/storyblok/storyblok-utils#getlinkpropsfromstoryblok)._
+
+_Example:_
+
+```ts
+// apps/web/.env
+// NEXT_PUBLIC_STORYBLOK_MAIN_APP_FOLDER='app'
+
+// usage
+const path = getSlugWithoutAppName('app/blog'); // <- /blog
+const path2 = getSlugWithoutAppName('app/blog/article-1'); // <- /blog/article-1
+```
+
+API Reference:
+
+| Prop |   Type   | Default | Description          |
+| :--- | :------: | ------: | -------------------- |
+| slug | `string` |       - | Link to the website. |
+
+### **getSlugWithAppName**
+
+A function that takes a slug from `next.js` and returns it with the application root folder value (`env.NEXT_PUBLIC_STORYBLOK_MAIN_APP_FOLDER`) appended.
+This URL address will be our source for the Storyblok CMS.
+
+_Example:_
+
+```ts
+// apps/web/.env
+// NEXT_PUBLIC_STORYBLOK_MAIN_APP_FOLDER='app'
+
+// usage
+const path = getSlugWithAppName({ slug: 'blog' }); // <- app/blog
+const path2 = getSlugWithAppName({ slug: 'blog/article-1' }); // <- app/blog/article-1
+```
+
+_Adwaned usage:_
+
+```tsx copy filename="apps/web/[...slug]/page.tsx" /getSlugWithAppName/ {3,11}
+import {
+  DynamicRender,
+  getSlugWithAppName,
+  isSlugExcludedFromRouting,
+} from '@natu/storyblok-utils';
+
+const Page = async ({ params }: PageProps) => {
+  const { isEnabled } = draftMode();
+  const { getContentNode } = getStoryblokApi({ draftMode: isEnabled });
+
+  const slug = getSlugWithAppName({ slug: getSlugFromParams(params.slug) });
+
+  if (isSlugExcludedFromRouting(slug)) {
+    return notFound();
+  }
+
+  const story = await getContentNode({ slug, relations });
+
+  if (!story || !story?.ContentNode) {
+    return notFound();
+  }
+
+  return <DynamicRender data={story?.ContentNode?.content} />;
+};
+```
+
+API Reference:
+
+| Prop |       Type       | Default | Description          |
+| :--- | :--------------: | ------: | -------------------- |
+| slug | `{slug: string}` |       - | Link to the website. |
+
+### **isSlugExcludedFromRouting**
+
+A function that checks whether a given url is excluded from routing. If it is excluded it will return true. Excluded paths can be passed to an environment variable
+
+```tsx
+// apps/web/.env
+// NEXT_PUBLIC_STORYBLOK_EXCLUDED_FOLDERS_FROM_ROUTING ="configuration-a93cfcb3,other";
+
+import { notFound } from 'next/navigation';
+
+const isExcluded = isSlugExcludedFromRouting('blog'); // false
+const isExcluded = isSlugExcludedFromRouting('configuration-a93cfcb3'); // true
+const isExcluded = isSlugExcludedFromRouting('blog/configuration-a93cfcb3'); // true
+const isExcluded = isSlugExcludedFromRouting('configuration-a93cfcb3/blog'); // true
+const isExcluded = isSlugExcludedFromRouting('other/blog'); // true
+
+if (isSlugExcludedFromRouting(slug)) {
+  return notFound();
+}
+```
+
+API Reference:
+
+| Prop |   Type   | Default | Description          |
+| :--- | :------: | ------: | -------------------- |
+| slug | `string` |       - | Link to the website. |
+
+### **resolveStoryblokStyles**
+
+In storyblock applications, we use a `datasource` as one place for our reusable data. This is often used as eg max-width, spacing in components. This function stores all this data and returns the appropriate styles based on the keys.
+
+In Storyblok, you can set default values for individual options within a specific component.
+
+Along with the function, **types for individual values** are exported.
+
+Datasources:
+![datasources](https://a.storyblok.com/f/218794/3990x1522/65a8143772/screenshot-2024-02-11-at-7-30-04-pm.png)
+
+Example of datasource:
+![example datasource](https://a.storyblok.com/f/218794/3358x2008/003aba9547/screenshot-2024-02-11-at-7-30-26-pm.png)
+
+Component example:
+
+![component example](https://a.storyblok.com/f/218794/812x1868/9a93a5070c/screenshot-2024-02-11-at-7-33-07-pm.png)
+
+_Example:_
+
+```tsx copy filename="SBGrid.tsx" /resolveStoryblokStyles/ {8,49,70}
+import {
+  BlokItem,
+  DynamicRender,
+  Grid,
+  SBProps,
+  Size,
+  Spacing,
+  resolveStoryblokStyles,
+  sbEditable,
+} from '@natu/storyblok-utils';
+
+interface SBGridProps {
+  body?: BlokItem[];
+  gridMobile?: Grid;
+  gridTablet?: Grid;
+  gridDesktop?: Grid;
+  gapMobile?: Spacing;
+  gapTablet?: Spacing;
+  gapDesktop?: Spacing;
+  containerSize?: Size;
+  mtMobile?: Spacing;
+  mtTablet?: Spacing;
+  mtDesktop?: Spacing;
+  mbMobile?: Spacing;
+  mbTablet?: Spacing;
+  mbDesktop?: Spacing;
+  tag?: string;
+}
+
+export const SBGrid = ({ blok }: SBProps<SBGridProps>) => {
+  const {
+    body,
+    gridMobile,
+    gridTablet,
+    gridDesktop,
+    gapMobile,
+    gapTablet,
+    gapDesktop,
+    containerSize,
+    mbMobile,
+    mbTablet,
+    mbDesktop,
+    mtMobile,
+    mtTablet,
+    mtDesktop,
+    tag,
+  } = blok;
+
+  const className = resolveStoryblokStyles({
+    gridMobile,
+    gridTablet,
+    gridDesktop,
+    gap: gapMobile,
+    gapTablet,
+    gapDesktop,
+    size: containerSize,
+    mt: mtMobile,
+    mtTablet,
+    mtDesktop,
+    mb: mbMobile,
+    mbTablet,
+    mbDesktop,
+    className: 'grid',
+  });
+
+  const Comp = tag || 'div';
+  const asListItem = tag === 'ul' || tag === 'ol';
+
+  return (
+    <Comp className={className} {...sbEditable(blok)}>
+      <DynamicRender asListItem={asListItem} data={body} />
+    </Comp>
+  );
+};
+```
+
+#### How to add a new value?
+
+Assuming you want to add a new value for spacing `144px`.
+
+1. Go to the Storyblok CMS and add a new option to the datasource (space).
+
+![datasources](https://a.storyblok.com/f/218794/3316x492/bc43bcc71c/screenshot-2024-02-11-at-7-42-28-pm.png)
+
+Why value is `36`? It's a Tailwind css class. Any person who has worked with Tailwind CSS will understand what it means.
+
+![tailwind](https://a.storyblok.com/f/218794/858x118/e3ca1c75d6/screenshot-2024-02-11-at-7-44-28-pm.png)
+
+2. Add a new type in the `Spacing` type.
+
+```ts copy filename="packages/storyblok-utils/src/utils/resolveStoryblokStyles/styles/spacing/Spacing.ts" /36/
+export type Spacing = '2' | '4' | '6' | '8' | '10' | '12' | '16' | '20' | '36';
+```
+
+3. Now, the objects need to be filled in with the appropriate classes.
+
+```ts filename="packages/storyblok-utils/src/utils/resolveStoryblokStyles/styles/spacing/spacing.ts" /36/ {10,22}
+export const mbVariants: Record<Spacing, string> = {
+  '2': 'mb-2', // [8px]
+  '4': 'mb-4', //  [16px]
+  '6': 'mb-6', // [24px]
+  '8': 'mb-8', // [32px]
+  '10': 'mb-10', // [40px]
+  '12': 'mb-12', // [48px]
+  '16': 'mb-16', // [64px]
+  '20': 'mb-20', // [80px]
+  '36': 'mb-36', // [144px]
+};
+
+export const mtVariants: Record<Spacing, string> = {
+  '2': 'mt-2', // [8px]
+  '4': 'mt-4', // [16px]
+  '6': 'mt-6', // [24px]
+  '8': 'mt-8', // [32px]
+  '10': 'mt-10', // [40px]
+  '12': 'mt-12', // [48px]
+  '16': 'mt-16', // [64px]
+  '20': 'mt-20', // [80px]
+  '36': 'mb-36', // [144px]
+};
+
+// other...
+```
+
+And that's it. Now all components have this information. 🙂
+
+Example `SBRow`:
+
+![sbrow](https://a.storyblok.com/f/218794/674x573/53c60f8121/screenshot-2024-02-11-at-7-51-42-pm.png)
