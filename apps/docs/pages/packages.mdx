@@ -1,18 +1,61 @@
 import { Cards, Card } from 'nextra/components';
+import {
+  Box,
+  Type,
+  LockKeyhole,
+  Settings,
+  Atom,
+  MoonStar,
+  Link,
+  ReplaceAll,
+  Pipette,
+  Cog,
+  FileDown,
+} from 'lucide-react';
 
 # Packages
 
 `Packages` in turn are shared between apps - this is the place where reusable logic lays.
 
 <Cards>
-  <Card title="Storyblok" href="/apps/web" arrow />
-  <Card title="Env" href="/apps/storybook-ui" arrow />
-  <Card title="Env" href="/apps/storybook-ui" arrow />
-  <Card title="Env" href="/apps/storybook-ui" arrow />
-  <Card title="Env" href="/apps/storybook-ui" arrow />
-  <Card title="Env" href="/apps/storybook-ui" arrow />
-  <Card title="Env" href="/apps/storybook-ui" arrow />
-  <Card title="Env" href="/apps/storybook-ui" arrow />
-  <Card title="Env" href="/apps/storybook-ui" arrow />
-  <Card title="Env" href="/apps/storybook-ui" arrow />
+  <Card icon={<Box />} title="Storyblok API" href="/packages/storyblok/storyblok-api" arrow />
+  <Card
+    icon={<Box />}
+    title="Storyblok Preview"
+    href="/packages/storyblok/storyblok-preview"
+    arrow
+  />
+  <Card
+    icon={<Box />}
+    title="Storyblok Revalidate"
+    href="/packages/storyblok/storyblok-revalidate"
+    arrow
+  />
+  <Card
+    icon={<Box />}
+    title="Storyblok Richtext"
+    href="/packages/storyblok/storyblok-richtext"
+    arrow
+  />
+  <Card icon={<Box />} title="Storyblok SEO" href="/packages/storyblok/storyblok-seo" arrow />
+  <Card icon={<Box />} title="Storyblok Setup" href="/packages/storyblok/storyblok-setup" arrow />
+  <Card icon={<Box />} title="Storyblok UI" href="/packages/storyblok/storyblok-ui" arrow />
+  <Card icon={<Box />} title="Storyblok Utils" href="/apps/storybook-ui" arrow />
+  <Card icon={<LockKeyhole />} title="Env" href="/packages/env" arrow />
+  <Card
+    icon={<Settings />}
+    title="Eslint Config Custom"
+    href="/packages/eslint-config-custom"
+    arrow
+  />
+  <Card icon={<Type />} title="Fonts" href="/packages/fonts" arrow />
+  <Card icon={<ReplaceAll />} title="Middleware Chain" href="/packages/middleware-chain" arrow />
+  <Card icon={<FileDown />} title="Next API Fetcher" href="/packages/next-api-fetcher" arrow />
+  <Card icon={<Link />} title="Next Link" href="/packages/next-link" arrow />
+  <Card icon={<MoonStar />} title="Next Themes" href="/packages/next-themes" arrow />
+  <Card icon={<Atom />} title="Storybook" href="/packages/storybook" arrow />
+  <Card icon={<Pipette />} title="Tailwind Config" href="/packages/tailwind-config" arrow />
+  <Card icon={<Settings />} title="Tsconfig" href="/packages/tsconfig" arrow />
+  <Card icon={<Atom />} title="UI" href="/packages/ui" arrow />
+  <Card icon={<Cog />} title="Utils" href="/packages/utils" arrow />
 </Cards>
