@@ -18,7 +18,7 @@ and add or modify some of the options.
 
 To use this package in other package or app you need to import it as dev dependency in its individual `package.json` file:
 
-```json
+```json copy filename="[your-workspace]/package.json" /"eslint-config-custom": "*"/
 "devDependencies": {
     "eslint-config-custom": "*",
 }
@@ -26,10 +26,33 @@ To use this package in other package or app you need to import it as dev depende
 
 Then include it in its individual `.eslintrc` file as the extended config:
 
-```js
+```js copy filename="[your-workspace]/.eslintrc.js" {6}
 module.exports = {
+  parserOptions: {
+    tsconfigRootDir: __dirname,
+    project: './tsconfig.json',
+  },
   extends: ['eslint-config-custom/eslint-next.js'],
 };
 ```
 
-If you need to extend this ESlint configuration particularly for app or package, this is also the place to do so.
+If you need to extend global options this ESlint configuration particularly for app or package, this is also the place to do so.
+
+## Add your custom rules for specific workspace
+
+You can customize the rules by overriding existing ones or adding new options specific to a particular workspace.
+
+_Example:_
+
+```js copy filename="[your-workspace]/.eslintrc.js" {7,8,9}
+module.exports = {
+  parserOptions: {
+    tsconfigRootDir: __dirname,
+    project: './tsconfig.json',
+  },
+  extends: ['eslint-config-custom/eslint-next.js'],
+  rules: {
+    'your-rule-name': 0, // <- your custom rule for specyfic workspace
+  },
+};
+```
