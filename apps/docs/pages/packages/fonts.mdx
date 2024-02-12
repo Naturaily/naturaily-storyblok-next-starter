@@ -12,7 +12,7 @@ To add the new custom font to the package, add it to the package's `/src` folder
 In `/src/FONT_NAME/FONT_NAME.ts` file import the font from Google Fonts or local (according
 to [next/font docs](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts)).
 
-```ts
+```ts copy filename="packages/fonts/src/Poppins.ts" {3-8}
 import { Poppins } from 'next/font/google';
 
 export const poppinsFont = Poppins({
@@ -28,9 +28,8 @@ export const poppinsFont = Poppins({
 To use custom fonts you need to include their variables in `tailwind.config.js` file. It can be the done both:
 
 - **globally** in the tailwind-config package: `/packages/tailwind-config/tailwind.config.js`, or
-- **in particular app** config: `/apps/APP_NAME/tailwind.config.js`.
 
-```js
+```js filename="/packages/tailwind-config/tailwind.config.js" {4-6}
 const tailwindConfig = {
   theme: {
     extend: {
@@ -46,20 +45,23 @@ const tailwindConfig = {
 
 To use custom fonts in the app import this package as a dependency in its individual `package.json` file:
 
-```json
+```json filename="/[your-workspace]/package.json" {3}
 "dependencies": {
+    // other packages
     "@natu/fonts": "*",
 }
 ```
 
-Then import the particular font defined in the package in the place where you want to use it:
+Then import the particular font defined in the package in the place where you want and use it's variable as a component's className:
 
-```ts
+```tsx copy {1,8} /poppinsFont/
 import { poppinsFont } from '@natu/fonts';
-```
 
-And use it's variable as a component's className:
+interface MyComponentProps {
+  children: ReactNode;
+}
 
-```ts
-  className={poppinsFont.variable}
+const MyComponent = async ({ children }: MyComponentProps) => {
+  return <div className={poppinsFont.variable}>{children}</div>;
+};
 ```
