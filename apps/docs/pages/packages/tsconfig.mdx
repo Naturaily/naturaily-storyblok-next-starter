@@ -1,3 +1,64 @@
 # tsconfig
 
-tbd
+## 💻 Custom TypeScript configuration
+
+[Typescript ↗](https://www.typescriptlang.org/) is used to provide strong typing for better readability, IDE support
+and error-proofing of the project.
+
+This package contains default TypeScript config consists of a base configuration extended
+with recommended settings for the Next.js application.
+
+## 🤓 Usage
+
+To use this package in other package or app import it as dev dependency in its `package.json` file:
+
+```json
+"devDependencies": {
+    "tsconfig": "*",
+}
+```
+
+Then use it as extend in particular app/package `tsconfig.json` file:
+
+```json {2}
+{
+  "extends": "tsconfig/nextjs.json",
+  "include": ["."],
+  "exclude": ["node_modules", ".next", "coverage", ".turbo"]
+}
+```
+
+## Extending the configuration
+
+The configuration can be extended for the whole project or for particular package/app if needed.
+
+To extend it **globally**, modify the `nextjs.json` file of this package:
+
+```json {9, 11-12}
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Next.js",
+  "extends": "./base.json",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "noEmit": true,
+    "target": "es5"
+    // you can add your compiler options here
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"], // you can include other files here
+  "exclude": ["node_modules", ".next", ".turbo", "coverage"] // you can exclude other files here
+}
+```
+
+To extend it **per app/package**, modify the `tsconfig.json` of the particular app/package:
+
+```json {3-5}
+{
+  "extends": "tsconfig/nextjs.json",
+  "include": ["."], // you can include other files here
+  "exclude": ["node_modules", ".next", "coverage", ".turbo"] // you can exclude other files here
+  // you can add other options ex. compiler options
+}
+```
+
+To see all available configuration options, check out the [Typescript documentation ↗](https://www.typescriptlang.org/tsconfig).
