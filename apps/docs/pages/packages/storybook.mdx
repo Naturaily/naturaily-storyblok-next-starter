@@ -7,9 +7,23 @@
 This package contains basic configuration of Storybook which can be used to create a functional,
 deployable app for particular needs.
 
+Files in the package:
+
+1. `/src/main.ts` - provides basic Storybook config:
+
+- options: framework, source files, creating auto-docs etc., see [all options ↗](https://storybook.js.org/docs/configure)
+- addons for additional functionalities: see all [essential ↗](https://storybook.js.org/docs/essentials) / [additional ↗](https://storybook.js.org/docs/addons) ones
+
+2. `/src/preview.ts` - provides additional preview settings, ex. custom:
+
+- [viewports ↗](https://storybook.js.org/docs/essentials/viewport)
+- [backgrounds ↗](https://storybook.js.org/docs/essentials/backgrounds)
+- [actions ↗](https://storybook.js.org/docs/essentials/actions)
+- [controls ↗](https://storybook.js.org/docs/essentials/controls)
+
 ## 🤓 Usage
 
-Import the package as a dev dependency in the Storybook showcase app (see `/apps/storybook-ui`) in `package.json` file:
+Import the package as a dev dependency in the Storybook showcase app `/apps/APP_NAME` in `package.json` file:
 
 ```json
 "devDependencies": {
@@ -26,5 +40,12 @@ In the same file, add the Storybook commands:
 },
 ```
 
-Then you can create your [Storybook stories](https://storybook.js.org/docs/get-started/whats-a-story)
-in the `/apps/storybook-ui/src` folder.
+Then you can create your [Storybook stories ↗](https://storybook.js.org/docs/get-started/whats-a-story)
+in the `/apps/APP_NAME/src` folder.
+
+See `/apps/storybook-ui` app as a reference.
+
+## 📖 Essential docs
+
+- [Creating stories ↗](https://storybook.js.org/docs/writing-stories)
+- [Creating components docs ↗](https://storybook.js.org/docs/writing-docs)
