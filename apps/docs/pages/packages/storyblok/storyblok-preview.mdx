@@ -1,3 +1,46 @@
 # @natu/storyblok-preview
 
-TBD
+A package handling [preview mode ↗](https://www.storyblok.com/tp/create-a-preview-environment-for-your-next-js-website) in Storyblok.
+
+## DraftModeProvider
+
+Component that serves 2 purposes:
+
+- rendering the `<DraftModeContext.Provider />`,
+- rendering the button we can click to leave the draft mode, if it's turned on:
+
+![button we can click to leave the draft mode](https://a.storyblok.com/f/218794/2414x632/c583db15c5/screenshot-2024-02-12-at-16-52-02.png)
+
+Usage example:
+
+```tsx filename="Providers.tsx" /DraftModeProvider/ {5,13}
+'use client';
+
+import { ReactNode } from 'react';
+
+import { DraftModeProvider } from '@natu/storyblok-preview';
+
+interface ProvidersProps {
+  children?: ReactNode;
+  draftMode?: boolean;
+}
+
+export const Providers = ({ children, draftMode }: ProvidersProps) => (
+  <DraftModeProvider draftMode={draftMode}>{children}</DraftModeProvider>
+);
+```
+
+API Reference:
+
+| Prop      |    Type     | Default | Description                                 |
+| :-------- | :---------: | ------: | ------------------------------------------- |
+| children  | `ReactNode` |       - | Children of the `DraftModeProvider`         |
+| draftMode |  `boolean`  | `false` | Flag that tells if we are in the draft mode |
+
+### DraftModeContext and useDraftModeContext()
+
+To use the `DraftModeContext` defined in the `DraftModeProvider`, it's the best to use the `useDraftModeContext()` hook.
+
+Usage example:
+
+**TBD**
