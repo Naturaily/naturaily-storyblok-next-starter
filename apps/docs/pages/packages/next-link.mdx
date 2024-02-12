@@ -10,11 +10,16 @@ The package contains a wrapper for the `next.js` link that handles following ext
 - emails (starting with `mailto`),
 - phones (starting with `tel`).
 
-## 🤓 Usage
+<Callout type="warning" emoji="⚠️">
+  Keep in mind that the option to import default `next/link` was disabled for all packages but this
+  one using the `no-restricted-imports` ESLint rule.
+</Callout>
+
+## Usage
 
 To use this package in the app import this package as a dependency in its individual `package.json` file:
 
-```json
+```json filename="package.json"
 "dependencies": {
   "@natu/next-link": "*",
 }
@@ -22,7 +27,7 @@ To use this package in the app import this package as a dependency in its indivi
 
 Then use it like in the example below:
 
-```tsx
+```tsx filename="SomeNiceComponent.tsx"
 import { Link } from '@natu/next-link';
 
 export const SomeNiceComponent = ({ href, linkText }: Props) => (
@@ -32,7 +37,11 @@ export const SomeNiceComponent = ({ href, linkText }: Props) => (
 );
 ```
 
-<Callout type="warning" emoji="⚠️">
-  Keep in mind that the option to import default `next/link` was disabled for all packages but this
-  one using the `no-restricted-imports` ESLint rule.
-</Callout>
+## API Reference
+
+| Prop     |                        Type                         | Default | Description                                                                 |
+| :------- | :-------------------------------------------------: | ------: | --------------------------------------------------------------------------- |
+| href     |                      `string`                       |       - | Link address                                                                |
+| children |                     `ReactNode`                     |       - | Any element that should be rendered inside of the Link component            |
+| ref      |                 `HTMLAnchorElement`                 |       - | React `Ref`                                                                 |
+| ...props | `NextLinkProps & HTMLAttributes<HTMLAnchorElement>` |       - | Other props that can be also passed to `next/link` and `<a />` HTML element |
