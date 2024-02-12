@@ -1,3 +1,80 @@
 # tailwind-config
 
-tbd
+## 💻 Tailwind default config
+
+[Tailwind ↗](https://tailwindcss.com/) is used for quick and optimized styling of the components.
+This package contains default Tailwind config and necessary packages.
+
+If you’re using VS Code, there is [official Tailwind CSS IntelliSense plugin ↗](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
+that includes a dedicated Tailwind CSS language mode that has support for all of the custom at-rules and functions Tailwind uses.
+
+Files in the package:
+
+- `tailwind.config.js` - contains all default styles for the application
+- `shadcn-preset.js` - contains preset styles for [shadcn ↗](https://ui.shadcn.com/docs) components
+- `global.css` - implements tailwind classes into project and includes some basic general styles
+
+## 🤓 Usage
+
+1. Import this package in the other package or app by adding it as a dev dependency to `package.json` file:
+
+```json
+"devDependencies": {
+    "tailwind-config": "*",
+}
+```
+
+2. Import the default settings to the `tailwind.config.js` file of particular package/app:
+
+```js {1, 5}
+const defaultConfig = require('tailwind-config/tailwind.config');
+
+/** @type {import("tailwindcss").Config} */
+const config = {
+  presets: [defaultConfig],
+};
+
+module.exports = config;
+```
+
+3. Import the default settings to the `postcss.config.js` file of particular package/app:
+
+```js
+module.exports = require('tailwind-config/postcss.config');
+```
+
+4. Import the `global.css` file into the global place file in your application (ex. `layout.tsx`):
+
+```tsx
+import 'tailwind-config/global.css';
+```
+
+5. Use [tailwind classes ↗](https://tailwindcss.com/docs/aspect-ratio) in your components within the package/app you implemented the config to:
+
+```tsx /w-full my-5 p-5 md:my-10/
+<Component className="w-full my-5 p-5 md:my-10" />
+```
+
+## 🤓 Extending the default settings
+
+You can always extend and/or overwrite the default settings in the `tailwind.config.js` file of particular package/app, for example:
+
+```js {7-13}
+const defaultConfig = require('tailwind-config/tailwind.config');
+
+/** @type {import("tailwindcss").Config} */
+const config = {
+  presets: [defaultConfig],
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          500: #000000
+        }
+      }
+    }
+  }
+};
+
+module.exports = config;
+```
