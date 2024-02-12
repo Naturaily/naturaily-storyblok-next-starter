@@ -6,7 +6,7 @@ import { Callout } from 'nextra/components';
 
 Themes' support for Next.js done using the external [next-themes ↗](https://www.npmjs.com/package/next-themes) package.
 
-## 🤓 Usage
+## Usage
 
 To use this package in the app import this package as a dependency in its individual `package.json` file:
 
@@ -18,7 +18,7 @@ To use this package in the app import this package as a dependency in its indivi
 
 Then use the `ThemeProvider`:
 
-```tsx
+```tsx filename="Providers.tsx"
 import { ThemeProvider } from '@natu/next-themes';
 
 export const Providers = ({ children }: Props) => (
@@ -30,10 +30,10 @@ export const Providers = ({ children }: Props) => (
 
 And `ThemeModeSwitcher` component which handles the theme switching for users:
 
-```tsx
+```tsx filename="Navigation.tsx"
 import { ThemeModeSwitcher } from '@natu/next-themes';
 
-export const Providers = ({ children }: Props) => (
+export const Navigation = ({ children }: Props) => (
   <nav>
     {children}
     <ThemeModeSwitcher />
@@ -45,3 +45,13 @@ export const Providers = ({ children }: Props) => (
   More infromation can be found in the [next-themes documentation
   ↗](https://github.com/pacocoursey/next-themes#readme).
 </Callout>
+
+## API
+
+### ThemeProvider
+
+Props are the same as in the [next-themes documentation](https://github.com/pacocoursey/next-themes?tab=readme-ov-file#api).
+
+### ThemeModeSwitcher
+
+All props provided to this component, will be added to the parent `DropdownMenu`.
