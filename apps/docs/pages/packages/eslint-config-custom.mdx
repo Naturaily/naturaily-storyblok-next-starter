@@ -36,9 +36,24 @@ module.exports = {
 };
 ```
 
+## Add global custom rules
+
 If you need to extend global options this ESlint configuration particularly for app or package, this is also the place to do so.
 
-## Add your custom rules for specific workspace
+_Example:_
+
+```js copy filename="packages/eslint-config-custom/.eslint-next.js" {5}
+module.exports = {
+  // ...
+  rules: {
+    // ... other rules
+    'your-rule-name': 0, // <- your custom global rule
+  },
+  // ...
+};
+```
+
+## Add custom rules for specific workspace
 
 You can customize the rules by overriding existing ones or adding new options specific to a particular workspace.
 
