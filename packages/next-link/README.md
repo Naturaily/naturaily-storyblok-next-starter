@@ -6,4 +6,4 @@ The package contains a wrapper for the `next.js` link that handles following ext
 - emails (starting with `mailto`),
 - phones (starting with `tel`).
 
-[Full documentation](https://naturaily-starter-docs.vercel.app/packages/next-link).
+[Full documentation ↗](https://naturaily-starter-docs.vercel.app/packages/next-link).
