@@ -1,3 +1,47 @@
+import { Callout } from 'nextra/components';
+
 # @natu/next-themes
 
-TBD
+## Easy to use themes (dark, light, and custom)
+
+Themes' support for Next.js done using the external [next-themes ↗](https://www.npmjs.com/package/next-themes) package.
+
+## 🤓 Usage
+
+To use this package in the app import this package as a dependency in its individual `package.json` file:
+
+```json
+"dependencies": {
+  "@natu/next-themes": "*",
+}
+```
+
+Then use the `ThemeProvider`:
+
+```tsx
+import { ThemeProvider } from '@natu/next-themes';
+
+export const Providers = ({ children }: Props) => (
+  <ThemeProvider attribute="class" defaultTheme={'system'} enableSystem disableTransitionOnChange>
+    {children}
+  </ThemeProvider>
+);
+```
+
+And `ThemeModeSwitcher` component which handles the theme switching for users:
+
+```tsx
+import { ThemeModeSwitcher } from '@natu/next-themes';
+
+export const Providers = ({ children }: Props) => (
+  <nav>
+    {children}
+    <ThemeModeSwitcher />
+  </nav>
+);
+```
+
+<Callout type="info" emoji="ℹ️">
+  More infromation can be found in the [next-themes documentation
+  ↗](https://github.com/pacocoursey/next-themes#readme).
+</Callout>
