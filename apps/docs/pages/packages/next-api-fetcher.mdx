@@ -1,3 +1,38 @@
 # @natu/next-api-fetcher
 
-TBD
+## 💻 GraphQL fetcher
+
+This package exposes GraphQL-focused fetcher that can be used to easily retrieve data from GraphQL API.
+
+## 🤓 Usage
+
+To use this package in the app import this package as a dependency in its individual `package.json` file:
+
+```json
+"dependencies": {
+  "@natu/next-api-fetcher": "*",
+}
+```
+
+Then use it like in the example below:
+
+```ts
+const { fetcher } = new ApiFetcher(GRAPHQL_ENDPOINT, {
+  headers: { ...headers },
+  cache: 'force-cache',
+});
+
+const { data } = await fetcher<VariablesType, DataType>({
+  query: GRAPHQL_QUERY,
+  variables,
+  headers,
+  ...otherFetchOptions,
+});
+
+return data;
+```
+
+<Callout type="info" emoji="ℹ️">
+  Look into [@natu/storyblok-api](/packages/storyblok/storyblok-api) package for the real-world
+  example.
+</Callout>
