@@ -1,3 +1,30 @@
 # @natu/storybook
 
-tbd
+## 💻 Storybook
+
+[Storybook](https://storybook.js.org/) is used to build in isolation, test and showcase UI components.
+
+This package contains basic configuration of Storybook which can be used to create a functional,
+deployable app for particular needs.
+
+## 🤓 Usage
+
+Import the package as a dev dependency in the Storybook showcase app (see `/apps/storybook-ui`) in `package.json` file:
+
+```json
+"devDependencies": {
+    "@natu/storybook": "*"
+}
+```
+
+In the same file, add the Storybook commands:
+
+```json
+"scripts": {
+  "storybook": "storybook dev -p 6006", // runs locally
+  "storybook:build": "storybook build" // build static for deploy
+},
+```
+
+Then you can create your [Storybook stories](https://storybook.js.org/docs/get-started/whats-a-story)
+in the `/apps/storybook-ui/src` folder.
