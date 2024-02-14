@@ -24,10 +24,12 @@ To use this package in the app import this package as a dependency in its indivi
 
 Then use it like in the example below:
 
-```ts
+```ts copy
 import { middlewareChain } from '@natu/middleware-chain';
+import { withStoryblokPreviewMiddleware } from '@natu/storyblok-preview';
+import { withAuthMiddleware } from '@natu/auth';
 
-const middlewares = [YOUR_MIDDLEWARE_1, YOUR_MIDDLEWARE_2];
+const middlewares = [withStoryblokPreviewMiddleware, withAuthMiddleware];
 
 export default middlewareChain(middlewares);
 ```
