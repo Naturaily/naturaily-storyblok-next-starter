@@ -37,7 +37,6 @@ module.exports = {
     'no-underscore-dangle': 0,
     'no-plusplus': 0,
     'no-console': 2,
-    // react
     'react/react-in-jsx-scope': 0,
     'import/prefer-default-export': 0,
     'import/no-extraneous-dependencies': 0,
@@ -78,6 +77,17 @@ module.exports = {
         required: {
           some: ['nesting', 'id'],
         },
+      },
+    ],
+    'no-restricted-imports': [
+      2,
+      {
+        paths: [
+          {
+            name: 'next/link',
+            message: 'Use `@natu/next-link` instead.',
+          },
+        ],
       },
     ],
   },

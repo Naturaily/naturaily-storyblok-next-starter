@@ -1,3 +1,35 @@
 # @natu/middleware-chain
 
-TBD
+## 💻 Middlewares chaining
+
+[Middlewares](https://nextjs.org/docs/app/building-your-application/routing/middleware) are functions that
+allow you to intersept the request and perform some action before sending the response to the user.
+This package is chaining them one after another if using more of them.
+
+It was described in details in the video below:
+
+import Youtube from '../../components/youtube';
+
+<Youtube id="fmFYH_Xu3d0" />
+
+## 🤓 Usage
+
+To use this package in the app import this package as a dependency in its individual `package.json` file:
+
+```json
+"dependencies": {
+    "@natu/middleware-chain": "*",
+}
+```
+
+Then use it like in the example below:
+
+```ts copy
+import { middlewareChain } from '@natu/middleware-chain';
+import { withStoryblokPreviewMiddleware } from '@natu/storyblok-preview';
+import { withAuthMiddleware } from '@natu/auth';
+
+const middlewares = [withStoryblokPreviewMiddleware, withAuthMiddleware];
+
+export default middlewareChain(middlewares);
+```
