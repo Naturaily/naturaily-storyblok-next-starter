@@ -1,5 +1,6 @@
 'use server';
 
+import { timingSafeEqual } from 'crypto';
 import { draftMode } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -13,7 +14,13 @@ export const draftHandler = async (request: NextRequest) => {
   const secret = searchParams.get('secret');
 
   // Check if secret is valid
-  if (secret !== env.NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN) {
+  try {
+    if (secret) {
+      timingSafeEqual(Buffer.from(secret), Buffer.from(env.NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN)); // Throws an error if doesn't match.
+    } else {
+      throw new Error();
+    }
+  } catch {
     return new Response(
       JSON.stringify({ message: 'Invalid token', time: new Date().toISOString() }),
     );
