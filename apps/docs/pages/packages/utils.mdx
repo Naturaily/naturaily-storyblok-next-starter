@@ -48,18 +48,21 @@ Usage:
 ```tsx
 import { cn } from '@natu/utils';
 
-const mergedClasses = cn(
+const className = cn(
+  'mt-2 px-4 w-full',
   twClass1,
   twClass2,
   twClass3,
   condition && twClass3,
   condition2 ? twClass4 : twClass5,
 );
+
+<div className={className} />;
 ```
 
 #### getNextRouteWithDomain
 
-Returns next route path with a domain prefix taken from [env](https://naturaily-starter-docs.vercel.app/packages/env).
+Returns next route path with a domain prefix taken from [env](/packages/env).
 Usage:
 
 ```tsx
@@ -89,7 +92,46 @@ const check5 = isArrayWithLength(undefined); // false (not array)
 
 #### useToggle
 
-tbd
+It takes a parameter with value true or false and toggles that value to opposite. It’s useful when we want to take some action into its opposite action, for example: show and hide modal, show more/show less text, open/close side menu.
+
+```tsx copy /useToggle/
+import { useToggle } from '@natu/utils';
+
+function ToggleDemo({ on, toggle }) {
+  return (
+    <div>
+      <label className="toggle">
+        <input onChange={toggle} className="toggle-checkbox" type="checkbox" checked={on} />
+        <div className="toggle-switch"></div>
+        <span className="toggle-label">{on ? 'On' : 'Off'}</span>
+      </label>
+    </div>
+  );
+}
+
+export default function App() {
+  const [on, toggle] = useToggle(true);
+
+  return (
+    <section>
+      <h1>UseToggle</h1>
+      <button disabled={on} className="link" onClick={() => toggle(true)}>
+        Turn On
+      </button>
+      <button disabled={!on} className="link" onClick={() => toggle(false)}>
+        Turn Off
+      </button>
+      <button className="link" onClick={toggle}>
+        Toggle
+      </button>
+      <button className="link" onClick={() => toggle('nope')}>
+        (Also toggles)
+      </button>
+      <ToggleDemo toggle={toggle} on={on} />
+    </section>
+  );
+}
+```
 
 ### Paths
 
