@@ -1,3 +1,75 @@
+import { Callout } from 'nextra/components';
+
 # @natu/next-api-fetcher
 
-TBD
+## GraphQL fetcher
+
+This package exposes GraphQL-focused fetcher that can be used to easily retrieve data from GraphQL API.
+
+<Callout type="info" emoji="ℹ️">
+  Fetcher was used in [storyblok-api package](/packages/storyblok/storyblok-api).
+</Callout>
+
+## Usage
+
+To use this package in the app import this package as a dependency in its individual `package.json` file:
+
+```json
+"dependencies": {
+  "@natu/next-api-fetcher": "*",
+}
+```
+
+Then use it like in the example below:
+
+```ts filename="getStoryblokData.ts"
+import { ApiFetcher } from '@natu/next-api-fetcher';
+import { print } from 'graphql/language/printer';
+
+const GetContentNode = gql`
+  query getContentNode($slug: ID!, $relations: String = "", $skipContent: Boolean = false) {
+    ContentNode(id: $slug, resolve_relations: $relations) {
+      id
+      first_published_at
+      full_slug
+      name
+      published_at
+      slug
+      uuid
+      content @skip(if: $skipContent)
+    }
+  }
+`;
+
+const { fetcher } = new ApiFetcher(GRAPHQL_ENDPOINT, {
+  headers: { ...headers },
+  cache: 'force-cache',
+});
+
+const { data } = await fetcher<VariablesType, DataType>({
+  query: print(GetContentNode),
+  { slug: 'web/home', relations: 'config.footer,config.header' },
+  version: 'draft',
+});
+
+return data;
+```
+
+## API Reference
+
+### `ApiFetcher` class
+
+| Prop          |                        Type                        |                                               Default | Description                                                                                                                                                                                                                                                                                |
+| :------------ | :------------------------------------------------: | ----------------------------------------------------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| endpoint      |                      `string`                      |                                                     - | GraphQL endpoint like `https://gapi.storyblok.com/v1/api`                                                                                                                                                                                                                                  |
+| requestParams | `Pick<RequestInit, 'headers \| 'cache' \| 'next'>` | `{ headers: { 'Content-Type': 'application/json' } }` | `headers` and `cache` params known from the [Fetch API ↗](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#supplying_request_options) and the custom `next` param [added by Next.js ↗](https://nextjs.org/docs/app/api-reference/functions/fetch#fetchurl-options) |
+
+### `fetcher()` method
+
+| Prop      |                                           Type                                           |                                  Default | Description                                                                                                  |
+| :-------- | :--------------------------------------------------------------------------------------: | ---------------------------------------: | ------------------------------------------------------------------------------------------------------------ |
+| query     |                                         `string`                                         |                                        - | GraphQL query                                                                                                |
+| cache     | `"default" \| "force-cache" \| "no-cache" \| "no-store" \| "only-if-cached" \| "reload"` |                                        - | Caching strategy                                                                                             |
+| variables |                                        `Exact<T>`                                        |                                        - | Variables passed to GraphQL query                                                                            |
+| headers   |                                      `HeadersInit`                                       | `{ 'Content-Type': 'application/json' }` | HTTP headers                                                                                                 |
+| next      |                    `{revalidate?: number \| false; tags?: string[] }`                    |                                        - | Next param [added by Next.js ↗](https://nextjs.org/docs/app/api-reference/functions/fetch#fetchurl-options) |
