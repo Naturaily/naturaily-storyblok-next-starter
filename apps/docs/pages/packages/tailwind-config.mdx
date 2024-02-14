@@ -1,3 +1,127 @@
+import { Steps } from 'nextra/components';
+
 # tailwind-config
 
-tbd
+## 💻 Tailwind default config
+
+[Tailwind ↗](https://tailwindcss.com/) is used for quick and optimized styling of the components.
+This package contains default Tailwind config and necessary packages.
+
+If you’re using VS Code, there is [official Tailwind CSS IntelliSense plugin ↗](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
+that includes a dedicated Tailwind CSS language mode that has support for all of the custom at-rules and functions Tailwind uses.
+
+Files in the package:
+
+- `tailwind.config.js` - contains all default styles for the application
+- `shadcn-preset.js` - contains preset styles for [shadcn ↗](https://ui.shadcn.com/docs) components
+- `global.css` - implements tailwind classes into project and includes some basic general styles
+
+## 🤓 Configuration
+
+<Steps>
+  ### Add dependency to your package.json
+
+Import this package in the other woskapce or app by adding it as a dev dependency to `package.json` file:
+
+```json
+"devDependencies": {
+  "tailwind-config": "*",
+}
+```
+
+### `tailwind.config.js` file in your workspace
+
+Import the default settings to the `tailwind.config.js` file of particular package/app:
+
+```js {1, 5}
+const defaultConfig = require('tailwind-config/tailwind.config');
+
+/** @type {import("tailwindcss").Config} */
+const config = {
+  presets: [defaultConfig],
+};
+
+module.exports = config;
+```
+
+### `postcss.config.js` file
+
+Import the default settings to the `postcss.config.js` file of particular package/app:
+
+```js copy filename="packages/[your-package]/postcss.config"
+module.exports = require('tailwind-config/postcss.config');
+```
+
+### `global.css` file
+
+Import the `global.css` file into the global place file in your application (ex. `layout.tsx`):
+
+```tsx copy
+import 'tailwind-config/global.css';
+```
+
+### Tailwind content field
+
+Depending on the application you are working with, remember to ensure that your packages are included in the `content` field.
+
+```js copy filename="apps/web/tailwind.config.js" {6-22}
+const defaultConfig = require('tailwind-config/tailwind.config');
+
+/** @type {import("tailwindcss").Config} */
+const config = {
+  presets: [defaultConfig],
+  content: [
+    './src/app/**/*.{js,ts,jsx,tsx}',
+    // ui
+    '../../packages/ui/src/**/*.{js,ts,jsx,tsx}',
+    // storyblok-preview
+    '../../packages/storyblok-preview/src/components/**/*.{js,ts,jsx,tsx}',
+    // storyblok-utils - resolve storyblok styles func
+    '../../packages/storyblok-utils/src/utils/resolveStoryblokStyles/styles/**/*.{js,ts,jsx,tsx}',
+    // storyblok-richtext
+    '../../packages/storyblok-richtext/src/components/**/*.{js,ts,jsx,tsx}',
+    // storyblok-ui
+    '../../packages/storyblok-ui/src/components/**/*.{js,ts,jsx,tsx}',
+    // next-theme
+    '../../packages/next-themes/src/**/*.{js,ts,jsx,tsx}',
+    // theme-customizer
+    '../../packages/theme-customizer/src/components/**/*.{js,ts,jsx,tsx}',
+  ],
+};
+
+module.exports = config;
+```
+
+### Usage
+
+Use [tailwind classes ↗](https://tailwindcss.com/docs/aspect-ratio) in your components within the package/app you implemented the config to:
+
+```tsx /w-full my-5 p-5 md:my-10/
+<div className="w-full my-5 p-5 md:my-10" />
+```
+
+</Steps>
+
+## 🤓 Extending the default settings
+
+You can always extend and/or overwrite the default settings in the `tailwind.config.js` file of particular package/app, for example:
+
+```js {7-13}
+const defaultConfig = require('tailwind-config/tailwind.config');
+
+/** @type {import("tailwindcss").Config} */
+const config = {
+  presets: [defaultConfig],
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          500: #000000
+        }
+      }
+    }
+  }
+};
+
+module.exports = config;
+```
