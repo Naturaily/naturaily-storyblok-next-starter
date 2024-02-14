@@ -1,7 +1,5 @@
 # @natu/ui
 
-This package contains all pure **React components**.
+This package contains all pure React components to be used within the project.
 
-Within the **ui** package, components are imported and used among themselves. In addition, they are created in accordance with [Atomic Design Methodology](https://atomicdesign.bradfrost.com/chapter-2/).
-
-**The premise of this package is to create universal components that have minimal communication with each other.**
+[Full documentation](https://naturaily-starter-docs.vercel.app/packages/ui).

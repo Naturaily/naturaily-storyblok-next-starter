@@ -1,3 +1,395 @@
 # @natu/ui
 
-tbd
+## 🎨 UI
+
+This package contains all pure React components to be used within the project.
+
+The package utilizes the [shadcn](https://ui.shadcn.com/) component library.
+
+The main foundations of this package:
+
+1. Components are as universal as possible and have **minimal communication with each other**
+2. Components are imported and used among themselves
+3. Package already contains some basic components and can be extended when developing an app
+
+## 🤓 Usage
+
+To use components defined within this package in other package or app, import it as a dependency in its `package.json` file:
+
+```json
+"dependencies": {
+  "@natu/ui": "*",
+}
+```
+
+Then import & use components like normal React components within package or app you added them to:
+
+```tsx copy {1, 4}
+import { ComponentName } from '@natu/ui';
+
+export const Sample = ({ prop1, prop2 }: SampleProps) => (
+  <ComponentName {...componentProps} /> // provide the props for particular component
+);
+```
+
+## Components included
+
+A short description of the purpose and usage of the components already included in this package.
+
+### AspectRatio
+
+Displays content within a desired ratio. Uses [React Aspect Ratio from shadcn/ui ↗](https://ui.shadcn.com/docs/components/aspect-ratio).
+Usage:
+
+```tsx {1, 9-11}
+import { AspectRatio } from '@natu/ui';
+
+interface SampleProps {
+  ratioX: number;
+  ratioY: number;
+}
+
+export const Sample = ({ ratioX, ratioY }: SampleProps) => (
+  <AspectRatio ratio={ratioX / ratioY}>
+    // the content to display within a desired aspect ratio goes here
+  </AspectRatio>
+);
+```
+
+### Button
+
+Reusable button with variants handled with [class-variance-authority ↗](https://cva.style/docs).
+Uses [shadcn/ui ↗](https://ui.shadcn.com/docs/components/button).
+Usage:
+
+```tsx {1, 11-19}
+import { Button, ButtonProps } from '@natu/ui';
+
+interface SampleProps {
+  className: string;
+  variant?: ButtonProps['variant'];
+  size?: ButtonProps['size'];;
+  asChild?: boolean;
+};
+
+export const Sample = ({ className, variant, size, asChild }: SampleProps) => (
+  <Button
+    className={className}
+    variant={variant}
+    size={size}
+    asChild={asChild}
+    // other HTML button attributes goes here
+  >
+    // the content of the button ex. link/text goes here
+  </Button>
+);
+```
+
+The prop `asChild` - if it's true, the component will render as a child (without the `<button>` wrapper) - it's very useful
+ex. for rendering links styled as a button:
+
+```tsx /asChild/
+import { Button } from '@natu/ui';
+import { Link } from '@natu/next-link';
+
+export const Sample = ({ className, variant, size, linkProps, children }: SampleProps) => (
+  <Button
+    className={className}
+    variant={variant}
+    size={size}
+    asChild // the button will render as a <Link>
+  >
+    <Link {...linkProps}>{children}</Link>
+  </Button>
+);
+```
+
+### Code
+
+Shows the formatted code with the ability to copy. Uses [lucide-react's icons ↗](https://lucide.dev/icons) and [Highlight from
+prism-react-renderer ↗](https://www.tiagofsanchez.com/blog/2020-08-06-code-line-highlight-with-prism-react-renderer/). Usage:
+
+```tsx {1, 10}
+import { Code, CodeProps } from '@natu/ui';
+
+interface SampleProps {
+  className?: string;
+  code?: string;
+  language?: CodeProps['language'];
+}
+
+export const Sample = ({ className, code, language }: SampleProps) => (
+  <Code className={className} code={code} language={language} />;
+);
+```
+
+### ConditionalLink
+
+Simple component which renders differently depends on `href` property:
+
+- If it's provided - it renders **as a link**,
+- If it's not provided - it renders as **childen without an additional wrapper**.
+
+Usage:
+
+```tsx {1, 8-10}
+import { ConditionalLink } from '@natu/ui';
+
+interface SampleProps {
+  linkProps: AnchorHTMLAttributes<HTMLAnchorElement>; // including `href` property
+}
+
+export const Sample = ({ linkProps }: SampleProps) => (
+  <ConditionalLink {...linkProps}>
+    // content goes here - if there's no href, only this part will be rendered
+  </ConditionalLink>
+);
+```
+
+### DropdownMenu
+
+Ready-to-use dropdown menu component. Uses [lucide-react's icons ↗](https://lucide.dev/icons). Based on
+[Dropdown Menu from shadcn/ui ↗](https://ui.shadcn.com/docs/components/dropdown-menu)
+(go there for all implementation & usage details). Usage:
+
+```tsx
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@natu/ui';
+
+export const Sample = () => (
+  <DropdownMenu>
+    <DropdownMenuTrigger>...</DropdownMenuTrigger>
+    <DropdownMenuContent>
+      <DropdownMenuItem>...</DropdownMenuItem>
+      <DropdownMenuItem>...</DropdownMenuItem>
+      <DropdownMenuItem>...</DropdownMenuItem>
+    </DropdownMenuContent>
+  </DropdownMenu>
+);
+```
+
+### Layout
+
+Component rendering header, footer and `<main>` element with children inside. All elements will render in `div` wrapper with some basic
+classes implemented. Can be used ex. in [layout pattern ↗](https://nextjs.org/docs/pages/building-your-application/routing/pages-and-layouts#layout-pattern)
+in app.
+
+Usage:
+
+```tsx {1, 10-16}
+import { Layout } from '@natu/ui';
+
+interface SampleProps {
+  children?: ReactNode;
+  header?: ReactNode;
+  footer?: ReactNode;
+}
+
+export const Sample = ({ header, footer, children }: SampleProps) => (
+  <Layout
+    header={header}
+    footer={footer}
+    // other component props goes here ex. className, ref etc.
+  >
+    {children}
+  </Layout>
+);
+```
+
+### Popover
+
+Ready-to-use popover component. Based on [Popover from shadcn/ui ↗](https://ui.shadcn.com/docs/components/popover)
+(go there for all implementation & usage details). Usage:
+
+```tsx
+import { Popover, PopoverTrigger, PopoverContent } from '@natu/ui';
+
+export const Sample = () => (
+  <Popover>
+    <PopoverTrigger>...</PopoverTrigger>
+    <PopoverContent>...</PopoverContent>
+  </Popover>
+);
+```
+
+### ResponsiveImage
+
+Simple [next/image ↗](https://nextjs.org/docs/pages/building-your-application/optimizing/images) wrapper.
+Using the wrapper:
+
+- **Limits changes** to this one place in case of any default package updates
+- Adds possibility to **implement some adjustments/optimizations globally**, ex. dynamic blur placeholders.
+
+Usage:
+
+```tsx {2, 8}
+import type { ImageProps } from 'next/image';
+import { ResponsiveImage } from '@natu/ui';
+
+interface SampleProps {
+  image: ImageProps;
+}
+
+export const Sample = ({ image }: SampleProps) => <ResponsiveImage {...image} />;
+```
+
+### Richtext
+
+Component rendering differently depends of the props. Renders as `div` with `dangerouslySetInnerHTML` prop if `html` prop is provided,
+otherwise renders as `div` with children.
+
+It's used mainly in [storyblok-richtext package](/packages/storyblok/storyblok-richtext)
+to render Storyblok-specific richtext properly.
+
+Usage:
+
+```tsx {1, 9}
+import { Richtext } from '@natu/ui';
+
+interface SampleProps {
+  children?: ReactNode;
+  html?: string | TrustedHTML;
+}
+
+export const Sample = ({ children, html }: SampleProps) => (
+  <Richtext html={html}>{children}</Richtext>
+);
+```
+
+### ScrollArea
+
+Ready-to-use component which augments native scroll functionality for custom, cross-browser styling. Uses
+[Scroll Area from shadcn/ui ↗](https://ui.shadcn.com/docs/components/scroll-area)
+(go there for all implementation & usage details). Usage:
+
+```tsx
+import { ScrollArea } from '@natu/ui';
+
+export const Sample = () => <ScrollArea className={yourStyles}>{children}</ScrollArea>;
+```
+
+### Table
+
+Ready-to-use table component. It's already implemented also for Storyblok in
+[storyblok-ui package](https://naturaily-starter-docs.vercel.app/packages/storyblok/storyblok-ui).
+Usage:
+
+```tsx
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableFooter,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableCaption,
+} from '@natu/ui';
+
+export const Sample = () => (
+  <Table>
+    <TableCaption>{caption}</TableCaption>
+    <TableHeader>
+      <TableRow>
+        <TableHead>Header1</TableHead>
+        <TableHead>Header2</TableHead>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>Row 1 value 1</TableCell>
+        <TableCell>Row 1 value 2</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Row 2 value 1</TableCell>
+        <TableCell>Row 2 value 2</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+);
+```
+
+### Tooltip
+
+Ready-to-use tooltip component. Uses [Tooltip from shadcn/ui ↗](https://ui.shadcn.com/docs/components/tooltip)
+(go there for all implementation & usage details). Usage:
+
+```tsx
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@natu/ui';
+
+export const Sample = () => (
+  <TooltipProvider>
+    <Tooltip>
+      <TooltipTrigger>...</TooltipTrigger>
+      <TooltipContent>...</TooltipContent>
+    </Tooltip>
+  </TooltipProvider>
+);
+```
+
+### Typography
+
+Generic component for all the typography. Renders HTML element (`p` by default) with styling variant and children inside.
+Uses [Slot utility from radix-ui ↗](https://www.radix-ui.com/primitives/docs/utilities/slot).
+
+Mobile-first approach - the component is styled for mobile by default, and then it's adjusted for larger screens.
+
+Example:
+
+```tsx {2, 11}
+import { ElementType, ReactNode } from 'react';
+import { Typography } from '@natu/ui';
+
+interface SampleProps {
+  children?: ReactNode;
+  variant?: variant?: TypographyProps['variant'];
+  asChild?: boolean;
+}
+
+export const Sample = ({ children, variant, asChild = false}) => (
+  <Typography component='p' variant='text-lg' asChild={asChild}>
+    {children}
+  </Typography>
+);
+```
+
+Responsive Typography example:
+
+```tsx {2, 10, 12}
+import { ElementType, ReactNode } from 'react';
+import { Typography } from '@natu/ui';
+
+interface SampleProps {
+  children?: ReactNode;
+  variant?: TypographyProps['variant'];
+  asChild?: boolean;
+}
+
+// text-base on mobile, text-lg on tablet, text-2xl on desktop
+export const Sample = ({ children, variant, asChild = false }) => (
+  <Typography component="h2" variant={['text-base', 'text-lg', 'text-2xl']} asChild={asChild}>
+    {children}
+  </Typography>
+);
+```
+
+The prop `asChild` - if it's true, the component will render as a child (without the wrapper) - it's very useful ex. for rendering links styled as
+a desired typography variant.
+
+### YoutubeVideo
+
+Ready-to-use Youtube player component. Uses [YouTubeEmbed from @next/third-parties/google ↗](https://nextjs.org/docs/app/building-your-application/optimizing/third-party-libraries#youtube-embed)
+(go there for detailed info about params). Usage:
+
+```tsx {1, 10}
+import { YoutubeVideo } from '@natu/ui';
+
+interface SampleProps {
+  videoid?: string;
+  params?: string;
+  playLabel?: string;
+}
+
+export const Sample = ({ videoid, params, playLabel, ...rest }: SampleProps) => (
+  <YouTubeVideo videoid={videoid} params={params} playlabel={playLabel} {...rest} />
+);
+```
