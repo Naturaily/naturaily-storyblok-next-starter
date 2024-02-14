@@ -12,7 +12,7 @@ with recommended settings for the Next.js application.
 
 To use this package in other package or app import it as dev dependency in its `package.json` file:
 
-```json
+```json filename="[your-workspace]/package.json"
 "devDependencies": {
     "tsconfig": "*",
 }
@@ -20,12 +20,24 @@ To use this package in other package or app import it as dev dependency in its `
 
 Then use it as extend in particular app/package `tsconfig.json` file:
 
-```json {2}
+```json filename="[your-workspace]/tsconfig.json" {2}
 {
   "extends": "tsconfig/nextjs.json",
   "include": ["."],
   "exclude": ["node_modules", ".next", "coverage", ".turbo"]
 }
+```
+
+Add information for eslint:
+
+```js copy filename="[your-workspace]/.eslintrc.js" {4}
+module.exports = {
+  parserOptions: {
+    tsconfigRootDir: __dirname,
+    project: './tsconfig.json',
+  },
+  extends: ['eslint-config-custom/eslint-next.js'],
+};
 ```
 
 ## Extending the configuration
