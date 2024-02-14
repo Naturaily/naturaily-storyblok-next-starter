@@ -1,3 +1,55 @@
+import { Callout } from 'nextra/components';
+
 # @natu/storybook
 
-tbd
+## 💻 Storybook
+
+[Storybook](https://storybook.js.org/) is used to build in isolation, test and showcase UI components.
+
+This package contains basic configuration of Storybook which can be used to create a functional,
+deployable app for particular needs.
+
+Files in the package:
+
+1. `/src/main.ts` - provides basic Storybook config:
+
+- options: framework, source files, creating auto-docs etc., see [all options ↗](https://storybook.js.org/docs/configure)
+- addons for additional functionalities: see all [essential ↗](https://storybook.js.org/docs/essentials) / [additional ↗](https://storybook.js.org/docs/addons) ones
+
+2. `/src/preview.ts` - provides additional preview settings, ex. custom:
+
+- [viewports ↗](https://storybook.js.org/docs/essentials/viewport)
+- [backgrounds ↗](https://storybook.js.org/docs/essentials/backgrounds)
+- [actions ↗](https://storybook.js.org/docs/essentials/actions)
+- [controls ↗](https://storybook.js.org/docs/essentials/controls)
+
+## 🤓 Usage
+
+Import the package as a dev dependency in the Storybook showcase app `/apps/APP_NAME` in `package.json` file:
+
+```json
+"devDependencies": {
+    "@natu/storybook": "*"
+}
+```
+
+In the same file, add the Storybook commands:
+
+```json
+"scripts": {
+  "storybook": "storybook dev -p 6006", // runs locally
+  "storybook:build": "storybook build" // build static for deploy
+},
+```
+
+Then you can create your [Storybook stories ↗](https://storybook.js.org/docs/get-started/whats-a-story)
+in the `/apps/APP_NAME/src` folder.
+
+<Callout type="info" emoji="ℹ️">
+  See `/apps/storybook-ui` app as a reference [here](/apps/storybook-ui)
+</Callout>
+
+## 📖 Essential docs
+
+- [Creating stories ↗](https://storybook.js.org/docs/writing-stories)
+- [Creating components docs ↗](https://storybook.js.org/docs/writing-docs)
