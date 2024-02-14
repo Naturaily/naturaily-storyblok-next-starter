@@ -6,10 +6,9 @@ This package contains all pure React components to be used within the project.
 
 The main foundations of this package:
 
-1. components are as universal as possible and have **minimal communication with each other**
-2. components are imported and used among themselves
-3. components are created in accordance with [Atomic Design Methodology ↗](https://atomicdesign.bradfrost.com/chapter-2/)
-4. package already contains some basic components and can be extended when developing an app
+1. Components are as universal as possible and have **minimal communication with each other**
+2. Components are imported and used among themselves
+3. Package already contains some basic components and can be extended when developing an app
 
 ## 🤓 Usage
 
@@ -23,14 +22,12 @@ To use components defined within this package in other package or app, import it
 
 Then import & use components like normal React components within package or app you added them to:
 
-```tsx {1, 4}
+```tsx copy {1, 4}
 import { ComponentName } from '@natu/ui';
 
-const Sample = ({ prop1, prop2 }: SampleProps) => (
+export const Sample = ({ prop1, prop2 }: SampleProps) => (
   <ComponentName {...componentProps} /> // provide the props for particular component
 );
-
-export default Sample;
 ```
 
 ## Components included
@@ -39,7 +36,7 @@ A short description of the purpose and usage of the components already included 
 
 ### AspectRatio
 
-Displays content within a desired ratio. Uses [React Aspect Ratio primitive from radix-ui ↗](https://www.radix-ui.com/primitives/docs/components/aspect-ratio).
+Displays content within a desired ratio. Uses [React Aspect Ratio from shadcn/ui ↗](https://ui.shadcn.com/docs/components/aspect-ratio).
 Usage:
 
 ```tsx {1, 9-11}
@@ -60,17 +57,17 @@ export const Sample = ({ ratioX, ratioY }: SampleProps) => (
 ### Button
 
 Reusable button with variants handled with [class-variance-authority ↗](https://cva.style/docs).
-Uses [Slot utility from radix-ui ↗](https://www.radix-ui.com/primitives/docs/utilities/slot).
+Uses [shadcn/ui ↗](https://ui.shadcn.com/docs/components/button).
 Usage:
 
 ```tsx {1, 11-19}
-import { Button } from '@natu/ui';
+import { Button, ButtonProps } from '@natu/ui';
 
 interface SampleProps {
   className: string;
-  variant: string<defined variants>;
-  size: string<defined sizes>;
-  asChild: boolean;
+  variant?: ButtonProps['variant'];
+  size?: ButtonProps['size'];;
+  asChild?: boolean;
 };
 
 export const Sample = ({ className, variant, size, asChild }: SampleProps) => (
@@ -111,12 +108,12 @@ Shows the formatted code with the ability to copy. Uses [lucide-react's icons �
 prism-react-renderer ↗](https://www.tiagofsanchez.com/blog/2020-08-06-code-line-highlight-with-prism-react-renderer/). Usage:
 
 ```tsx {1, 10}
-import { Code } from '@natu/ui';
+import { Code, CodeProps } from '@natu/ui';
 
 interface SampleProps {
   className?: string;
   code?: string;
-  language?: string<defined languages>;
+  language?: CodeProps['language'];
 }
 
 export const Sample = ({ className, code, language }: SampleProps) => (
@@ -128,8 +125,8 @@ export const Sample = ({ className, code, language }: SampleProps) => (
 
 Simple component which renders differently depends on `href` property:
 
-- if it's provided - it renders **as a link**,
-- if it's not provided - it renders as **childen without an additional wrapper**.
+- If it's provided - it renders **as a link**,
+- If it's not provided - it renders as **childen without an additional wrapper**.
 
 Usage:
 
@@ -150,7 +147,7 @@ export const Sample = ({ linkProps }: SampleProps) => (
 ### DropdownMenu
 
 Ready-to-use dropdown menu component. Uses [lucide-react's icons ↗](https://lucide.dev/icons). Based on
-[Dropdown Menu primitive from radix-ui ↗](https://www.radix-ui.com/primitives/docs/components/dropdown-menu)
+[Dropdown Menu from shadcn/ui ↗](https://ui.shadcn.com/docs/components/dropdown-menu)
 (go there for all implementation & usage details). Usage:
 
 ```tsx
@@ -198,7 +195,7 @@ export const Sample = ({ header, footer, children }: SampleProps) => (
 
 ### Popover
 
-Ready-to-use popover component. Based on [Popover primitive from radix-ui ↗](https://www.radix-ui.com/primitives/docs/components/popover)
+Ready-to-use popover component. Based on [Popover from shadcn/ui ↗](https://ui.shadcn.com/docs/components/popover)
 (go there for all implementation & usage details). Usage:
 
 ```tsx
@@ -217,8 +214,8 @@ export const Sample = () => (
 Simple [next/image ↗](https://nextjs.org/docs/pages/building-your-application/optimizing/images) wrapper.
 Using the wrapper:
 
-- **limits changes** to this one place in case of any default package updates
-- adds possibility to **implement some adjustments/optimizations globally**, ex. dynamic blur placeholders.
+- **Limits changes** to this one place in case of any default package updates
+- Adds possibility to **implement some adjustments/optimizations globally**, ex. dynamic blur placeholders.
 
 Usage:
 
@@ -238,7 +235,7 @@ export const Sample = ({ image }: SampleProps) => <ResponsiveImage {...image} />
 Component rendering differently depends of the props. Renders as `div` with `dangerouslySetInnerHTML` prop if `html` prop is provided,
 otherwise renders as `div` with children.
 
-It's used mainly in [storyblok-richtext package](https://naturaily-starter-docs.vercel.app/packages/storyblok/storyblok-richtext)
+It's used mainly in [storyblok-richtext package](/packages/storyblok/storyblok-richtext)
 to render Storyblok-specific richtext properly.
 
 Usage:
@@ -259,7 +256,7 @@ export const Sample = ({ children, html }: SampleProps) => (
 ### ScrollArea
 
 Ready-to-use component which augments native scroll functionality for custom, cross-browser styling. Uses
-[Scroll Area primitive from radix-ui ↗](https://www.radix-ui.com/primitives/docs/components/scroll-area)
+[Scroll Area from shadcn/ui ↗](https://ui.shadcn.com/docs/components/scroll-area)
 (go there for all implementation & usage details). Usage:
 
 ```tsx
@@ -311,7 +308,7 @@ export const Sample = () => (
 
 ### Tooltip
 
-Ready-to-use tooltip component. Uses [Tooltip primitive from radix-ui ↗](https://www.radix-ui.com/primitives/docs/components/tooltip)
+Ready-to-use tooltip component. Uses [Tooltip from shadcn/ui ↗](https://ui.shadcn.com/docs/components/tooltip)
 (go there for all implementation & usage details). Usage:
 
 ```tsx
@@ -330,21 +327,44 @@ export const Sample = () => (
 ### Typography
 
 Generic component for all the typography. Renders HTML element (`p` by default) with styling variant and children inside.
-Uses [Slot utility from radix-ui ↗](https://www.radix-ui.com/primitives/docs/utilities/slot). Usage:
+Uses [Slot utility from radix-ui ↗](https://www.radix-ui.com/primitives/docs/utilities/slot).
 
-```tsx {2, 12-14}
+Mobile-first approach - the component is styled for mobile by default, and then it's adjusted for larger screens.
+
+Example:
+
+```tsx {2, 11}
 import { ElementType, ReactNode } from 'react';
 import { Typography } from '@natu/ui';
 
 interface SampleProps {
   children?: ReactNode;
-  variant?: string <defined variants>;
-  component?: ElementType <ex. 'h1', 'quote', 'p', 'div'>;
+  variant?: variant?: TypographyProps['variant'];
   asChild?: boolean;
 }
 
-export const Sample = ({ children, variant, component, asChild}) => (
-  <Typography component={tag} variant={variant} asChild={asChild}>
+export const Sample = ({ children, variant, asChild = false}) => (
+  <Typography component='p' variant='text-lg' asChild={asChild}>
+    {children}
+  </Typography>
+);
+```
+
+Responsive Typography example:
+
+```tsx {2, 10, 12}
+import { ElementType, ReactNode } from 'react';
+import { Typography } from '@natu/ui';
+
+interface SampleProps {
+  children?: ReactNode;
+  variant?: TypographyProps['variant'];
+  asChild?: boolean;
+}
+
+// text-base on mobile, text-lg on tablet, text-2xl on desktop
+export const Sample = ({ children, variant, asChild = false }) => (
+  <Typography component="h2" variant={['text-base', 'text-lg', 'text-2xl']} asChild={asChild}>
     {children}
   </Typography>
 );
