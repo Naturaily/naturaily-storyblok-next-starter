@@ -27,10 +27,17 @@ To use this package in the app import this package as a dependency in its indivi
 
 Then use it like in the example below:
 
-```tsx filename="SomeNiceComponent.tsx"
+```tsx copy filename="SomeNiceComponent.tsx" {3,12}
+import { ReactNode } from 'react';
+
 import { Link } from '@natu/next-link';
 
-export const SomeNiceComponent = ({ href, linkText }: Props) => (
+interface SomeNiceComponentProps {
+  href: string;
+  children?: ReactNode;
+}
+
+export const SomeNiceComponent = ({ href, children }: SomeNiceComponentProps) => (
   <section>
     <Link href={href}>{linkText}</Link>
   </section>
