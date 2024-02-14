@@ -1,3 +1,5 @@
-# @natu/utils
+# @natu/middleware-chain
 
-This package contains utils - small, pure, separate and reusable pieces of code.
+This package is chaining middlewares one after another if using more of them.
+
+[Full documentation](https://naturaily-starter-docs.vercel.app/packages/middleware-chain).

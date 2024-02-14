@@ -16,7 +16,7 @@ interface FetcherInput<U> {
 export class ApiFetcher {
   constructor(
     private endpoint: string,
-    public readonly requestParams: Omit<RequestInit, 'body' | 'method'> = {},
+    public readonly requestParams: Pick<RequestInit, 'headers' | 'cache' | 'next'> = {},
   ) {
     this.fetcher = this.fetcher.bind(this);
   }
