@@ -1,3 +1,147 @@
 # @natu/utils
 
-tbd
+## 🧩 Utils
+
+This package contains utils - small, pure, separate and reusable pieces of code.
+
+The main foundations of this package:
+
+1. pieces of code are as small as possible, have only one purpose and possibly clear naming
+2. pieces of code are as universal as possible and have minimal communication with each other
+3. package already contains some basic utils and can be extended when developing an app
+
+## 🤓 Usage
+
+To use utils defined within this package in other package or app, import it as a dependency in its `package.json` file:
+
+```json
+"dependencies": {
+  "@natu/utils": "*",
+}
+```
+
+Then import function(s) within package or app you added them to:
+
+```tsx
+import { utilName } from '@natu/utils';
+```
+
+and use where needed:
+
+```tsx
+utilName(utilProps);
+```
+
+## Utils included
+
+### Helpers
+
+#### cn
+
+Merges Tailwind classes mixing functionalities of:
+
+- [tailwind-merge ↗](https://www.npmjs.com/package/tailwind-merge) - optimized merge of classes without style conflicts
+- [clsx ↗](https://www.npmjs.com/package/clsx) - optimized and convenient conditions handling
+
+Usage:
+
+```tsx
+import { cn } from '@natu/utils';
+
+const className = cn(
+  'mt-2 px-4 w-full',
+  twClass1,
+  twClass2,
+  twClass3,
+  condition && twClass3,
+  condition2 ? twClass4 : twClass5,
+);
+
+<div className={className} />;
+```
+
+#### getNextRouteWithDomain
+
+Returns next route path with a domain prefix taken from [env](/packages/env).
+Usage:
+
+```tsx
+// in @natu/env > env.mjs: NEXT_PUBLIC_APP_URL = https://yourdomain.com
+
+import { getNextRouteWithDomain } from '@natu/utils';
+
+const routeWithDomain = getNextRouteWithDomain('/route'); // https://yourdomain.com/route
+```
+
+#### isArrayWithLength
+
+Checks if the provided prop is array with length > 0. Useful to check if there's anything to map and avoid
+errors in mappers or unnecessary renders. Usage:
+
+```tsx
+import { isArrayWithLength } from '@natu/utils';
+
+const check1 = isArrayWithLength([1, 2]); // true
+const check2 = isArrayWithLength(['apple', 'banana']); // true
+const check3 = isArrayWithLength([]); // false (no length)
+const check4 = isArrayWithLength('pear'); // false (not array)
+const check5 = isArrayWithLength(undefined); // false (not array)
+```
+
+### Hooks
+
+#### useToggle
+
+It takes a parameter with value true or false and toggles that value to opposite. It’s useful when we want to take some action into its opposite action, for example: show and hide modal, show more/show less text, open/close side menu.
+
+```tsx copy /useToggle/
+import { useToggle } from '@natu/utils';
+
+function ToggleDemo({ on, toggle }) {
+  return (
+    <div>
+      <label className="toggle">
+        <input onChange={toggle} className="toggle-checkbox" type="checkbox" checked={on} />
+        <div className="toggle-switch"></div>
+        <span className="toggle-label">{on ? 'On' : 'Off'}</span>
+      </label>
+    </div>
+  );
+}
+
+export default function App() {
+  const [on, toggle] = useToggle(true);
+
+  return (
+    <section>
+      <h1>UseToggle</h1>
+      <button disabled={on} className="link" onClick={() => toggle(true)}>
+        Turn On
+      </button>
+      <button disabled={!on} className="link" onClick={() => toggle(false)}>
+        Turn Off
+      </button>
+      <button className="link" onClick={toggle}>
+        Toggle
+      </button>
+      <button className="link" onClick={() => toggle('nope')}>
+        (Also toggles)
+      </button>
+      <ToggleDemo toggle={toggle} on={on} />
+    </section>
+  );
+}
+```
+
+### Paths
+
+#### paths.ts
+
+One source of truth for all paths. Used to avoid any path hardcoding throughout the project.
+
+```tsx /{ paths }/ /{paths.homepage}/
+import { paths } from '@natu/utils';
+
+// use path variable as paths.path_name where needed, ex.
+export const Sample = () => <Link href={paths.homepage}>...</Link>;
+```
