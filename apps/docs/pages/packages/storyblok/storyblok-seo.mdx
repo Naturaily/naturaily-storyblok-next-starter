@@ -1,3 +1,40 @@
+import { Steps, Callout } from 'nextra/components';
+
 # @natu/storyblok-seo
 
-tbd
+Handling the SEO.
+
+`getStoryblokSeoData` contains main functionality of the package. It gets SEO data from Storyblok and generates
+metadata object which can be used in the Next page. See
+[docs about using metadata in Next.js ↗](https://nextjs.org/docs/app/api-reference/functions/generate-metadata)
+for more datails.
+
+<Callout type="info" emoji="ℹ️">
+  Used in the [web app](/apps/web).
+</Callout>
+
+## Usage
+
+<Steps>
+  ### Import package in package.json
+
+```json
+"dependencies": {
+    "@natu/storyblok-seo": "*",
+}
+```
+
+### Generate metadata object where needed
+
+```tsx filename="apps/web/src/app/layout.tsx" /getStoryblokSeoData/
+import { type Metadata } from 'next';
+import { getStoryblokSeoData } from '@natu/storyblok-seo';
+
+export const generateMetadata = async (): Promise<Metadata> => {
+  return getStoryblokSeoData(<default seo>, {
+    <seo props ex. slug, twitterCreator, siteName >
+  });
+};
+```
+
+</Steps>
