@@ -1,3 +1,31 @@
+import { Steps, Callout } from 'nextra/components';
+
 # @natu/storyblok-revalidate
 
-tbd
+Allows pages update without the need to rebuild the entire project.
+
+<Callout type="info" emoji="ℹ️">
+  Used in the [web app](/apps/web).
+</Callout>
+
+## Usage
+
+### Import package in `package.json`
+
+```json
+"dependencies": {
+  "@natu/storyblok-revalidate": "*",
+}
+```
+
+### Use `revalidateHandler` in api route
+
+```tsx filename="apps/web/src/app/api/revalidate/route.ts"
+import { revalidateHandler } from '@natu/storyblok-revalidate';
+
+export { revalidateHandler as POST };
+```
+
+### Setup revalidate webhook
+
+[See deploying on Vercel docs](/getting-started/deploy-on-vercel#setup-revalidate-webhook) for more details.
