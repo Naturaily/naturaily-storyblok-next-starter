@@ -1,3 +1,82 @@
 # @natu/storyblok-setup
 
-tbd
+Script setting up predefined:
+
+- datasources,
+- blocks,
+- stories
+
+in Storyblok connected to the project.
+
+## Usage
+
+This package is used **only for initial setup of the Storyblok**.
+Usage is covered [in getting started instruction](/getting-started/installation#run-the-storyblok-setup-script).
+
+## Files
+
+### componentGroup
+
+Sets the component groups in Storyblok. Groups created:
+
+- `atoms` (for **cta**, **image**, **richtext**, **table**, **themeModeSwitcher** & **typography** components)
+- `molecules` (for **column** & **row** components)
+- `organisms` (for **grid** component)
+- `content type` (for **config**, **page** & **redirect** components)
+- `layout` (for **footer** & **header** components)
+- `seo` (for **seo** component)
+- `templates` (for **container** component)
+
+### components
+
+Sets the components in Storyblok. Items created:
+
+- `column`, `container`, `grid`, `row` - to organize content on page
+- `config` using `footer` & `header` - to handle header, footer and 404 page configuration
+- `cta`, `image`, `richtext`, `table`, `themeModeSwitcher`, `typography` - to handle basic UI components
+- `page` - content type to handle pages
+- `redirect` - to handle redirects
+- `seo` - to handle SEO.
+
+Most of those component has its reflection in [storyblok-ui](/packages/storyblok/storyblok-ui) package.
+
+### datasource
+
+Sets the datasources in Storyblok which are mainly the one source of truth for selection fields in components. Items created:
+
+- `align-items` - align values (start/center/end/baseline)
+- `container-size` - container sizes (full/1536px/1280px/768px)
+- `cta` - cta variants (default/destructive/secondary/...)
+- `font-family` - font families (primary)
+- `font-size` - font sizes (12px/14px/16px/...)
+- `grid-variants` - grid variants (1-col/2-col/...)
+- `justify-items` - justify values (start/center/end/...)
+- `space` - spacing values (8px/16px/24px/...)
+- `text-align` - text align values (left/center/right/justify)
+
+### env
+
+Creates the `.env` file for an app. It's needed for further connecting with Storyblok for the data for an app.
+
+### stories
+
+Creates the stories in Storyblok. Items created:
+
+- `Home` - homepage of an app
+- `config` folder.
+
+Config folder contains:
+
+- `Config` story - general, dark mode & seo settings
+- `Redirects` folder - containing sample redirect
+- `Special pages` folder - containing 404 page
+- `Layout` folder - containing Header & Footer configurations.
+
+### utils
+
+All util functions which are used as helpers to create all the content mentioned above.
+
+### setup.ts
+
+The main file aggregating all the functionalities, is performed with node when using the `yarn setup`
+script of this package.
