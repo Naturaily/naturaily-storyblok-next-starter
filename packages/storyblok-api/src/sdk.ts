@@ -83,31 +83,6 @@ export function getSdk(
         'query',
       );
     },
-    getLinks(
-      variables: GetLinksQueryVariables,
-      { headers, ...restFetchOptions }: FetchOptions = {},
-    ): Promise<GetLinksQuery> {
-      return withWrapper(
-        async wrapperOptions => {
-          const { headers: wrapperHeaders, ...restWrapperOptions } = wrapperOptions || {};
-
-          const { data } = await fetcher<GetContentNodeQuery, GetLinksQueryVariables>({
-            query: print(GetLinks),
-            variables,
-            headers: {
-              ...wrapperHeaders,
-              ...headers,
-            },
-            ...restWrapperOptions,
-            ...restFetchOptions,
-          });
-
-          return data;
-        },
-        'getLinks',
-        'query',
-      );
-    },
     getConfigNode(
       variables: GetConfigNodeQueryVariables,
       { headers, ...restFetchOptions }: FetchOptions = {},

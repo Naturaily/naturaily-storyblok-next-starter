@@ -1,4 +1,4 @@
-import { Steps } from 'nextra/components';
+import { Steps, Callout } from 'nextra/components';
 
 # @natu/storyblok-api
 
@@ -140,7 +140,14 @@ const story = await getContentNode({ slug: ..., relations });
 
 ### relations.ts
 
-Contains the relations between stories (tbd - add more details). Usage:
+Contains the relations between stories.
+
+<Callout type="info" emoji="ℹ️">
+  [More
+  info](https://www.storyblok.com/tp/using-relationship-resolving-to-include-other-content-entries)
+</Callout>
+
+Usage:
 
 ```tsx copy filename="/apps/web/src/app/page.tsx" /relations/
 import { relations, getStoryblokApi } from '@natu/storyblok-api';
