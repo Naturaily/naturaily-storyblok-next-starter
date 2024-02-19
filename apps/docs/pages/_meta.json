@@ -13,14 +13,15 @@
   },
   "apps": "Apps",
   "packages": "Packages",
-  "about": {
-    "title": "About",
-    "type": "page"
-  },
   "naturaily": {
     "title": "Naturaily.com ↗",
     "type": "page",
     "href": "https://naturaily.com/",
     "newWindow": true
-  }
+  },
+  "community": {
+    "title": "Community",
+    "type": "separator"
+  },
+  "contribution-guide": "Contribution Guide"
 }
