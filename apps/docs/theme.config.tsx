@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-import { DocsThemeConfig, useConfig } from 'nextra-theme-docs';
+import { DocsThemeConfig } from 'nextra-theme-docs';
 import { useRouter } from 'next/router';
 
 const config: DocsThemeConfig = {
@@ -11,7 +11,14 @@ const config: DocsThemeConfig = {
   },
   docsRepositoryBase: 'https://github.com/Naturaily/naturaily-starter',
   footer: {
-    text: 'Storyblok Nextjs docs',
+    text: (
+      <span>
+        MIT {new Date().getFullYear()}{' '}
+        <a href="https://naturaily.com/" target="_blank" style={{ color: '#FF5E45' }}>
+          © Naturaily
+        </a>
+      </span>
+    ),
   },
   feedback: {
     labels: 'feedback',
