@@ -794,47 +794,6 @@ export type GetContentNodesQuery = {
   } | null;
 };
 
-export type GetLinksQueryVariables = Exact<{
-  startsWith?: InputMaybe<Scalars['String']['input']>;
-}>;
-
-export type GetLinksQuery = {
-  __typename?: 'QueryType';
-  Links?: {
-    __typename?: 'LinkEntries';
-    items: Array<{
-      __typename?: 'LinkEntry';
-      isFolder?: boolean | null;
-      isStartpage?: boolean | null;
-      slug?: string | null;
-      published?: boolean | null;
-    }>;
-  } | null;
-};
-
-export type GetRedirectsItemsQueryVariables = Exact<{
-  perPage?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  startsWith?: InputMaybe<Scalars['String']['input']>;
-  filterQuery?: InputMaybe<Scalars['JsonScalar']['input']>;
-}>;
-
-export type GetRedirectsItemsQuery = {
-  __typename?: 'QueryType';
-  RedirectItems?: {
-    __typename?: 'RedirectItems';
-    items?: Array<{
-      __typename?: 'RedirectItem';
-      content?: {
-        __typename?: 'RedirectComponent';
-        status?: string | null;
-        destination?: string | null;
-        source?: string | null;
-      } | null;
-    } | null> | null;
-  } | null;
-};
-
 export const GetConfigNode = gql`
   query getConfigNode(
     $slug: ID!
@@ -926,41 +885,6 @@ export const GetContentNodes = gql`
         published_at
         slug
         uuid
-      }
-    }
-  }
-`;
-export const GetLinks = gql`
-  query getLinks($startsWith: String = "") {
-    Links(starts_with: $startsWith) {
-      items {
-        isFolder
-        isStartpage
-        slug
-        published
-      }
-    }
-  }
-`;
-export const GetRedirectsItems = gql`
-  query getRedirectsItems(
-    $perPage: Int = 12
-    $page: Int = 1
-    $startsWith: String = ""
-    $filterQuery: JsonScalar = {}
-  ) {
-    RedirectItems(
-      page: $page
-      per_page: $perPage
-      starts_with: $startsWith
-      filter_query: $filterQuery
-    ) {
-      items {
-        content {
-          destination: newPath
-          source: oldPath
-          status
-        }
       }
     }
   }
