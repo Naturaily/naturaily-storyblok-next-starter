@@ -13,14 +13,22 @@
   },
   "apps": "Apps",
   "packages": "Packages",
-  "about": {
-    "title": "About",
-    "type": "page"
-  },
   "naturaily": {
     "title": "Naturaily.com ↗",
     "type": "page",
     "href": "https://naturaily.com/",
     "newWindow": true
-  }
+  },
+  "guides": {
+    "title": "Guides",
+    "type": "separator"
+  },
+  "best-practice": "Best Practice",
+  "starter-in-practice": "Starter In Practice",
+  "shared-components": "Shared Components",
+  "community": {
+    "title": "Community",
+    "type": "separator"
+  },
+  "contribution-guide": "Contribution Guide"
 }
