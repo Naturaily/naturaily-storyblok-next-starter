@@ -25,7 +25,7 @@ Tech stack is based on:
 
 ...and much, much more.
 
-[Discover it's full potential in the documentation](https://naturaily-starter-docs.vercel.app/).
+[Discover its full potential in the documentation](https://naturaily-starter-docs.vercel.app/)
 
 ## License
 
