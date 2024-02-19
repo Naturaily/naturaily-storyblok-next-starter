@@ -1,3 +1,41 @@
+import { Steps, Callout } from 'nextra/components';
+
 # @natu/storyblok-revalidate
 
-tbd
+Allows pages update without the need to rebuild the entire project.
+
+<Callout type="info" emoji="ℹ️">
+  Used in the [web app](/apps/web).
+</Callout>
+
+## Usage
+
+### Import package in `package.json`
+
+```json
+"dependencies": {
+  "@natu/storyblok-revalidate": "*",
+}
+```
+
+### Use `revalidateHandler` in api route
+
+```tsx filename="apps/web/src/app/api/revalidate/route.ts"
+import { revalidateHandler } from '@natu/storyblok-revalidate';
+
+export { revalidateHandler as POST };
+```
+
+### Setup revalidate webhook in Storyblok CMS
+
+As the endpoint URL, pass:
+
+`https://<your-domain>/api/revalidate?token=NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN`
+
+You will find the token under the variable `NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN` in the file `apps/web/.env`
+
+![Vercel success](https://a.storyblok.com/f/218794/4074x2210/0826083bdc/screenshot-2024-02-07-at-1-21-22-pm.png)
+
+<Callout type="warning" emoji="⚠️">
+  Remember to check all the checkboxes in the `Story` accordion
+</Callout>
