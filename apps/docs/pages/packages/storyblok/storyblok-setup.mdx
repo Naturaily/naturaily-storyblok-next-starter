@@ -1,3 +1,5 @@
+import { Callout } from 'nextra/components';
+
 # @natu/storyblok-setup
 
 Script setting up predefined:
@@ -15,7 +17,7 @@ Usage is covered [in getting started instruction](/getting-started/installation#
 
 ## Files
 
-### componentGroup
+### Component Group
 
 Sets the component groups in Storyblok. Groups created:
 
@@ -27,7 +29,7 @@ Sets the component groups in Storyblok. Groups created:
 - `seo` (for **seo** component)
 - `templates` (for **container** component)
 
-### components
+### Components
 
 Sets the components in Storyblok. Items created:
 
@@ -40,30 +42,39 @@ Sets the components in Storyblok. Items created:
 
 Most of those component has its reflection in [storyblok-ui](/packages/storyblok/storyblok-ui) package.
 
-### datasource
+### Datasource
 
 Sets the datasources in Storyblok which are mainly the one source of truth for selection fields in components. Items created:
 
-- `align-items` - align values (start/center/end/baseline)
-- `container-size` - container sizes (full/1536px/1280px/768px)
-- `cta` - cta variants (default/destructive/secondary/...)
-- `font-family` - font families (primary)
-- `font-size` - font sizes (12px/14px/16px/...)
-- `grid-variants` - grid variants (1-col/2-col/...)
-- `justify-items` - justify values (start/center/end/...)
-- `space` - spacing values (8px/16px/24px/...)
-- `text-align` - text align values (left/center/right/justify)
+- `Align items` - align values (start/center/end/baseline)
+- `Container size` - container sizes (full/1536px/1280px/768px)
+- `CTA` - cta variants (default/destructive/secondary/...)
+- `Font family` - font families (primary)
+- `Font size` - font sizes (12px/14px/16px/...)
+- `Grid variants` - grid variants (1-col/2-col/...)
+- `Justify items` - justify values (start/center/end/...)
+- `Space` - spacing values (8px/16px/24px/...)
+- `Text align` - text align values (left/center/right/justify)
 
-### env
+### Env
 
 Creates the `.env` file for an app. It's needed for further connecting with Storyblok for the data for an app.
 
-### stories
+Example of the `.env` file:
+
+```ts copy
+STORYBLOK_PERSONAL_ACCESS_TOKEN=
+STORYBLOK_SPACE_ID=
+# 'eu' | 'us'
+STORYBLOK_REGION="eu"
+```
+
+### Stories
 
 Creates the stories in Storyblok. Items created:
 
 - `Home` - homepage of an app
-- `config` folder.
+- `Config` folder.
 
 Config folder contains:
 
@@ -72,11 +83,29 @@ Config folder contains:
 - `Special pages` folder - containing 404 page
 - `Layout` folder - containing Header & Footer configurations.
 
-### utils
+### Utils
 
 All util functions which are used as helpers to create all the content mentioned above.
 
-### setup.ts
+### Setup.ts
 
 The main file aggregating all the functionalities, is performed with node when using the `yarn setup`
 script of this package.
+
+From the `root of the project`, run:
+
+```bash copy
+yarn storyblok:setup
+```
+
+From storyblok setup workspace, run:
+
+```bash copy
+yarn setup
+```
+
+---
+
+<Callout type="info" emoji="ℹ️">
+  [Read more about the installation](/getting-started/installation)
+</Callout>
