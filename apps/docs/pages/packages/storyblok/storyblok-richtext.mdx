@@ -1,3 +1,144 @@
+import { Steps, Callout } from 'nextra/components';
+
 # @natu/storyblok-richtext
 
-tbd
+Handling the Storyblok-specific rich text. Already includes some basic resolvers and can be extended if needed.
+
+<Callout type="info" emoji="ℹ️">
+  Used in [storyblok-ui package](/packages/storyblok/storyblok-ui) component
+</Callout>
+
+## Usage
+
+<Steps>
+  ### Import package as dependency in package.json
+
+```json
+"dependencies": {
+    "@natu/storyblok-richtext": "*",
+}
+```
+
+### Use `StoryblokRichtext` component to render the richtext
+
+```tsx filename="packages/storyblok-ui/src/components/elements/SBRichtext/SBRichtext.tsx" {1, 11}
+import { type StoryblokRichTextData, StoryblokRichtext } from '@natu/storyblok-richtext';
+import { sbEditable } from '@natu/storyblok-utils';
+
+interface SBRichtextProps {
+  content?: StoryblokRichTextData;
+}
+
+export const SBRichtext = ({ blok }: SBProps<SBRichtextProps>) => {
+  const { content } = blok;
+
+  return <StoryblokRichtext data={content} {...sbEditable(blok)} />;
+};
+```
+
+</Steps>
+
+## Components included
+
+### DefaultBlokResolver
+
+A catch-all solution for component not included in markResolvers and nodeResolvers
+[see docs ↗](https://github.com/claus/storyblok-rich-text-react-renderer/blob/master/README.md#advanced-usage).
+Usage:
+
+```tsx filename="/src/components/StoryblokRichtext/getStoryblokRichText.tsx" {2, 9}
+import type { ISbRichtext } from '@storyblok/react';
+import { DefaultBlokResolver } from '../DefaultBlokResolver';
+import { render } from 'storyblok-rich-text-react-renderer';
+
+export const getStoryblokRichText = (data: ISbRichtext) =>
+  render(data, {
+    markResolvers: ..., // custom resolvers
+    nodeResolvers: ..., // custom resolvers
+    defaultBlokResolver: DefaultBlokResolver,
+  });
+
+```
+
+### markResolvers
+
+See `storyblok-rich-text-react-renderer` [markResolvers docs ↗](https://github.com/claus/storyblok-rich-text-react-renderer/blob/master/README.md#mark-resolvers)
+for more details. Already used in [StoryblockRichtext](/packages/storyblok/storyblok-richtext#storyblokrichtext) component. Resolvers included in the package:
+
+- `MarkCode` - for the code component
+- `MarkLink` - for the link component
+
+Usage:
+
+```tsx filename="/src/components/StoryblokRichtext/getStoryblokRichText.tsx" {4-5, 10-11}
+import type { ISbRichtext } from '@storyblok/react';
+import { render, MARK_CODE, MARK_LINK } from 'storyblok-rich-text-react-renderer';
+
+import { MarkCode } from '../MarkCode';
+import { MarkLink } from '../MarkLink';
+
+export const getStoryblokRichText = (data: ISbRichtext) =>
+  render(data, {
+    markResolvers: {
+      [MARK_CODE]: MarkCode,
+      [MARK_LINK]: MarkLink,
+    },
+  });
+```
+
+### nodeResolvers
+
+See `storyblok-rich-text-react-renderer` [nodeResolvers docs ↗](https://github.com/claus/storyblok-rich-text-react-renderer/blob/master/README.md#node-resolvers)
+for more details. Already used in [StoryblockRichtext](/packages/storyblok/storyblok-richtext#storyblokrichtext) component. Resolvers included in the package:
+
+- `NodeCodeblock` - for codeblock component
+- `NodeHeading` - for heading component
+- `NodeImage` - for image component
+- `NodeLi` - for list item component
+
+Usage:
+
+```tsx filename="/src/components/StoryblokRichtext/getStoryblokRichText.tsx" {10-13, 18-21}
+import type { ISbRichtext } from '@storyblok/react';
+import {
+  render,
+  NODE_IMAGE,
+  NODE_HEADING,
+  NODE_CODEBLOCK,
+  NODE_LI,
+} from 'storyblok-rich-text-react-renderer';
+
+import { NodeCodeblock } from '../NodeCodeblock';
+import { NodeHeading } from '../NodeHeading';
+import { NodeImage } from '../NodeImage';
+import { NodeLi } from '../NodeLi';
+
+export const getStoryblokRichText = (data: ISbRichtext) =>
+  render(data, {
+    nodeResolvers: {
+      [NODE_HEADING]: NodeHeading,
+      [NODE_IMAGE]: NodeImage,
+      [NODE_CODEBLOCK]: NodeCodeblock,
+      [NODE_LI]: NodeLi,
+    },
+  });
+```
+
+### StoryblokRichtext
+
+The main component of this package aggregating all resolvers into one reusable component to render
+Storyblok richtext content type. Usage:
+
+```tsx {1, 10}
+import { type StoryblokRichTextData, StoryblokRichtext } from '@natu/storyblok-richtext';
+
+interface SBRichtextProps {
+  content?: StoryblokRichTextData;
+}
+
+export const SBRichtext = ({ blok }: SBProps<SBRichtextProps>) => {
+  const { content } = blok;
+
+  return <StoryblokRichtext data={content} />;
+};
+```
