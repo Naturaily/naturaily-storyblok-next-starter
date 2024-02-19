@@ -1,3 +1,149 @@
+import { Steps } from 'nextra/components';
+
 # @natu/storyblok-preview
 
-TBD
+A package handling [preview mode ↗](https://www.storyblok.com/tp/create-a-preview-environment-for-your-next-js-website) in Storyblok.
+
+## Components
+
+### DraftModeProvider
+
+Component that serves 2 purposes:
+
+- rendering the `<DraftModeContext.Provider />`,
+- rendering the button we can click to leave the draft mode, if it's turned on:
+
+![button we can click to leave the draft mode](https://a.storyblok.com/f/218794/2414x632/c583db15c5/screenshot-2024-02-12-at-16-52-02.png)
+
+Usage example:
+
+```tsx filename="Providers.tsx" {5,13}
+'use client';
+
+import { ReactNode } from 'react';
+
+import { DraftModeProvider } from '@natu/storyblok-preview';
+
+interface ProvidersProps {
+  children?: ReactNode;
+  draftMode?: boolean;
+}
+
+export const Providers = ({ children, draftMode }: ProvidersProps) => (
+  <DraftModeProvider draftMode={draftMode}>{children}</DraftModeProvider>
+);
+```
+
+API Reference:
+
+| Prop      |    Type     | Default | Description                                 |
+| :-------- | :---------: | ------: | ------------------------------------------- |
+| children  | `ReactNode` |       - | Children of the `DraftModeProvider`         |
+| draftMode |  `boolean`  | `false` | Flag that tells if we are in the draft mode |
+
+#### DraftModeContext
+
+To use the `DraftModeContext` defined in the `DraftModeProvider`, it's the best to use the `useDraftModeContext()` hook in clinet components.
+Already used this way in [storyblok-api package](/packages/storyblok/storyblok-api). Usage:
+
+```tsx
+import { useDraftModeContext } from '@natu/storyblok-preview';
+
+const { draftMode } = useDraftModeContext();
+```
+
+Usage in server components:
+
+```tsx
+import { draftMode } from 'next/headers';
+
+const Page = async () => {
+  const { isEnabled } = draftMode();
+
+  return <div>my page</div>;
+};
+```
+
+## Routes
+
+### draftHandler
+
+Is handling the preview's route basing on current request path and environmental variables.
+Do not enable to enter draft mode without a proper token provided. Usage:
+
+<Steps>
+  ### Import the handler in the app's [route handler ↗](https://nextjs.org/docs/app/building-your-application/routing/route-handlers)
+
+```tsx filename="/api/draft.ts"
+import { draftHandler } from '@natu/storyblok-preview';
+
+export { draftHandler as GET };
+```
+
+### Redirect to this route handler in the place it's needed
+
+```tsx filename="withStoryblokPreviewMiddleware.ts" {9-10}
+'use server';
+
+import { draftMode } from 'next/headers';
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+
+const enterPreview = (request: NextRequest) => {
+  const url = request.nextUrl.clone();
+  url.pathname = '/api/draft';
+  return NextResponse.redirect(url);
+};
+```
+
+</Steps>
+
+## Utils
+
+### handleDisableDraft
+
+Helper which disables the draft mode. Already used in `DraftModeProvider` component. Usage:
+
+```tsx {4} /handleDisableDraft()/
+'use client';
+
+import { useRouter } from 'next/navigation';
+import { handleDisableDraft } from '@natu/storyblok-preview';
+
+const { refresh } = useRouter();
+
+const someFunction = async () => {
+  await handleDisableDraft();
+  refresh(); // to see
+};
+```
+
+### isDraftMode
+
+Checks if we're currently in the draft mode basing on the provided value and environmental variables
+and returns the boolean. Already used in [storyblok-api package](/packages/storyblok/storyblok-api). Usage:
+
+```tsx {1} /isDraftMode(draftMode)/
+import { isDraftMode } from '@natu/storyblok-preview';
+
+export const getStoryblokApi = ({ draftMode = false }) => {
+  const isDraftModeEnabled = isDraftMode(draftMode);
+  // ...
+};
+```
+
+## withStoryblokPreviewMiddleware
+
+Is a middleware to use Storyblok preview easily.
+Usage as a [middleware in Next.js ↗](https://nextjs.org/docs/app/building-your-application/routing/middleware#convention):
+
+```tsx filename="middleware.ts" /withStoryblokPreviewMiddleware/
+import { middlewareChain } from '@natu/middleware-chain';
+import { withStoryblokPreviewMiddleware } from '@natu/storyblok-preview';
+
+export default middlewareChain([withStoryblokPreviewMiddleware]);
+
+export const config = {
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+};
+```

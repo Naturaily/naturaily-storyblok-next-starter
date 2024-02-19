@@ -1,3 +1,117 @@
+import { Steps, Callout } from 'nextra/components';
+
 # @natu/storyblok-ui
 
-tbd
+Basic ready-to-use components.
+
+The main foundations of this package:
+
+1. In contrast to [ui package](/packages/ui) components are not as generic as they're **consuming Storyblok data**
+2. Components are very often reusing some generic components and works as the **connector between the Storyblok data and pure UI components**
+3. Package already contains some basic components and **should be extended** when developing an app
+
+<Callout type="info" emoji="ℹ️">
+  Used in the [web app](/apps/web).
+</Callout>
+
+## Usage
+
+<Steps>
+  ### Import package in package.json
+
+```json
+"dependencies": {
+    "@natu/storyblok-ui": "*",
+}
+```
+
+### Use `componentsMap` in Storyblok provider
+
+```tsx filename="apps/web/src/app/StoryblokProvider.tsx" {4, 8}
+import StoryblokBridgeLoader from '@storyblok/react/bridge-loader';
+import { storyblokInit } from '@storyblok/react/rsc';
+import React, { ReactNode } from 'react';
+import { componentsMap } from '@natu/storyblok-ui';
+
+storyblokInit({
+  accessToken: ...,
+  components: componentsMap,
+});
+
+interface StoryblokProviderProps {
+  children?: ReactNode;
+}
+
+export const StoryblokProvider = ({ children }: StoryblokProviderProps) => (
+  <>
+    {children}
+    <StoryblokBridgeLoader />
+  </>
+);
+```
+
+</Steps>
+
+## Components included
+
+### contentTypes
+
+Render component wrapper with [DynamicRender](/packages/storyblok/storyblok-utils#dynamicrender) inside:
+
+- `SBFooter` - for `<footer>` component
+- `SBHeader` - for `<header>` component
+- `SBPage` - for generic page component.
+
+### elements
+
+Render component with props:
+
+- `SBColumn`, `SBContainer`, `SBGrid`, `SBRow` - components for organizing content on page
+- `SBCta` - [Button](/packages/ui#button) with [Link](/packages/next-link)
+- `SBImage` - [ResponsiveImage](/packages/ui#responsiveimage) wrapped in [ConditionalLink](/packages/ui#conditionallink) and optional [AspectRatio](/packages/ui#aspectratio)
+- `SBRichtext` - uses [StoryblokRichtext](/packages/storyblok/storyblok-richtext)
+- `SBTable` - uses [Table](/packages/ui#table)
+- `SBThemeModeSwitcher` - uses [ThemeModeSwitcher](/packages/next-themes#thememodeswitcher)
+- `SBTypography` - uses [Typography](/packages/ui#typography)
+
+## Adding new components
+
+To add new components, you need to create it in `/src/components/elements` folder and add them to the `componentsMap` file.
+
+<Steps>
+  ### Create new component in `elements` folder
+
+```tsx filename="src/elements/SBNewComponent/SBNewComponent.tsx" /export const SBNewComponent/
+import { SBProps, resolveStoryblokStyles, sbEditable } from '@natu/storyblok-utils';
+
+interface SBNewComponentProps { ... }
+
+export const SBNewComponent = ({ blok }: SBProps<SBNewComponentProps>) => {
+  const { <props> } = blok;
+  const className = resolveStoryblokStyles({ <stylesProps> });
+
+  return (
+    <div className={className} {...sbEditable(blok)}>
+      // your component with props
+    </div>
+  );
+};
+
+```
+
+### Add new component in `componentsMap` file
+
+```tsx filename="src/componentsMap.ts" {1} /newComponent: SBNewComponent/
+import { SBNewComponent } from './elements/SBNewComponent';
+
+const elements = { ..., newComponent: SBNewComponent };
+const contentTypes = { ... };
+
+export const componentsMap: Record<string, unknown> = {
+  ...elements,
+  ...contentTypes,
+};
+
+```
+
+</Steps>
