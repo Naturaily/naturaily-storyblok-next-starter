@@ -30,11 +30,63 @@ for more datails.
 import { type Metadata } from 'next';
 import { getStoryblokSeoData } from '@natu/storyblok-seo';
 
-export const generateMetadata = async (): Promise<Metadata> => {
-  return getStoryblokSeoData(<default seo>, {
-    <seo props ex. slug, twitterCreator, siteName >
+export const generateMetadata = async (
+  { params }: PageProps,
+  parent: ResolvingMetadata,
+): Promise<Metadata> => {
+  const { isEnabled } = draftMode();
+  const { getContentNode } = getStoryblokApi({ draftMode: isEnabled });
+
+  const slug = getSlugWithAppName({ slug: getSlugFromParams(params.slug) });
+
+  const prevData = await parent;
+  const configData = await getContentNode({
+    slug,
+    relations,
+  });
+
+  return getStoryblokSeoData(configData.ContentNode?.content.seo, {
+    slug: `/${getSlugFromParams(params.slug)}`,
+    prevData,
   });
 };
 ```
 
 </Steps>
+
+## Managing from CMS
+
+### Global SEO
+
+You will find global SEO settings in the application configuration tab:
+
+![Global SEO settings](https://a.storyblok.com/f/218794/4084x1472/c761c2d2a7/screenshot-2024-02-19-at-10-25-12-am.png)
+
+It will be rendered by default on every page unless you override it on a specific page.
+
+### Per page SEO
+
+Each page-type content has an SEO tab where you can override the corresponding global properties.
+
+![Per page SEO settings](https://a.storyblok.com/f/218794/1122x1206/04cf95bccb/screenshot-2024-02-19-at-10-29-15-am.png)
+
+## Sitemap.xml
+
+The application also builds a sitemap of pages, which is accessible at this address `/sitemap.xml`
+
+Check the const validSitemapComponents. These are the content types that are to be included in the sitemap. For example, if you add a blog, just add the name of the new content type after the comma:
+
+```ts
+// add more -> "page,other-content-type,other"
+const validSitemapComponents = 'page,blogPost';
+```
+
+---
+
+If a page has the `noIndex` select option checked, it will not be included in the sitemap.
+
+![no index](https://a.storyblok.com/f/218794/782x1554/57daf76f99/screenshot-2024-02-19-at-11-03-11-am.png)
+
+## Robots.txt
+
+In the `robots.ts` file, we generate a basic file. You can edit it freely.
