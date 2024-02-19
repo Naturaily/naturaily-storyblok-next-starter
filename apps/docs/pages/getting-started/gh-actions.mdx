@@ -1,0 +1,17 @@
+# Setup GH actions
+
+We use GitHub Actions for code validation. If you want to use it, add an environmental variable to your repository.
+
+```env copy
+SKIP_ENV_VALIDATION="true"
+```
+
+![Vercel](https://a.storyblok.com/f/218794/2568x1984/ce98fad700/screenshot-2024-02-19-at-3-57-55-pm.png)
+
+It disables the validation of environments during GitHub Actions runtime.
+
+You can edit the GitHub Action in this file:
+
+```bash copy
+.github/workflows/main.yml
+```
