@@ -43,13 +43,25 @@ API Reference:
 
 #### DraftModeContext
 
-To use the `DraftModeContext` defined in the `DraftModeProvider`, it's the best to use the `useDraftModeContext()` hook.
+To use the `DraftModeContext` defined in the `DraftModeProvider`, it's the best to use the `useDraftModeContext()` hook in clinet components.
 Already used this way in [storyblok-api package](/packages/storyblok/storyblok-api). Usage:
 
 ```tsx
 import { useDraftModeContext } from '@natu/storyblok-preview';
 
 const { draftMode } = useDraftModeContext();
+```
+
+Usage in server components:
+
+```tsx
+import { draftMode } from 'next/headers';
+
+const Page = async () => {
+  const { isEnabled } = draftMode();
+
+  return <div>my page</div>;
+};
 ```
 
 ## Routes
