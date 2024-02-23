@@ -14,7 +14,7 @@
     "@storybook/nextjs": "7.6.13",
     "@storybook/react": "7.6.13",
     "eslint-config-custom": "*",
-    "storybook": "7.6.13",
+    "storybook": "7.6.17",
     "tailwind-config": "*",
     "tsconfig": "*"
   }
