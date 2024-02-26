@@ -12,7 +12,7 @@
     "@storybook/addon-links": "7.6.13",
     "@storybook/blocks": "7.6.17",
     "@storybook/nextjs": "7.6.13",
-    "@storybook/react": "7.6.13",
+    "@storybook/react": "7.6.17",
     "eslint-config-custom": "*",
     "storybook": "7.6.17",
     "tailwind-config": "*",
