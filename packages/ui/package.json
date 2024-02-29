@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.23.9",
-    "@types/node": "20.11.19",
+    "@types/node": "20.11.23",
     "@types/react": "18.2.58",
     "@types/react-dom": "^18.2.19",
     "eslint-config-custom": "*",
