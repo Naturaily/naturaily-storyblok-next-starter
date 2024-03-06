@@ -12,10 +12,10 @@
     "eslint:format": "eslint src --fix"
   },
   "devDependencies": {
-    "@babel/core": "7.23.9",
-    "@types/node": "20.11.19",
-    "@types/react": "18.2.58",
-    "@types/react-dom": "^18.2.19",
+    "@babel/core": "7.24.0",
+    "@types/node": "20.11.24",
+    "@types/react": "18.2.63",
+    "@types/react-dom": "^18.2.20",
     "eslint-config-custom": "*",
     "tailwind-config": "*",
     "tsconfig": "*"
@@ -23,7 +23,7 @@
   "dependencies": {
     "@natu/next-link": "*",
     "@natu/utils": "*",
-    "@next/third-parties": "14.1.0",
+    "@next/third-parties": "14.1.2",
     "@radix-ui/react-aspect-ratio": "1.0.3",
     "@radix-ui/react-dropdown-menu": "2.0.6",
     "@radix-ui/react-label": "2.0.2",
@@ -32,8 +32,8 @@
     "@radix-ui/react-slot": "1.0.2",
     "@radix-ui/react-tooltip": "1.0.7",
     "class-variance-authority": "0.7.0",
-    "framer-motion": "11.0.3",
-    "lucide-react": "0.338.0",
+    "framer-motion": "11.0.8",
+    "lucide-react": "0.344.0",
     "prism-react-renderer": "2.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0"
