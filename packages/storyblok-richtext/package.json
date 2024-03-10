@@ -17,7 +17,7 @@
     "@natu/next-link": "*",
     "@natu/storyblok-utils": "*",
     "@natu/ui": "*",
-    "storyblok-rich-text-react-renderer": "2.9.1"
+    "storyblok-rich-text-react-renderer": "2.9.2"
   },
   "devDependencies": {
     "eslint-config-custom": "*",
