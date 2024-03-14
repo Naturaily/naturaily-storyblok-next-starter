@@ -6,7 +6,7 @@
   "types": "./index.ts",
   "license": "MIT",
   "devDependencies": {
-    "@storybook/addon-a11y": "7.6.17",
+    "@storybook/addon-a11y": "8.0.0",
     "@storybook/addon-essentials": "7.6.17",
     "@storybook/addon-interactions": "8.0.0",
     "@storybook/addon-links": "7.6.17",
