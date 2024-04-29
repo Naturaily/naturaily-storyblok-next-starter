@@ -1,0 +1,20 @@
+import { Callout } from 'nextra/components';
+
+# Best practices
+
+## In the same way as it's starter for our projects, it's meant to become the starter for your projects
+
+You can use our starter for 1 specific project. Especially for more complex websites and applications. But using it for creating many projects that can share the same functionality is the scenario where it gives you the most.
+
+It should fit you best if:
+
+- You are working on many projects that share the same functionality but are from different domains, for businesses, or for different clients.
+  Then you can easily divide common functionality into [packages](/packages).
+- You are working on many projects that share the same functionality and should be bunched together.
+  Then you can place them in [apps](/apps) and easily share the same functionality by using the same [packages](/packages).
+
+## [Packages](/packages) should have a single concern and be modular
+
+The better you separate concerns for your packages, the easier it is to compose them in your [apps](/apps) and the easier it is to manage them between each other (as dependencies).
+
+Packages should be small, cohesive, and do 1 thing - similarly to microservices. There should be no coupling between packages, only explicit dependence, defined in their `package.json` files.
