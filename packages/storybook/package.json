@@ -14,7 +14,7 @@
     "@storybook/nextjs": "8.0.0",
     "@storybook/react": "8.0.4",
     "eslint-config-custom": "*",
-    "storybook": "8.0.2",
+    "storybook": "8.1.0",
     "tailwind-config": "*",
     "tsconfig": "*"
   }
