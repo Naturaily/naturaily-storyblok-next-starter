@@ -5,7 +5,8 @@ import { useMemo, createContext, ReactNode, useContext, useTransition } from 're
 
 import { cn } from '@natu/utils';
 
-import { handleDisableDraft, isDraftMode } from '../../utils';
+import { handleDisableDraft } from '../../actions/actions';
+import { isDraftMode } from '../../utils/isDraftMode/isDraftMode';
 
 interface PreviewModeProviderProps {
   draftMode?: boolean;

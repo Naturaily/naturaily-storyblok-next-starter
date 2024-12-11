@@ -10,15 +10,15 @@
   "author": "Shu Ding <g@shud.in>",
   "license": "MIT",
   "dependencies": {
-    "lucide-react": "0.338.0",
-    "next": "^13.0.6",
+    "lucide-react": "0.359.0",
+    "next": "^14.2.4",
     "nextra": "latest",
     "nextra-theme-docs": "latest",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/node": "20.11.19",
+    "@types/node": "20.11.30",
     "eslint-config-custom": "*",
     "eslint-plugin-mdx": "3.1.5",
     "tsconfig": "*"

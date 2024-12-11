@@ -18,6 +18,6 @@
   },
   "dependencies": {
     "@natu/ui": "*",
-    "next-themes": "0.2.1"
+    "next-themes": "0.3.0"
   }
 }
