@@ -42,5 +42,6 @@
     "*.json": [
       "yarn prettier:format"
     ]
-  }
+  },
+  "dependencies": {}
 }
