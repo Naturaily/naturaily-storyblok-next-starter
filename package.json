@@ -28,7 +28,7 @@
     "lint-staged": "15.2.11",
     "prettier": "^3.4.2",
     "tsconfig": "*",
-    "turbo": "1.12.5"
+    "turbo": "2.3.3"
   },
   "lint-staged": {
     "apps/**/*": [
