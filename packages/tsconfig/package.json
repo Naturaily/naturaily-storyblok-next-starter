@@ -9,6 +9,6 @@
   "devDependencies": {
     "@tsconfig/node18": "^18.2.4",
     "tsconfig-paths": "4.2.0",
-    "typescript": "5.4.3"
+    "typescript": "5.7.2"
   }
 }

@@ -29,7 +29,6 @@ export const getStoryblokSeoData = (data?: StoryblokSeoComponent[], config?: Con
 
   const prevTitle = prevData?.title || '';
   const prevDescription = prevData?.description || '';
-  const prevTwitter = prevData?.twitter;
 
   return {
     metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
@@ -57,22 +56,21 @@ export const getStoryblokSeoData = (data?: StoryblokSeoComponent[], config?: Con
       }),
       type: 'website',
     },
-    twitter:
-      {
-        card: 'summary_large_image',
-        title: metaTitle || prevTitle,
-        description: metaDescription || prevDescription,
-        site: twitterCreator,
-        creator: twitterCreator,
-        ...(metaImage?.filename && {
-          images: [
-            {
-              url: metaImage.filename,
-              alt: metaImage.alt,
-            },
-          ],
-        }),
-      } || prevTwitter,
+    twitter: {
+      card: 'summary_large_image',
+      title: metaTitle || prevTitle,
+      description: metaDescription || prevDescription,
+      site: twitterCreator,
+      creator: twitterCreator,
+      ...(metaImage?.filename && {
+        images: [
+          {
+            url: metaImage.filename,
+            alt: metaImage.alt,
+          },
+        ],
+      }),
+    },
     ...(googleVerificationId && {
       verification: {
         google: `google-site-verification=${googleVerificationId}`,

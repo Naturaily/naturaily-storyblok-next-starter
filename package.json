@@ -26,7 +26,7 @@
     "eslint-config-custom": "*",
     "husky": "9.0.11",
     "lint-staged": "15.2.11",
-    "prettier": "^3.0.3",
+    "prettier": "^3.4.2",
     "tsconfig": "*",
     "turbo": "1.12.5"
   },
