@@ -175,6 +175,8 @@ export type Datasources = {
 export type FilterQueryOperations = {
   /** Must match all values of given array */
   all_in_array?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Matches any value of given array */
+  any_in_array?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   /** Greater than date (Exmples: 2019-03-03 or 2020-03-03T03:03:03) */
   gt_date?: InputMaybe<Scalars['ISO8601DateTime']['input']>;
   /** Greater than float value */
@@ -305,7 +307,6 @@ export type PageComponent = {
   _uid?: Maybe<Scalars['String']['output']>;
   body?: Maybe<Scalars['BlockScalar']['output']>;
   component?: Maybe<Scalars['String']['output']>;
-  seo?: Maybe<Scalars['BlockScalar']['output']>;
 };
 
 export type PageItem = {
