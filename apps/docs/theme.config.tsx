@@ -4,14 +4,14 @@ import Image from 'next/image';
 import { DocsThemeConfig } from 'nextra-theme-docs';
 import { useRouter } from 'next/router';
 
-const config: DocsThemeConfig = {
+export default {
   logo: <Image src="/naturaily-logo.svg" alt="Naturaily logo" width={100} height={50} />,
   project: {
     link: 'https://github.com/Naturaily/naturaily-starter',
   },
   docsRepositoryBase: 'https://github.com/Naturaily/naturaily-starter',
   footer: {
-    text: (
+    content: (
       <span>
         MIT {new Date().getFullYear()}{' '}
         <a href="https://naturaily.com/" target="_blank" style={{ color: '#FF5E45' }}>
@@ -32,15 +32,13 @@ const config: DocsThemeConfig = {
   sidebar: {
     defaultMenuCollapseLevel: 1,
   },
-  useNextSeoProps() {
+  head() {
     const { asPath } = useRouter();
     if (asPath !== '/') {
       return {
         titleTemplate: '%s – Naturaily',
       };
     }
-  },
-  head: function useHead() {
     const socialCard = 'https://a.storyblok.com/f/218794/1280x493/b6190f92c3/og-image.jpg';
 
     return (
@@ -70,11 +68,7 @@ const config: DocsThemeConfig = {
           type="image/png"
           media="(prefers-color-scheme: dark)"
         />
-
-        <></>
       </>
     );
   },
 };
-
-export default config;

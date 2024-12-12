@@ -1,0 +1,6 @@
+export default {
+  requirements: 'Requirements',
+  installation: 'Installation',
+  'deploy-on-vercel': 'Deploy on Vercel',
+  'gh-actions': 'GH Actions',
+};
