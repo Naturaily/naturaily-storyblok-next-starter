@@ -10,7 +10,7 @@ const validSitemapComponents = 'page';
 
 // Google's limit is 50,000 URLs per sitemap
 const Sitemap = async (): Promise<MetadataRoute.Sitemap> => {
-  const { isEnabled } = draftMode();
+  const { isEnabled } = await draftMode();
   const { getContentNodes } = getStoryblokApi({ draftMode: isEnabled });
 
   const perPage = 100;

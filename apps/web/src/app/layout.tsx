@@ -14,7 +14,7 @@ import { Providers } from './Providers';
 import { StoryblokProvider } from './StoryblokProvider';
 
 export const generateMetadata = async (): Promise<Metadata> => {
-  const { isEnabled } = draftMode();
+  const { isEnabled } = await draftMode();
   const { getConfigNode } = getStoryblokApi({ draftMode: isEnabled });
 
   // get slug to root config in storyblok CMS
@@ -50,7 +50,7 @@ interface RootLayoutProps {
 }
 
 const RootLayout = async ({ children }: RootLayoutProps) => {
-  const { isEnabled } = draftMode();
+  const { isEnabled } = await draftMode();
   const { getConfigNode } = getStoryblokApi({ draftMode: isEnabled });
 
   const configSlug = getSlugWithAppName({

@@ -26,10 +26,12 @@ export const generateMetadata = async (
   { params }: PageProps,
   parent: ResolvingMetadata,
 ): Promise<Metadata> => {
-  const { isEnabled } = draftMode();
+  const { isEnabled } = await draftMode();
   const { getContentNode } = getStoryblokApi({ draftMode: isEnabled });
 
-  const slug = getSlugWithAppName({ slug: getSlugFromParams(params.slug) });
+  const awaitedParas = await params;
+
+  const slug = getSlugWithAppName({ slug: getSlugFromParams(awaitedParas.slug) });
 
   const prevData = await parent;
   const configData = await getContentNode({
@@ -38,16 +40,18 @@ export const generateMetadata = async (
   });
 
   return getStoryblokSeoData(configData.ContentNode?.content.seo, {
-    slug: `/${getSlugFromParams(params.slug)}`,
+    slug: `/${getSlugFromParams(awaitedParas.slug)}`,
     prevData,
   });
 };
 
 const Page = async ({ params }: PageProps) => {
-  const { isEnabled } = draftMode();
+  const { isEnabled } = await draftMode();
   const { getContentNode } = getStoryblokApi({ draftMode: isEnabled });
 
-  const slug = getSlugWithAppName({ slug: getSlugFromParams(params.slug) });
+  const awaitedParams = await params;
+
+  const slug = getSlugWithAppName({ slug: getSlugFromParams(awaitedParams.slug) });
 
   if (isSlugExcludedFromRouting(slug)) {
     return notFound();

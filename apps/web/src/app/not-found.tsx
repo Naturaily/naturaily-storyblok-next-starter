@@ -5,7 +5,7 @@ import { TAGS, getStoryblokApi, relations } from '@natu/storyblok-api';
 import { DynamicRender, getSlugWithAppName } from '@natu/storyblok-utils';
 
 const NotFound = async () => {
-  const { isEnabled } = draftMode();
+  const { isEnabled } = await draftMode();
   const { getConfigNode } = getStoryblokApi({ draftMode: isEnabled });
 
   const slug = getSlugWithAppName({

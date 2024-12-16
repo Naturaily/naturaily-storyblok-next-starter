@@ -21,7 +21,7 @@
     "@natu/storyblok-utils": "*",
     "@natu/ui": "*",
     "@natu/utils": "*",
-    "next": "^14.2.20"
+    "next": "^15.1.0"
   },
   "devDependencies": {
     "eslint-config-custom": "*",

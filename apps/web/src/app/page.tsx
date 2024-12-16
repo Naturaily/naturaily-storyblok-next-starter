@@ -11,7 +11,7 @@ export const generateMetadata = async (
   _: unknown,
   parent: ResolvingMetadata,
 ): Promise<Metadata> => {
-  const { isEnabled } = draftMode();
+  const { isEnabled } = await draftMode();
   const { getContentNode } = getStoryblokApi({ draftMode: isEnabled });
 
   const prevData = await parent;
@@ -27,7 +27,7 @@ export const generateMetadata = async (
 };
 
 const Page = async () => {
-  const { isEnabled } = draftMode();
+  const { isEnabled } = await draftMode();
   const { getContentNode } = getStoryblokApi({ draftMode: isEnabled });
 
   const story = await getContentNode({

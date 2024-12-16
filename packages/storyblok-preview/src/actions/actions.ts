@@ -69,9 +69,9 @@ const enterPreview = (request: NextRequest) => {
  * @returns the result of calling the `middleware` function with the `request` and `event` arguments.
  */
 export const withStoryblokPreviewMiddleware =
-  (middleware: NextMiddleware) => async (request: NextRequest, event: NextFetchEvent) => {
+  async (middleware: NextMiddleware) => async (request: NextRequest, event: NextFetchEvent) => {
     // const isDraftModeEnabled = request.cookies.has('__prerender_bypass');
-    const { isEnabled } = draftMode();
+    const { isEnabled } = await draftMode();
 
     if (!isEnabled && isRequestFromStoryblok(request)) {
       console.log('isRequestFromStoryblok: entering preview mode');
