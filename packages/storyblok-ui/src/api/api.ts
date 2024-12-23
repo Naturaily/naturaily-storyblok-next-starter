@@ -1,11 +1,11 @@
-import { apiPlugin, storyblokInit } from '@storyblok/react/rsc';
+import { apiPlugin, ISbStoriesParams, storyblokInit } from '@storyblok/react/rsc';
 
 import { env } from '@natu/env';
 import { isDraftMode } from '@natu/storyblok-preview';
 
 import { componentsMap } from '../components/componentsMap';
 import { relations } from './relations';
-import { FetchOptions, getSdk, SdkFunctionWrapper } from './sdk';
+import { getSdk, SdkFunctionWrapper } from './sdk';
 
 export const getStoryblokApi = storyblokInit({
   accessToken: env.NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN,
@@ -21,7 +21,7 @@ export const getStoryblokSdk = ({ draftMode }: GetStoryblokSdkInput) => {
   const isDraftModeEnabled = isDraftMode(draftMode);
 
   const wrapper: SdkFunctionWrapper = action => {
-    const options: FetchOptions = {
+    const options: ISbStoriesParams = {
       version: isDraftModeEnabled ? 'draft' : 'published',
       resolve_relations: relations,
     };

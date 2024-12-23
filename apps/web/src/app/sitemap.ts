@@ -1,69 +1,52 @@
+/* eslint-disable no-await-in-loop */
 import { MetadataRoute } from 'next';
 import { draftMode } from 'next/headers';
 
 import { env } from '@natu/env';
-import { getStoryblokApi } from '@natu/storyblok-api';
+import { getStoryblokSdk } from '@natu/storyblok-ui';
 import { getSlugWithAppName, getSlugWithoutAppName } from '@natu/storyblok-utils';
 
-// add more -> "page,other-content-type,other"
+// add more content types -> "page,other-content-type,other"
 const validSitemapComponents = 'page';
 
 // Google's limit is 50,000 URLs per sitemap
 const Sitemap = async (): Promise<MetadataRoute.Sitemap> => {
   const { isEnabled } = await draftMode();
-  const { getContentNodes } = getStoryblokApi({ draftMode: isEnabled });
+  const { getContentNodes } = getStoryblokSdk({ draftMode: isEnabled });
 
-  const perPage = 100;
-  const index = 1;
-  const requests = [];
+  let hasNextPage = true;
+  let page = 1;
+  const items = [];
 
-  const initial = await getContentNodes({
-    startsWith: env.NEXT_PUBLIC_STORYBLOK_MAIN_APP_FOLDER,
-    page: 1,
-    perPage: 1,
-    skipContent: true,
-    excludingSlugs: getSlugWithAppName({
-      slug: `${env.NEXT_PUBLIC_STORYBLOK_EXCLUDED_FOLDERS_FROM_ROUTING}/*`,
-    }),
-    filterQuery: {
-      component: {
-        in: validSitemapComponents,
-      },
-    },
-  });
-
-  const totalPostItems = initial?.ContentNodes?.total || perPage;
-  const totalPages = Math.ceil(totalPostItems / perPage);
-
-  for (let i = index; i <= totalPages; i++) {
-    requests.push(
-      getContentNodes({
-        startsWith: env.NEXT_PUBLIC_STORYBLOK_MAIN_APP_FOLDER,
-        perPage,
-        page: i,
-        excludingSlugs: getSlugWithAppName({
-          slug: `${env.NEXT_PUBLIC_STORYBLOK_EXCLUDED_FOLDERS_FROM_ROUTING}/*`,
-        }),
-        filterQuery: {
-          component: {
-            in: validSitemapComponents,
-          },
-        },
+  while (hasNextPage) {
+    const { total, data } = await getContentNodes({
+      startsWith: env.NEXT_PUBLIC_STORYBLOK_MAIN_APP_FOLDER,
+      page,
+      perPage: 100,
+      excludingSlugs: getSlugWithAppName({
+        slug: `${env.NEXT_PUBLIC_STORYBLOK_EXCLUDED_FOLDERS_FROM_ROUTING}/*`,
       }),
-    );
+      relations: '',
+      filterQuery: {
+        component: {
+          in: validSitemapComponents,
+        },
+      },
+    });
+
+    items.push(...data.stories);
+    page++;
+    hasNextPage = items.length < total;
   }
 
-  const responses = await Promise.all(requests).catch(err => {
-    throw new Error(`Generate sitemap error -> ${err}`);
-  });
+  if (items.length === 0) {
+    // eslint-disable-next-line no-console
+    console.error('No items found');
 
-  if (!Array.isArray(responses)) {
-    throw new Error('Generate sitemap error');
+    return [];
   }
 
-  const allItems = responses.map(res => res?.ContentNodes?.items).flat();
-
-  return allItems
+  return items
     .filter(item => {
       const [seo] = item?.content?.seo || [];
 
@@ -74,7 +57,7 @@ const Sitemap = async (): Promise<MetadataRoute.Sitemap> => {
       return true;
     })
     .map(item => ({
-      url: `${env.NEXT_PUBLIC_APP_URL}${getSlugWithoutAppName(item?.full_slug)}`,
+      url: `${env.NEXT_PUBLIC_APP_URL}${getSlugWithoutAppName(item?.full_slug)}`.replace(/\/$/, ''),
       lastModified: item?.published_at || item?.first_published_at || new Date(),
       changeFrequency: 'weekly',
       priority: 1,

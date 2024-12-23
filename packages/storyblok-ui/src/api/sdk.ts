@@ -1,18 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { StoryblokClient } from '@storyblok/react/rsc';
+import { ISbStoriesParams, StoryblokClient } from '@storyblok/react/rsc';
 
-type GetContentNodeQueryVariables = {
-  slug: string;
-  relations?: string;
-};
-
-export type FetchOptions = {
-  version: 'published' | 'draft';
-  resolve_relations?: string;
-};
+import { GetContentNodeQueryVariables, GetContentNodesQueryVariables } from './sdk.types';
 
 export type SdkFunctionWrapper = <T>(
-  action: (options?: FetchOptions) => Promise<T>,
+  action: (options?: ISbStoriesParams) => Promise<T>,
   operationName: string,
   operationType?: string,
 ) => Promise<T>;
@@ -24,7 +16,7 @@ export function getSdk(
   withWrapper: SdkFunctionWrapper = defaultWrapper,
 ) {
   return {
-    getContentNode(variables: GetContentNodeQueryVariables, options?: FetchOptions) {
+    getContentNode(variables: GetContentNodeQueryVariables) {
       const sbClient = client();
       const { slug, relations } = variables;
 
@@ -32,15 +24,51 @@ export function getSdk(
         async wrapperOptions =>
           sbClient.get(`cdn/stories/${slug}`, {
             ...wrapperOptions,
-            version: options?.version ?? wrapperOptions?.version,
+            version: wrapperOptions?.version,
             resolve_relations: relations ?? wrapperOptions?.resolve_relations,
           }),
         'getContentNode',
-        'query',
+        'GET',
+      );
+    },
+    getContentNodes(variables: GetContentNodesQueryVariables) {
+      const sbClient = client();
+      const {
+        relations,
+        excludingSlugs,
+        filterQuery,
+        page,
+        perPage,
+        searchTerm,
+        sortBy,
+        startsWith,
+        withTag,
+      } = variables;
+
+      const DEFAULT_PAGE = 1;
+      const DEFAULT_PER_PAGE = 12;
+
+      return withWrapper(
+        async wrapperOptions =>
+          sbClient.get('cdn/stories', {
+            ...wrapperOptions,
+            page: page || DEFAULT_PAGE,
+            per_page: perPage || DEFAULT_PER_PAGE,
+            starts_with: startsWith ?? '',
+            excluding_slugs: excludingSlugs ?? '',
+            with_tag: withTag ?? '',
+            search_term: searchTerm ?? '',
+            filter_query: filterQuery ?? {},
+            sort_by: sortBy ?? '',
+            version: wrapperOptions?.version,
+            resolve_relations: relations ?? wrapperOptions?.resolve_relations,
+          }),
+        'getContentNodes',
+        'GET',
       );
     },
 
-    // getContentNodes(
+    // getContentNodesold(
     //   variables: GetContentNodesQueryVariables,
     //   { headers, ...restFetchOptions }: FetchOptions = {},
     // ): Promise<GetContentNodesQuery> {
@@ -57,6 +85,7 @@ export function getSdk(
     //         ...restWrapperOptions,
     //         ...restFetchOptions,
     //       });
+
     //       return data;
     //     },
     //     'getContentNodes',
