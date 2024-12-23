@@ -17,6 +17,7 @@ export const ConditionalLink = ({ href, children, className, ...rest }: Conditio
   const child = Children.only(children);
 
   return cloneElement(child as ReactElement, {
+    // @ts-ignore
     className,
     ...rest,
   });

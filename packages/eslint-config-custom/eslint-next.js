@@ -37,6 +37,8 @@ module.exports = {
     'no-underscore-dangle': 0,
     'no-plusplus': 0,
     'no-console': 2,
+    '@typescript-eslint/lines-between-class-members': 0,
+    '@typescript-eslint/no-throw-literal': 0,
     'react/react-in-jsx-scope': 0,
     'import/prefer-default-export': 0,
     'import/no-extraneous-dependencies': 0,
