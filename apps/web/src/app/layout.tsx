@@ -3,11 +3,10 @@ import { Metadata } from 'next';
 import { draftMode } from 'next/headers';
 import { ReactNode } from 'react';
 
-import { env } from '@natu/env';
 import { poppinsFont } from '@natu/fonts';
-import { TAGS, getStoryblokApi, relations } from '@natu/storyblok-api';
 import { getStoryblokSeoData } from '@natu/storyblok-seo';
-import { DynamicRender, getSlugWithAppName } from '@natu/storyblok-utils';
+import { getStoryblokSdk } from '@natu/storyblok-ui';
+import { DynamicRender } from '@natu/storyblok-utils';
 import { Layout } from '@natu/ui';
 
 import { Providers } from './Providers';
@@ -15,33 +14,17 @@ import { StoryblokProvider } from './StoryblokProvider';
 
 export const generateMetadata = async (): Promise<Metadata> => {
   const { isEnabled } = await draftMode();
-  const { getConfigNode } = getStoryblokApi({ draftMode: isEnabled });
+  const { getConfigNode } = getStoryblokSdk({ draftMode: isEnabled });
 
-  // get slug to root config in storyblok CMS
-  const configSlug = getSlugWithAppName({
-    slug: env.NEXT_PUBLIC_STORYBLOK_EXCLUDED_FOLDERS_FROM_ROUTING,
-  });
-  // get access to root config in storyblok CMS
-  const configData = await getConfigNode(
-    {
-      slug: configSlug,
-      skipNotFoundPage: true,
-      skipFooter: true,
-      skipHeader: true,
-      relations,
-    },
-    {
-      next: {
-        tags: [TAGS.SB_CONFIG],
-      },
-    },
-  );
+  const { data } = await getConfigNode();
 
-  return getStoryblokSeoData(configData.ConfigItem?.content?.defaultSeo, {
+  const configContent = data?.story?.content;
+
+  return getStoryblokSeoData(configContent?.defaultSeo, {
     slug: '/',
-    twitterCreator: configData.ConfigItem?.content?.twitterCreator || '',
-    googleVerificationId: configData.ConfigItem?.content?.googleVerificationId || '',
-    siteName: configData.ConfigItem?.content?.siteName || '',
+    twitterCreator: configContent?.twitterCreator || '',
+    googleVerificationId: configContent?.googleVerificationId || '',
+    siteName: configContent?.siteName || '',
   });
 };
 
@@ -51,27 +34,11 @@ interface RootLayoutProps {
 
 const RootLayout = async ({ children }: RootLayoutProps) => {
   const { isEnabled } = await draftMode();
-  const { getConfigNode } = getStoryblokApi({ draftMode: isEnabled });
+  const { getConfigNode } = getStoryblokSdk({ draftMode: isEnabled });
 
-  const configSlug = getSlugWithAppName({
-    slug: env.NEXT_PUBLIC_STORYBLOK_EXCLUDED_FOLDERS_FROM_ROUTING,
-  });
+  const { data } = await getConfigNode();
 
-  const configData = await getConfigNode(
-    {
-      slug: configSlug,
-      skipNotFoundPage: true,
-      skipSeo: true,
-      relations,
-    },
-    {
-      next: {
-        tags: [TAGS.SB_CONFIG],
-      },
-    },
-  );
-
-  const { header, footer, defaultTheme, forcedTheme } = configData.ConfigItem?.content || {};
+  const { header, footer, defaultTheme, forcedTheme } = data?.story?.content || {};
 
   return (
     <StoryblokProvider>

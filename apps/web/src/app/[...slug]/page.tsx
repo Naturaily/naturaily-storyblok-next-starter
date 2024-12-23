@@ -2,8 +2,8 @@ import { Metadata, ResolvingMetadata } from 'next';
 import { draftMode } from 'next/headers';
 import { notFound } from 'next/navigation';
 
-import { getStoryblokApi, relations } from '@natu/storyblok-api';
 import { getStoryblokSeoData } from '@natu/storyblok-seo';
+import { getStoryblokSdk } from '@natu/storyblok-ui';
 import {
   DynamicRender,
   getSlugWithAppName,
@@ -27,19 +27,18 @@ export const generateMetadata = async (
   parent: ResolvingMetadata,
 ): Promise<Metadata> => {
   const { isEnabled } = await draftMode();
-  const { getContentNode } = getStoryblokApi({ draftMode: isEnabled });
+  const { getContentNode } = getStoryblokSdk({ draftMode: isEnabled });
 
   const awaitedParas = await params;
 
   const slug = getSlugWithAppName({ slug: getSlugFromParams(awaitedParas.slug) });
 
   const prevData = await parent;
-  const configData = await getContentNode({
+  const { data } = await getContentNode({
     slug,
-    relations,
   });
 
-  return getStoryblokSeoData(configData.ContentNode?.content.seo, {
+  return getStoryblokSeoData(data?.story?.content?.seo, {
     slug: `/${getSlugFromParams(awaitedParas.slug)}`,
     prevData,
   });
@@ -47,23 +46,23 @@ export const generateMetadata = async (
 
 const Page = async ({ params }: PageProps) => {
   const { isEnabled } = await draftMode();
-  const { getContentNode } = getStoryblokApi({ draftMode: isEnabled });
+  const { getContentNode } = getStoryblokSdk({ draftMode: isEnabled });
 
   const awaitedParams = await params;
 
   const slug = getSlugWithAppName({ slug: getSlugFromParams(awaitedParams.slug) });
 
   if (isSlugExcludedFromRouting(slug)) {
-    return notFound();
+    notFound();
   }
 
-  const story = await getContentNode({ slug, relations });
+  try {
+    const { data } = await getContentNode({ slug });
 
-  if (!story || !story?.ContentNode) {
+    return <DynamicRender data={data.story.content} />;
+  } catch (err) {
     return notFound();
   }
-
-  return <DynamicRender data={story?.ContentNode?.content} />;
 };
 
 export default Page;

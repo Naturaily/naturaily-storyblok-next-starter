@@ -14,3 +14,7 @@ export type GetContentNodesQueryVariables = {
   filterQuery?: Record<string, unknown>;
   sortBy?: string;
 };
+
+export type GetConfigNodeQueryVariables = {
+  relations?: string;
+};

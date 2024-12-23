@@ -1,7 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ISbStoriesParams, StoryblokClient } from '@storyblok/react/rsc';
 
-import { GetContentNodeQueryVariables, GetContentNodesQueryVariables } from './sdk.types';
+import { env } from '@natu/env';
+import { getSlugWithAppName } from '@natu/storyblok-utils';
+
+import {
+  GetConfigNodeQueryVariables,
+  GetContentNodeQueryVariables,
+  GetContentNodesQueryVariables,
+} from './sdk.types';
 
 export type SdkFunctionWrapper = <T>(
   action: (options?: ISbStoriesParams) => Promise<T>,
@@ -67,54 +74,26 @@ export function getSdk(
         'GET',
       );
     },
+    getConfigNode(variables?: GetConfigNodeQueryVariables) {
+      const sbClient = client();
+      const { relations } = variables || {};
 
-    // getContentNodesold(
-    //   variables: GetContentNodesQueryVariables,
-    //   { headers, ...restFetchOptions }: FetchOptions = {},
-    // ): Promise<GetContentNodesQuery> {
-    //   return withWrapper(
-    //     async wrapperOptions => {
-    //       const { headers: wrapperHeaders, ...restWrapperOptions } = wrapperOptions || {};
-    //       const { data } = await fetcher<GetContentNodeQuery, GetContentNodesQueryVariables>({
-    //         query: print(GetContentNodes),
-    //         variables,
-    //         headers: {
-    //           ...wrapperHeaders,
-    //           ...headers,
-    //         },
-    //         ...restWrapperOptions,
-    //         ...restFetchOptions,
-    //       });
+      const slug = getSlugWithAppName({
+        slug: env.NEXT_PUBLIC_STORYBLOK_EXCLUDED_FOLDERS_FROM_ROUTING,
+      });
 
-    //       return data;
-    //     },
-    //     'getContentNodes',
-    //     'query',
-    //   );
-    // },
-    // getConfigNode(
-    //   variables: GetConfigNodeQueryVariables,
-    //   { headers, ...restFetchOptions }: FetchOptions = {},
-    // ): Promise<GetConfigNodeQuery> {
-    //   return withWrapper(
-    //     async wrapperOptions => {
-    //       const { headers: wrapperHeaders, ...restWrapperOptions } = wrapperOptions || {};
-    //       const { data } = await fetcher<GetConfigNodeQuery, GetConfigNodeQueryVariables>({
-    //         query: print(GetConfigNode),
-    //         variables,
-    //         headers: {
-    //           ...wrapperHeaders,
-    //           ...headers,
-    //         },
-    //         ...restWrapperOptions,
-    //         ...restFetchOptions,
-    //       });
-    //       return data;
-    //     },
-    //     'getConfigNode',
-    //     'query',
-    //   );
-    // },
+      return withWrapper(
+        async wrapperOptions =>
+          sbClient.get(`cdn/stories/${slug}`, {
+            ...wrapperOptions,
+            version: wrapperOptions?.version,
+            resolve_relations: relations ?? wrapperOptions?.resolve_relations,
+          }),
+        'getConfigNode',
+        'GET',
+      );
+    },
+
     // Add more
   };
 }
