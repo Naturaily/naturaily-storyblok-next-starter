@@ -19,6 +19,7 @@
     "tsconfig": "*"
   },
   "dependencies": {
-    "@natu/env": "*"
+    "@natu/env": "*",
+    "@rescale/nemo": "^1.4.0"
   }
 }
