@@ -3176,7 +3176,7 @@
     "@storyblok/richtext" "^3.0.0"
     storyblok-js-client "^6.10.3"
 
-"@storyblok/react@4.3.2":
+"@storyblok/react@4.3.2", "@storyblok/react@^4.3.2":
   version "4.3.2"
   resolved "https://registry.yarnpkg.com/@storyblok/react/-/react-4.3.2.tgz#858121bce6e7c3dd7e5db94e3495dc2a81527e2f"
   integrity sha512-D4fyaJM3mgwbfSUJ5lQPaPC842EGx797fdqcnOPuX+/IWX0uiCp+C28GrGVc0JnZTG+gYpPS6TYaAMJl5ui1cA==

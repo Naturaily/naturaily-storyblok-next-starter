@@ -70,6 +70,8 @@ export const SBContainer = ({ blok }: SBProps<SBContainerProps>) => {
   const Comp = tag || 'div';
 
   return (
+    // TODO: Fix this
+    // @ts-ignore
     <Comp className={className} {...sbEditable(blok)}>
       <DynamicRender data={body} />
     </Comp>

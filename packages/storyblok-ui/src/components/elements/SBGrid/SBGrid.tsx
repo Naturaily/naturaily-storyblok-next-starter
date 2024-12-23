@@ -67,6 +67,8 @@ export const SBGrid = ({ blok }: SBProps<SBGridProps>) => {
   const asListItem = tag === 'ul' || tag === 'ol';
 
   return (
+    // TODO: Fix this
+    // @ts-ignore
     <Comp className={className} {...sbEditable(blok)}>
       <DynamicRender asListItem={asListItem} data={body} />
     </Comp>

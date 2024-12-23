@@ -17,6 +17,7 @@
     "@natu/next-link": "*",
     "@natu/storyblok-utils": "*",
     "@natu/ui": "*",
+    "@storyblok/react": "^4.3.2",
     "storyblok-rich-text-react-renderer": "2.9.2"
   },
   "devDependencies": {

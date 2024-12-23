@@ -9,7 +9,7 @@ import {
   FontFamily,
   Spacing,
 } from '@natu/storyblok-utils';
-import { Typography, TypographyVariant } from '@natu/ui';
+import { Typography, TypographyVariant, TypographyVariantProp } from '@natu/ui';
 
 interface SBTypographyProps {
   content?: string;
@@ -54,7 +54,7 @@ export const SBTypography = ({ blok }: SBProps<SBTypographyProps>) => {
     fontSizeMobile,
     fontSizeTablet || fontSizeMobile,
     fontSizeDesktop || fontSizeTablet || fontSizeMobile,
-  ];
+  ] as TypographyVariantProp;
 
   const className = resolveStoryblokStyles({
     fontWeight,
