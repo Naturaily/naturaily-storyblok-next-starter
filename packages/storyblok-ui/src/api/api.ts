@@ -23,22 +23,7 @@ import { getSdk, SdkFunctionWrapper } from './sdk';
 export const getStoryblokApi = storyblokInit({
   accessToken: env.NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN,
   use: [apiPlugin],
-  components: {
-    cta: SBCta,
-    image: SBImage,
-    richtext: SBRichtext,
-    table: SBTable,
-    container: SBContainer,
-    themeModeSwitcher: SBThemeModeSwitcher,
-    typography: SBTypography,
-    grid: SBGrid,
-    column: SBColumn,
-    row: SBRow,
-    // Content types
-    page: SBPage,
-    footer: SBFooter,
-    header: SBHeader,
-  },
+  components: componentsMap,
 });
 
 interface GetStoryblokSdkInput {

@@ -5,7 +5,6 @@ import { notFound } from 'next/navigation';
 import { getStoryblokSeoData } from '@natu/storyblok-seo';
 import { getStoryblokSdk } from '@natu/storyblok-ui';
 import {
-  DynamicRender,
   getSlugWithAppName,
   isSlugExcludedFromRouting,
   StoryblokStory,
