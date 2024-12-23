@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation';
 import { env } from '@natu/env';
 import { getStoryblokSeoData } from '@natu/storyblok-seo';
 import { getStoryblokSdk } from '@natu/storyblok-ui';
-import { DynamicRender } from '@natu/storyblok-utils';
+import { DynamicRender, StoryblokStory } from '@natu/storyblok-utils';
 
 export const generateMetadata = async (
   _: unknown,
@@ -37,7 +37,7 @@ const Page = async () => {
     notFound();
   }
 
-  return <DynamicRender data={data.story.content} />;
+  return <StoryblokStory story={data.story} />;
 };
 
 export default Page;

@@ -8,6 +8,7 @@ import {
   DynamicRender,
   getSlugWithAppName,
   isSlugExcludedFromRouting,
+  StoryblokStory,
 } from '@natu/storyblok-utils';
 
 const getSlugFromParams = <T extends string[] | string>(slug?: T) => {
@@ -59,7 +60,7 @@ const Page = async ({ params }: PageProps) => {
   try {
     const { data } = await getContentNode({ slug });
 
-    return <DynamicRender data={data.story.content} />;
+    return <StoryblokStory story={data.story} />;
   } catch (err) {
     return notFound();
   }

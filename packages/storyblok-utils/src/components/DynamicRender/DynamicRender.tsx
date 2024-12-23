@@ -1,4 +1,8 @@
-import { StoryblokServerComponent } from '@storyblok/react/rsc';
+import {
+  ISbStoryData,
+  StoryblokServerComponent,
+  StoryblokStory as StoryblokStoryComponent,
+} from '@storyblok/react/rsc';
 
 import { BlokItem } from '../../types';
 
@@ -33,3 +37,7 @@ export const DynamicRender = ({
 
   return <StoryblokServerComponent key={data._uid} blok={{ ...data, parentProps }} />;
 };
+
+export const StoryblokStory = ({ story }: { story: ISbStoryData }) => (
+  <StoryblokStoryComponent story={story} />
+);
