@@ -74,9 +74,9 @@ const RootLayout = async ({ children }: RootLayoutProps) => {
   const { header, footer, defaultTheme, forcedTheme } = configData.ConfigItem?.content || {};
 
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={poppinsFont.variable} suppressHydrationWarning>
-        <StoryblokProvider>
+    <StoryblokProvider>
+      <html lang="en" suppressHydrationWarning>
+        <body className={poppinsFont.variable} suppressHydrationWarning>
           <Providers
             darkModeOptions={{
               defaultTheme,
@@ -91,9 +91,9 @@ const RootLayout = async ({ children }: RootLayoutProps) => {
               {children}
             </Layout>
           </Providers>
-        </StoryblokProvider>
-      </body>
-    </html>
+        </body>
+      </html>
+    </StoryblokProvider>
   );
 };
 

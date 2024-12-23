@@ -1,5 +1,5 @@
 // @ts-ignore
-import { StoryblokComponent } from '@storyblok/react/rsc';
+import { StoryblokServerComponent } from '@storyblok/react/rsc';
 
 import { BlokItem } from '../../types';
 
@@ -22,13 +22,15 @@ export const DynamicRender = ({
     if (asListItem) {
       return data.map(blok => (
         <li className="flex" key={blok._uid}>
-          <StoryblokComponent blok={{ ...blok, parentProps }} />
+          <StoryblokServerComponent blok={{ ...blok, parentProps }} />
         </li>
       ));
     }
 
-    return data.map(blok => <StoryblokComponent key={blok._uid} blok={{ ...blok, parentProps }} />);
+    return data.map(blok => (
+      <StoryblokServerComponent key={blok._uid} blok={{ ...blok, parentProps }} />
+    ));
   }
 
-  return <StoryblokComponent key={data._uid} blok={{ ...data, parentProps }} />;
+  return <StoryblokServerComponent key={data._uid} blok={{ ...data, parentProps }} />;
 };

@@ -1,1 +1,1 @@
-export * from './components/componentsMap';
+export * from './api/api';

@@ -3168,7 +3168,7 @@
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.10.4.tgz#427d5549943a9c6fce808e39ea64dbe60d4047f1"
   integrity sha512-WJgX9nzTqknM393q1QJDJmoW28kUfEnybeTfVNcNAPnIx210RXm2DiXiHzfNPJNIUUb1tJnz/l4QGtJ30PgWmA==
 
-"@storyblok/js@^3.0.7":
+"@storyblok/js@3.1.9":
   version "3.1.9"
   resolved "https://registry.yarnpkg.com/@storyblok/js/-/js-3.1.9.tgz#01830a03814e053e65fccfa885f17fbcb16ab4f6"
   integrity sha512-N8QB/yn8wQxM+G9kV/RHTsynuTyaMNwiAI2KFiwuT9QPo+Zea4EmikNJY1KxrA1Q8G8YiZEm7OBp1B3QDycA6g==
@@ -3176,12 +3176,12 @@
     "@storyblok/richtext" "^3.0.0"
     storyblok-js-client "^6.10.3"
 
-"@storyblok/react@3.0.9":
-  version "3.0.9"
-  resolved "https://registry.yarnpkg.com/@storyblok/react/-/react-3.0.9.tgz#bad94d7185aa730c6642170a10284202c2fff6a3"
-  integrity sha512-N362hE+sBH3QebCrJtqgzGI2l+Dre8hfNJmAJvEtx1bEtfvu6hcA5ch5eQjjILxgDMwtseA0BnCXP7zoqJ2KCg==
+"@storyblok/react@4.3.2":
+  version "4.3.2"
+  resolved "https://registry.yarnpkg.com/@storyblok/react/-/react-4.3.2.tgz#858121bce6e7c3dd7e5db94e3495dc2a81527e2f"
+  integrity sha512-D4fyaJM3mgwbfSUJ5lQPaPC842EGx797fdqcnOPuX+/IWX0uiCp+C28GrGVc0JnZTG+gYpPS6TYaAMJl5ui1cA==
   dependencies:
-    "@storyblok/js" "^3.0.7"
+    "@storyblok/js" "3.1.9"
 
 "@storyblok/richtext@^3.0.0":
   version "3.0.2"

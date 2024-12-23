@@ -3,8 +3,8 @@ import { draftMode } from 'next/headers';
 import { notFound } from 'next/navigation';
 
 import { env } from '@natu/env';
-import { relations, getStoryblokApi } from '@natu/storyblok-api';
 import { getStoryblokSeoData } from '@natu/storyblok-seo';
+import { getStoryblokSdk } from '@natu/storyblok-ui';
 import { DynamicRender } from '@natu/storyblok-utils';
 
 export const generateMetadata = async (
@@ -12,15 +12,14 @@ export const generateMetadata = async (
   parent: ResolvingMetadata,
 ): Promise<Metadata> => {
   const { isEnabled } = await draftMode();
-  const { getContentNode } = getStoryblokApi({ draftMode: isEnabled });
+  const { getContentNode } = getStoryblokSdk({ draftMode: isEnabled });
 
   const prevData = await parent;
   const configData = await getContentNode({
     slug: env.NEXT_PUBLIC_STORYBLOK_MAIN_APP_FOLDER,
-    relations,
   });
 
-  return getStoryblokSeoData(configData.ContentNode?.content.seo, {
+  return getStoryblokSeoData(configData?.data?.story?.content?.seo, {
     slug: '/',
     prevData,
   });
@@ -28,18 +27,17 @@ export const generateMetadata = async (
 
 const Page = async () => {
   const { isEnabled } = await draftMode();
-  const { getContentNode } = getStoryblokApi({ draftMode: isEnabled });
+  const { getContentNode } = getStoryblokSdk({ draftMode: isEnabled });
 
-  const story = await getContentNode({
+  const { data } = await getContentNode({
     slug: env.NEXT_PUBLIC_STORYBLOK_MAIN_APP_FOLDER,
-    relations,
   });
 
-  if (!story || !story?.ContentNode) {
-    return notFound();
+  if (!data || !data?.story?.content) {
+    notFound();
   }
 
-  return <DynamicRender data={story.ContentNode.content} />;
+  return <DynamicRender data={data.story.content} />;
 };
 
 export default Page;

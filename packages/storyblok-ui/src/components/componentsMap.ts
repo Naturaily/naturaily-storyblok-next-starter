@@ -1,3 +1,5 @@
+import { SbReactComponentsMap } from '@storyblok/react/rsc';
+
 import { SBFooter } from './contentTypes/SBFooter';
 import { SBHeader } from './contentTypes/SBHeader';
 import { SBPage } from './contentTypes/SBPage';
@@ -31,7 +33,7 @@ const contentTypes = {
   header: SBHeader,
 };
 
-export const componentsMap: Record<string, unknown> = {
+export const componentsMap: SbReactComponentsMap = {
   ...elements,
   ...contentTypes,
 };
