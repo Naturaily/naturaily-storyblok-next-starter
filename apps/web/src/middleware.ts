@@ -6,10 +6,9 @@ const globalMiddlewares = {
   before: async (params: MiddlewareFunctionProps) => storyblokMiddleware(params),
 };
 
-const middlewares = {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  '/:slug': async ({ request }: MiddlewareFunctionProps) => {},
-};
+// Middlewares for specific paths
+// @docs https://nemo.rescale.build/
+const middlewares = {};
 
 export const middleware = createMiddleware(middlewares, globalMiddlewares);
 
