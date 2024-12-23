@@ -1,5 +1,6 @@
 'use client';
 
+import { MousePointerClick, LoaderCircle } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useMemo, createContext, ReactNode, useContext, useTransition } from 'react';
 
@@ -44,10 +45,16 @@ export const DraftModeProvider = ({ children, draftMode = false }: PreviewModePr
       <DraftModeContext.Provider value={data}>{children}</DraftModeContext.Provider>
       {isDraftModeEnabled && (
         <button
+          disabled={isPending}
           onClick={() => startTransition(handleOnClick)}
-          className="group fixed bottom-4 left-4 z-50 rounded bg-blue-500/90 px-4 py-2 text-xs font-bold text-white shadow-lg shadow-blue-500/80"
+          className="group fixed bottom-4 right-4 z-50 rounded bg-blue-500/90 px-4 py-2 text-xs font-bold text-white shadow-lg shadow-blue-500/80 flex items-center gap-2"
         >
           {isPending ? 'Loading...' : 'Draft mode!'}
+          {isPending ? (
+            <LoaderCircle className="size-4 animate-spin" />
+          ) : (
+            <MousePointerClick className="size-4" />
+          )}
           <span className={infoStyles}>Clicking on the button will disable the draft mode</span>
         </button>
       )}
