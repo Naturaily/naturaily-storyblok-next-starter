@@ -1,4 +1,3 @@
-// @ts-ignore
 import { StoryblokServerComponent } from '@storyblok/react/rsc';
 
 import { BlokItem } from '../../types';
