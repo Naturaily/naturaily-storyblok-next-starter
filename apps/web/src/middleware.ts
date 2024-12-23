@@ -2,13 +2,13 @@ import { createMiddleware, MiddlewareFunctionProps } from '@rescale/nemo';
 
 import { storyblokMiddleware } from '@natu/storyblok-preview/src/storyblok-middleware';
 
+const globalMiddlewares = {
+  before: async (params: MiddlewareFunctionProps) => storyblokMiddleware(params),
+};
+
 const middlewares = {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   '/:slug': async ({ request }: MiddlewareFunctionProps) => {},
-};
-
-const globalMiddlewares = {
-  before: async (params: MiddlewareFunctionProps) => storyblokMiddleware(params),
 };
 
 export const middleware = createMiddleware(middlewares, globalMiddlewares);
