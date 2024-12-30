@@ -1,8 +1,9 @@
 import '@natu/env/src/env/env.mjs';
-const { getStoryblokRedirects } = await import('./getStoryblokRedirects.mjs');
+import type { NextConfig } from 'next';
 
-/** @type {import("next").NextConfig} */
-const config = {
+import { getStoryblokRedirects } from './getStoryblokRedirects';
+
+const nextConfig: NextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
@@ -29,4 +30,4 @@ const config = {
   },
 };
 
-export default config;
+export default nextConfig;
