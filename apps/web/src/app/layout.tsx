@@ -6,7 +6,7 @@ import { ReactNode } from 'react';
 import { poppinsFont } from '@natu/fonts';
 import { getStoryblokSeoData } from '@natu/storyblok-seo';
 import { getStoryblokSdk } from '@natu/storyblok-ui';
-import { DynamicRender } from '@natu/storyblok-utils';
+import { DynamicRender, StoryblokStory } from '@natu/storyblok-utils';
 import { Layout } from '@natu/ui';
 
 import { Providers } from './Providers';
@@ -52,8 +52,8 @@ const RootLayout = async ({ children }: RootLayoutProps) => {
             draftMode={isEnabled}
           >
             <Layout
-              header={<DynamicRender data={header?.content} />}
-              footer={<DynamicRender data={footer?.content} />}
+              header={<StoryblokStory story={header} />}
+              footer={<StoryblokStory story={footer} />}
             >
               {children}
             </Layout>
