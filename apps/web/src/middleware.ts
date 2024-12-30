@@ -1,4 +1,4 @@
-import { createMiddleware, MiddlewareFunctionProps } from '@rescale/nemo';
+import { createMiddleware, MiddlewareConfig, MiddlewareFunctionProps } from '@rescale/nemo';
 
 import { storyblokMiddleware } from '@natu/storyblok-preview/src/storyblok-middleware';
 
@@ -8,7 +8,7 @@ const globalMiddlewares = {
 
 // Middlewares for specific paths
 // @docs https://nemo.rescale.build/
-const middlewares = {};
+const middlewares: MiddlewareConfig = {};
 
 export const middleware = createMiddleware(middlewares, globalMiddlewares);
 

@@ -6,7 +6,7 @@ import { ReactNode } from 'react';
 import { poppinsFont } from '@natu/fonts';
 import { getStoryblokSeoData } from '@natu/storyblok-seo';
 import { getStoryblokSdk } from '@natu/storyblok-ui';
-import { DynamicRender, StoryblokStory } from '@natu/storyblok-utils';
+import { StoryblokStory } from '@natu/storyblok-utils';
 import { Layout } from '@natu/ui';
 
 import { Providers } from './Providers';

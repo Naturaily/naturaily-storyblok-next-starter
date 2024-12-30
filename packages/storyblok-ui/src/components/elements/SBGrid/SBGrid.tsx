@@ -1,3 +1,5 @@
+import type { ElementType } from 'react';
+
 import {
   BlokItem,
   DynamicRender,
@@ -63,12 +65,10 @@ export const SBGrid = ({ blok }: SBProps<SBGridProps>) => {
     className: 'grid',
   });
 
-  const Comp = tag || 'div';
+  const Comp = (tag || 'div') as ElementType;
   const asListItem = tag === 'ul' || tag === 'ol';
 
   return (
-    // TODO: Fix this
-    // @ts-ignore
     <Comp className={className} {...sbEditable(blok)}>
       <DynamicRender asListItem={asListItem} data={body} />
     </Comp>

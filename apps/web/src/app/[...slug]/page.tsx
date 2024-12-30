@@ -61,6 +61,9 @@ const Page = async ({ params }: PageProps) => {
 
     return <StoryblokStory story={data.story} />;
   } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error(err);
+
     return notFound();
   }
 };

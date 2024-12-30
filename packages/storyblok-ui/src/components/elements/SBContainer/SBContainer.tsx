@@ -1,3 +1,5 @@
+import type { ElementType } from 'react';
+
 import {
   BlokItem,
   DynamicRender,
@@ -67,11 +69,9 @@ export const SBContainer = ({ blok }: SBProps<SBContainerProps>) => {
     pbDesktop: pyDesktop,
   });
 
-  const Comp = tag || 'div';
+  const Comp = (tag || 'div') as ElementType;
 
   return (
-    // TODO: Fix this
-    // @ts-ignore
     <Comp className={className} {...sbEditable(blok)}>
       <DynamicRender data={body} />
     </Comp>
