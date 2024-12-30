@@ -1,7 +1,7 @@
 import { draftMode } from 'next/headers';
 
 import { getStoryblokSdk } from '@natu/storyblok-ui';
-import { DynamicRender } from '@natu/storyblok-utils';
+import { StoryblokStory } from '@natu/storyblok-utils';
 
 const NotFound = async () => {
   const { isEnabled } = await draftMode();
@@ -9,7 +9,7 @@ const NotFound = async () => {
 
   const { data } = await getConfigNode();
 
-  return <DynamicRender data={data?.story?.content?.notFoundPage?.content} />;
+  return <StoryblokStory story={data?.story?.content?.notFoundPage} />;
 };
 
 export default NotFound;
