@@ -13,7 +13,6 @@
     "@natu/fonts": "*",
     "@natu/middleware-chain": "*",
     "@natu/next-themes": "*",
-    "@natu/storyblok-api": "*",
     "@natu/storyblok-preview": "*",
     "@natu/storyblok-revalidate": "*",
     "@natu/storyblok-seo": "*",

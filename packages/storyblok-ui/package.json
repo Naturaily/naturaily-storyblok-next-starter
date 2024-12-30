@@ -14,7 +14,6 @@
     "eslint:format": "eslint src --fix"
   },
   "dependencies": {
-    "@natu/storyblok-api": "*",
     "@natu/storyblok-richtext": "*",
     "@natu/storyblok-utils": "*",
     "@natu/ui": "*",
