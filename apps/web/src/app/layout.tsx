@@ -22,8 +22,8 @@ export const generateMetadata = async (): Promise<Metadata> => {
 
   return getStoryblokSeoData(configContent?.defaultSeo, {
     slug: '/',
-    twitterCreator: configContent?.twitterCreator || '',
     googleVerificationId: configContent?.googleVerificationId || '',
+    twitterCreator: configContent?.twitterCreator || '',
     siteName: configContent?.siteName || '',
   });
 };
