@@ -2,7 +2,7 @@ import { revalidatePath, revalidateTag } from 'next/cache';
 import { NextRequest } from 'next/server';
 
 import { env } from '@natu/env';
-import { TAGS } from '@natu/storyblok-api';
+import { TAGS } from '@natu/storyblok-ui';
 import { getSlugWithoutAppName } from '@natu/storyblok-utils';
 
 export const revalidateHandler = async (request: NextRequest): Promise<Response> => {

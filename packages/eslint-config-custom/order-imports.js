@@ -8,7 +8,6 @@ module.exports = [
   `/^${appPrefix}/next-api-fetcher/`,
   `/^${appPrefix}/storyblok-preview/`,
   `/^${appPrefix}/storyblok-utils/`,
-  `/^${appPrefix}/storyblok-api/`,
   `/^${appPrefix}/storyblok-ui/`,
   `/^${appPrefix}/storyblok-richtext/`,
   `/^${appPrefix}/env/`,

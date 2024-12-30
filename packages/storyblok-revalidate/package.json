@@ -21,6 +21,6 @@
   "dependencies": {
     "@natu/env": "*",
     "@natu/storyblok-utils": "*",
-    "@natu/storyblok-api": "*"
+    "@natu/storyblok-ui": "*"
   }
 }
