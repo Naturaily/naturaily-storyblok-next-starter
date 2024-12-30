@@ -21,7 +21,7 @@
   "dependencies": {
     "@natu/env": "*",
     "encoding": "0.1.13",
-    "tailwind-merge": "2.5.5",
+    "tailwind-merge": "2.6.0",
     "zod": "3.24.1"
   }
 }
