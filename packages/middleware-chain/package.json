@@ -2,17 +2,10 @@
   "name": "@natu/middleware-chain",
   "version": "0.0.0",
   "private": true,
-  "main": "./index.ts",
-  "types": "./index.ts",
+  "type": "module",
   "license": "MIT",
-  "files": [
-    "index.ts"
-  ],
   "publishConfig": {
     "access": "public"
-  },
-  "scripts": {
-    "eslint:format": "eslint src --fix"
   },
   "devDependencies": {
     "eslint-config-custom": "*",
