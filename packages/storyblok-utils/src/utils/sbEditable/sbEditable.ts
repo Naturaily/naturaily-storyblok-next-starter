@@ -1,4 +1,3 @@
-// @ts-ignore
 import { storyblokEditable, SbBlokData } from '@storyblok/react/rsc';
 
 import { SbComponentType } from '../../types';
@@ -14,7 +13,6 @@ import { SbComponentType } from '../../types';
  * property, an empty object is returned.
  */
 export const sbEditable = (blok?: SbComponentType) => {
-  // eslint-disable-next-line no-underscore-dangle
   if (!blok || !blok?._editable) {
     return {};
   }

@@ -1,6 +1,7 @@
 {
   "name": "@natu/storyblok-utils",
   "version": "0.0.0",
+  "type": "module",
   "private": true,
   "main": "./index.ts",
   "types": "./index.ts",
