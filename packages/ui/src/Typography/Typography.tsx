@@ -27,3 +27,5 @@ export const Typography = forwardRef<HTMLParagraphElement, TypographyProps>(
     );
   },
 );
+
+Typography.displayName = 'Typography';

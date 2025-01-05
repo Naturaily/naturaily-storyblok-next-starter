@@ -3,7 +3,7 @@ import { AnchorHTMLAttributes, Children, cloneElement, ReactElement } from 'reac
 import { Link } from '@natu/next-link';
 import { cn } from '@natu/utils';
 
-export interface ConditionalLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {}
+export type ConditionalLinkProps = AnchorHTMLAttributes<HTMLAnchorElement>;
 
 export const ConditionalLink = ({ href, children, className, ...rest }: ConditionalLinkProps) => {
   if (href) {
