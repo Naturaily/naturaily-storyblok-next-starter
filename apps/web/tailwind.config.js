@@ -1,4 +1,4 @@
-const defaultConfig = require('tailwind-config/tailwind.config');
+import defaultConfig from 'tailwind-config/tailwind.config';
 
 /** @type {import("tailwindcss").Config} */
 const config = {
@@ -22,4 +22,4 @@ const config = {
   ],
 };
 
-module.exports = config;
+export default config;

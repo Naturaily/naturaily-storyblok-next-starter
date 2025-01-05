@@ -2,6 +2,7 @@
   "name": "@natu/storybook-ui",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "license": "MIT",
   "scripts": {
     "eslint:format": "eslint src --fix",

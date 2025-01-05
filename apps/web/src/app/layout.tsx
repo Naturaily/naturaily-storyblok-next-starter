@@ -1,4 +1,3 @@
-import 'tailwind-config/global.css';
 import { Metadata } from 'next';
 import { draftMode } from 'next/headers';
 import { ReactNode } from 'react';
@@ -11,6 +10,7 @@ import { Layout } from '@natu/ui';
 
 import { Providers } from './Providers';
 import { StoryblokProvider } from './StoryblokProvider';
+import './global.css';
 
 export const generateMetadata = async (): Promise<Metadata> => {
   const { isEnabled } = await draftMode();

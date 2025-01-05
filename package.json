@@ -2,6 +2,7 @@
   "name": "naturaily-storyblok",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "workspaces": [
     "apps/*",
     "packages/*"
@@ -15,9 +16,8 @@
     "dev": "turbo run dev --concurrency 24",
     "dev:docs": "yarn workspace docs dev:docs",
     "prettier:format": "prettier --write \"**/*.{ts,tsx,md,mdx}\"",
-    "eslint:format": "turbo run eslint:format --concurrency 24",
+    "eslint:format": "turbo eslint:format --",
     "prepare": "husky",
-    "codegen": "turbo run codegen",
     "storyblok:setup": "yarn workspace @natu/storyblok-setup setup",
     "storybook": "yarn workspace @natu/storybook-ui storybook",
     "storybook:build": "yarn workspace @natu/storybook-ui storybook:build"
@@ -33,11 +33,11 @@
   "lint-staged": {
     "apps/**/*": [
       "yarn prettier:format",
-      "eslint --fix --ext js,ts,jsx,tsx,md,mdx"
+      "yarn eslint:format"
     ],
     "packages/**/*": [
       "yarn prettier:format",
-      "eslint --fix --ext js,ts,jsx,tsx,md,mdx"
+      "yarn eslint:format"
     ],
     "*.json": [
       "yarn prettier:format"

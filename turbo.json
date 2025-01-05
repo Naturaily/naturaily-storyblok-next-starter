@@ -21,15 +21,11 @@
       ]
     },
     "eslint:format": {
-      "cache": false,
-      "persistent": true
+      "dependsOn": ["^eslint:format"]
     },
     "dev": {
       "cache": false,
       "persistent": true
-    },
-    "codegen": {
-      "cache": false
     }
   }
 }

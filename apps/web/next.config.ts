@@ -1,4 +1,4 @@
-import '@natu/env/src/env/env.mjs';
+import '@natu/env/src/env/env.js';
 import type { NextConfig } from 'next';
 
 import { getStoryblokRedirects } from './getStoryblokRedirects';
