@@ -1,4 +1,4 @@
-/* eslint-disable consistent-return */
+ 
 import { storyblok } from '../../utils/client.ts';
 import { color } from '../../utils/color.ts';
 import { STORIES_ENDPOINT } from '../../utils/endpoints.ts';

@@ -1,8 +1,8 @@
 {
   "extends": "tsconfig/nextjs.json",
-  "include": [".", ".eslintrc.cjs"],
+  "include": [".", "old.cjs"],
   "exclude": ["node_modules", ".next", "coverage", ".turbo"],
   "compilerOptions": {
-    "allowImportingTsExtensions": true,
-  },
+    "allowImportingTsExtensions": true
+  }
 }
