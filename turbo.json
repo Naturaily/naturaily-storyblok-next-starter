@@ -17,7 +17,8 @@
         "STORYBLOK_MANAGEMENT_API_URL",
         "STORYBLOK_PERSONAL_ACCESS_TOKEN",
         "STORYBLOK_SPACE_ID",
-        "STORYBLOK_REGION"
+        "STORYBLOK_REGION",
+        "ANALYZE"
       ]
     },
     "eslint:format": {

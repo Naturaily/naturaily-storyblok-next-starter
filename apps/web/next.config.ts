@@ -1,7 +1,12 @@
 import '@natu/env/src/env/env.js';
+import bundleAnalyzer from '@next/bundle-analyzer';
 import type { NextConfig } from 'next';
 
 import { getStoryblokRedirects } from './getStoryblokRedirects';
+
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+});
 
 const nextConfig: NextConfig = {
   images: {
@@ -30,4 +35,5 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default withBundleAnalyzer(nextConfig as any);

@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "next dev --turbo",
+    "bundle:analyze": "ANALYZE=true yarn build",
     "build": "next build",
     "start": "next start",
     "eslint:format": "eslint src --fix"
@@ -21,6 +22,7 @@
     "@natu/storyblok-utils": "*",
     "@natu/ui": "*",
     "@natu/utils": "*",
+    "@next/bundle-analyzer": "^15.1.3",
     "next": "^15.1.3"
   },
   "devDependencies": {
