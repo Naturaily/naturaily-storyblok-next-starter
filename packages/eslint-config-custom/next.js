@@ -41,7 +41,7 @@ export const nextJsConfig = [
       'no-underscore-dangle': 0,
       'no-plusplus': 0,
       'no-console': 2,
-      '@typescript-eslint/no-unused-vars': 1,
+      '@typescript-eslint/no-unused-vars': 2,
       '@typescript-eslint/lines-between-class-members': 0,
       '@typescript-eslint/no-throw-literal': 0,
       'react/react-in-jsx-scope': 0,
