@@ -2,9 +2,13 @@
   "name": "@natu/storybook",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "main": "./index.ts",
   "types": "./index.ts",
   "license": "MIT",
+  "scripts": {
+    "eslint:format": "eslint src --fix"
+  },
   "devDependencies": {
     "@storybook/addon-a11y": "8.4.7",
     "@storybook/addon-essentials": "8.4.7",
