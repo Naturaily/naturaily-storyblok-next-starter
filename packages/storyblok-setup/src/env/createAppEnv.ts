@@ -39,7 +39,6 @@ export const createAppEnv = async ({
     NEXT_PUBLIC_STORYBLOK_EXCLUDED_FOLDERS_FROM_ROUTING,
   };
 
-   
   const __dirname = dirname(fileURLToPath(import.meta.url));
   const envPath = resolve(__dirname, '../../../../apps/web/.env');
   try {

@@ -43,7 +43,6 @@ export const createConfigFolder = async ({
     console.log(err);
   }
 
-   
   return {
     rootConfigFolderID,
     NEXT_PUBLIC_STORYBLOK_EXCLUDED_FOLDERS_FROM_ROUTING: rootSlug,

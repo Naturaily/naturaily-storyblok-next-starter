@@ -1,4 +1,3 @@
- 
 import { type MiddlewareFunctionProps } from '@rescale/nemo';
 import { draftMode } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';

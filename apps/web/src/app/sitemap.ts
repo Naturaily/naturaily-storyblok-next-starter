@@ -1,4 +1,3 @@
- 
 import { MetadataRoute } from 'next';
 import { draftMode } from 'next/headers';
 
