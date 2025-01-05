@@ -1,4 +1,4 @@
-/* eslint-disable no-await-in-loop */
+ 
 import { MetadataRoute } from 'next';
 import { draftMode } from 'next/headers';
 
