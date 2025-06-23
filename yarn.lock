@@ -2549,12 +2549,12 @@
   dependencies:
     "@storyblok/js" "^3.0.7"
 
-"@storybook/addon-a11y@8.0.0":
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-a11y/-/addon-a11y-8.0.0.tgz#115b23effab8b9f166a72ffee4085bea3ac3b2f9"
-  integrity sha512-lxvXOMYqeM6DOUvNP3e18GzPDVhcOZtLnjkJ8XQbRk2xx2qHodAEiFhiKBhfStsn6/rg0zWLRpZ1NJxjnZ0l/Q==
+"@storybook/addon-a11y@8.1.11":
+  version "8.1.11"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-a11y/-/addon-a11y-8.1.11.tgz#70b073009104dbc2d0f8dca1ccfc3254ae4e4eb4"
+  integrity sha512-JFiY/ASwMOCf3MOi7GtKOvLn62jhcIYV2he90l1SSnXxsDmurETVumyAdTQtQtUQpAJI+l0Ed4uLVjzAxkGreg==
   dependencies:
-    "@storybook/addon-highlight" "8.0.0"
+    "@storybook/addon-highlight" "8.1.11"
     axe-core "^4.2.0"
 
 "@storybook/addon-actions@8.0.0":
@@ -2645,17 +2645,17 @@
     "@storybook/preview-api" "8.0.4"
     ts-dedent "^2.0.0"
 
-"@storybook/addon-highlight@8.0.0":
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-highlight/-/addon-highlight-8.0.0.tgz#cd5c007938bd533bcb5b3baaa27d18604ba0eb9a"
-  integrity sha512-bSba9UTcPJBFUy5peIU8XPlKK/7lT054977oLGgVYup2u88km6pWaMNSGMWhb3xXdseTgrj96k/b+md4X+WrMg==
-  dependencies:
-    "@storybook/global" "^5.0.0"
-
 "@storybook/addon-highlight@8.0.4":
   version "8.0.4"
   resolved "https://registry.yarnpkg.com/@storybook/addon-highlight/-/addon-highlight-8.0.4.tgz#32f21a1f850394e83277a1cd553a33c86cb603f4"
   integrity sha512-tnEiVaJlXL07v8JBox+QtRPVruoy0YovOTAOWY7fKDiKzF1I9wLaJjQF3wOsvwspHTHu00OZw2gsazgXiH4wLQ==
+  dependencies:
+    "@storybook/global" "^5.0.0"
+
+"@storybook/addon-highlight@8.1.11":
+  version "8.1.11"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-highlight/-/addon-highlight-8.1.11.tgz#c4e7af700d3ede709472831b6afb026a0208b388"
+  integrity sha512-Iu8FCAd4ETsB6QF4xDE/OLLZY3HOFopuLM5KE0f58jnccF5zAVGr1Rj/54p6TeK0PEou0tLRPFuZs+LPlEzrSw==
   dependencies:
     "@storybook/global" "^5.0.0"
 
