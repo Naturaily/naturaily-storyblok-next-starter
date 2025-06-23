@@ -2,13 +2,13 @@ import { Steps, Callout } from 'nextra/components';
 
 ## 🎯 Getting Started
 
-To start using the Turbo Repo with Node.js and Yarn, follow these steps:
+To start using the Turbo Repo with Node.js and PNPM, follow these steps:
 
 <Steps>
 ### Install project dependencies
 
 ```bash copy
-yarn install
+pnpm install
 ```
 
 ### Create new Storyblok space
@@ -60,7 +60,7 @@ When creating a new space in Storyblok, it adds several default components and a
 ### Run the `storyblok-setup` script
 
 ```bash copy
-  yarn storyblok:setup
+  pnpm storyblok:setup
 ```
 
 #### The script will create several items for you in Storyblok CMS:
@@ -69,7 +69,7 @@ When creating a new space in Storyblok, it adds several default components and a
 - Few components in block library,
 - The basic page structure in the content tab, which includes `homepage`, `global header`, `global footer`, `configuration story`, `not found page`, `redirects`
 
-The script will also create a `.env` file in the `apps/web/.env` directory based on your data. Finally, the command `yarn dev` will be automatically executed.
+The script will also create a `.env` file in the `apps/web/.env` directory based on your data. Finally, the command `pnpm dev` will be automatically executed.
 
 ```bash copy filename="apps/web/.env"
 NEXT_PUBLIC_APP_URL=http://localhost:3000

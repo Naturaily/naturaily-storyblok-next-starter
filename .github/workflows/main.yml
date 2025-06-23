@@ -25,9 +25,9 @@ jobs:
         with:
           node-version: 18
       - name: Install dependencies
-        run: yarn install
+        run: pnpm install
       - name: Run prettier format
-        run: yarn prettier:format
+        run: pnpm prettier:format
 
   eslint-format:
     name: Eslint format
@@ -44,6 +44,6 @@ jobs:
         with:
           node-version: 18
       - name: Install dependencies
-        run: yarn install
+        run: pnpm install
       - name: Run eslint format
-        run: yarn eslint:format
+        run: pnpm eslint:format

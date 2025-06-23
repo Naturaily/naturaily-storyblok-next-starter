@@ -1,11 +1,12 @@
-import '@natu/env/src/env/env.js';
-import bundleAnalyzer from '@next/bundle-analyzer';
+import withBundleAnalyzer from '@next/bundle-analyzer';
 import type { NextConfig } from 'next';
+
+import { env } from '@natu/env';
 
 import { getStoryblokRedirects } from './getStoryblokRedirects';
 
-const withBundleAnalyzer = bundleAnalyzer({
-  enabled: process.env.ANALYZE === 'true',
+const bundleAnalyzer = withBundleAnalyzer({
+  enabled: env.ANALYZE === 'true',
 });
 
 const nextConfig: NextConfig = {
@@ -35,5 +36,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default withBundleAnalyzer(nextConfig as any);
+export default bundleAnalyzer(nextConfig);

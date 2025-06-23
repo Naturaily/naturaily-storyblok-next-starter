@@ -16,13 +16,13 @@
     "eslint:format": "eslint src --fix"
   },
   "devDependencies": {
-    "eslint-config-custom": "*",
-    "tsconfig": "*"
+    "eslint-config-custom": "workspace:*",
+    "tsconfig": "workspace:*"
   },
   "dependencies": {
-    "@natu/env": "*",
+    "@natu/env": "workspace:*",
+    "clsx": "^2.1.1",
     "encoding": "0.1.13",
-    "tailwind-merge": "2.6.0",
-    "zod": "3.24.1"
+    "tailwind-merge": "2.6.0"
   }
 }

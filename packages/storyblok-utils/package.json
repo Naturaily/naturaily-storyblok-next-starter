@@ -16,12 +16,12 @@
     "eslint:format": "eslint src --fix"
   },
   "devDependencies": {
-    "eslint-config-custom": "*",
-    "tsconfig": "*"
+    "eslint-config-custom": "workspace:*",
+    "tsconfig": "workspace:*"
   },
   "dependencies": {
-    "@natu/env": "*",
-    "@natu/utils": "*",
+    "@natu/env": "workspace:*",
+    "@natu/utils": "workspace:*",
     "@storyblok/react": "4.3.3"
   }
 }

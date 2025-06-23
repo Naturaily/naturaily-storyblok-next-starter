@@ -10,8 +10,8 @@
     "eslint:format": "eslint src --fix"
   },
   "devDependencies": {
-    "autoprefixer": "10.4.20",
-    "eslint-config-custom": "*",
-    "tsconfig": "*"
+    "autoprefixer": "10.4.21",
+    "eslint-config-custom": "workspace:*",
+    "tsconfig": "workspace:*"
   }
 }

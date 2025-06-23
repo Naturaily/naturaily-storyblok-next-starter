@@ -8,7 +8,9 @@ const skipValidation =
 
 export const env = createEnv({
   skipValidation,
-  server: {},
+  server: {
+    ANALYZE: z.string().nullish(),
+  },
   client: {
     NEXT_PUBLIC_APP_URL: z.string(),
     NEXT_PUBLIC_STORYBLOK_API_URL: z.string(),
@@ -20,6 +22,7 @@ export const env = createEnv({
       .nullish(),
   },
   runtimeEnv: {
+    ANALYZE: process.env.ANALYZE,
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
     NEXT_PUBLIC_STORYBLOK_API_URL: process.env.NEXT_PUBLIC_STORYBLOK_API_URL,
     NEXT_PUBLIC_STORYBLOK_TOKEN_VERSION: process.env.NEXT_PUBLIC_STORYBLOK_TOKEN_VERSION,

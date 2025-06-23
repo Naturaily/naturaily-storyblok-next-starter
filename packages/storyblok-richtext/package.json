@@ -15,15 +15,18 @@
     "eslint:format": "eslint src --fix"
   },
   "dependencies": {
-    "@natu/next-link": "*",
-    "@natu/storyblok-utils": "*",
-    "@natu/ui": "*",
+    "@natu/env": "workspace:*",
+    "@natu/next-link": "workspace:*",
+    "@natu/storyblok-utils": "workspace:*",
+    "@natu/ui": "workspace:*",
     "@storyblok/react": "^4.3.3",
+    "react": "^19.1.0",
     "storyblok-rich-text-react-renderer": "2.9.2"
   },
   "devDependencies": {
-    "eslint-config-custom": "*",
-    "tailwind-config": "*",
-    "tsconfig": "*"
+    "@types/react": "19.1.8",
+    "eslint-config-custom": "workspace:*",
+    "tailwind-config": "workspace:*",
+    "tsconfig": "workspace:*"
   }
 }

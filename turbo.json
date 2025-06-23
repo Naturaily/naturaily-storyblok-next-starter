@@ -3,6 +3,7 @@
   "globalDependencies": ["**/.env.*local"],
   "tasks": {
     "build": {
+      "cache": true,
       "dependsOn": ["^build"],
       "outputs": [".next/**", "!.next/cache/**"],
       "env": [
@@ -27,6 +28,9 @@
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "codegen": {
+      "cache": false
     }
   }
 }

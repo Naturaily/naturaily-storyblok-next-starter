@@ -17,9 +17,9 @@
     "@storybook/blocks": "8.4.7",
     "@storybook/nextjs": "8.4.7",
     "@storybook/react": "8.4.7",
-    "eslint-config-custom": "*",
+    "eslint-config-custom": "workspace:*",
     "storybook": "8.4.7",
-    "tailwind-config": "*",
-    "tsconfig": "*"
+    "tailwind-config": "workspace:*",
+    "tsconfig": "workspace:*"
   }
 }

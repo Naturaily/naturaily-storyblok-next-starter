@@ -10,9 +10,9 @@
     "storybook:build": "storybook build"
   },
   "devDependencies": {
-    "eslint-config-custom": "*",
-    "tailwind-config": "*",
-    "tsconfig": "*",
-    "@natu/storybook": "*"
+    "eslint-config-custom": "workspace:*",
+    "tailwind-config": "workspace:*",
+    "tsconfig": "workspace:*",
+    "@natu/storybook": "workspace:*"
   }
 }

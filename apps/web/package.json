@@ -5,29 +5,31 @@
   "type": "module",
   "scripts": {
     "dev": "next dev --turbo",
-    "bundle:analyze": "ANALYZE=true yarn build",
+    "bundle:analyze": "ANALYZE=true pnpm build",
     "build": "next build",
     "start": "next start",
     "eslint:format": "eslint src --fix"
   },
   "dependencies": {
-    "@natu/env": "*",
-    "@natu/fonts": "*",
-    "@natu/middleware-chain": "*",
-    "@natu/next-themes": "*",
-    "@natu/storyblok-preview": "*",
-    "@natu/storyblok-revalidate": "*",
-    "@natu/storyblok-seo": "*",
-    "@natu/storyblok-ui": "*",
-    "@natu/storyblok-utils": "*",
-    "@natu/ui": "*",
-    "@natu/utils": "*",
+    "@natu/env": "workspace:*",
+    "@natu/fonts": "workspace:*",
+    "@natu/middleware-chain": "workspace:*",
+    "@natu/next-themes": "workspace:*",
+    "@natu/storyblok-preview": "workspace:*",
+    "@natu/storyblok-revalidate": "workspace:*",
+    "@natu/storyblok-seo": "workspace:*",
+    "@natu/storyblok-ui": "workspace:*",
+    "@natu/storyblok-utils": "workspace:*",
+    "@natu/ui": "workspace:*",
+    "@natu/utils": "workspace:*",
     "@next/bundle-analyzer": "^15.1.3",
-    "next": "^15.1.3"
+    "next": "^15.3.4",
+    "react": "^19.1.0"
   },
   "devDependencies": {
-    "eslint-config-custom": "*",
-    "tailwind-config": "*",
-    "tsconfig": "*"
+    "@types/react": "19.1.8",
+    "eslint-config-custom": "workspace:*",
+    "tailwind-config": "workspace:*",
+    "tsconfig": "workspace:*"
   }
 }

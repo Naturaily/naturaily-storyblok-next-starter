@@ -10,37 +10,37 @@
   "engines": {
     "node": ">=18.18.2"
   },
-  "packageManager": "yarn@1.22.19",
+  "packageManager": "pnpm@10.11.1",
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --concurrency 24",
-    "dev:docs": "yarn workspace docs dev:docs",
+    "dev:docs": "pnpm --filter docs dev:docs",
     "prettier:format": "prettier --write \"**/*.{ts,tsx,md,mdx}\"",
     "eslint:format": "turbo eslint:format --",
     "prepare": "husky",
-    "storyblok:setup": "yarn workspace @natu/storyblok-setup setup",
-    "storybook": "yarn workspace @natu/storybook-ui storybook",
-    "storybook:build": "yarn workspace @natu/storybook-ui storybook:build"
+    "storyblok:setup": "pnpm --filter @natu/storyblok-setup setup",
+    "storybook": "pnpm --filter @natu/storybook-ui storybook",
+    "storybook:build": "pnpm --filter @natu/storybook-ui storybook:build"
   },
   "devDependencies": {
-    "eslint-config-custom": "*",
+    "eslint-config-custom": "workspace:*",
     "husky": "9.1.7",
-    "lint-staged": "15.3.0",
+    "lint-staged": "16.1.2",
     "prettier": "^3.4.2",
-    "tsconfig": "*",
-    "turbo": "2.3.3"
+    "tsconfig": "workspace:*",
+    "turbo": "2.5.4"
   },
   "lint-staged": {
     "apps/**/*": [
-      "yarn prettier:format",
-      "yarn eslint:format"
+      "pnpm prettier:format",
+      "pnpm eslint:format"
     ],
     "packages/**/*": [
-      "yarn prettier:format",
-      "yarn eslint:format"
+      "pnpm prettier:format",
+      "pnpm eslint:format"
     ],
     "*.json": [
-      "yarn prettier:format"
+      "pnpm prettier:format"
     ]
   }
 }

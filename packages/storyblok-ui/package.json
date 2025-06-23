@@ -15,15 +15,19 @@
     "eslint:format": "eslint src --fix"
   },
   "dependencies": {
-    "@natu/storyblok-richtext": "*",
-    "@natu/storyblok-utils": "*",
-    "@natu/ui": "*",
-    "@natu/next-themes": "*",
-    "@natu/utils": "*"
+    "@natu/next-link": "workspace:*",
+    "@natu/env": "workspace:*",
+    "@natu/next-themes": "workspace:*",
+    "@natu/storyblok-preview": "workspace:*",
+    "@natu/storyblok-richtext": "workspace:*",
+    "@natu/storyblok-utils": "workspace:*",
+    "@natu/ui": "workspace:*",
+    "@natu/utils": "workspace:*",
+    "@storyblok/react": "4.3.3"
   },
   "devDependencies": {
-    "eslint-config-custom": "*",
-    "tailwind-config": "*",
-    "tsconfig": "*"
+    "eslint-config-custom": "workspace:*",
+    "tailwind-config": "workspace:*",
+    "tsconfig": "workspace:*"
   }
 }

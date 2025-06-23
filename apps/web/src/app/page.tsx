@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic';
 import { Metadata, ResolvingMetadata } from 'next';
 import { draftMode } from 'next/headers';
 import { notFound } from 'next/navigation';
@@ -12,14 +13,16 @@ export const generateMetadata = async (
   parent: ResolvingMetadata,
 ): Promise<Metadata> => {
   const { isEnabled } = await draftMode();
+  console.log('isEnabled', isEnabled);
   const { getContentNode } = getStoryblokSdk({ draftMode: isEnabled });
 
   const prevData = await parent;
-  const configData = await getContentNode({
+
+  const { data } = await getContentNode({
     slug: env.NEXT_PUBLIC_STORYBLOK_MAIN_APP_FOLDER,
   });
 
-  return getStoryblokSeoData(configData?.data?.story?.content?.seo, {
+  return getStoryblokSeoData(data?.story?.content?.seo, {
     slug: '/',
     prevData,
   });
@@ -41,3 +44,5 @@ const Page = async () => {
 };
 
 export default Page;
+
+// TODO: Fix prettier-plugin-tailwindcss

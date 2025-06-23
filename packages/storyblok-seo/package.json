@@ -15,12 +15,14 @@
     "eslint:format": "eslint src --fix"
   },
   "dependencies": {
-    "@natu/storyblok-utils": "*",
-    "@natu/ui": "*",
-    "@natu/utils": "*"
+    "@natu/env": "workspace:*",
+    "@natu/storyblok-utils": "workspace:*",
+    "@natu/ui": "workspace:*",
+    "@natu/utils": "workspace:*",
+    "next": "^15.3.4"
   },
   "devDependencies": {
-    "eslint-config-custom": "*",
-    "tsconfig": "*"
+    "eslint-config-custom": "workspace:*",
+    "tsconfig": "workspace:*"
   }
 }

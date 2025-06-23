@@ -23,20 +23,24 @@ export const nextJsConfig = [
     ...pluginReact.configs.flat.recommended,
     languageOptions: {
       ...pluginReact.configs.flat.recommended.languageOptions,
-      globals: {
-        ...globals.serviceworker,
-        ...globals.node,
-      },
+      globals: { ...globals.serviceworker, ...globals.node },
     },
   },
   {
-    plugins: {
-      '@next/next': pluginNext,
-      'import-helpers': importHelpers,
-    },
+    plugins: { '@next/next': pluginNext },
     rules: {
       ...pluginNext.configs.recommended.rules,
       ...pluginNext.configs['core-web-vitals'].rules,
+      '@next/next/no-html-link-for-pages': 0,
+      'no-restricted-imports': [
+        2,
+        { paths: [{ name: 'next/link', message: 'Use `@capitalise/next-link` instead.' }] },
+      ],
+    },
+  },
+  {
+    plugins: { 'import-helpers': importHelpers },
+    rules: {
       'global-require': 0,
       'no-underscore-dangle': 0,
       'no-plusplus': 0,
@@ -44,23 +48,10 @@ export const nextJsConfig = [
       '@typescript-eslint/no-unused-vars': 2,
       '@typescript-eslint/lines-between-class-members': 0,
       '@typescript-eslint/no-throw-literal': 0,
-      'react/react-in-jsx-scope': 0,
       'import/prefer-default-export': 0,
       'import/no-extraneous-dependencies': 0,
-      'react/prop-types': 0,
-      'react/button-has-type': 0,
-      'react/destructuring-assignment': 0,
-      'react/require-default-props': 0,
       'newline-before-return': 2,
       '@typescript-eslint/no-var-requires': 1,
-      'react/function-component-definition': [
-        2,
-        {
-          namedComponents: 'arrow-function',
-        },
-      ],
-      'react/jsx-props-no-spreading': 0,
-      '@next/next/no-html-link-for-pages': 0,
       '@typescript-eslint/ban-ts-comment': 0,
       'import-helpers/order-imports': [
         2,
@@ -70,28 +61,21 @@ export const nextJsConfig = [
           alphabetize: { order: 'asc', ignoreCase: true },
         },
       ],
-      'no-restricted-imports': [
-        2,
-        {
-          paths: [
-            {
-              name: 'next/link',
-              message: 'Use `@natu/next-link` instead.',
-            },
-          ],
-        },
-      ],
     },
   },
   {
-    plugins: {
-      'react-hooks': pluginReactHooks,
-    },
+    plugins: { 'react-hooks': pluginReactHooks },
     settings: { react: { version: 'detect' } },
     rules: {
       ...pluginReactHooks.configs.recommended.rules,
       // React scope no longer necessary with new JSX transform.
       'react/react-in-jsx-scope': 0,
+      'react/jsx-props-no-spreading': 0,
+      'react/prop-types': 0,
+      'react/button-has-type': 0,
+      'react/destructuring-assignment': 0,
+      'react/require-default-props': 0,
+      'react/function-component-definition': [2, { namedComponents: 'arrow-function' }],
     },
   },
 ];
