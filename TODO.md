@@ -1,14 +1,15 @@
 # Project TODO List
 
 - [x] Fix Eslint workspace and test it by importing not used import
-- [ ] Fix T3.env TS process
+- [x] Fix the tailwind-prettier-plugin
 - [ ] Fix TailwindCSS missing styles
 - [ ] Bump TailwindCSS to the latest version
-- [ ] Fix the tailwind-prettier-plugin
 - [ ] Remove all unnecessary `index.ts` files
 - [ ] Dynamic imports for all conditional renders
 - [ ] Add conditional prose rendering to richtext
 - [ ] Check the sitemap and robots file
+- [ ] Fix the bundle analyzer in next.config.ts
+- [ ] Fix T3.env TS process
 - [ ] Bump all packages
 - [ ] Remove all unused packages from each package.json
 - [ ] Bump docs and storyblok

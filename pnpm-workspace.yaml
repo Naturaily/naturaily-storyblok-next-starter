@@ -1,7 +1,9 @@
 # PNPM V10 fix
 # https://github.com/microsoft/vscode-eslint/issues/1986#issuecomment-2799868163
+# https://github.com/prettier/prettier-vscode/issues/3104#issuecomment-2834447583
 publicHoistPattern:
   - '*eslint*'
+  - '*prettier*'
 packages:
   - 'apps/*'
   - 'packages/*'
