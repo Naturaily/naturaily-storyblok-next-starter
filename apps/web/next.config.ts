@@ -1,13 +1,13 @@
-import withBundleAnalyzer from '@next/bundle-analyzer';
+// import withBundleAnalyzer from '@next/bundle-analyzer';
 import type { NextConfig } from 'next';
 
-import { env } from '@natu/env';
+// import { env } from '@natu/env';
 
 import { getStoryblokRedirects } from './getStoryblokRedirects';
 
-const bundleAnalyzer = withBundleAnalyzer({
-  enabled: env.ANALYZE === 'true',
-});
+// const bundleAnalyzer = withBundleAnalyzer({
+//   enabled: env.ANALYZE === 'true',
+// });
 
 const nextConfig: NextConfig = {
   images: {
@@ -36,5 +36,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-// TODO: Fix this
-export default bundleAnalyzer(nextConfig);
+export default nextConfig;
