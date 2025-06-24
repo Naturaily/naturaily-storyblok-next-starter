@@ -138,7 +138,9 @@ export const SBTable = ({ blok }: SBProps<SBTableProps>) => {
       {caption && <TableCaption>{caption}</TableCaption>}
       <TableHeader>
         <TableRow>
-          {thead?.map(item => <TableHead key={item._uid}>{item.value}</TableHead>)}
+          {thead?.map(item => (
+            <TableHead key={item._uid}>{item.value}</TableHead>
+          ))}
         </TableRow>
       </TableHeader>
       <TableBody>
