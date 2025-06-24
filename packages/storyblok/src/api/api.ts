@@ -3,9 +3,9 @@ import { apiPlugin, ISbStoriesParams, storyblokInit } from '@storyblok/react/rsc
 import { env } from '@natu/env';
 
 import { componentsMap } from '../components/componentsMap';
+import { isDraftMode } from '../storyblok-preview';
 import { relations } from './relations';
 import { getSdk, SdkFunctionWrapper } from './sdk';
-import { isDraftMode } from '../storyblok-preview';
 
 export const getStoryblokApi = storyblokInit({
   accessToken: env.NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN,

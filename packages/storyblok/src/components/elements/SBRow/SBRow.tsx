@@ -1,5 +1,7 @@
 import type { ElementType } from 'react';
 
+import { cn } from '@natu/utils/cn';
+
 import {
   BlokItem,
   Spacing,
@@ -10,7 +12,6 @@ import {
   sbEditable,
   DynamicRender,
 } from '../../../utils/src';
-import { cn } from '@natu/utils/cn';
 
 interface SBRowProps {
   body?: BlokItem[];

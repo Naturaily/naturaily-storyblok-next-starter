@@ -8,13 +8,14 @@ import {
   NODE_CODEBLOCK,
   NODE_LI,
 } from 'storyblok-rich-text-react-renderer';
-import { MarkLink } from '../MarkLink/MarkLink';
+
+import { DefaultBlokResolver } from '../DefaultBlokResolver/DefaultBlokResolver';
 import { MarkCode } from '../MarkCode/MarkCode';
+import { MarkLink } from '../MarkLink/MarkLink';
+import { NodeCodeblock } from '../NodeCodeblock/NodeCodeblock';
 import { NodeHeading } from '../NodeHeading/NodeHeading';
 import { NodeImage } from '../NodeImage/NodeImage';
-import { NodeCodeblock } from '../NodeCodeblock/NodeCodeblock';
 import { NodeLi } from '../NodeLi/NodeLi';
-import { DefaultBlokResolver } from '../DefaultBlokResolver/DefaultBlokResolver';
 
 export const getStoryblokRichText = (data: ISbRichtext) =>
   render(data, {

@@ -7,6 +7,7 @@ import {
   TableHeader,
   TableRow,
 } from '@natu/ui/Table';
+
 import {
   StoryblokTable,
   Spacing,

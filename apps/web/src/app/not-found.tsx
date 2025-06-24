@@ -1,6 +1,7 @@
+import { draftMode } from 'next/headers';
+
 import { getStoryblokSdk } from '@natu/storyblok/api';
 import { StoryblokStory } from '@natu/storyblok/DynamicRender';
-import { draftMode } from 'next/headers';
 
 const NotFound = async () => {
   const { isEnabled } = await draftMode();

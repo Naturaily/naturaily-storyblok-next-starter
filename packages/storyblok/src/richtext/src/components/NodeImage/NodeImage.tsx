@@ -1,6 +1,8 @@
 import { ReactNode } from 'react';
-import { getAssetFromStoryblok, StoryblokAsset } from '../../../../utils/src';
+
 import { ResponsiveImage } from '@natu/ui/ResponsiveImage';
+
+import { getAssetFromStoryblok, StoryblokAsset } from '../../../../utils/src';
 
 interface NodeImageProps {
   alt?: string;

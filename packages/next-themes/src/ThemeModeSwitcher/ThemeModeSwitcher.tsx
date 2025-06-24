@@ -1,5 +1,8 @@
 'use client';
 
+import { Moon, Sun } from 'lucide-react';
+import { useTheme } from 'next-themes';
+
 import { Button } from '@natu/ui/Button';
 import {
   DropdownMenu,
@@ -7,10 +10,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@natu/ui/DropdownMenu';
-import { Moon, Sun } from 'lucide-react';
-import { useTheme } from 'next-themes';
 
-export const ThemeModeSwitcher = ({ ...rest }: { [x: string]: any }): React.JSX.Element => {
+export const ThemeModeSwitcher = ({ ...rest }: { [x: string]: unknown }): React.JSX.Element => {
   const { setTheme } = useTheme();
 
   return (

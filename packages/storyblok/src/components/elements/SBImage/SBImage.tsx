@@ -1,3 +1,8 @@
+import { AspectRatio } from '@natu/ui/AspectRatio';
+import { ConditionalLink } from '@natu/ui/ConditionalLink';
+import { ResponsiveImage } from '@natu/ui/ResponsiveImage';
+import { cn } from '@natu/utils/cn';
+
 import {
   StoryblokAsset,
   StoryblokLink,
@@ -8,10 +13,6 @@ import {
   resolveStoryblokStyles,
   sbEditable,
 } from '../../../utils/src';
-import { ConditionalLink } from '@natu/ui/ConditionalLink';
-import { AspectRatio } from '@natu/ui/AspectRatio';
-import { ResponsiveImage } from '@natu/ui/ResponsiveImage';
-import { cn } from '@natu/utils/cn';
 
 interface SBImageProps {
   asset?: StoryblokAsset;

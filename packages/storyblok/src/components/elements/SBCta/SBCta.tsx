@@ -1,4 +1,5 @@
 import { Link } from '@natu/next-link/Link';
+import { Button, ButtonProps } from '@natu/ui/Button';
 
 import {
   getLinkPropsFromStoryblok,
@@ -8,7 +9,6 @@ import {
   Spacing,
   StoryblokLink,
 } from '../../../utils/src';
-import { Button, ButtonProps } from '@natu/ui/Button';
 
 interface SBButtonProps {
   content?: string;

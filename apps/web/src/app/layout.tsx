@@ -1,15 +1,16 @@
 import 'tailwind-config/global.css';
 import { Metadata } from 'next';
+import { Poppins } from 'next/font/google';
 import { draftMode } from 'next/headers';
 import { ReactNode } from 'react';
 
-import { Poppins } from 'next/font/google';
+import { getStoryblokSdk } from '@natu/storyblok/api';
+import { StoryblokStory } from '@natu/storyblok/DynamicRender';
+import { getStoryblokSeoData } from '@natu/storyblok/getStoryblokSeoData';
+import { Layout } from '@natu/ui/Layout';
+
 import { Providers } from './Providers';
 import { StoryblokProvider } from './StoryblokProvider';
-import { getStoryblokSeoData } from '@natu/storyblok/getStoryblokSeoData';
-import { getStoryblokSdk } from '@natu/storyblok/api';
-import { Layout } from '@natu/ui/Layout';
-import { StoryblokStory } from '@natu/storyblok/DynamicRender';
 
 const poppinsFont = Poppins({
   subsets: ['latin'],

@@ -1,6 +1,11 @@
-import { Typography } from '@natu/ui/Typography';
 import { ElementType } from 'react';
 
+import { Typography } from '@natu/ui/Typography';
+
+import {
+  TypographyVariant,
+  TypographyVariantProp,
+} from '../../../../../ui/src/Typography/Typography.type';
 import {
   FontWeight,
   TextAlign,
@@ -10,10 +15,6 @@ import {
   resolveStoryblokStyles,
   sbEditable,
 } from '../../../utils/src';
-import {
-  TypographyVariant,
-  TypographyVariantProp,
-} from '../../../../../ui/src/Typography/Typography.type';
 
 interface SBTypographyProps {
   content?: string;

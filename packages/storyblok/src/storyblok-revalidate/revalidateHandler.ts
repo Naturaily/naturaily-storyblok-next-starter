@@ -2,8 +2,9 @@ import { revalidatePath, revalidateTag } from 'next/cache';
 import { NextRequest } from 'next/server';
 
 import { env } from '@natu/env';
-import { getSlugWithoutAppName } from '../utils/src';
+
 import { TAGS } from '../api/tags';
+import { getSlugWithoutAppName } from '../utils/src';
 
 export const revalidateHandler = async (request: NextRequest): Promise<Response> => {
   const { searchParams } = new URL(request.url);

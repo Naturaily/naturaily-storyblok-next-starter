@@ -1,20 +1,17 @@
-// TODO: Fix eslint packages
-import dynamic from 'next/dynamic';
 import { Metadata, ResolvingMetadata } from 'next';
 import { draftMode } from 'next/headers';
 import { notFound } from 'next/navigation';
 
 import { env } from '@natu/env';
 import { getStoryblokSdk } from '@natu/storyblok/api';
-import { getStoryblokSeoData } from '@natu/storyblok/getStoryblokSeoData';
 import { StoryblokStory } from '@natu/storyblok/DynamicRender';
+import { getStoryblokSeoData } from '@natu/storyblok/getStoryblokSeoData';
 
 export const generateMetadata = async (
   _: unknown,
   parent: ResolvingMetadata,
 ): Promise<Metadata> => {
   const { isEnabled } = await draftMode();
-  console.log('isEnabled', isEnabled);
   const { getContentNode } = getStoryblokSdk({ draftMode: isEnabled });
 
   const prevData = await parent;

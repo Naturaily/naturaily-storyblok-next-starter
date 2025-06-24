@@ -3,12 +3,12 @@ import { ISbStoriesParams, StoryblokClient } from '@storyblok/react/rsc';
 
 import { env } from '@natu/env';
 
+import { getSlugWithAppName } from '../utils/src';
 import {
   GetConfigNodeQueryVariables,
   GetContentNodeQueryVariables,
   GetContentNodesQueryVariables,
 } from './sdk.types';
-import { getSlugWithAppName } from '../utils/src';
 
 export type SdkFunctionWrapper = <T>(
   action: (options?: ISbStoriesParams) => Promise<T>,

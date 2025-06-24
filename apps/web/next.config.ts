@@ -36,4 +36,5 @@ const nextConfig: NextConfig = {
   },
 };
 
+// TODO: Fix this
 export default bundleAnalyzer(nextConfig);

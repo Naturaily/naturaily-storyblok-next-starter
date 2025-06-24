@@ -1,11 +1,12 @@
+import { Metadata, ResolvingMetadata } from 'next';
+import { draftMode } from 'next/headers';
+import { notFound } from 'next/navigation';
+
 import { getStoryblokSdk } from '@natu/storyblok/api';
 import { StoryblokStory } from '@natu/storyblok/DynamicRender';
 import { getSlugWithAppName } from '@natu/storyblok/getSlugWithAppName';
 import { getStoryblokSeoData } from '@natu/storyblok/getStoryblokSeoData';
 import { isSlugExcludedFromRouting } from '@natu/storyblok/isSlugExcludedFromRouting';
-import { Metadata, ResolvingMetadata } from 'next';
-import { draftMode } from 'next/headers';
-import { notFound } from 'next/navigation';
 
 const getSlugFromParams = <T extends string[] | string>(slug?: T) => {
   const path = (slug && Array.isArray(slug) && slug.join('/')) || '';

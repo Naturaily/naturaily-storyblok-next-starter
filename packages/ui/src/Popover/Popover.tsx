@@ -1,8 +1,9 @@
 'use client';
 
-import { cn } from '@natu/utils/cn';
 import * as PopoverPrimitive from '@radix-ui/react-popover';
 import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react';
+
+import { cn } from '@natu/utils/cn';
 
 const Popover = PopoverPrimitive.Root;
 

@@ -1,5 +1,6 @@
-import { Code, CodeProps } from '@natu/ui/Code';
 import { ReactNode } from 'react';
+
+import { Code, CodeProps } from '@natu/ui/Code';
 
 interface NodeCodeblockOptions {
   class: string;

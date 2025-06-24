@@ -1,8 +1,9 @@
 'use client';
 
-import { cn } from '@natu/utils/cn';
 import * as ScrollAreaPrimitive from '@radix-ui/react-scroll-area';
 import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react';
+
+import { cn } from '@natu/utils/cn';
 
 const ScrollBar = forwardRef<
   ElementRef<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>,
