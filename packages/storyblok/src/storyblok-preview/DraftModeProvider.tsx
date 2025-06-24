@@ -3,10 +3,10 @@
 import { LoaderCircleIcon, MousePointerClickIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useMemo, createContext, ReactNode, useContext, useTransition } from 'react';
-import { cn } from '@natu/utils';
 
 import { handleDisableDraftAction } from './handleDisableDraft';
 import { isDraftMode } from './isDraftMode';
+import { cn } from '@natu/utils/cn';
 
 interface PreviewModeProviderProps {
   draftMode?: boolean;

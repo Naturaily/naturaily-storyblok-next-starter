@@ -17,8 +17,8 @@
     "tsconfig": "workspace:*"
   },
   "dependencies": {
-    "@natu/next-link": "workspace:*",
     "@natu/utils": "workspace:*",
+    "@natu/next-link": "workspace:*",
     "@next/third-parties": "15.3.4",
     "@radix-ui/react-aspect-ratio": "1.1.7",
     "@radix-ui/react-dropdown-menu": "2.1.15",
@@ -67,9 +67,9 @@
       "import": "./src/ResponsiveImage/ResponsiveImage.tsx",
       "require": "./src/ResponsiveImage/ResponsiveImage.tsx"
     },
-    "./RichText": {
-      "import": "./src/RichText/RichText.tsx",
-      "require": "./src/RichText/RichText.tsx"
+    "./Richtext": {
+      "import": "./src/RichText/Richtext.tsx",
+      "require": "./src/RichText/Richtext.tsx"
     },
     "./ScrollArea": {
       "import": "./src/ScrollArea/ScrollArea.tsx",

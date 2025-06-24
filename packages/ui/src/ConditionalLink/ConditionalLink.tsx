@@ -1,7 +1,6 @@
+import { cn } from '@natu/utils/cn';
+import { Link } from '@natu/next-link/Link';
 import { AnchorHTMLAttributes, Children, cloneElement, ReactElement } from 'react';
-
-import { Link } from '@natu/next-link';
-import { cn } from '@natu/utils';
 
 export type ConditionalLinkProps = AnchorHTMLAttributes<HTMLAnchorElement>;
 

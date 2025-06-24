@@ -1,6 +1,5 @@
+import { cn } from '@natu/utils/cn';
 import { ComponentProps, ReactNode } from 'react';
-
-import { cn } from '@natu/utils';
 
 export interface RichtextProps extends ComponentProps<'div'> {
   children?: ReactNode;

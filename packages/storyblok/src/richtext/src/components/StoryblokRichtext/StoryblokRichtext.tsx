@@ -2,7 +2,7 @@ import { ISbRichtext } from '@storyblok/react';
 import { ComponentProps } from 'react';
 
 import { getStoryblokRichText } from './getStoryblokRichText';
-import { Richtext } from '@natu/ui/RichText';
+import { Richtext } from '@natu/ui/Richtext';
 
 export type StoryblokRichTextData = ISbRichtext;
 

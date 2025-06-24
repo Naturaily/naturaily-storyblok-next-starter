@@ -1,5 +1,4 @@
-import { cn } from '@natu/utils';
-
+import { cn } from '@natu/utils/cn';
 import {
   AlignItems,
   BorderRadius,

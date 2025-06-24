@@ -1,6 +1,5 @@
+import { cn } from '@natu/utils/cn';
 import { HTMLAttributes, TdHTMLAttributes, ThHTMLAttributes, forwardRef } from 'react';
-
-import { cn } from '@natu/utils';
 
 const Table = forwardRef<HTMLTableElement, React.HTMLAttributes<HTMLTableElement>>(
   ({ className, ...props }, ref) => (

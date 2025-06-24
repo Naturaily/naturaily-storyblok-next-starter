@@ -1,13 +1,11 @@
 'use client';
 
+import { cn } from '@natu/utils/cn';
 import { Check, Copy } from 'lucide-react';
 import { Highlight, themes } from 'prism-react-renderer';
 import { useEffect, useState } from 'react';
-
-import { cn } from '@natu/utils';
-
-import { Button } from '../Button';
-import { Typography } from '../Typography';
+import { Button } from '../Button/Button';
+import { Typography } from '../Typography/Typography';
 
 type Language =
   | 'jsx'

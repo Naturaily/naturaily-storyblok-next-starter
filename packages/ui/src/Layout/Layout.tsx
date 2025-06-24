@@ -1,6 +1,5 @@
+import { cn } from '@natu/utils/cn';
 import { ComponentProps, ReactNode } from 'react';
-
-import { cn } from '@natu/utils';
 
 export interface LayoutProps extends ComponentProps<'div'> {
   children?: ReactNode;

@@ -1,4 +1,4 @@
-import { cn } from '@natu/utils';
+import { cn } from '@natu/utils/cn';
 
 export const fontFamilyVariants = {
   primary: cn('font-primary'),
