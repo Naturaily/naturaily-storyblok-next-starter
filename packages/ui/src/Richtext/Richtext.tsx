@@ -8,7 +8,7 @@ export interface RichtextProps extends ComponentProps<'div'> {
 }
 
 export const Richtext = ({ className, children, html, ...rest }: RichtextProps) => {
-  const styles = cn('prose max-w-none dark:prose-invert', className);
+  const styles = cn('prose dark:prose-invert max-w-none', className);
 
   if (html) {
     return <div className={styles} dangerouslySetInnerHTML={{ __html: html }} {...rest} />;

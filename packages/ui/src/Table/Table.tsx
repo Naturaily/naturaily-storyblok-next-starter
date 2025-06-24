@@ -29,7 +29,7 @@ const TableFooter = forwardRef<HTMLTableSectionElement, HTMLAttributes<HTMLTable
   ({ className, ...props }, ref) => (
     <tfoot
       ref={ref}
-      className={cn('bg-primary font-medium text-primary-foreground', className)}
+      className={cn('bg-primary text-primary-foreground font-medium', className)}
       {...props}
     />
   ),
@@ -41,7 +41,7 @@ const TableRow = forwardRef<HTMLTableRowElement, React.HTMLAttributes<HTMLTableR
     <tr
       ref={ref}
       className={cn(
-        'border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted',
+        'hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors',
         className,
       )}
       {...props}
@@ -55,7 +55,7 @@ const TableHead = forwardRef<HTMLTableCellElement, ThHTMLAttributes<HTMLTableCel
     <th
       ref={ref}
       className={cn(
-        'h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0',
+        'text-muted-foreground h-12 px-4 text-left align-middle font-medium [&:has([role=checkbox])]:pr-0',
         className,
       )}
       {...props}
@@ -77,7 +77,7 @@ TableCell.displayName = 'TableCell';
 
 const TableCaption = forwardRef<HTMLTableCaptionElement, HTMLAttributes<HTMLTableCaptionElement>>(
   ({ className, ...props }, ref) => (
-    <caption ref={ref} className={cn('mt-4 text-sm text-muted-foreground', className)} {...props} />
+    <caption ref={ref} className={cn('text-muted-foreground mt-4 text-sm', className)} {...props} />
   ),
 );
 TableCaption.displayName = 'TableCaption';

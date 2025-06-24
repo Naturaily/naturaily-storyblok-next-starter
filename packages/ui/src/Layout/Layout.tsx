@@ -15,7 +15,7 @@ export const Layout = ({
   footer = null,
   ...rest
 }: LayoutProps) => {
-  const wrapperStyles = cn('flex flex-col min-h-screen', className);
+  const wrapperStyles = cn('flex min-h-screen flex-col', className);
 
   return (
     <div className={wrapperStyles} {...rest}>

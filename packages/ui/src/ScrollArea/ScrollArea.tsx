@@ -21,7 +21,7 @@ const ScrollBar = forwardRef<
     {...props}
   >
     <ScrollAreaPrimitive.ScrollAreaThumb
-      className={cn('relative rounded-full bg-border', orientation === 'vertical' && 'flex-1')}
+      className={cn('bg-border relative rounded-full', orientation === 'vertical' && 'flex-1')}
     />
   </ScrollAreaPrimitive.ScrollAreaScrollbar>
 ));
