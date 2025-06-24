@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@natu/ui';
+import { Button } from '@natu/ui/Button';
 
 interface GlobalErrorProps {
   reset: () => void;

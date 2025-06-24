@@ -3,12 +3,7 @@
   "version": "0.0.0",
   "type": "module",
   "private": true,
-  "main": "./index.ts",
-  "types": "./index.ts",
   "license": "MIT",
-  "files": [
-    "index.ts"
-  ],
   "scripts": {
     "eslint:format": "eslint src --fix"
   },
@@ -38,5 +33,15 @@
     "prism-react-renderer": "2.4.1",
     "react": "19.0.0",
     "react-dom": "19.0.0"
+  },
+  "exports": {
+    "./Button": {
+      "import": "./src/Button/Button.tsx",
+      "require": "./src/Button/Button.tsx"
+    },
+    "./Layout": {
+      "import": "./src/Layout/Layout.tsx",
+      "require": "./src/Layout/Layout.tsx"
+    }
   }
 }

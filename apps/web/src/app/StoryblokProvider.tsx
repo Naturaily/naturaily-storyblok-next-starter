@@ -1,8 +1,7 @@
 'use client';
 
+import { getStoryblokApi } from '@natu/storyblok/api';
 import { ReactNode } from 'react';
-
-import { getStoryblokApi } from '@natu/storyblok-ui';
 
 interface StoryblokProviderProps {
   children?: ReactNode;

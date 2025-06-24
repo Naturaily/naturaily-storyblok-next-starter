@@ -16,6 +16,7 @@
     "eslint:format": "eslint src --fix"
   },
   "devDependencies": {
+    "@types/react": "19.1.8",
     "eslint-config-custom": "workspace:*",
     "tsconfig": "workspace:*"
   },
@@ -23,6 +24,7 @@
     "@natu/env": "workspace:*",
     "clsx": "^2.1.1",
     "encoding": "0.1.13",
+    "react": "^19.1.0",
     "tailwind-merge": "2.6.0"
   }
 }

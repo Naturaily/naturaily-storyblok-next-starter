@@ -1,3 +1,3 @@
-import { revalidateHandler } from '@natu/storyblok-revalidate';
+import { revalidateHandler } from '@natu/storyblok/revalidateHandler';
 
 export { revalidateHandler as POST };

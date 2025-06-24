@@ -16,6 +16,7 @@
     "eslint:format": "eslint src --fix"
   },
   "devDependencies": {
+    "@types/node": "24.0.3",
     "eslint-config-custom": "workspace:*",
     "tsconfig": "workspace:*"
   },

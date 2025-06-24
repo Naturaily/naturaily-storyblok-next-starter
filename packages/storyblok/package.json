@@ -1,0 +1,61 @@
+{
+  "name": "@natu/storyblok",
+  "version": "0.0.0",
+  "type": "module",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "eslint:format": "eslint src --fix"
+  },
+  "packageManager": "pnpm@10.11.1",
+  "dependencies": {
+    "@natu/env": "workspace:*",
+    "@natu/utils": "workspace:*",
+    "@storyblok/react": "4.5.3",
+    "lucide-react": "0.522.0",
+    "next": "^15.3.4",
+    "react": "^19.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "19.1.8",
+    "eslint-config-custom": "workspace:*",
+    "tailwind-config": "workspace:*",
+    "tsconfig": "workspace:*"
+  },
+  "exports": {
+    "./api": {
+      "import": "./src/api/api.ts",
+      "require": "./src/api/api.ts"
+    },
+    "./revalidateHandler": {
+      "import": "./src/storyblok-revalidate/revalidateHandler.ts",
+      "require": "./src/storyblok-revalidate/revalidateHandler.ts"
+    },
+    "./getSlugWithAppName": {
+      "import": "./src/utils/src/utils/getSlugWithAppName/getSlugWithAppName.ts",
+      "require": "./src/utils/src/utils/getSlugWithAppName/getSlugWithAppName.ts"
+    },
+    "./getStoryblokSeoData": {
+      "import": "./src/seo/src/utils/getStoryblokSeoData.ts",
+      "require": "./src/utils/src/utils/getStoryblokSeoData.ts"
+    },
+    "./isSlugExcludedFromRouting": {
+      "import": "./src/utils/src/utils/isSlugExcludedFromRouting/isSlugExcludedFromRouting.ts",
+      "require": "./src/utils/src/utils/isSlugExcludedFromRouting/isSlugExcludedFromRouting.ts"
+    },
+    "./DynamicRender": {
+      "import": "./src/utils/src/components/DynamicRender/DynamicRender.tsx",
+      "require": "./src/utils/src/components/DynamicRender/DynamicRender.tsx"
+    },
+    "./DraftModeProvider": {
+      "import": "./src/storyblok-preview/DraftModeProvider.tsx",
+      "require": "./src/storyblok-preview/DraftModeProvider.tsx"
+    },
+    "./getSlugWithoutAppName": {
+      "import": "./src/utils/src/utils/getSlugWithoutAppName/getSlugWithoutAppName.ts",
+      "require": "./src/utils/src/utils/getSlugWithoutAppName/getSlugWithoutAppName.ts"
+    }
+  }
+}

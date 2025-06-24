@@ -1,14 +1,11 @@
+import { getStoryblokSdk } from '@natu/storyblok/api';
+import { StoryblokStory } from '@natu/storyblok/DynamicRender';
+import { getSlugWithAppName } from '@natu/storyblok/getSlugWithAppName';
+import { getStoryblokSeoData } from '@natu/storyblok/getStoryblokSeoData';
+import { isSlugExcludedFromRouting } from '@natu/storyblok/isSlugExcludedFromRouting';
 import { Metadata, ResolvingMetadata } from 'next';
 import { draftMode } from 'next/headers';
 import { notFound } from 'next/navigation';
-
-import { getStoryblokSeoData } from '@natu/storyblok-seo';
-import { getStoryblokSdk } from '@natu/storyblok-ui';
-import {
-  getSlugWithAppName,
-  isSlugExcludedFromRouting,
-  StoryblokStory,
-} from '@natu/storyblok-utils';
 
 const getSlugFromParams = <T extends string[] | string>(slug?: T) => {
   const path = (slug && Array.isArray(slug) && slug.join('/')) || '';
@@ -56,16 +53,13 @@ const Page = async ({ params }: PageProps) => {
     notFound();
   }
 
-  try {
-    const { data } = await getContentNode({ slug });
+  const { data } = await getContentNode({ slug });
 
-    return <StoryblokStory story={data.story} />;
-  } catch (err) {
-    // eslint-disable-next-line no-console
-    console.error(err);
-
-    return notFound();
+  if (!data || !data?.story?.content) {
+    notFound();
   }
+
+  return <StoryblokStory story={data.story} />;
 };
 
 export default Page;

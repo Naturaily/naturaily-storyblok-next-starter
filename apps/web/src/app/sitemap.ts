@@ -2,8 +2,9 @@ import { MetadataRoute } from 'next';
 import { draftMode } from 'next/headers';
 
 import { env } from '@natu/env';
-import { getStoryblokSdk } from '@natu/storyblok-ui';
-import { getSlugWithAppName, getSlugWithoutAppName } from '@natu/storyblok-utils';
+import { getStoryblokSdk } from '@natu/storyblok/api';
+import { getSlugWithAppName } from '@natu/storyblok/getSlugWithAppName';
+import { getSlugWithoutAppName } from '@natu/storyblok/getSlugWithoutAppName';
 
 // add more content types -> "page,other-content-type,other"
 const validSitemapComponents = 'page';

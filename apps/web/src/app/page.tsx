@@ -1,12 +1,13 @@
+// TODO: Fix eslint packages
 import dynamic from 'next/dynamic';
 import { Metadata, ResolvingMetadata } from 'next';
 import { draftMode } from 'next/headers';
 import { notFound } from 'next/navigation';
 
 import { env } from '@natu/env';
-import { getStoryblokSeoData } from '@natu/storyblok-seo';
-import { getStoryblokSdk } from '@natu/storyblok-ui';
-import { StoryblokStory } from '@natu/storyblok-utils';
+import { getStoryblokSdk } from '@natu/storyblok/api';
+import { getStoryblokSeoData } from '@natu/storyblok/getStoryblokSeoData';
+import { StoryblokStory } from '@natu/storyblok/DynamicRender';
 
 export const generateMetadata = async (
   _: unknown,
@@ -44,5 +45,3 @@ const Page = async () => {
 };
 
 export default Page;
-
-// TODO: Fix prettier-plugin-tailwindcss

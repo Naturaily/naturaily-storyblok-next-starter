@@ -3,14 +3,19 @@ import { Metadata } from 'next';
 import { draftMode } from 'next/headers';
 import { ReactNode } from 'react';
 
-import { poppinsFont } from '@natu/fonts';
-import { getStoryblokSeoData } from '@natu/storyblok-seo';
-import { getStoryblokSdk } from '@natu/storyblok-ui';
-import { StoryblokStory } from '@natu/storyblok-utils';
-import { Layout } from '@natu/ui';
-
+import { Poppins } from 'next/font/google';
 import { Providers } from './Providers';
 import { StoryblokProvider } from './StoryblokProvider';
+import { getStoryblokSeoData } from '@natu/storyblok/getStoryblokSeoData';
+import { getStoryblokSdk } from '@natu/storyblok/api';
+import { Layout } from '@natu/ui/Layout';
+import { StoryblokStory } from '@natu/storyblok/DynamicRender';
+
+const poppinsFont = Poppins({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-poppins',
+});
 
 export const generateMetadata = async (): Promise<Metadata> => {
   const { isEnabled } = await draftMode();
