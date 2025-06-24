@@ -13,7 +13,18 @@
     "eslint:format": "eslint src --fix"
   },
   "devDependencies": {
+    "@types/react": "19.1.8",
     "eslint-config-custom": "workspace:*",
     "tsconfig": "workspace:*"
+  },
+  "dependencies": {
+    "next": "^15.3.4",
+    "react": "^19.1.0"
+  },
+  "exports": {
+    "./Link": {
+      "import": "./src/Link/Link.tsx",
+      "require": "./src/Link/Link.tsx"
+    }
   }
 }

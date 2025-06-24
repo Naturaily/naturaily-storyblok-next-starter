@@ -193,7 +193,17 @@ importers:
         version: 8.34.1(eslint@9.29.0(jiti@1.21.7))(typescript@5.8.3)
 
   packages/next-link:
+    dependencies:
+      next:
+        specifier: ^15.3.4
+        version: 15.3.4(react-dom@19.0.0(react@19.1.0))(react@19.1.0)
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
     devDependencies:
+      '@types/react':
+        specifier: 19.1.8
+        version: 19.1.8
       eslint-config-custom:
         specifier: workspace:*
         version: link:../eslint-config-custom
@@ -228,6 +238,12 @@ importers:
       '@natu/env':
         specifier: workspace:*
         version: link:../env
+      '@natu/next-link':
+        specifier: workspace:*
+        version: link:../next-link
+      '@natu/ui':
+        specifier: workspace:*
+        version: link:../ui
       '@natu/utils':
         specifier: workspace:*
         version: link:../utils
