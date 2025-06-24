@@ -38,28 +38,28 @@
       "require": "./src/storyblok-revalidate/revalidateHandler.ts"
     },
     "./getSlugWithAppName": {
-      "import": "./src/utils/src/utils/getSlugWithAppName/getSlugWithAppName.ts",
-      "require": "./src/utils/src/utils/getSlugWithAppName/getSlugWithAppName.ts"
+      "import": "./src/utils/getSlugWithAppName/getSlugWithAppName.ts",
+      "require": "./src/utils/getSlugWithAppName/getSlugWithAppName.ts"
     },
     "./getStoryblokSeoData": {
       "import": "./src/seo/src/utils/getStoryblokSeoData.ts",
-      "require": "./src/utils/src/utils/getStoryblokSeoData.ts"
+      "require": "./src/seo/src/utils/getStoryblokSeoData.ts"
     },
     "./isSlugExcludedFromRouting": {
-      "import": "./src/utils/src/utils/isSlugExcludedFromRouting/isSlugExcludedFromRouting.ts",
-      "require": "./src/utils/src/utils/isSlugExcludedFromRouting/isSlugExcludedFromRouting.ts"
+      "import": "./src/utils/isSlugExcludedFromRouting/isSlugExcludedFromRouting.ts",
+      "require": "./src/utils/isSlugExcludedFromRouting/isSlugExcludedFromRouting.ts"
     },
     "./DynamicRender": {
-      "import": "./src/utils/src/components/DynamicRender/DynamicRender.tsx",
-      "require": "./src/utils/src/components/DynamicRender/DynamicRender.tsx"
+      "import": "./src/utils/components/DynamicRender/DynamicRender.tsx",
+      "require": "./src/utils/components/DynamicRender/DynamicRender.tsx"
     },
     "./DraftModeProvider": {
       "import": "./src/storyblok-preview/DraftModeProvider.tsx",
       "require": "./src/storyblok-preview/DraftModeProvider.tsx"
     },
     "./getSlugWithoutAppName": {
-      "import": "./src/utils/src/utils/getSlugWithoutAppName/getSlugWithoutAppName.ts",
-      "require": "./src/utils/src/utils/getSlugWithoutAppName/getSlugWithoutAppName.ts"
+      "import": "./src/utils/getSlugWithoutAppName/getSlugWithoutAppName.ts",
+      "require": "./src/utils/getSlugWithoutAppName/getSlugWithoutAppName.ts"
     }
   }
 }

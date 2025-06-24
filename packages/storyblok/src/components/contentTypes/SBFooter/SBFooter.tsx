@@ -1,4 +1,4 @@
-import { BlokItem, DynamicRender, sbEditable, SBProps } from '../../../utils/src';
+import { BlokItem, SBProps, sbEditable, DynamicRender } from '../../../utils';
 
 interface SBFooterProps {
   body?: BlokItem[];

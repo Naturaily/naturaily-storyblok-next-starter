@@ -4,7 +4,7 @@ import { env } from '@natu/env';
 import { Link } from '@natu/next-link/Link';
 import { Button } from '@natu/ui/Button';
 
-import { getLinkPropsFromStoryblok, StoryblokLink } from '../../../../utils/src';
+import { getLinkPropsFromStoryblok, StoryblokLink } from '../../../../utils';
 
 interface MarkLinkProps {
   linktype?: string;

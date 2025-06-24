@@ -2,13 +2,12 @@ import type { ElementType } from 'react';
 
 import {
   BlokItem,
-  Size,
-  Spacing,
   SBProps,
   resolveStoryblokStyles,
   sbEditable,
   DynamicRender,
-} from '../../../utils/src';
+} from '../../../utils';
+import { Size, Spacing } from '../../../utils/resolveStoryblokStyles';
 
 interface SBContainerProps {
   body?: BlokItem[];

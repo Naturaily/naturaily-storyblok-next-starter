@@ -4,14 +4,12 @@ import { cn } from '@natu/utils/cn';
 
 import {
   BlokItem,
-  Spacing,
-  AlignItems,
-  JustifyItems,
   SBProps,
   resolveStoryblokStyles,
   sbEditable,
   DynamicRender,
-} from '../../../utils/src';
+} from '../../../utils';
+import { Spacing, AlignItems, JustifyItems } from '../../../utils/resolveStoryblokStyles';
 
 interface SBRowProps {
   body?: BlokItem[];

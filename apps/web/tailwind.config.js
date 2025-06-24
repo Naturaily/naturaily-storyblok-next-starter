@@ -1,6 +1,5 @@
 import defaultConfig from 'tailwind-config/tailwind.config';
 
-// TODO fix storyblok/src/utils/src/utils - redundant path
 /** @type {import("tailwindcss").Config} */
 const config = {
   presets: [defaultConfig],
@@ -14,7 +13,7 @@ const config = {
     '../../packages/storyblok/src/components/**/*.{js,ts,jsx,tsx}',
     '../../packages/storyblok/src/richtext/**/*.{js,ts,jsx,tsx}',
     '../../packages/storyblok/src/storyblok-preview/**/*.{js,ts,jsx,tsx}',
-    '../../packages/storyblok/src/utils/src/utils/resolveStoryblokStyles/styles/**/*.{js,ts,jsx,tsx}',
+    '../../packages/storyblok/src/utils/resolveStoryblokStyles/styles/**/*.{js,ts,jsx,tsx}',
   ],
 };
 

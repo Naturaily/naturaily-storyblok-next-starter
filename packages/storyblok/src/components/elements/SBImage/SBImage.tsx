@@ -6,13 +6,13 @@ import { cn } from '@natu/utils/cn';
 import {
   StoryblokAsset,
   StoryblokLink,
-  Spacing,
   SBProps,
   getAssetFromStoryblok,
   getLinkPropsFromStoryblok,
   resolveStoryblokStyles,
   sbEditable,
-} from '../../../utils/src';
+} from '../../../utils';
+import { Spacing } from '../../../utils/resolveStoryblokStyles';
 
 interface SBImageProps {
   asset?: StoryblokAsset;

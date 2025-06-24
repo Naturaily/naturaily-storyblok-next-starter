@@ -6,9 +6,9 @@ import {
   resolveStoryblokStyles,
   sbEditable,
   SBProps,
-  Spacing,
   StoryblokLink,
-} from '../../../utils/src';
+} from '../../../utils';
+import { Spacing } from '../../../utils/resolveStoryblokStyles';
 
 interface SBButtonProps {
   content?: string;
