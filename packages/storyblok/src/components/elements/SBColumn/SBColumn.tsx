@@ -1,15 +1,14 @@
 import type { ElementType } from 'react';
-
 import {
-  AlignItems,
   BlokItem,
-  DynamicRender,
-  JustifyItems,
-  SBProps,
   Spacing,
+  JustifyItems,
+  AlignItems,
+  SBProps,
   resolveStoryblokStyles,
   sbEditable,
-} from '@natu/storyblok-utils';
+  DynamicRender,
+} from '../../../utils/src';
 
 interface SBColumnProps {
   body?: BlokItem[];

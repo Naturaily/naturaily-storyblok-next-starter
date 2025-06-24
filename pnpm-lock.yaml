@@ -241,6 +241,9 @@ importers:
       '@natu/next-link':
         specifier: workspace:*
         version: link:../next-link
+      '@natu/next-themes':
+        specifier: workspace:*
+        version: link:../next-themes
       '@natu/ui':
         specifier: workspace:*
         version: link:../ui
@@ -259,6 +262,9 @@ importers:
       react:
         specifier: ^19.1.0
         version: 19.1.0
+      storyblok-rich-text-react-renderer:
+        specifier: 2.9.2
+        version: 2.9.2(react@19.1.0)
     devDependencies:
       '@types/react':
         specifier: 19.1.8
@@ -6657,6 +6663,11 @@ packages:
 
   storyblok-js-client@6.11.0:
     resolution: {integrity: sha512-2uhd/VA51AB88XoqQ+rw9JqkWNoPl2ydg+J49w+2KBqqFvV2EtUhrS2umnabU8sD7HftFsMg0n69EWhkeDyM/A==}
+
+  storyblok-rich-text-react-renderer@2.9.2:
+    resolution: {integrity: sha512-ELOuDVoPDpThM0/yYRgZlh1yP2ELSN6N1mh9/i4Z0qwwzQ7mK+mrhGeOJACx1FB7kuaLzFhtDEjVttu0OPYI2A==}
+    peerDependencies:
+      react: '>=16.0.0'
 
   storybook@8.4.7:
     resolution: {integrity: sha512-RP/nMJxiWyFc8EVMH5gp20ID032Wvk+Yr3lmKidoegto5Iy+2dVQnUoElZb2zpbVXNHWakGuAkfI0dY1Hfp/vw==}
@@ -14928,6 +14939,10 @@ snapshots:
   storyblok-js-client@6.10.6: {}
 
   storyblok-js-client@6.11.0: {}
+
+  storyblok-rich-text-react-renderer@2.9.2(react@19.1.0):
+    dependencies:
+      react: 19.1.0
 
   storybook@8.4.7(prettier@3.6.0):
     dependencies:

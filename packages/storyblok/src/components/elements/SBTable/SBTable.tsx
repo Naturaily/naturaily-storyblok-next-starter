@@ -1,11 +1,4 @@
 import {
-  SBProps,
-  Spacing,
-  StoryblokTable,
-  resolveStoryblokStyles,
-  sbEditable,
-} from '@natu/storyblok-utils';
-import {
   Table,
   TableBody,
   TableCaption,
@@ -13,7 +6,14 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@natu/ui';
+} from '@natu/ui/Table';
+import {
+  StoryblokTable,
+  Spacing,
+  SBProps,
+  resolveStoryblokStyles,
+  sbEditable,
+} from '../../../utils/src';
 
 interface SBTableProps {
   table?: StoryblokTable;
@@ -49,7 +49,9 @@ export const SBTable = ({ blok }: SBProps<SBTableProps>) => {
       {caption && <TableCaption>{caption}</TableCaption>}
       <TableHeader>
         <TableRow>
-          {thead?.map(item => <TableHead key={item._uid}>{item.value}</TableHead>)}
+          {thead?.map(item => (
+            <TableHead key={item._uid}>{item.value}</TableHead>
+          ))}
         </TableRow>
       </TableHeader>
       <TableBody>

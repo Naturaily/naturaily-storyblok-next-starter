@@ -11,14 +11,16 @@
   },
   "packageManager": "pnpm@10.11.1",
   "dependencies": {
-    "@natu/ui": "workspace:*",
-    "@natu/next-link": "workspace:*",
     "@natu/env": "workspace:*",
+    "@natu/next-link": "workspace:*",
+    "@natu/next-themes": "workspace:*",
+    "@natu/ui": "workspace:*",
     "@natu/utils": "workspace:*",
     "@storyblok/react": "4.5.3",
     "lucide-react": "0.522.0",
     "next": "^15.3.4",
-    "react": "^19.1.0"
+    "react": "^19.1.0",
+    "storyblok-rich-text-react-renderer": "2.9.2"
   },
   "devDependencies": {
     "@types/react": "19.1.8",

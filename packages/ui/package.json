@@ -35,13 +35,61 @@
     "react-dom": "19.0.0"
   },
   "exports": {
+    "./AspectRatio": {
+      "import": "./src/AspectRatio/AspectRatio.tsx",
+      "require": "./src/AspectRatio/AspectRatio.tsx"
+    },
     "./Button": {
       "import": "./src/Button/Button.tsx",
       "require": "./src/Button/Button.tsx"
     },
+    "./Code": {
+      "import": "./src/Code/Code.tsx",
+      "require": "./src/Code/Code.tsx"
+    },
+    "./ConditionalLink": {
+      "import": "./src/ConditionalLink/ConditionalLink.tsx",
+      "require": "./src/ConditionalLink/ConditionalLink.tsx"
+    },
+    "./DropdownMenu": {
+      "import": "./src/DropdownMenu/DropdownMenu.tsx",
+      "require": "./src/DropdownMenu/DropdownMenu.tsx"
+    },
     "./Layout": {
       "import": "./src/Layout/Layout.tsx",
       "require": "./src/Layout/Layout.tsx"
+    },
+    "./Popover": {
+      "import": "./src/Popover/Popover.tsx",
+      "require": "./src/Popover/Popover.tsx"
+    },
+    "./ResponsiveImage": {
+      "import": "./src/ResponsiveImage/ResponsiveImage.tsx",
+      "require": "./src/ResponsiveImage/ResponsiveImage.tsx"
+    },
+    "./RichText": {
+      "import": "./src/RichText/RichText.tsx",
+      "require": "./src/RichText/RichText.tsx"
+    },
+    "./ScrollArea": {
+      "import": "./src/ScrollArea/ScrollArea.tsx",
+      "require": "./src/ScrollArea/ScrollArea.tsx"
+    },
+    "./Table": {
+      "import": "./src/Table/Table.tsx",
+      "require": "./src/Table/Table.tsx"
+    },
+    "./Tooltip": {
+      "import": "./src/Tooltip/Tooltip.tsx",
+      "require": "./src/Tooltip/Tooltip.tsx"
+    },
+    "./Typography": {
+      "import": "./src/Typography/Typography.tsx",
+      "require": "./src/Typography/Typography.tsx"
+    },
+    "./YoutubeVideo": {
+      "import": "./src/YoutubeVideo/YoutubeVideo.tsx",
+      "require": "./src/YoutubeVideo/YoutubeVideo.tsx"
     }
   }
 }

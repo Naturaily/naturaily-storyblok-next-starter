@@ -1,6 +1,6 @@
 import { ReactNode, ElementType } from 'react';
-
-import { Typography, TypographyVariantProp } from '@natu/ui';
+import { TypographyVariantProp } from '../../../../../../ui/src/Typography/Typography.type';
+import { Typography } from '@natu/ui/Typography';
 
 interface NodeHeadingProps {
   level: 1 | 2 | 3 | 4 | 5 | 6;

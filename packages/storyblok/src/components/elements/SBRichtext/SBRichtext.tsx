@@ -1,12 +1,12 @@
-import { StoryblokRichTextData, StoryblokRichtext } from '@natu/storyblok-richtext';
+import { StoryblokRichtext, StoryblokRichTextData } from '../../../richtext/src';
 import {
   FontFamily,
+  resolveStoryblokStyles,
+  sbEditable,
   SBProps,
   Spacing,
   TextAlign,
-  resolveStoryblokStyles,
-  sbEditable,
-} from '@natu/storyblok-utils';
+} from '../../../utils/src';
 
 interface SBRichtextProps {
   content?: StoryblokRichTextData;

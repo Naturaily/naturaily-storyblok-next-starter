@@ -3,12 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "main": "./index.ts",
-  "types": "./index.ts",
   "license": "MIT",
-  "files": [
-    "index.ts"
-  ],
   "scripts": {
     "eslint:format": "eslint src --fix"
   },

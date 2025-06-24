@@ -1,14 +1,13 @@
 import type { ElementType } from 'react';
-
 import {
   BlokItem,
-  DynamicRender,
-  SBProps,
   Size,
   Spacing,
+  SBProps,
   resolveStoryblokStyles,
   sbEditable,
-} from '@natu/storyblok-utils';
+  DynamicRender,
+} from '../../../utils/src';
 
 interface SBContainerProps {
   body?: BlokItem[];

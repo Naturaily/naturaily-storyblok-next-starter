@@ -1,15 +1,14 @@
 import type { ElementType } from 'react';
-
 import {
   BlokItem,
-  DynamicRender,
   Grid,
-  SBProps,
-  Size,
   Spacing,
+  Size,
+  SBProps,
   resolveStoryblokStyles,
   sbEditable,
-} from '@natu/storyblok-utils';
+  DynamicRender,
+} from '../../../utils/src';
 
 interface SBGridProps {
   body?: BlokItem[];

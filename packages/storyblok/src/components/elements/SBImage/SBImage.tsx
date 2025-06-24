@@ -1,15 +1,17 @@
+import { cn } from '@natu/utils';
 import {
-  SBProps,
-  Spacing,
   StoryblokAsset,
   StoryblokLink,
+  Spacing,
+  SBProps,
   getAssetFromStoryblok,
   getLinkPropsFromStoryblok,
   resolveStoryblokStyles,
   sbEditable,
-} from '@natu/storyblok-utils';
-import { AspectRatio, ConditionalLink, ResponsiveImage } from '@natu/ui';
-import { cn } from '@natu/utils';
+} from '../../../utils/src';
+import { ConditionalLink } from '@natu/ui/ConditionalLink';
+import { AspectRatio } from '@natu/ui/AspectRatio';
+import { ResponsiveImage } from '@natu/ui/ResponsiveImage';
 
 interface SBImageProps {
   asset?: StoryblokAsset;

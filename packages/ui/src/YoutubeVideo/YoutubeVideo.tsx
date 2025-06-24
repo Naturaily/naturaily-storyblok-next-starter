@@ -1,4 +1,3 @@
-// @ts-ignore
 import { YouTubeEmbed } from '@next/third-parties/google';
 
 import './YoutubeVideo.css';

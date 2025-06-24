@@ -1,5 +1,5 @@
 import { StoryblokLink, StoryblokLinkType, TargetLinkOptions } from '../../types';
-import { getSlugWithoutAppName } from '../getSlugWithoutAppName';
+import { getSlugWithoutAppName } from '../getSlugWithoutAppName/getSlugWithoutAppName';
 
 interface TargetResult {
   target: '_blank';

@@ -1,9 +1,9 @@
 import { ReactNode } from 'react';
 
 import { env } from '@natu/env';
-import { Link } from '@natu/next-link';
-import { StoryblokLink, getLinkPropsFromStoryblok } from '@natu/storyblok-utils';
-import { Button } from '@natu/ui';
+import { getLinkPropsFromStoryblok, StoryblokLink } from '../../../../utils/src';
+import { Button } from '@natu/ui/Button';
+import { Link } from '@natu/next-link/Link';
 
 interface MarkLinkProps {
   linktype?: string;

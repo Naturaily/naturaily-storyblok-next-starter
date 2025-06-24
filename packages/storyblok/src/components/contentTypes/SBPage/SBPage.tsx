@@ -1,4 +1,4 @@
-import { BlokItem, DynamicRender, SBProps, sbEditable } from '@natu/storyblok-utils';
+import { BlokItem, SBProps, sbEditable, DynamicRender } from '../../../utils/src';
 
 interface SBPageProps {
   body?: BlokItem[];
