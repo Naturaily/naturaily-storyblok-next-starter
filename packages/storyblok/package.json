@@ -79,6 +79,10 @@
     "./sbEditable": {
       "import": "./src/utils/sbEditable/sbEditable.ts",
       "require": "./src/utils/sbEditable/sbEditable.ts"
+    },
+    "./resolveStoryblokStyles": {
+      "import": "./src/utils/resolveStoryblokStyles/resolveStoryblokStyles.ts",
+      "require": "./src/utils/resolveStoryblokStyles/resolveStoryblokStyles.ts"
     }
   }
 }

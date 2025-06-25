@@ -1,10 +1,10 @@
 import { Link } from '@natu/next-link/Link';
 import { Button, ButtonProps } from '@natu/ui/Button';
 
-import { resolveStoryblokStyles, SBProps, StoryblokLink } from '../../../utils';
 import { getLinkPropsFromStoryblok } from '../../../utils/getLinkPropsFromStoryblok/getLinkPropsFromStoryblok';
-import { Spacing } from '../../../utils/resolveStoryblokStyles';
+import { resolveStoryblokStyles, Spacing } from '../../../utils/resolveStoryblokStyles';
 import { sbEditable } from '../../../utils/sbEditable/sbEditable';
+import { StoryblokLink, SBProps } from '../../../utils/types';
 
 interface SBButtonProps {
   content?: string;

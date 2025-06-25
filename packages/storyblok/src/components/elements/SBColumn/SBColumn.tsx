@@ -1,8 +1,14 @@
 import type { ElementType } from 'react';
 
-import { BlokItem, SBProps, resolveStoryblokStyles, DynamicRender } from '../../../utils';
-import { Spacing, JustifyItems, AlignItems } from '../../../utils/resolveStoryblokStyles';
+import { DynamicRender } from '../../../utils/components/DynamicRender/DynamicRender';
+import {
+  Spacing,
+  JustifyItems,
+  AlignItems,
+  resolveStoryblokStyles,
+} from '../../../utils/resolveStoryblokStyles';
 import { sbEditable } from '../../../utils/sbEditable/sbEditable';
+import { BlokItem, SBProps } from '../../../utils/types';
 
 interface SBColumnProps {
   body?: BlokItem[];

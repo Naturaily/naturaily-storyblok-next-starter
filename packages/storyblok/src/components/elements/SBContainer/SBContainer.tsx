@@ -1,8 +1,9 @@
 import type { ElementType } from 'react';
 
-import { BlokItem, SBProps, resolveStoryblokStyles, DynamicRender } from '../../../utils';
-import { Size, Spacing } from '../../../utils/resolveStoryblokStyles';
+import { DynamicRender } from '../../../utils/components/DynamicRender/DynamicRender';
+import { resolveStoryblokStyles, Size, Spacing } from '../../../utils/resolveStoryblokStyles';
 import { sbEditable } from '../../../utils/sbEditable/sbEditable';
+import { BlokItem, SBProps } from '../../../utils/types';
 
 interface SBContainerProps {
   body?: BlokItem[];

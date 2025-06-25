@@ -1,5 +1,6 @@
-import { BlokItem, DynamicRender, SBProps } from '../../../utils';
+import { DynamicRender } from '../../../utils/components/DynamicRender/DynamicRender';
 import { sbEditable } from '../../../utils/sbEditable/sbEditable';
+import { BlokItem, SBProps } from '../../../utils/types';
 
 interface SBHeaderProps {
   body?: BlokItem[];

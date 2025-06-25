@@ -2,7 +2,7 @@ import { Metadata, ResolvingMetadata } from 'next';
 
 import { env } from '@natu/env';
 
-import { SbComponentType, StoryblokAsset } from '../../../utils';
+import { SbComponentType, StoryblokAsset } from '../../../utils/types';
 
 interface StoryblokSeoComponent extends SbComponentType<'seo'> {
   metaTitle: string;

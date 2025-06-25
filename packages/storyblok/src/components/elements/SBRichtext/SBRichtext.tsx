@@ -2,9 +2,14 @@ import {
   StoryblokRichtext,
   StoryblokRichTextData,
 } from '../../../richtext/src/components/StoryblokRichtext/StoryblokRichtext';
-import { SBProps, resolveStoryblokStyles } from '../../../utils';
-import { TextAlign, FontFamily, Spacing } from '../../../utils/resolveStoryblokStyles';
+import {
+  TextAlign,
+  FontFamily,
+  Spacing,
+  resolveStoryblokStyles,
+} from '../../../utils/resolveStoryblokStyles';
 import { sbEditable } from '../../../utils/sbEditable/sbEditable';
+import { SBProps } from '../../../utils/types';
 
 interface SBRichtextProps {
   content?: StoryblokRichTextData;

@@ -1,8 +1,9 @@
 import type { ElementType } from 'react';
 
-import { BlokItem, SBProps, resolveStoryblokStyles, DynamicRender } from '../../../utils';
-import { Grid, Spacing, Size } from '../../../utils/resolveStoryblokStyles';
+import { DynamicRender } from '../../../utils/components/DynamicRender/DynamicRender';
+import { Grid, Spacing, Size, resolveStoryblokStyles } from '../../../utils/resolveStoryblokStyles';
 import { sbEditable } from '../../../utils/sbEditable/sbEditable';
+import { BlokItem, SBProps } from '../../../utils/types';
 
 interface SBGridProps {
   body?: BlokItem[];
