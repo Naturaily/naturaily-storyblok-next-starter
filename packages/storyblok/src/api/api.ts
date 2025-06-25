@@ -3,7 +3,7 @@ import { apiPlugin, ISbStoriesParams, storyblokInit } from '@storyblok/react/rsc
 import { env } from '@natu/env';
 
 import { componentsMap } from '../components/componentsMap';
-import { isDraftMode } from '../storyblok-preview';
+import { isDraftMode } from '../storyblok-preview/isDraftMode';
 import { relations } from './relations';
 import { getSdk, SdkFunctionWrapper } from './sdk';
 

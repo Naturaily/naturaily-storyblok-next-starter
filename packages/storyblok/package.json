@@ -59,6 +59,14 @@
     "./getSlugWithoutAppName": {
       "import": "./src/utils/getSlugWithoutAppName/getSlugWithoutAppName.ts",
       "require": "./src/utils/getSlugWithoutAppName/getSlugWithoutAppName.ts"
+    },
+    "./StoryblokRichtext": {
+      "import": "./src/richtext/src/components/StoryblokRichtext/StoryblokRichtext.tsx",
+      "require": "./src/richtext/src/components/StoryblokRichtext/StoryblokRichtext.tsx"
+    },
+    "./isDraftMode": {
+      "import": "./src/storyblok-preview/isDraftMode.ts",
+      "require": "./src/storyblok-preview/isDraftMode.ts"
     }
   }
 }
