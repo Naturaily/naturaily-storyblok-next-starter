@@ -33,55 +33,68 @@ type RedirectItem = {
   translated_slugs: null | string[];
 };
 
-const getStoryblokRedirects = async () => {
+export const getStoryblokRedirects = async () => {
   const Storyblok = new StoryblokClient({
     accessToken: process.env.NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN,
+    maxRetries: 0,
+    resolveNestedRelations: false,
     cache: {
       clear: 'auto',
       type: 'memory',
     },
   });
 
-  let redirects = null;
+  let hasNextPage = true;
+  let page = 1;
+  const perPage = 100;
+  const items: RedirectItem[] = [];
 
   try {
-    const { data } = await Storyblok.get('cdn/stories', {
-      filter_query: {
-        component: {
-          in: 'redirect',
+    while (hasNextPage) {
+      const { data, total } = await Storyblok.get('cdn/stories', {
+        page,
+        per_page: perPage,
+        filter_query: {
+          component: {
+            in: 'redirect',
+          },
+          oldPath: {
+            is: 'not_empty',
+          },
+          newPath: {
+            is: 'not_empty',
+          },
+          status: {
+            is: 'not_empty',
+          },
         },
-        oldPath: {
-          is: 'not_empty',
-        },
-        newPath: {
-          is: 'not_empty',
-        },
-        status: {
-          is: 'not_empty',
-        },
-      },
-      starts_with: process.env.NEXT_PUBLIC_STORYBLOK_MAIN_APP_FOLDER,
-    });
-    const items: RedirectItem[] = data?.stories || [];
+        starts_with: process.env.NEXT_PUBLIC_STORYBLOK_MAIN_APP_FOLDER,
+      });
 
-    redirects = items
-      .map(item => ({
-        source: item?.content?.oldPath || '',
-        destination: item?.content?.newPath || '',
-        permanent: !(item?.content?.status === '307'),
-      }))
-      .filter(
-        item =>
-          item.source &&
-          item.source.startsWith('/') &&
-          item.destination &&
-          item.destination.startsWith('/'),
-      );
+      items.push(...data.stories);
+
+      hasNextPage = total > page * perPage;
+      page = page + 1;
+
+      const redirects = items
+        .map(item => ({
+          source: item?.content?.oldPath || '',
+          destination: item?.content?.newPath || '',
+          permanent: !(item?.content?.status === '307'),
+        }))
+        .filter(
+          item =>
+            item.source &&
+            item.source.startsWith('/') &&
+            item.destination &&
+            item.destination.startsWith('/'),
+        );
+
+      return redirects;
+    }
   } catch (err) {
     console.log('getStoryblokRedirects Error -> ', err);
+
+    return [];
   }
-
-  return redirects ?? [];
 };
-
-export { getStoryblokRedirects };

@@ -25,7 +25,7 @@ const nextConfig: NextConfig = {
   async redirects() {
     const storyblokRedirectsItems = await getStoryblokRedirects();
 
-    return [...storyblokRedirectsItems];
+    return [...(storyblokRedirectsItems || [])];
   },
   async rewrites() {
     return [

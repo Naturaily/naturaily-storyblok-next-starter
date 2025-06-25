@@ -5,6 +5,7 @@
 - [x] Fix TailwindCSS missing styles
 - [x] Bump TailwindCSS to the latest version
 - [x] Remove tailwind.config.js and fix tailwindcss intellisense
+- [x] Check the storyblok redirects
 - [] Remove all unnecessary `index.ts` files
 - [] Dynamic imports for all conditional renders
 - [] Add conditional prose rendering to richtext
