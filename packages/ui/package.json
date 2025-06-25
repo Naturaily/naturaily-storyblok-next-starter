@@ -65,8 +65,8 @@
       "require": "./src/ResponsiveImage/ResponsiveImage.tsx"
     },
     "./Richtext": {
-      "import": "./src/RichText/Richtext.tsx",
-      "require": "./src/RichText/Richtext.tsx"
+      "import": "./src/Richtext/Richtext.tsx",
+      "require": "./src/Richtext/Richtext.tsx"
     },
     "./ScrollArea": {
       "import": "./src/ScrollArea/ScrollArea.tsx",
