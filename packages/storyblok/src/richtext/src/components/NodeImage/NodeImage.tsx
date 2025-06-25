@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 import { ResponsiveImage } from '@natu/ui/ResponsiveImage';
 
 import { getAssetFromStoryblok } from '../../../../utils/getAssetFromStoryblok/getAssetFromStoryblok';
-import { StoryblokAsset } from '../../../../utils/types';
+import { StoryblokAsset } from '../../../../utils/types/StoryblokAsset/StoryblokAsset';
 
 interface NodeImageProps {
   alt?: string;

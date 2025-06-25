@@ -3,7 +3,7 @@ import type { ElementType } from 'react';
 import { DynamicRender } from '../../../utils/components/DynamicRender/DynamicRender';
 import { resolveStoryblokStyles, Size, Spacing } from '../../../utils/resolveStoryblokStyles';
 import { sbEditable } from '../../../utils/sbEditable/sbEditable';
-import { BlokItem, SBProps } from '../../../utils/types';
+import { BlokItem, SBProps } from '../../../utils/types/SBProps/SBProps';
 
 interface SBContainerProps {
   body?: BlokItem[];

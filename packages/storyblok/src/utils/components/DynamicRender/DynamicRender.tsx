@@ -4,7 +4,7 @@ import {
   StoryblokStory as StoryblokStoryComponent,
 } from '@storyblok/react/rsc';
 
-import { BlokItem } from '../../types';
+import { BlokItem } from '../../types/SBProps/SBProps';
 
 export interface StoryblokComponentsProps {
   data?: BlokItem | BlokItem[];

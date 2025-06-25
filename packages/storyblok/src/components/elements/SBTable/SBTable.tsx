@@ -10,7 +10,8 @@ import {
 
 import { resolveStoryblokStyles, Spacing } from '../../../utils/resolveStoryblokStyles';
 import { sbEditable } from '../../../utils/sbEditable/sbEditable';
-import { StoryblokTable, SBProps } from '../../../utils/types';
+import { SBProps } from '../../../utils/types/SBProps/SBProps';
+import { StoryblokTable } from '../../../utils/types/SBTable/SBTable';
 
 interface SBTableProps {
   table?: StoryblokTable;

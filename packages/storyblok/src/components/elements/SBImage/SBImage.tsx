@@ -7,7 +7,9 @@ import { getAssetFromStoryblok } from '../../../utils/getAssetFromStoryblok/getA
 import { getLinkPropsFromStoryblok } from '../../../utils/getLinkPropsFromStoryblok/getLinkPropsFromStoryblok';
 import { resolveStoryblokStyles, Spacing } from '../../../utils/resolveStoryblokStyles';
 import { sbEditable } from '../../../utils/sbEditable/sbEditable';
-import { StoryblokAsset, StoryblokLink, SBProps } from '../../../utils/types';
+import { SBProps } from '../../../utils/types/SBProps/SBProps';
+import { StoryblokAsset } from '../../../utils/types/StoryblokAsset/StoryblokAsset';
+import { StoryblokLink } from '../../../utils/types/StoryblokLink/StoryblokLink';
 
 interface SBImageProps {
   asset?: StoryblokAsset;

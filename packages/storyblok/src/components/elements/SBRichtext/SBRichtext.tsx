@@ -9,7 +9,7 @@ import {
   resolveStoryblokStyles,
 } from '../../../utils/resolveStoryblokStyles';
 import { sbEditable } from '../../../utils/sbEditable/sbEditable';
-import { SBProps } from '../../../utils/types';
+import { SBProps } from '../../../utils/types/SBProps/SBProps';
 
 interface SBRichtextProps {
   content?: StoryblokRichTextData;

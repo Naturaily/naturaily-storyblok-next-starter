@@ -4,7 +4,8 @@ import { Button, ButtonProps } from '@natu/ui/Button';
 import { getLinkPropsFromStoryblok } from '../../../utils/getLinkPropsFromStoryblok/getLinkPropsFromStoryblok';
 import { resolveStoryblokStyles, Spacing } from '../../../utils/resolveStoryblokStyles';
 import { sbEditable } from '../../../utils/sbEditable/sbEditable';
-import { StoryblokLink, SBProps } from '../../../utils/types';
+import { SBProps } from '../../../utils/types/SBProps/SBProps';
+import { StoryblokLink } from '../../../utils/types/StoryblokLink/StoryblokLink';
 
 interface SBButtonProps {
   content?: string;

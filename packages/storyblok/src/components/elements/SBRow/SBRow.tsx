@@ -10,7 +10,7 @@ import {
   resolveStoryblokStyles,
 } from '../../../utils/resolveStoryblokStyles';
 import { sbEditable } from '../../../utils/sbEditable/sbEditable';
-import { BlokItem, SBProps } from '../../../utils/types';
+import { BlokItem, SBProps } from '../../../utils/types/SBProps/SBProps';
 
 interface SBRowProps {
   body?: BlokItem[];

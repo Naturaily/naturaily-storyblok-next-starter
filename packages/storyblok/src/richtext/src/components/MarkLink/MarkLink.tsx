@@ -5,7 +5,7 @@ import { Link } from '@natu/next-link/Link';
 import { Button } from '@natu/ui/Button';
 
 import { getLinkPropsFromStoryblok } from '../../../../utils/getLinkPropsFromStoryblok/getLinkPropsFromStoryblok';
-import { StoryblokLink } from '../../../../utils/types';
+import { StoryblokLink } from '../../../../utils/types/StoryblokLink/StoryblokLink';
 
 interface MarkLinkProps {
   linktype?: string;
