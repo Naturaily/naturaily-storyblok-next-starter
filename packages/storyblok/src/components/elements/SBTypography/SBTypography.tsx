@@ -6,8 +6,9 @@ import {
   TypographyVariant,
   TypographyVariantProp,
 } from '../../../../../ui/src/Typography/Typography.type';
-import { SBProps, resolveStoryblokStyles, sbEditable } from '../../../utils';
+import { SBProps, resolveStoryblokStyles } from '../../../utils';
 import { FontWeight, TextAlign, FontFamily, Spacing } from '../../../utils/resolveStoryblokStyles';
+import { sbEditable } from '../../../utils/sbEditable/sbEditable';
 
 interface SBTypographyProps {
   content?: string;

@@ -3,7 +3,7 @@ import { ISbStoriesParams, StoryblokClient } from '@storyblok/react/rsc';
 
 import { env } from '@natu/env';
 
-import { getSlugWithAppName } from '../utils';
+import { getSlugWithAppName } from '../utils/getSlugWithAppName/getSlugWithAppName';
 import {
   GetConfigNodeQueryVariables,
   GetContentNodeQueryVariables,

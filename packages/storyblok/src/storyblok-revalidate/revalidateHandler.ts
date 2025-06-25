@@ -4,7 +4,7 @@ import { NextRequest } from 'next/server';
 import { env } from '@natu/env';
 
 import { TAGS } from '../api/tags';
-import { getSlugWithoutAppName } from '../utils';
+import { getSlugWithoutAppName } from '../utils/getSlugWithoutAppName/getSlugWithoutAppName';
 
 export const revalidateHandler = async (request: NextRequest): Promise<Response> => {
   const { searchParams } = new URL(request.url);

@@ -2,14 +2,9 @@ import type { ElementType } from 'react';
 
 import { cn } from '@natu/utils/cn';
 
-import {
-  BlokItem,
-  SBProps,
-  resolveStoryblokStyles,
-  sbEditable,
-  DynamicRender,
-} from '../../../utils';
+import { BlokItem, SBProps, resolveStoryblokStyles, DynamicRender } from '../../../utils';
 import { Spacing, AlignItems, JustifyItems } from '../../../utils/resolveStoryblokStyles';
+import { sbEditable } from '../../../utils/sbEditable/sbEditable';
 
 interface SBRowProps {
   body?: BlokItem[];

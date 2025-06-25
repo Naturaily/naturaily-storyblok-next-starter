@@ -17,3 +17,4 @@
 - [] Remove all unused packages from each package.json
 - [] Bump docs and storyblok
 - [] Update docs
+<!-- TypeError: controller[kState].transformAlgorithm is not a function] -->

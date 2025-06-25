@@ -3,16 +3,11 @@ import { ConditionalLink } from '@natu/ui/ConditionalLink';
 import { ResponsiveImage } from '@natu/ui/ResponsiveImage';
 import { cn } from '@natu/utils/cn';
 
-import {
-  StoryblokAsset,
-  StoryblokLink,
-  SBProps,
-  getAssetFromStoryblok,
-  getLinkPropsFromStoryblok,
-  resolveStoryblokStyles,
-  sbEditable,
-} from '../../../utils';
+import { StoryblokAsset, StoryblokLink, SBProps, resolveStoryblokStyles } from '../../../utils';
+import { getAssetFromStoryblok } from '../../../utils/getAssetFromStoryblok/getAssetFromStoryblok';
+import { getLinkPropsFromStoryblok } from '../../../utils/getLinkPropsFromStoryblok/getLinkPropsFromStoryblok';
 import { Spacing } from '../../../utils/resolveStoryblokStyles';
+import { sbEditable } from '../../../utils/sbEditable/sbEditable';
 
 interface SBImageProps {
   asset?: StoryblokAsset;

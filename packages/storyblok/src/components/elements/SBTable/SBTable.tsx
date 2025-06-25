@@ -8,8 +8,9 @@ import {
   TableRow,
 } from '@natu/ui/Table';
 
-import { StoryblokTable, SBProps, resolveStoryblokStyles, sbEditable } from '../../../utils';
+import { StoryblokTable, SBProps, resolveStoryblokStyles } from '../../../utils';
 import { Spacing } from '../../../utils/resolveStoryblokStyles';
+import { sbEditable } from '../../../utils/sbEditable/sbEditable';
 
 interface SBTableProps {
   table?: StoryblokTable;

@@ -67,6 +67,18 @@
     "./isDraftMode": {
       "import": "./src/storyblok-preview/isDraftMode.ts",
       "require": "./src/storyblok-preview/isDraftMode.ts"
+    },
+    "./getAssetFromStoryblok": {
+      "import": "./src/utils/getAssetFromStoryblok/getAssetFromStoryblok.ts",
+      "require": "./src/utils/getAssetFromStoryblok/getAssetFromStoryblok.ts"
+    },
+    "./getLinkPropsFromStoryblok": {
+      "import": "./src/utils/getLinkPropsFromStoryblok/getLinkPropsFromStoryblok.ts",
+      "require": "./src/utils/getLinkPropsFromStoryblok/getLinkPropsFromStoryblok.ts"
+    },
+    "./sbEditable": {
+      "import": "./src/utils/sbEditable/sbEditable.ts",
+      "require": "./src/utils/sbEditable/sbEditable.ts"
     }
   }
 }
