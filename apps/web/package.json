@@ -26,11 +26,5 @@
     "@types/react": "19.1.8",
     "eslint-config-custom": "workspace:*",
     "tsconfig": "workspace:*"
-  },
-  "exports": {
-    "./DraftModeProvider": {
-      "import": "./src/storyblok-preview/DraftModeProvider.tsx",
-      "require": "./src/storyblok-preview/DraftModeProvider.tsx"
-    }
   }
 }

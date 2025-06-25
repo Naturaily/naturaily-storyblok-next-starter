@@ -3,12 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "main": "./index.ts",
-  "types": "./index.ts",
   "license": "MIT",
-  "files": [
-    "index.ts"
-  ],
   "publishConfig": {
     "access": "public"
   },
@@ -23,5 +18,9 @@
   "dependencies": {
     "@t3-oss/env-nextjs": "0.13.8",
     "zod": "^3.25.67"
+  },
+  "exports": {
+    "import": "./src/env/env.ts",
+    "require": "./src/env/env.ts"
   }
 }

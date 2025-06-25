@@ -32,21 +32,9 @@
       "import": "./src/helpers/cn/cn.ts",
       "require": "./src/helpers/cn/cn.js"
     },
-    "./getNextRouteWithDomain": {
-      "import": "./src/helpers/getNextRouteWithDomain/getNextRouteWithDomain.ts",
-      "require": "./src/helpers/getNextRouteWithDomain/getNextRouteWithDomain.ts"
-    },
     "./isArrayWithLength": {
       "import": "./src/helpers/isArrayWithLength/isArrayWithLength.ts",
       "require": "./src/helpers/isArrayWithLength/isArrayWithLength.ts"
-    },
-    "./useToggle": {
-      "import": "./src/hooks/useToggle/useToggle.ts",
-      "require": "./src/hooks/useToggle/useToggle.ts"
-    },
-    "./paths": {
-      "import": "./src/paths/paths.ts",
-      "require": "./src/paths/paths.ts"
     }
   }
 }

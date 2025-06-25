@@ -1,4 +1,4 @@
-import '@natu/env/src/env/env.mjs';
+import '../../packages/env/src/env/env';
 // import bundleAnalyzer from '@next/bundle-analyzer';
 import type { NextConfig } from 'next';
 
