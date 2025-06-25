@@ -19,7 +19,6 @@
     "@storybook/react": "8.4.7",
     "eslint-config-custom": "workspace:*",
     "storybook": "8.4.7",
-    "tailwind-config": "workspace:*",
     "tsconfig": "workspace:*"
   }
 }

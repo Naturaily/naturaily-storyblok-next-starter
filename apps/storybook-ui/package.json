@@ -11,7 +11,6 @@
   },
   "devDependencies": {
     "eslint-config-custom": "workspace:*",
-    "tailwind-config": "workspace:*",
     "tsconfig": "workspace:*",
     "@natu/storybook": "workspace:*"
   }

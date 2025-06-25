@@ -25,7 +25,6 @@
   "devDependencies": {
     "@types/react": "19.1.8",
     "eslint-config-custom": "workspace:*",
-    "tailwind-config": "workspace:*",
     "tsconfig": "workspace:*"
   },
   "exports": {

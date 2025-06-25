@@ -13,7 +13,6 @@
     "@types/react": "19.1.8",
     "@types/react-dom": "^19.0.2",
     "eslint-config-custom": "workspace:*",
-    "tailwind-config": "workspace:*",
     "tsconfig": "workspace:*"
   },
   "dependencies": {

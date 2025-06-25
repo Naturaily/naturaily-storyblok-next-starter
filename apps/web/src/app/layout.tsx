@@ -8,6 +8,7 @@ import { getStoryblokSdk } from '@natu/storyblok/api';
 import { StoryblokStory } from '@natu/storyblok/DynamicRender';
 import { getStoryblokSeoData } from '@natu/storyblok/getStoryblokSeoData';
 import { Layout } from '@natu/ui/Layout';
+import { cn } from '@natu/utils/cn';
 
 import { Providers } from './Providers';
 import { StoryblokProvider } from './StoryblokProvider';
@@ -49,7 +50,7 @@ const RootLayout = async ({ children }: RootLayoutProps) => {
   return (
     <StoryblokProvider>
       <html lang="en" suppressHydrationWarning>
-        <body className={poppinsFont.variable} suppressHydrationWarning>
+        <body className={cn(poppinsFont.variable, 'antialiased')} suppressHydrationWarning>
           <Providers
             darkModeOptions={{
               defaultTheme,

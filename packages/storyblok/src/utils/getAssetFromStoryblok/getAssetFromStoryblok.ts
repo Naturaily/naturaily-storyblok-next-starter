@@ -1,4 +1,4 @@
-import { StoryblokAsset } from '../../types';
+import { StoryblokAsset } from '../types';
 
 interface Config {
   type: 'image' | 'video';

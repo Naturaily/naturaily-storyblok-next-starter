@@ -3,7 +3,8 @@
 - [x] Fix Eslint workspace and test it by importing not used import
 - [x] Fix the tailwind-prettier-plugin
 - [x] Fix TailwindCSS missing styles
-- [] Bump TailwindCSS to the latest version
+- [x] Bump TailwindCSS to the latest version
+- [x] Remove tailwind.config.js and fix tailwindcss intellisense
 - [] Remove all unnecessary `index.ts` files
 - [] Dynamic imports for all conditional renders
 - [] Add conditional prose rendering to richtext

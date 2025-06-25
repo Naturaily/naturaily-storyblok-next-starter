@@ -1,5 +1,8 @@
 {
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
-  }
+  },
+  // * Tailwind CSS IntelliSense fix
+  // https://github.com/tailwindlabs/tailwindcss-intellisense/issues/1155
+  "tailwindCSS.experimental.configFile": "packages/tailwind-config/global.css"
 }
