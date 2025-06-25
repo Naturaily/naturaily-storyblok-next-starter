@@ -9,9 +9,9 @@
 - [x] Remove all unnecessary index.ts files.
 - [x] Fix T3.env TS process.
 - [x] Dynamic imports for all conditional renders (Only `SBImage` and `SBTable` have conditionals, and it doesn't seem necessary to use next/dynamic there).
-- [ ] Remove all unused packages from each package.json.
-- [ ] Add conditional prose rendering to richtext.
+- [x] Remove all unused packages from each package.json.
 - [ ] Check the sitemap and robots file.
+- [ ] Add conditional prose rendering to richtext.
 - [ ] Test draftMode and revalidateHandler.
 - [ ] Fix the bundle analyzer in next.config.ts.
 - [ ] Bump all packages.

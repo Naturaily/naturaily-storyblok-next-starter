@@ -2,8 +2,6 @@ import '../../packages/env/src/env/env';
 // import bundleAnalyzer from '@next/bundle-analyzer';
 import type { NextConfig } from 'next';
 
-// import { env } from '@natu/env/src/env/env.mjs';
-
 import { getStoryblokRedirects } from './getStoryblokRedirects';
 
 // const withBundleAnalyzer = bundleAnalyzer({
