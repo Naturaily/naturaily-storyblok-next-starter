@@ -1,7 +1,10 @@
 import { StoryblokRichTextNode } from '@storyblok/richtext';
 import { ReactElement } from 'react';
 
-import { StoryblokRichtext } from '../../../richtext/src/components/StoryblokRichtext/StoryblokRichtext';
+import {
+  StoryblokRichtext,
+  StoryblokRichtextVariant,
+} from '../../../richtext/src/components/StoryblokRichtext/StoryblokRichtext';
 import {
   TextAlign,
   FontFamily,
@@ -12,6 +15,7 @@ import { sbEditable } from '../../../utils/sbEditable/sbEditable';
 import { SBProps } from '../../../utils/types/SBProps/SBProps';
 
 interface SBRichtextProps {
+  variant?: StoryblokRichtextVariant;
   content?: StoryblokRichTextNode<ReactElement>;
   textAlignMobile?: TextAlign;
   textAlignTablet?: TextAlign;
@@ -38,6 +42,7 @@ export const SBRichtext = ({ blok }: SBProps<SBRichtextProps>) => {
     mbMobile,
     mbTablet,
     mbDesktop,
+    variant,
   } = blok;
 
   const className = resolveStoryblokStyles({
@@ -53,5 +58,12 @@ export const SBRichtext = ({ blok }: SBProps<SBRichtextProps>) => {
     mbDesktop,
   });
 
-  return <StoryblokRichtext className={className} data={content} {...sbEditable(blok)} />;
+  return (
+    <StoryblokRichtext
+      variant={variant}
+      className={className}
+      data={content}
+      {...sbEditable(blok)}
+    />
+  );
 };

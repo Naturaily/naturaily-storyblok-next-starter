@@ -1,18 +1,15 @@
-import { nanoid } from 'nanoid';
-import { Fragment, ReactNode } from 'react';
+import { StoryblokRichTextNode } from '@storyblok/richtext';
+import { uid } from 'radash';
+import { Fragment, ReactElement } from 'react';
 
 import { ResponsiveImage } from '@natu/ui/ResponsiveImage';
 
 import { getAssetFromStoryblok } from '../../../../utils/getAssetFromStoryblok/getAssetFromStoryblok';
 import { StoryblokAsset } from '../../../../utils/types/StoryblokAsset/StoryblokAsset';
 
-interface NodeImageProps {
-  alt?: string;
-  title?: string;
-  src?: string;
-}
+export const NodeImage = (node: StoryblokRichTextNode<ReactElement>) => {
+  const { alt, src: imageSrc, title } = node.attrs || {};
 
-export const NodeImage = (_: ReactNode, { alt, src: imageSrc, title }: NodeImageProps) => {
   const storyblokImage = {
     alt,
     filename: imageSrc,
@@ -25,5 +22,5 @@ export const NodeImage = (_: ReactNode, { alt, src: imageSrc, title }: NodeImage
     return <Fragment />;
   }
 
-  return <ResponsiveImage key={nanoid()} {...image} />;
+  return <ResponsiveImage key={uid(5)} {...image} />;
 };

@@ -1,21 +1,17 @@
 import { ComponentProps, ReactNode } from 'react';
 
-import { cn } from '@natu/utils/cn';
-
 export interface RichtextProps extends ComponentProps<'div'> {
   children?: ReactNode;
   html?: string | TrustedHTML;
 }
 
 export const Richtext = ({ className, children, html, ...rest }: RichtextProps) => {
-  const styles = cn('prose dark:prose-invert max-w-none', className);
-
   if (html) {
-    return <div className={styles} dangerouslySetInnerHTML={{ __html: html }} {...rest} />;
+    return <div className={className} dangerouslySetInnerHTML={{ __html: html }} {...rest} />;
   }
 
   return (
-    <div className={styles} {...rest}>
+    <div className={className} {...rest}>
       {children}
     </div>
   );

@@ -1,5 +1,5 @@
 import { StoryblokRichTextNode } from '@storyblok/richtext';
-import { nanoid } from 'nanoid';
+import { uid } from 'radash';
 import { Fragment, ReactElement } from 'react';
 
 import { Code, CodeProps } from '@natu/ui/Code';
@@ -23,7 +23,7 @@ export const NodeCodeblock = (node: StoryblokRichTextNode<ReactElement>) => {
 
   return (
     <Code
-      key={nanoid()}
+      key={uid(5)}
       className="no-prose"
       code={codeData}
       language={lang as CodeProps['language']}
