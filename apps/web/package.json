@@ -16,6 +16,7 @@
     "@natu/next-themes": "workspace:*",
     "@natu/storyblok": "workspace:*",
     "@natu/ui": "workspace:*",
+    "@natu/utils": "workspace:*",
     "@next/bundle-analyzer": "^15.3.4",
     "next": "^15.3.4",
     "react": "^19.1.0",

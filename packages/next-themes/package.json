@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@natu/ui": "workspace:*",
-    "lucide-react": "0.522.0",
+    "lucide-react": "0.524.0",
     "next-themes": "0.4.6"
   },
   "exports": {

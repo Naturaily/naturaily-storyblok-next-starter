@@ -7,6 +7,7 @@ import { StoryblokStory } from '@natu/storyblok/DynamicRender';
 import { getSlugWithAppName } from '@natu/storyblok/getSlugWithAppName';
 import { getStoryblokSeoData } from '@natu/storyblok/getStoryblokSeoData';
 import { isSlugExcludedFromRouting } from '@natu/storyblok/isSlugExcludedFromRouting';
+import { tryCatch } from '@natu/utils/tryCatch';
 
 const getSlugFromParams = <T extends string[] | string>(slug?: T) => {
   const path = (slug && Array.isArray(slug) && slug.join('/')) || '';
@@ -32,11 +33,13 @@ export const generateMetadata = async (
   const slug = getSlugWithAppName({ slug: getSlugFromParams(awaitedParas.slug) });
 
   const prevData = await parent;
-  const { data } = await getContentNode({
-    slug,
-  });
+  const { data } = await tryCatch(
+    getContentNode({
+      slug,
+    }),
+  );
 
-  return getStoryblokSeoData(data?.story?.content?.seo, {
+  return getStoryblokSeoData(data?.data?.story?.content?.seo, {
     slug: `/${getSlugFromParams(awaitedParas.slug)}`,
     prevData,
   });
@@ -54,13 +57,13 @@ const Page = async ({ params }: PageProps) => {
     notFound();
   }
 
-  const { data } = await getContentNode({ slug });
+  const { data } = await tryCatch(getContentNode({ slug }));
 
-  if (!data || !data?.story?.content) {
+  if (!data || !data?.data?.story?.content) {
     notFound();
   }
 
-  return <StoryblokStory story={data.story} />;
+  return <StoryblokStory story={data?.data?.story} />;
 };
 
 export default Page;
