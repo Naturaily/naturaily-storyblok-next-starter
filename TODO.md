@@ -16,12 +16,9 @@
 - [x] Update Storyblok related packages.
 - [x] nanoid out -> radash in
 - [x] Add conditional prose rendering to richtext.
-- [ ] Test revalidateHandler - locally
+- [x] Fix the bundle analyzer in next.config.ts.
+- [x] Test revalidateHandler - locally
 - [ ] Add form-builder from capitalise (copy package) - cgabge x-www-form to json and out pardot form
-- [ ] Fix the bundle analyzer in next.config.ts.
 - [ ] Bump docs and Storyblok + index.ts from Storybook.
 - [ ] Bump all packages.
 - [ ] Update docs.
-
-<!-- TypeError: controller[kState].transformAlgorithm is not a function] -->
- <!-- [Error: {"message":"This record could not be found","status":404,"response":{"data":["This record could not be found"],"headers":{"cache-control":"no-cache","connection":"keep-alive","content-length":"34","content-type":"application/json; charset=utf-8","date":"Fri, 27 Jun 2025 10:34:12 GMT","referrer-policy":"strict-origin-when-cross-origin","sb-be-version":"5.1.2","server":"nginx/1.25.4","vary":"Origin","via":"1.1 4f9674ecfa7356676414cbab65f49e64.cloudfront.net (CloudFront)","x-amz-cf-id":"xtkjitDVUzRUKwf-JB5-oLejhHnsZoaA4hGVdF2tV4OaZYoxua6fUQ==","x-amz-cf-pop":"WAW51-P2","x-cache":"Error from cloudfront","x-content-type-options":"nosniff","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-request-id":"1ea0c376-4f69-461b-a7e3-298d3a505eba","x-runtime":"0.014082" -->

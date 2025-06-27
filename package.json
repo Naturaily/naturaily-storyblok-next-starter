@@ -14,6 +14,7 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --concurrency 24",
+    "dev:https": "turbo run dev:https",
     "dev:docs": "pnpm --filter docs dev:docs",
     "prettier:format": "prettier --write \"**/*.{ts,tsx,md,mdx}\"",
     "eslint:format": "turbo eslint:format --",

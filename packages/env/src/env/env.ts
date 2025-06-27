@@ -12,6 +12,7 @@ export const env = createEnv({
   skipValidation,
   server: {
     ANALYZE: z.string().nullish(),
+    STORYBLOK_WEBHOOK_SECRET: z.string(),
   },
   client: {
     NEXT_PUBLIC_APP_URL: z.string(),
@@ -32,5 +33,6 @@ export const env = createEnv({
     NEXT_PUBLIC_STORYBLOK_MAIN_APP_FOLDER: process.env.NEXT_PUBLIC_STORYBLOK_MAIN_APP_FOLDER,
     NEXT_PUBLIC_STORYBLOK_EXCLUDED_FOLDERS_FROM_ROUTING:
       process.env.NEXT_PUBLIC_STORYBLOK_EXCLUDED_FOLDERS_FROM_ROUTING,
+    STORYBLOK_WEBHOOK_SECRET: process.env.STORYBLOK_WEBHOOK_SECRET,
   },
 });

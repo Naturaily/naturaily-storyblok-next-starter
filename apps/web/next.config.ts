@@ -1,12 +1,11 @@
 import '../../packages/env/src/env/env';
-// import bundleAnalyzer from '@next/bundle-analyzer';
+import withBundleAnalyzer from '@next/bundle-analyzer';
 import type { NextConfig } from 'next';
 
+import { env } from '../../packages/env/src/env/env';
 import { getStoryblokRedirects } from './getStoryblokRedirects';
 
-// const withBundleAnalyzer = bundleAnalyzer({
-//   enabled: env.ANALYZE === 'true',
-// });
+const bundleAnalyzer = withBundleAnalyzer();
 
 const nextConfig: NextConfig = {
   images: {
@@ -35,5 +34,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-// export default withBundleAnalyzer(nextConfig);
-export default nextConfig;
+export default env.ANALYZE === 'true' ? bundleAnalyzer(nextConfig) : nextConfig;

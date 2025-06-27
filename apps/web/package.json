@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "next dev --turbo",
+    "dev:https": "next dev --port 3000 --experimental-https",
     "bundle:analyze": "ANALYZE=true pnpm build",
     "build": "next build",
     "start": "next start",
