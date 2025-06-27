@@ -1,24 +1,29 @@
 # Project TODO List
 
-- [x] Fix ESLint workspace and test it by importing an unused import.
-- [x] Fix the tailwind-prettier-plugin.
-- [x] Fix missing Tailwind CSS styles.
-- [x] Bump Tailwind CSS to the latest version.
-- [x] Remove tailwind.config.js and fix Tailwind CSS Intellisense.
-- [x] Check Storyblok redirects.
-- [x] Remove all unnecessary index.ts files.
-- [x] Fix T3.env TS process.
-- [x] Dynamic imports for all conditional renders (Only `SBImage` and `SBTable` have conditionals, and it doesn't seem necessary to use next/dynamic there).
-- [x] Remove all unused packages from each package.json.
-- [x] Check the sitemap and robots file.
-- [x] Update shadcn/ui components for Tailwind V4.
-- [x] Test live preview in Storyblok.
-- [x] Update Storyblok related packages.
-- [x] nanoid out -> radash in
-- [x] Add conditional prose rendering to richtext.
-- [x] Fix the bundle analyzer in next.config.ts.
-- [x] Test revalidateHandler - locally
-- [ ] Add form-builder from capitalise (copy package) - cgabge x-www-form to json and out pardot form
-- [ ] Bump docs and Storyblok + index.ts from Storybook.
-- [ ] Bump all packages.
-- [ ] Update docs.
+## ✅ Completed
+
+- [x] Fix ESLint workspace and test it by importing an unused import
+- [x] Fix the Tailwind Prettier plugin
+- [x] Fix missing Tailwind CSS styles
+- [x] Bump Tailwind CSS to the latest version
+- [x] Remove `tailwind.config.js` and fix Tailwind CSS IntelliSense
+- [x] Check Storyblok redirects
+- [x] Remove all unnecessary `index.ts` files
+- [x] Fix T3.env TypeScript process
+- [x] Use dynamic imports for all conditional renders (only `SBImage` and `SBTable` have conditionals, and it doesn't seem necessary to use `next/dynamic` there)
+- [x] Remove all unused packages from each `package.json`
+- [x] Check the sitemap and `robots.txt` file
+- [x] Update `shadcn/ui` components for Tailwind CSS v4
+- [x] Test live preview in Storyblok
+- [x] Update Storyblok-related packages
+- [x] Replace `nanoid` with `radash`
+- [x] Add conditional `prose` rendering to rich text
+- [x] Fix the bundle analyzer in `next.config.ts`
+- [x] Test `revalidateHandler` locally
+- [x] Add `form-builder` from Capitalise (copy the package) — change from `x-www-form` to JSON and remove Pardot form
+
+## 🔧 In Progress / To Do
+
+- [ ] Bump documentation and Storyblok + remove `index.ts` from Storybook
+- [ ] Bump all packages
+- [ ] Update documentation
