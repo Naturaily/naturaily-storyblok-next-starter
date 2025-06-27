@@ -1,14 +1,13 @@
 // ! The inferred type of 'default' cannot be named without a reference to '.pnpm/next@14.2.30_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next'. This is likely not portable. A type annotation is necessary.
 // * This will be propably fixed when the docs are updated.
-
-import '../../packages/env/src/env/env';
 // import withBundleAnalyzer from '@next/bundle-analyzer';
+// import { env } from '../../packages/env/src/env/env';
+// const bundleAnalyzer = withBundleAnalyzer();
+
+import '@natu/env';
 import type { NextConfig } from 'next';
 
-// import { env } from '../../packages/env/src/env/env';
 import { getStoryblokRedirects } from './getStoryblokRedirects';
-
-// const bundleAnalyzer = withBundleAnalyzer();
 
 const nextConfig: NextConfig = {
   images: {
