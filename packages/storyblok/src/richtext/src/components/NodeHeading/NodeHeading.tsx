@@ -1,12 +1,10 @@
-import { ReactNode, ElementType } from 'react';
+import { StoryblokRichTextNode } from '@storyblok/richtext';
+import { nanoid } from 'nanoid';
+import { ElementType, ReactElement } from 'react';
 
 import { Typography } from '@natu/ui/Typography';
 
 import { TypographyVariantProp } from '../../../../../../ui/src/Typography/Typography.type';
-
-interface NodeHeadingProps {
-  level: 1 | 2 | 3 | 4 | 5 | 6;
-}
 
 interface Heading {
   tag: ElementType;
@@ -40,12 +38,12 @@ const headings: Heading[] = [
   },
 ];
 
-export const NodeHeading = (children: ReactNode, { level }: NodeHeadingProps) => {
-  const { tag, variant } = headings[level - 1];
+export const NodeHeading = (node: StoryblokRichTextNode<ReactElement>) => {
+  const { tag, variant } = headings[node?.attrs?.level - 1];
 
   return (
-    <Typography component={tag} variant={variant}>
-      {children}
+    <Typography key={nanoid()} component={tag} variant={variant}>
+      {node.children}
     </Typography>
   );
 };

@@ -12,10 +12,12 @@
 - [x] Remove all unused packages from each package.json.
 - [x] Check the sitemap and robots file.
 - [x] Update shadcn/ui components for Tailwind V4.
-- [ ] Add conditional prose rendering to richtext.
-- [ ] Test draftMode and revalidateHandler.
-- [ ] Fix the bundle analyzer in next.config.ts.
+- [x] Test live preview in Storyblok.
+- [x] Update Storyblok related packages.
 - [ ] Bump all packages.
+- [ ] Test revalidateHandler
+- [ ] Add conditional prose rendering to richtext.
+- [ ] Fix the bundle analyzer in next.config.ts.
 - [ ] Bump docs and Storyblok + index.ts from Storybook.
 - [ ] Update docs.
 

@@ -1,4 +1,5 @@
-import { ReactNode } from 'react';
+import { nanoid } from 'nanoid';
+import { Fragment, ReactNode } from 'react';
 
 import { ResponsiveImage } from '@natu/ui/ResponsiveImage';
 
@@ -21,8 +22,8 @@ export const NodeImage = (_: ReactNode, { alt, src: imageSrc, title }: NodeImage
   const image = getAssetFromStoryblok(storyblokImage, { type: 'image' });
 
   if (!image.src) {
-    return null;
+    return <Fragment />;
   }
 
-  return <ResponsiveImage {...image} />;
+  return <ResponsiveImage key={nanoid()} {...image} />;
 };

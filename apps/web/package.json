@@ -18,12 +18,12 @@
     "@next/bundle-analyzer": "^15.3.4",
     "next": "^15.3.4",
     "react": "^19.1.0",
-    "storyblok-js-client": "6.10.6"
+    "storyblok-js-client": "7.0.2"
   },
   "devDependencies": {
-    "tailwind-config": "workspace:*",
     "@types/react": "19.1.8",
     "eslint-config-custom": "workspace:*",
+    "tailwind-config": "workspace:*",
     "tsconfig": "workspace:*"
   }
 }

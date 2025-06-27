@@ -21,38 +21,50 @@ interface Config {
   prevData?: Awaited<ResolvingMetadata>;
 }
 
-export const getStoryblokSeoData = (data?: StoryblokSeoComponent[], config?: Config): Metadata => {
-  if (!data || !Array.isArray(data) || data.length === 0) {
-    return {};
-  }
+interface StoryblokSeoComponent extends SbComponentType<'seo'> {
+  metaTitle: string;
+  metaDescription: string;
+  metaImage: StoryblokAsset;
+  noIndex: boolean;
+  noFollow: boolean;
+}
 
-  const [{ metaDescription, metaImage, metaTitle, noIndex, noFollow }] = data;
+interface Config {
+  slug?: string;
+  twitterCreator?: string;
+  googleVerificationId?: string;
+  siteName?: string;
+  prevData?: Awaited<ResolvingMetadata>;
+}
+
+export const getStoryblokSeoData = (data?: StoryblokSeoComponent[], config?: Config): Metadata => {
+  const [seoComponent] = data || [];
   const { googleVerificationId, slug, twitterCreator, siteName, prevData } = config || {};
 
-  const prevTitle = prevData?.title || '';
-  const prevDescription = prevData?.description || '';
+  const metaTitle = seoComponent?.metaTitle || prevData?.title || '';
+  const metaDescription = seoComponent?.metaDescription || prevData?.description || '';
 
-  return {
+  const seo: Metadata = {
     metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
-    title: metaTitle || prevTitle,
-    description: metaDescription || prevDescription,
+    title: metaTitle,
+    description: metaDescription,
     alternates: {
       canonical: slug,
     },
     robots: {
-      follow: !noFollow,
-      index: !noIndex,
+      follow: !seoComponent?.noFollow,
+      index: !seoComponent?.noIndex,
     },
     openGraph: {
-      title: metaTitle || prevTitle,
-      description: metaDescription || prevDescription,
+      title: metaTitle,
+      description: metaDescription,
       url: slug,
       siteName,
-      ...(metaImage?.filename && {
+      ...(seoComponent?.metaImage?.filename && {
         images: [
           {
-            url: metaImage.filename,
-            alt: metaImage.alt,
+            url: seoComponent?.metaImage?.filename,
+            alt: seoComponent?.metaImage?.alt,
           },
         ],
       }),
@@ -60,15 +72,15 @@ export const getStoryblokSeoData = (data?: StoryblokSeoComponent[], config?: Con
     },
     twitter: {
       card: 'summary_large_image',
-      title: metaTitle || prevTitle,
-      description: metaDescription || prevDescription,
+      title: metaTitle,
+      description: metaDescription,
       site: twitterCreator,
       creator: twitterCreator,
-      ...(metaImage?.filename && {
+      ...(seoComponent?.metaImage?.filename && {
         images: [
           {
-            url: metaImage.filename,
-            alt: metaImage.alt,
+            url: seoComponent?.metaImage?.filename,
+            alt: seoComponent?.metaImage?.alt,
           },
         ],
       }),
@@ -79,4 +91,6 @@ export const getStoryblokSeoData = (data?: StoryblokSeoComponent[], config?: Con
       },
     }),
   };
+
+  return seo;
 };

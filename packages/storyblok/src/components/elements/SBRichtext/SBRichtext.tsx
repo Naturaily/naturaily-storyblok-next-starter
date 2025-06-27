@@ -1,7 +1,7 @@
-import {
-  StoryblokRichtext,
-  StoryblokRichTextData,
-} from '../../../richtext/src/components/StoryblokRichtext/StoryblokRichtext';
+import { StoryblokRichTextNode } from '@storyblok/richtext';
+import { ReactElement } from 'react';
+
+import { StoryblokRichtext } from '../../../richtext/src/components/StoryblokRichtext/StoryblokRichtext';
 import {
   TextAlign,
   FontFamily,
@@ -12,7 +12,7 @@ import { sbEditable } from '../../../utils/sbEditable/sbEditable';
 import { SBProps } from '../../../utils/types/SBProps/SBProps';
 
 interface SBRichtextProps {
-  content?: StoryblokRichTextData;
+  content?: StoryblokRichTextNode<ReactElement>;
   textAlignMobile?: TextAlign;
   textAlignTablet?: TextAlign;
   textAlignDesktop?: TextAlign;

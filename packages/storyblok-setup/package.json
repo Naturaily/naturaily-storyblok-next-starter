@@ -12,7 +12,7 @@
     "dotenv": "16.5.0",
     "prompts": "2.4.2",
     "slugify": "1.6.6",
-    "storyblok-js-client": "^6.10.6",
+    "storyblok-js-client": "^7.0.2",
     "ts-node": "^10.9.2"
   },
   "devDependencies": {

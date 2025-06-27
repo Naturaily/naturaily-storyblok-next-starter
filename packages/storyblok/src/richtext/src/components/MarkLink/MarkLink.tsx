@@ -1,35 +1,25 @@
-import { ReactNode } from 'react';
+import { StoryblokRichTextNode } from '@storyblok/richtext';
+import { nanoid } from 'nanoid';
+import { ReactElement } from 'react';
 
 import { env } from '@natu/env';
 import { Link } from '@natu/next-link/Link';
-import { Button } from '@natu/ui/Button';
+import { buttonVariants } from '@natu/ui/Button';
 
 import { getLinkPropsFromStoryblok } from '../../../../utils/getLinkPropsFromStoryblok/getLinkPropsFromStoryblok';
 import { StoryblokLink } from '../../../../utils/types/StoryblokLink/StoryblokLink';
 
-interface MarkLinkProps {
-  linktype?: string;
-  href?: string;
-  target?: string;
-  anchor?: string;
-  uuid?: string;
-}
-
 /**
- * This function creates a StoryblokLink object from provided props and returns an Anchor component
- * with link properties obtained from the StoryblokLink object.
- * @param {ReactNode} children - ReactNode, which is a type for any valid React child element, such as
- * a string, number, or JSX element.
- * @param {MarkLinkProps} props - The `props` parameter is an object that contains the following
- * properties:
- * @returns The `markLink` function returns a JSX element that renders an `Anchor` component with the
- * `linkProps` obtained from the `getLinkPropsFromStoryblok` function, and the `children` passed as a
- * parameter.
+ * This function creates a StoryblokLink object from the node's attributes and returns a Link
+ * component using the link properties obtained from the StoryblokLink object.
+ * @param {StoryblokRichTextNode} node - The Storyblok rich text node containing text and attributes
+ * @returns The `markLink` function returns a JSX element that renders a Link component
  */
-export const MarkLink = (
-  children: ReactNode,
-  { linktype, href, target, anchor, uuid }: MarkLinkProps,
-) => {
+
+export const MarkLink = (node: StoryblokRichTextNode<ReactElement>) => {
+  const { linktype, href, target, anchor, uuid } = node.attrs || {};
+  const text = node.text;
+
   const hrefWithoutAppFolder = href?.replace(`${env.NEXT_PUBLIC_STORYBLOK_MAIN_APP_FOLDER}/`, '');
 
   const storyblokLink = {
@@ -45,8 +35,12 @@ export const MarkLink = (
   const linkProps = getLinkPropsFromStoryblok(storyblokLink);
 
   return (
-    <Button variant="link" className="p-0" asChild>
-      <Link {...linkProps}>{children}</Link>
-    </Button>
+    <Link
+      {...linkProps}
+      key={nanoid()}
+      className={buttonVariants({ variant: 'link', size: 'link' })}
+    >
+      {text}
+    </Link>
   );
 };

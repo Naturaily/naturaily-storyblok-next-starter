@@ -16,11 +16,12 @@
     "@natu/next-themes": "workspace:*",
     "@natu/ui": "workspace:*",
     "@natu/utils": "workspace:*",
-    "@storyblok/react": "4.5.3",
+    "@storyblok/react": "5.1.1",
+    "@storyblok/richtext": "^3.4.0",
     "lucide-react": "0.522.0",
+    "nanoid": "^5.1.5",
     "next": "^15.3.4",
-    "react": "^19.1.0",
-    "storyblok-rich-text-react-renderer": "2.9.2"
+    "react": "^19.1.0"
   },
   "devDependencies": {
     "@types/react": "19.1.8",
