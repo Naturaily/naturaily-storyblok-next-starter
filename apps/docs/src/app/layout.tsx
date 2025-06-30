@@ -5,8 +5,10 @@ import { getPageMap } from 'nextra/page-map';
 import 'nextra-theme-docs/style.css';
 
 export const metadata = {
-  // Define your metadata here
-  // For more information on metadata API, see: https://nextjs.org/docs/app/building-your-application/optimizing/metadata
+  title: {
+    template: '%s - Naturaily',
+    default: 'Docs - Naturaily Next.js Storyblok Starter',
+  },
 };
 
 const navbar = (
@@ -79,6 +81,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
           sidebar={{
             defaultMenuCollapseLevel: 1,
           }}
+          editLink={null}
         >
           {children}
         </Layout>

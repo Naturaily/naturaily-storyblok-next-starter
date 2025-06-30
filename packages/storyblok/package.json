@@ -22,7 +22,8 @@
     "lucide-react": "0.524.0",
     "next": "^15.3.4",
     "radash": "^12.1.1",
-    "react": "^19.1.0"
+    "react": "^19.1.0",
+    "storyblok-js-client": "7.0.2"
   },
   "devDependencies": {
     "@types/react": "19.1.8",

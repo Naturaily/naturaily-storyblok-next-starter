@@ -18,3 +18,9 @@ export type GetContentNodesQueryVariables = {
 export type GetConfigNodeQueryVariables = {
   relations?: string;
 };
+
+export type GetLinksQueryVariables = {
+  startsWith?: string;
+  perPage?: number;
+  page?: number;
+};

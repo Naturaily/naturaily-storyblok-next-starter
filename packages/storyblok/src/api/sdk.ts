@@ -8,6 +8,7 @@ import {
   GetConfigNodeQueryVariables,
   GetContentNodeQueryVariables,
   GetContentNodesQueryVariables,
+  GetLinksQueryVariables,
 } from './sdk.types';
 
 export type SdkFunctionWrapper = <T>(
@@ -94,8 +95,23 @@ export function getSdk(
       );
     },
 
+    getLinks(variables?: GetLinksQueryVariables) {
+      const sbClient = client();
+      const { startsWith, perPage, page } = variables || {};
+
+      return withWrapper(
+        async wrapperOptions =>
+          sbClient.get('cdn/links', {
+            ...wrapperOptions,
+            starts_with: startsWith ?? '',
+            per_page: perPage ?? 1000,
+            page: page ?? 1,
+          }),
+        'getLinks',
+        'GET',
+      );
+    },
+
     // Add more
   };
 }
-
-export type Sdk = ReturnType<typeof getSdk>;

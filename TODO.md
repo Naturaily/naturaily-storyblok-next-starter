@@ -20,10 +20,11 @@
 - [x] Add conditional `prose` rendering to rich text
 - [x] Fix the bundle analyzer in `next.config.ts`
 - [x] Test `revalidateHandler` locally
-- [x] Add `form-builder` from Capitalise (copy the package) — change from `x-www-form` to JSON and remove Pardot form
+- [x] Add `form-builder` from Capitalise (copy the package) — change from `x-www-form` to JSON and remove Pardot form'
+- [x] Bump `nextra` packages and buld documentation
 
 ## 🔧 In Progress / To Do
 
-- [ ] Bump documentation and Storyblok + remove `index.ts` from Storybook
+- [ ] Bump packages and build `Storybook`
 - [ ] Bump all packages
 - [ ] Update documentation
