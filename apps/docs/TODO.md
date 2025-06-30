@@ -1,2 +1,4 @@
+- [x] Meta files
+- [] Apps and packages duplicates in the dropdowns
 - [] Edit link - component: null;
 - [] Add the `- Naturaily` after page title
