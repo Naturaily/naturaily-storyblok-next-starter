@@ -37,3 +37,6 @@ yarn-error.log*
 
 # storybook
 storybook-static
+
+# docs
+_pagefind/
