@@ -9,6 +9,6 @@ const Youtube = ({ id }: YoutubeProps) => (
   ></iframe>
 );
 
-export default function MyApp({ id }) {
+export default function MyApp({ id }: { id: string }) {
   return <Youtube id={id} />;
 }
