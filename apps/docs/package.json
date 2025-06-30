@@ -5,22 +5,23 @@
   "scripts": {
     "dev:docs": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "eslint:format": "eslint src --fix"
   },
   "author": "Shu Ding <g@shud.in>",
   "license": "MIT",
   "dependencies": {
-    "lucide-react": "0.522.0",
-    "next": "^14.2.30",
+    "lucide-react": "0.525.0",
+    "next": "^15.3.4",
     "nextra": "latest",
     "nextra-theme-docs": "latest",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
   },
   "devDependencies": {
-    "@types/node": "24.0.3",
+    "@types/node": "24.0.7",
     "eslint-config-custom": "workspace:*",
-    "eslint-plugin-mdx": "3.1.5",
+    "eslint-plugin-mdx": "3.5.0",
     "tsconfig": "workspace:*"
   }
 }
