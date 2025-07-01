@@ -1,6 +1,6 @@
 import { Steps, Callout } from 'nextra/components';
 
-# seo
+# SEO
 
 Handling the SEO.
 
@@ -20,33 +20,61 @@ for more datails.
 
 ```json
 "dependencies": {
-    "@natu/storyblok-seo": "*",
+    "@natu/storyblok": "workspace:*",
 }
 ```
 
 ### Generate metadata object where needed
 
+e.g. `layout.tsx` file, `page.tsx` file etc.
+
 ```tsx filename="apps/web/src/app/layout.tsx" /getStoryblokSeoData/
-import { type Metadata } from 'next';
-import { getStoryblokSeoData } from '@natu/storyblok-seo';
+import { Metadata } from 'next';
+import { draftMode } from 'next/headers';
+import { getStoryblokSdk } from '@natu/storyblok/api';
+import { getStoryblokSeoData } from '@natu/storyblok/getStoryblokSeoData';
+
+export const generateMetadata = async (): Promise<Metadata> => {
+  const { isEnabled } = await draftMode();
+  const { getConfigNode } = getStoryblokSdk({ draftMode: isEnabled });
+
+  const { data } = await getConfigNode();
+
+  const configContent = data?.story?.content;
+
+  return getStoryblokSeoData(configContent?.defaultSeo, {
+    slug: '/',
+    siteName: configContent?.siteName || '',
+  });
+};
+```
+
+```tsx filename="apps/web/src/app/[...slug]/page.tsx" /getStoryblokSeoData/
+import { Metadata } from 'next';
+import { draftMode } from 'next/headers';
+import { getStoryblokSdk } from '@natu/storyblok/api';
+import { getStoryblokSeoData } from '@natu/storyblok/getStoryblokSeoData';
 
 export const generateMetadata = async (
   { params }: PageProps,
   parent: ResolvingMetadata,
 ): Promise<Metadata> => {
-  const { isEnabled } = draftMode();
-  const { getContentNode } = getStoryblokApi({ draftMode: isEnabled });
+  const { isEnabled } = await draftMode();
+  const { getContentNode } = getStoryblokSdk({ draftMode: isEnabled });
 
-  const slug = getSlugWithAppName({ slug: getSlugFromParams(params.slug) });
+  const awaitedParas = await params;
+
+  const slug = getSlugWithAppName({ slug: getSlugFromParams(awaitedParas.slug) });
 
   const prevData = await parent;
-  const configData = await getContentNode({
-    slug,
-    relations,
-  });
+  const { data } = await tryCatch(
+    getContentNode({
+      slug,
+    }),
+  );
 
-  return getStoryblokSeoData(configData.ContentNode?.content.seo, {
-    slug: `/${getSlugFromParams(params.slug)}`,
+  return getStoryblokSeoData(data?.data?.story?.content?.seo, {
+    slug: `/${getSlugFromParams(awaitedParas.slug)}`,
     prevData,
   });
 };
@@ -60,7 +88,7 @@ export const generateMetadata = async (
 
 You will find global SEO settings in the application configuration tab:
 
-![Global SEO settings](https://a.storyblok.com/f/218794/4084x1472/c761c2d2a7/screenshot-2024-02-19-at-10-25-12-am.png)
+![Global SEO settings](/global-seo.webp)
 
 It will be rendered by default on every page unless you override it on a specific page.
 
@@ -68,13 +96,13 @@ It will be rendered by default on every page unless you override it on a specifi
 
 Each page-type content has an SEO tab where you can override the corresponding global properties.
 
-![Per page SEO settings](https://a.storyblok.com/f/218794/1122x1206/04cf95bccb/screenshot-2024-02-19-at-10-29-15-am.png)
+![Per page SEO settings](/per-page-seo.webp)
 
 ## Sitemap.xml
 
 The application also builds a sitemap of pages, which is accessible at this address `/sitemap.xml`
 
-Check the const validSitemapComponents. These are the content types that are to be included in the sitemap. For example, if you add a blog, just add the name of the new content type after the comma:
+Check the const `validSitemapComponents` in `sitemap.ts` file. These are the content types that are to be included in the sitemap. For example, if you add a blog, just add the name of the new content type after the comma:
 
 ```ts
 // add more -> "page,other-content-type,other"
@@ -84,5 +112,3 @@ const validSitemapComponents = 'page,blogPost';
 ---
 
 If a page has the `noIndex` select option checked, it will not be included in the sitemap.
-
-![no index](https://a.storyblok.com/f/218794/782x1554/57daf76f99/screenshot-2024-02-19-at-11-03-11-am.png)

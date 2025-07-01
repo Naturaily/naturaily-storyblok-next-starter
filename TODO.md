@@ -22,6 +22,7 @@
 - [x] Test `revalidateHandler` locally
 - [x] Add `form-builder` from Capitalise (copy the package) — change from `x-www-form` to JSON and remove Pardot form'
 - [x] Bump `nextra` packages and buld documentation
+- [] Component seo doesn't exist.
 
 ## 🔧 In Progress / To Do
 

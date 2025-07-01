@@ -1,6 +1,6 @@
 import { Callout } from 'nextra/components';
 
-# utils
+# Utils
 
 A package containing components and functions supporting work with a `Storyblok CMS`
 
@@ -12,8 +12,9 @@ A component that can render other block story components (`blocks` field in the 
 
 _Example:_
 
-```tsx copy filename="SBContainer.tsx" /DynamicRender/ {1,12}
-import { BlokItem, DynamicRender, SBProps, sbEditable } from '@natu/storyblok-utils';
+```tsx copy filename="SBContainer.tsx" /DynamicRender/ {2,15}
+import type { ElementType } from 'react';
+import { BlokItem, SBProps } from '../../../utils/types/SBProps/SBProps';
 
 interface SBContainerProps {
   body?: BlokItem[]; // <- bloks field in Storyblok CMS
@@ -22,10 +23,12 @@ interface SBContainerProps {
 export const SBContainer = ({ blok }: SBProps<SBContainerProps>) => {
   const { body } = blok;
 
+  const Comp = (tag || 'div') as ElementType;
+
   return (
-    <div {...sbEditable(blok)}>
+    <Comp className={className} {...sbEditable(blok)}>
       <DynamicRender data={body} />
-    </div>
+    </Comp>
   );
 };
 ```
@@ -108,8 +111,7 @@ The StoryblokTable type is a TypeScript interface representing a table component
 
 _Example:_
 
-```tsx copy filename="SBTable.tsx" /StoryblokTable/ {1,13,17,23,30,36}
-import { SBProps, StoryblokTable, sbEditable } from '@natu/storyblok-utils';
+```tsx copy filename="SBTable.tsx" /StoryblokTable/ {11-13,17,20,26,33,39}
 import {
   Table,
   TableBody,
@@ -118,7 +120,11 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@natu/ui';
+} from '@natu/ui/Table';
+
+import { sbEditable } from '../../../utils/sbEditable/sbEditable';
+import { SBProps } from '../../../utils/types/SBProps/SBProps';
+import { StoryblokTable } from '../../../utils/types/SBTable/SBTable';
 
 interface SBTableProps {
   table?: StoryblokTable;
@@ -159,18 +165,17 @@ export const SBTable = ({ blok }: SBProps<SBTableProps>) => {
 
 ### **StoryblokAsset**
 
-An interface describing the storyblock asset object and an auxiliary function that normalizes the data
+An interface describing the storyblok asset object and an auxiliary function that normalizes the data
 
 _Example:_
 
-```tsx copy filename="SBImage.tsx" /StoryblokAsset/ {4,10,16,22}
-import { ResponsiveImage } from '@natu/responsive-image';
-import {
-  SBProps,
-  StoryblokAsset,
-  getImagePropsFromStoryblok,
-  sbEditable,
-} from '@natu/storyblok-utils';
+```tsx copy filename="SBImage.tsx" /StoryblokAsset/ {4,9,15,21}
+import { ResponsiveImage } from '@natu/ui/ResponsiveImage';
+
+import { SBProps } from '../../../utils/types/SBProps/SBProps';
+import { StoryblokAsset } from '../../../utils/types/StoryblokAsset/StoryblokAsset';
+import { getAssetFromStoryblok } from '../../../utils/getAssetFromStoryblok/getAssetFromStoryblok';
+import { sbEditable } from '../../../utils/sbEditable/sbEditable';
 
 interface SBImageProps {
   asset?: StoryblokAsset; // <- asset field in Storyblok CMS
@@ -363,7 +368,7 @@ const path = getSlugWithAppName({ slug: 'blog' }); // <- app/blog
 const path2 = getSlugWithAppName({ slug: 'blog/article-1' }); // <- app/blog/article-1
 ```
 
-_Adwaned usage:_
+_Advanced usage:_
 
 ```tsx copy filename="apps/web/[...slug]/page.tsx" /getSlugWithAppName/ {3,11}
 import {
@@ -536,13 +541,13 @@ Why value is `36`? It's a Tailwind css class. Any person who has worked with Tai
 
 2. Add a new type in the `Spacing` type.
 
-```ts copy filename="packages/storyblok-utils/src/utils/resolveStoryblokStyles/styles/spacing/Spacing.ts" /36/
+```ts copy filename="packages/storyblok/src/utils/resolveStoryblokStyles/styles/spacing/Spacing.ts" /36/
 export type Spacing = '2' | '4' | '6' | '8' | '10' | '12' | '16' | '20' | '36';
 ```
 
 3. Now, the objects need to be filled in with the appropriate classes.
 
-```ts filename="packages/storyblok-utils/src/utils/resolveStoryblokStyles/styles/spacing/spacing.ts" /36/ {10,22}
+```ts filename="packages/storyblok/src/utils/resolveStoryblokStyles/styles/spacing/Spacing.ts" /36/ {10,22}
 export const mbVariants: Record<Spacing, string> = {
   '2': 'mb-2', // [8px]
   '4': 'mb-4', //  [16px]
