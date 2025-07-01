@@ -13,7 +13,7 @@ Component that serves 2 purposes:
 - rendering the `<DraftModeContext.Provider />`,
 - rendering the button we can click to leave the draft mode, if it's turned on:
 
-![button we can click to leave the draft mode](https://a.storyblok.com/f/218794/2414x632/c583db15c5/screenshot-2024-02-12-at-16-52-02.png)
+![Button we can click to leave the draft mode](/draft-mode-button.webp)
 
 Usage example:
 
@@ -22,7 +22,7 @@ Usage example:
 
 import { ReactNode } from 'react';
 
-import { DraftModeProvider } from '@natu/storyblok-preview';
+import { DraftModeProvider } from '@natu/storyblok/DraftModeProvider';
 
 interface ProvidersProps {
   children?: ReactNode;
@@ -43,57 +43,126 @@ API Reference:
 
 #### DraftModeContext
 
-To use the `DraftModeContext` defined in the `DraftModeProvider`, it's the best to use the `useDraftModeContext()` hook in clinet components.
-Already used this way in [storyblok-api package](/packages/storyblok/storyblok-api). Usage:
-
-```tsx
-import { useDraftModeContext } from '@natu/storyblok-preview';
-
-const { draftMode } = useDraftModeContext();
-```
-
-Usage in server components:
+The `DraftModeContext` defined in the `DraftModeProvider` is available since the `DraftModeProvider` is used in the `Providers` component. Usage in server components:
 
 ```tsx
 import { draftMode } from 'next/headers';
 
 const Page = async () => {
-  const { isEnabled } = draftMode();
+  const { isEnabled } = await draftMode();
 
-  return <div>my page</div>;
+  return <div>Hello world!</div>;
 };
 ```
 
-## Routes
+## Draft Mode
 
-### draftHandler
+### Route Handler
 
-Is handling the preview's route basing on current request path and environmental variables.
-Do not enable to enter draft mode without a proper token provided. Usage:
+The draft mode is implemented as a route handler located at `apps/web/src/app/api/draft/route.ts`.
+
+This route handler:
+
+- Validates the Storyblok preview token
+- Enables draft mode using Next.js `draftMode().enable()`
+- Redirects to the appropriate page with draft mode enabled
 
 <Steps>
-  ### Import the handler in the app's [route handler ↗](https://nextjs.org/docs/app/building-your-application/routing/route-handlers)
+  ### Setup the Route Handler
 
-```tsx filename="/api/draft.ts"
-import { draftHandler } from '@natu/storyblok-preview';
+Create a route handler at `/api/draft/route.ts`:
 
-export { draftHandler as GET };
+```tsx filename="/app/api/draft/route.ts"
+import { draftMode } from 'next/headers';
+import { redirect } from 'next/navigation';
+import { NextRequest, NextResponse } from 'next/server';
+import { env } from '@natu/env';
+
+// Token validation function
+const validateStoryblokPreviewToken = async ({
+  previewToken,
+  queryParams,
+}: {
+  previewToken: string;
+  queryParams: URLSearchParams;
+}) => {
+  const spaceId = queryParams.get('_storyblok_tk[space_id]');
+  const timestamp = queryParams.get('_storyblok_tk[timestamp]');
+  const token = queryParams.get('_storyblok_tk[token]');
+
+  if (!spaceId || !timestamp || !token) {
+    return false;
+  }
+
+  const validationString = [spaceId, previewToken, timestamp].join(':');
+
+  const data = new TextEncoder().encode(validationString);
+  const sha1Hash = await crypto.subtle.digest('SHA-1', data);
+  const hashArray = Array.from(new Uint8Array(sha1Hash));
+  const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+  return hashHex === token;
+};
+
+export const GET = async (request: NextRequest) => {
+  const { searchParams } = new URL(request.url);
+  const slug = searchParams.get('slug');
+
+  // Validate the token
+  const isValid = await validateStoryblokPreviewToken({
+    queryParams: searchParams,
+    previewToken: env.NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN,
+  });
+
+  if (!isValid) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
+  const draft = await draftMode();
+  const redirectSlug = !slug ? '/' : `/${slug}`;
+
+  // Enable draft mode and redirect
+  draft.enable();
+  redirect(`${redirectSlug}?${searchParams.toString()}`);
+};
 ```
 
-### Redirect to this route handler in the place it's needed
+### Configure Storyblok Visual Editor
 
-```tsx filename="withStoryblokPreviewMiddleware.ts" {9-10}
-'use server';
+In your Storyblok space settings, configure the preview URL to point to your draft route:
 
+```
+https://your-website.com/api/draft?slug=
+```
+
+### Using Draft Mode in Server Components
+
+In server components, use the `draftMode` function from Next.js to check if draft mode is enabled:
+
+```tsx filename="app/[...slug]/page.tsx"
 import { draftMode } from 'next/headers';
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+import { getStoryblokSdk } from '@natu/storyblok/api';
 
-const enterPreview = (request: NextRequest) => {
-  const url = request.nextUrl.clone();
-  url.pathname = '/api/draft';
-  return NextResponse.redirect(url);
-};
+export default async function Page({ params }: { params: { slug: string[] } }) {
+  const { isEnabled } = await draftMode();
+  const { getContentNode } = getStoryblokSdk({ draftMode: isEnabled });
+
+  const awaitedParams = await params;
+
+  const slug = getSlugWithAppName({ slug: getSlugFromParams(awaitedParams.slug) });
+
+  if (isSlugExcludedFromRouting(slug)) {
+    notFound();
+  }
+
+  const { data } = await tryCatch(getContentNode({ slug }));
+
+  if (!data || !data?.data?.story?.content) {
+    notFound();
+  }
+
+  return <StoryblokStory story={data?.data?.story} />;
+}
 ```
 
 </Steps>
@@ -102,48 +171,27 @@ const enterPreview = (request: NextRequest) => {
 
 ### handleDisableDraft
 
-Helper which disables the draft mode. Already used in `DraftModeProvider` component. Usage:
+A client-side helper function that disables the draft mode by making a request to a specific endpoint. This function is already used in the `DraftModeProvider` component to implement the "Exit Draft Mode" button.
 
-```tsx {4} /handleDisableDraft()/
-'use client';
+```tsx
+'use server';
 
-import { useRouter } from 'next/navigation';
-import { handleDisableDraft } from '@natu/storyblok-preview';
+import { draftMode } from 'next/headers';
 
-const { refresh } = useRouter();
-
-const someFunction = async () => {
-  await handleDisableDraft();
-  refresh(); // to see
+export const handleDisableDraftAction = async () => {
+  (await draftMode()).disable();
 };
 ```
 
 ### isDraftMode
 
-Checks if we're currently in the draft mode basing on the provided value and environmental variables
-and returns the boolean. Already used in [storyblok-api package](/packages/storyblok/storyblok-api). Usage:
+A utility function that checks if draft mode is enabled based on the provided value and environmental variables. It returns a boolean indicating whether draft mode is active. This function is particularly useful for configuring the Storyblok API client.
 
-```tsx {1} /isDraftMode(draftMode)/
-import { isDraftMode } from '@natu/storyblok-preview';
+```tsx
+import { env } from '@natu/env';
 
-export const getStoryblokApi = ({ draftMode = false }) => {
-  const isDraftModeEnabled = isDraftMode(draftMode);
-  // ...
-};
-```
-
-## withStoryblokPreviewMiddleware
-
-Is a middleware to use Storyblok preview easily.
-Usage as a [middleware in Next.js ↗](https://nextjs.org/docs/app/building-your-application/routing/middleware#convention):
-
-```tsx filename="middleware.ts" /withStoryblokPreviewMiddleware/
-import { middlewareChain } from '@natu/middleware-chain';
-import { withStoryblokPreviewMiddleware } from '@natu/storyblok-preview';
-
-export default middlewareChain([withStoryblokPreviewMiddleware]);
-
-export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
-};
+export const isDraftMode = (draftMode: boolean) =>
+  draftMode ||
+  process.env.NODE_ENV !== 'production' ||
+  env.NEXT_PUBLIC_STORYBLOK_TOKEN_VERSION === 'draft';
 ```

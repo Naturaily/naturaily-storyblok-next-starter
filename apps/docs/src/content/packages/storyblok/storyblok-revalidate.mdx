@@ -14,14 +14,14 @@ Allows pages update without the need to rebuild the entire project.
 
 ```json
 "dependencies": {
-  "@natu/storyblok-revalidate": "*",
+  "@natu/storyblok": "workspace:*",
 }
 ```
 
 ### Use `revalidateHandler` in api route
 
 ```tsx filename="apps/web/src/app/api/revalidate/route.ts"
-import { revalidateHandler } from '@natu/storyblok-revalidate';
+import { revalidateHandler } from '@natu/storyblok/revalidateHandler';
 
 export { revalidateHandler as POST };
 ```

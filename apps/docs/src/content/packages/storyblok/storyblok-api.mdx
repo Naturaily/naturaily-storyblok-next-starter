@@ -1,4 +1,4 @@
-import { Steps, Callout } from 'nextra/components';
+import { Steps, Callout, Tabs } from 'nextra/components';
 
 # api
 
@@ -80,24 +80,32 @@ export default Page;
 
 ### api.ts
 
-Contains the most generic and important function of this package: `getStoryblokApi`. Usage:
+Contains the most generic and important function of this package: `getStoryblokSdk`. Usage:
 
 ```tsx copy filename="/apps/web/src/app/page.tsx" /getStoryblokSdk/
 import { getStoryblokSdk } from '@natu/storyblok/api';
 
-const { getContentNode } = getStoryblokSdk({ <options, ex. draftMode> });
+const { getContentNode } = getStoryblokSdk({ draftMode: isEnabled });
 
 const { data } = await tryCatch(getContentNode({ slug }));
 ```
 
+The `getStoryblokSdk` function accepts an object with `draftMode` property, which determines whether to fetch draft or published content from Storyblok. This is particularly useful for preview functionality.
+
 ### relations.ts
 
-Contains the relations between stories.
+Contains the relations between stories. Relations are used to automatically resolve referenced content when fetching entries.
 
 <Callout type="info" emoji="ℹ️">
-  [More
-  info](https://www.storyblok.com/tp/using-relationship-resolving-to-include-other-content-entries)
+  [More info on
+  relations](https://www.storyblok.com/tp/using-relationship-resolving-to-include-other-content-entries)
 </Callout>
+
+Current relations configured in the starter:
+
+- `config.footer` - Footer configuration
+- `config.header` - Header configuration
+- `config.notFoundPage` - 404 page configuration
 
 Usage:
 
@@ -120,7 +128,7 @@ export const getStoryblokSdk = ({ draftMode }: GetStoryblokSdkInput) => {
 };
 ```
 
-### sdk.ts
+### sdk.ts and sdk.types.ts
 
 Contains `getSdk` function and some connected types. Already used in [api.ts](/packages/storyblok/storyblok-api#apits)
 file of this package. Usage:
@@ -155,11 +163,75 @@ export function getSdk(
 }
 ```
 
+The SDK provides several methods for fetching content from Storyblok:
+
+<Tabs items={['getContentNode', 'getContentNodes', 'getConfigNode', 'getLinks']}>
+  <Tabs.Tab>
+    ```tsx
+    // Fetch a single content node by slug
+    getContentNode({
+      slug: 'home',
+      relations: 'optional,comma,separated,relations'
+    })
+    ```
+    This method retrieves a single content entry by its slug.
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```tsx
+    // Fetch multiple content nodes with filtering options
+    getContentNodes({
+      page: page ?? 1,
+      perPage: 12,
+      startsWith: lang,
+      relations: 'article.category',
+      sortBy: 'first_published_at:desc',
+      excludingFields:
+        'preTitle,body,signUpText,signUpButtonUrl,signUpButtonLabel,enableBreadcrumbs,breadcrumbs',
+      filterQuery: {
+        component: { in: 'article' },
+        author: {
+          in: authorUuid,
+        },
+      },
+    })
+    ```
+    This method retrieves multiple content entries with powerful filtering, pagination, and sorting options.
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```tsx
+    // Fetch global configuration
+    getConfigNode({
+      relations: 'optional,relations'
+    })
+    ```
+    This method fetches global configuration entries defined in Storyblok (headers, footers, etc.).
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```tsx
+    // Fetch all available links/routes
+    getLinks({
+      startsWith: 'blog/',
+      perPage: 100,
+      page: 1
+    })
+    ```
+    This method retrieves link objects that represent all content entries, useful for building navigation or sitemaps.
+  </Tabs.Tab>
+</Tabs>
+
 ### tags.ts
 
-Contains tags which can be used ex. for
-[Next request revalidation ↗](https://nextjs.org/docs/app/building-your-application/data-fetching/fetching-caching-and-revalidating#on-demand-revalidation).
-Example usage:
+Contains tags which can be used for Next.js on-demand revalidation. Tags are essential for implementing efficient cache invalidation strategies.
+
+Currently defined tags:
+
+```typescript
+export const TAGS = {
+  SB_CONFIG: 'sb-config', // Used for global configuration entries
+};
+```
+
+Example usage with Next.js revalidation:
 
 ```tsx copy {33, 35} /TAGS,/
 import { revalidatePath, revalidateTag } from 'next/cache';
@@ -204,3 +276,13 @@ export const revalidateHandler = async (request: Request): Promise<Response> => 
   return Response.json({ revalidated: true, now: Date.now(), slug });
 };
 ```
+
+## Best Practices
+
+When working with the Storyblok API:
+
+1. **Use the SDK methods** for type safety and consistency rather than direct API calls
+2. **Always handle errors** with `tryCatch` or similar utilities
+3. **Configure relations** in `relations.ts` to minimize API calls by preloading referenced content
+4. **Use tags** for smart revalidation to avoid unnecessary cache purges
+5. **Check `data?.data?.story?.content` existence** before rendering content to avoid runtime errors
