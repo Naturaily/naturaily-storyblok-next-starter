@@ -1,9 +1,27 @@
+import { Callout } from 'nextra/components';
+
 # 👌 Requirements to get started
 
 ```bash
 node - v22.17.0
 pnpm - v10.11.0
 ```
+
+<Callout type="info">
+  There is a known issue with PNPM 10 regarding `eslint` and `prettier`. To make sure your development environment is set up correctly, please add following code to the `pnpm-workspace.yaml`:
+
+```yaml
+publicHoistPattern:
+  - '*eslint*'
+  - '*prettier*'
+```
+
+You can read more about those issues:
+
+- [eslint issue](https://github.com/microsoft/vscode-eslint/issues/1986#issuecomment-2799868163)
+- [prettier issue](https://github.com/prettier/prettier-vscode/issues/3104#issuecomment-2834447583)
+
+</Callout>
 
 ### ✅ Node
 

@@ -1,4 +1,4 @@
-import { Steps } from 'nextra/components';
+import { Steps, Callout } from 'nextra/components';
 
 # tailwind-config
 
@@ -9,6 +9,19 @@ This package provides the default Tailwind configuration and necessary dependenc
 
 If you're using VS Code, install the [official Tailwind CSS IntelliSense plugin](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss).
 It includes a dedicated language mode with support for all custom at-rules and functions used by Tailwind CSS.
+
+<Callout type="info">
+If the Tailwind CSS IntelliSense plugin is not working as expected, please add it's config file manually in .vscode/settings.json:
+
+```json
+{
+  "tailwindCSS.experimental.configFile": "packages/tailwind-config/global.css"
+}
+```
+
+You can read more about that issue [here](https://github.com/tailwindlabs/tailwindcss-intellisense/issues/1155)
+
+</Callout>
 
 Files included in this package:
 
