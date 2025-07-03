@@ -23,4 +23,4 @@
 - [x] Add `form-builder` from Capitalise (copy the package) — change from `x-www-form` to JSON and remove Pardot form'
 - [x] Bump `nextra` packages and build documentation
 - [x] Update documentation
-- [ ] Bump all packages except `Storybook`
+- [x] Bump all packages except `Storybook`

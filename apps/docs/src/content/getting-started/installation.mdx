@@ -13,15 +13,19 @@ pnpm install
 
 ### Create new Storyblok space
 
-![Create space](https://a.storyblok.com/f/218794/3950x694/f7ebe8c1f8/screenshot-2024-02-07-at-10-19-52-am.png)
+Click on the "Add Space" button in top right corner of your Storyblok dashboard. For now click on the "Continue with starter" button.
 
-![Create space](https://a.storyblok.com/f/218794/764x735/57281ddcf4/screenshot-2024-02-07-at-10-24-38-am.png)
+![Create space](/create-space-1.webp)
+
+Fill in the space name.
+
+![Create space](/create-space-2.webp)
 
 Depending on the selection in the `Server Location` field, you will need to create the appropriate variable in the `.env` file in the 4 step.
 
 ### Create new Personal Access Token (PAT) in your Storyblok's account settings
 
-![Personal access token](https://a.storyblok.com/f/218794/2644x2216/4639ed2028/screenshot-2024-02-07-at-10-29-53-am.png)
+![Personal access token](/pat.webp)
 
 Copy the `token` and save it. We will need it in the next step.
 
@@ -51,11 +55,13 @@ When creating a new space in Storyblok, it adds several default components and a
 
 #### Remove story
 
-![Remove story](https://a.storyblok.com/f/218794/3794x908/adc1f04376/screenshot-2024-02-07-at-10-46-59-am.png)
+![Remove story](/delete-content.webp)
 
 #### Remove components
 
-![Remove components](https://a.storyblok.com/f/218794/3804x1250/60d1caefc5/screenshot-2024-02-07-at-10-49-45-am.png)
+![Remove components](/delete-components.webp)
+
+The only component left should `page` because it's removal is not possible.
 
 ### Run the `storyblok-setup` script
 
