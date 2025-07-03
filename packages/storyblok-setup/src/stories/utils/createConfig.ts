@@ -9,19 +9,14 @@ interface CreateConfigInput {
   specialPagesUUID?: LayoutStoryData[];
 }
 
-export const createConfig = async ({
-  parentFolderID,
-  layoutsUUID,
-  specialPagesUUID,
-}: CreateConfigInput) => {
+export const createConfig = async ({ parentFolderID, layoutsUUID }: CreateConfigInput) => {
   const footerUUID = layoutsUUID?.find(layout => layout.slug === 'footer')?.uuid;
   const headerUUID = layoutsUUID?.find(layout => layout.slug === 'header')?.uuid;
-  const notFoundUUID = specialPagesUUID?.find(item => item.slug === 'not-found-404')?.uuid;
 
   try {
     await storyblok.post(STORIES_ENDPOINT, {
       story: {
-        ...configContent({ footerUUID, headerUUID, notFoundUUID }),
+        ...configContent({ footerUUID, headerUUID }),
         parent_id: `${parentFolderID}`,
       },
       publish: 1,
