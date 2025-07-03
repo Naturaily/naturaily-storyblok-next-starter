@@ -2,7 +2,7 @@
 
 ## 💻 Custom TypeScript configuration
 
-[Typescript ↗](https://www.typescriptlang.org/) is used to provide strong typing for better readability, IDE support
+[Typescript](https://www.typescriptlang.org/) is used to provide strong typing for better readability, IDE support
 and error-proofing of the project.
 
 This package contains default TypeScript config consists of a base configuration extended
@@ -14,7 +14,7 @@ To use this package in other package or app import it as dev dependency in its `
 
 ```json filename="[your-workspace]/package.json"
 "devDependencies": {
-    "tsconfig": "*",
+    "tsconfig": "workspace:*",
 }
 ```
 
@@ -61,4 +61,4 @@ To extend it **per app/package**, modify the `tsconfig.json` of the particular a
 }
 ```
 
-To see all available configuration options, check out the [Typescript documentation ↗](https://www.typescriptlang.org/tsconfig).
+To see all available configuration options, check out the [Typescript documentation](https://www.typescriptlang.org/tsconfig).
