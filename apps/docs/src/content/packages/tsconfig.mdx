@@ -28,18 +28,6 @@ Then use it as extend in particular app/package `tsconfig.json` file:
 }
 ```
 
-Add information for eslint:
-
-```js copy filename="[your-workspace]/.eslintrc.js" {4}
-module.exports = {
-  parserOptions: {
-    tsconfigRootDir: __dirname,
-    project: './tsconfig.json',
-  },
-  extends: ['eslint-config-custom/eslint-next.js'],
-};
-```
-
 ## Extending the configuration
 
 The configuration can be extended for the whole project or for particular package/app if needed.

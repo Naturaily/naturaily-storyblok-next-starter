@@ -56,7 +56,7 @@ export const SBRichtext = ({ blok }: SBProps<SBRichtextProps>) => {
 ### resolvers
 
 See `@storyblok/react` [Overriding default resolvers](https://www.storyblok.com/docs/packages/storyblok-react#example-overriding-default-resolvers)
-for more details. Already used in [StoryblockRichtext](/packages/storyblok/storyblok-richtext#storyblokrichtext) component. Resolvers included in the package:
+for more details. Already used in [StoryblokRichtext](/packages/storyblok/storyblok-richtext#storyblokrichtext) component. Resolvers included in the package:
 
 - `MarkLink` - for the link component
 - `MarkCode` - for the code component
@@ -140,6 +140,15 @@ export const StoryblokRichtext = ({
   );
 };
 ```
+
+### variant
+
+The `variant` prop allows you to choose between different styles of rendering the richtext content. Available variants include:
+
+- `default`: The standard styling for richtext content.
+- `prose`: A more visually rich styling, suitable for longer texts and articles.
+
+Additionally, you can create your own custom variant by extending the `StoryblokRichtext` component and passing a different `className` or `styles`.
 
 ### StoryblokRichtext
 

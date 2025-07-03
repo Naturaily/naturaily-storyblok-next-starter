@@ -17,7 +17,7 @@ import type { ElementType } from 'react';
 import { BlokItem, SBProps } from '../../../utils/types/SBProps/SBProps';
 
 interface SBContainerProps {
-  body?: BlokItem[]; // <- bloks field in Storyblok CMS
+  body?: BlokItem[]; // <- blocks field in Storyblok CMS
 }
 
 export const SBContainer = ({ blok }: SBProps<SBContainerProps>) => {
@@ -79,7 +79,7 @@ export const SBComponent = ({ blok }: SBProps<SBComponentProps>) => {
 };
 ```
 
-_Example second parametr:_
+_Example second parameter:_
 
 ```tsx copy filename="SBComponent.tsx" /SBProps/ /myStoryblokComponent/ {1,10}
 import { SBProps, sbEditable } from '@natu/storyblok-utils';
@@ -208,7 +208,7 @@ export const SBImage = ({ blok }: SBProps<SBImageProps>) => {
 
 ### **StoryblokLink**
 
-Depending on what the user selects in the storyblok (`url link, internal link, emial`), a different object will be returned by the CMS next to the link field. This function normalizes it.
+Depending on what the user selects in the storyblok (`url link, internal link, email`), a different object will be returned by the CMS next to the link field. This function normalizes it.
 
 ![link options](https://a.storyblok.com/f/218794/728x618/131c268a6f/screenshot-2024-02-11-at-6-27-38-pm.png)
 
@@ -248,7 +248,7 @@ export const SBLink = ({ blok }: SBProps<SBLinkProps>) => {
 
 ### **sbEditable**
 
-A feature that allows you to add a specific border for a storyblock (`preview mode support`). After clicking on such a component in the CMS, you will jump to it and we will be able to quickly edit it.
+A feature that allows you to add a specific border for a storyblok (`preview mode support`). After clicking on such a component in the CMS, you will jump to it and we will be able to quickly edit it.
 
 <Callout type="warning" emoji="⚠️">
   **It should always be passed to the Storyblok Component**
@@ -309,7 +309,7 @@ API Reference:
 
 ### **getLinkPropsFromStoryblok**
 
-Depending on what the user selects in the storyblok (`url link, internal link, emial`), a different object will be returned by the CMS next to the link field. This function normalizes it.
+Depending on what the user selects in the storyblok (`url link, internal link, email`), a different object will be returned by the CMS next to the link field. This function normalizes it.
 
 <Callout type="info" emoji="ℹ️">
   See an [example](/packages/storyblok/storyblok-utils#storybloklink) of usage in a component.
@@ -432,7 +432,7 @@ API Reference:
 
 ### **resolveStoryblokStyles**
 
-In storyblock applications, we use a `datasource` as one place for our reusable data. This is often used as eg max-width, spacing in components. This function stores all this data and returns the appropriate styles based on the keys.
+In storyblok applications, we use a `datasource` as one place for our reusable data. This is often used as eg max-width, spacing in components. This function stores all this data and returns the appropriate styles based on the keys.
 
 In Storyblok, you can set default values for individual options within a specific component.
 

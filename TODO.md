@@ -23,6 +23,7 @@
 - [x] Add `form-builder` from Capitalise (copy the package) — change from `x-www-form` to JSON and remove Pardot form'
 - [x] Bump `nextra` packages and buld documentation
 - [] Component seo doesn't exist.
+- [] Render `<br />` in richtext.
 
 ## 🔧 In Progress / To Do
 

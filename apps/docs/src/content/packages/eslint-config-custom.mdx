@@ -7,7 +7,8 @@ consistent, and error-free. This package is used as one source of truth for defa
 
 This package includes:
 
-- ESlint configuration in `eslint-next.js` file,
+- Base ESlint configuration in `base.js` file,
+- NextJS ESlint configuration in `next.js` file,
 - ordering imports schema in `order-imports.js` file.
 
 It can be extended if needed for particular package or app purposes.
@@ -24,16 +25,13 @@ To use this package in other package or app you need to import it as dev depende
 }
 ```
 
-Then include it in its individual `.eslintrc` file as the extended config:
+Then include it in its individual `eslint.config.js` file as the extended config:
 
-```js copy filename="[your-workspace]/.eslintrc.js" {6}
-module.exports = {
-  parserOptions: {
-    tsconfigRootDir: __dirname,
-    project: './tsconfig.json',
-  },
-  extends: ['eslint-config-custom/eslint-next.js'],
-};
+```js copy filename="[your-workspace]/.eslint.config.js"
+import { nextJsConfig } from 'eslint-config-custom/next-js';
+
+/** @type {import("eslint").Linter.Config} */
+export default nextJsConfig;
 ```
 
 ## Add global custom rules
@@ -42,15 +40,12 @@ If you need to extend global options this ESlint configuration, this is also the
 
 _Example:_
 
-```js copy filename="packages/eslint-config-custom/.eslint-next.js" {5}
-module.exports = {
-  // ...
+```js copy filename="packages/eslint-config-custom/next.js" {5}
+export const nextJsConfig = [
   rules: {
-    // ... other rules
-    'your-rule-name': 0, // <- your custom global rule
-  },
-  // ...
-};
+    'your-rule-name': 2, // <- your custom rule
+  }
+]
 ```
 
 ## Add custom rules for specific workspace
@@ -59,15 +54,16 @@ You can customize the rules by overriding existing ones or adding new options sp
 
 _Example:_
 
-```js copy filename="[your-workspace]/.eslintrc.js" {7,8,9}
-module.exports = {
-  parserOptions: {
-    tsconfigRootDir: __dirname,
-    project: './tsconfig.json',
+```js copy filename="[your-workspace]/eslint.config.js" {7,8,9}
+import { nextJsConfig } from 'eslint-config-custom/next-js';
+
+/** @type {import("eslint").Linter.Config} */
+export default [
+  ...nextJsConfig,
+  {
+    rules: {
+      'no-restricted-imports': 0,
+    },
   },
-  extends: ['eslint-config-custom/eslint-next.js'],
-  rules: {
-    'your-rule-name': 0, // <- your custom rule for specyfic workspace
-  },
-};
+];
 ```

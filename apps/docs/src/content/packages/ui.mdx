@@ -25,7 +25,7 @@ To use components defined within this package in other package or app, import it
 Then import & use components like normal React components within package or app you added them to:
 
 ```tsx copy {1, 4}
-import { ComponentName } from '@natu/ui';
+import { ComponentName } from '@natu/ui/ComponentName';
 
 export const Sample = ({ prop1, prop2 }: SampleProps) => (
   <ComponentName {...componentProps} /> // provide the props for particular component
@@ -38,11 +38,11 @@ A short description of the purpose and usage of the components already included 
 
 ### AspectRatio
 
-Displays content within a desired ratio. Uses [React Aspect Ratio from shadcn/ui ↗](https://ui.shadcn.com/docs/components/aspect-ratio).
+Displays content within a desired ratio. Uses [React Aspect Ratio from shadcn/ui](https://ui.shadcn.com/docs/components/aspect-ratio).
 Usage:
 
 ```tsx {1, 9-11}
-import { AspectRatio } from '@natu/ui';
+import { AspectRatio } from '@natu/ui/AspectRatio';
 
 interface SampleProps {
   ratioX: number;
@@ -58,12 +58,12 @@ export const Sample = ({ ratioX, ratioY }: SampleProps) => (
 
 ### Button
 
-Reusable button with variants handled with [class-variance-authority ↗](https://cva.style/docs).
-Uses [shadcn/ui ↗](https://ui.shadcn.com/docs/components/button).
+Displays a button or a component that looks like a button. Reusable button with variants handled with [class-variance-authority](https://cva.style/docs).
+Uses [shadcn/ui](https://ui.shadcn.com/docs/components/button).
 Usage:
 
 ```tsx {1, 11-19}
-import { Button, ButtonProps } from '@natu/ui';
+import { Button, ButtonProps } from '@natu/ui/Button';
 
 interface SampleProps {
   className: string;
@@ -89,8 +89,8 @@ The prop `asChild` - if it's true, the component will render as a child (without
 ex. for rendering links styled as a button:
 
 ```tsx /asChild/
-import { Button } from '@natu/ui';
-import { Link } from '@natu/next-link';
+import { Button } from '@natu/ui/Button';
+import { Link } from '@natu/next-link/Link';
 
 export const Sample = ({ className, variant, size, linkProps, children }: SampleProps) => (
   <Button
@@ -104,13 +104,38 @@ export const Sample = ({ className, variant, size, linkProps, children }: Sample
 );
 ```
 
+### Checkbox
+
+A control that allows the user to toggle between checked and not checked.
+Uses [Checkbox from shadcn/ui](https://ui.shadcn.com/docs/components/checkbox). Usage:
+
+```tsx
+import { Checkbox } from '@natu/ui/Checkbox';
+import { Label } from '@natu/ui/Label';
+
+export const CheckboxDemo = () => {
+  return (
+    <div className="flex flex-col gap-6">
+      <div className="flex items-center gap-3">
+        <Checkbox id="terms" />
+        <Label htmlFor="terms">Accept terms and conditions</Label>
+      </div>
+      <div className="flex items-start gap-3">
+        <Checkbox id="toggle" disabled />
+        <Label htmlFor="toggle">Enable notifications</Label>
+      </div>
+    </div>
+  );
+};
+```
+
 ### Code
 
-Shows the formatted code with the ability to copy. Uses [lucide-react's icons ↗](https://lucide.dev/icons) and [Highlight from
-prism-react-renderer ↗](https://www.tiagofsanchez.com/blog/2020-08-06-code-line-highlight-with-prism-react-renderer/). Usage:
+Shows the formatted code with the ability to copy. Uses [lucide-react's icons](https://lucide.dev/icons) and [Highlight from
+prism-react-renderer](https://www.tiagofsanchez.com/blog/2020-08-06-code-line-highlight-with-prism-react-renderer/). Usage:
 
 ```tsx {1, 10}
-import { Code, CodeProps } from '@natu/ui';
+import { Code, CodeProps } from '@natu/ui/Code';
 
 interface SampleProps {
   className?: string;
@@ -128,12 +153,12 @@ export const Sample = ({ className, code, language }: SampleProps) => (
 Simple component which renders differently depends on `href` property:
 
 - If it's provided - it renders **as a link**,
-- If it's not provided - it renders as **childen without an additional wrapper**.
+- If it's not provided - it renders as **children without an additional wrapper**.
 
 Usage:
 
 ```tsx {1, 8-10}
-import { ConditionalLink } from '@natu/ui';
+import { ConditionalLink } from '@natu/ui/ConditionalLink';
 
 interface SampleProps {
   linkProps: AnchorHTMLAttributes<HTMLAnchorElement>; // including `href` property
@@ -148,12 +173,17 @@ export const Sample = ({ linkProps }: SampleProps) => (
 
 ### DropdownMenu
 
-Ready-to-use dropdown menu component. Uses [lucide-react's icons ↗](https://lucide.dev/icons). Based on
-[Dropdown Menu from shadcn/ui ↗](https://ui.shadcn.com/docs/components/dropdown-menu)
+Ready-to-use dropdown menu component. Uses [lucide-react's icons](https://lucide.dev/icons). Based on
+[Dropdown Menu from shadcn/ui](https://ui.shadcn.com/docs/components/dropdown-menu)
 (go there for all implementation & usage details). Usage:
 
 ```tsx
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@natu/ui';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@natu/ui/DropdownMenu';
 
 export const Sample = () => (
   <DropdownMenu>
@@ -167,16 +197,48 @@ export const Sample = () => (
 );
 ```
 
+### Input
+
+Displays a form input field or a component that looks like an input field. Uses [Input from shadcn/ui](https://ui.shadcn.com/docs/components/input). Usage:
+
+```tsx
+import { Input } from '@natu/ui/Input';
+
+export const InputDemo = () => {
+  return <Input type="email" placeholder="Email" />;
+};
+```
+
+### Label
+
+Renders an accessible label associated with controls. Uses [Label from shadcn/ui](https://ui.shadcn.com/docs/components/label). Usage:
+
+```tsx
+import { Checkbox } from '@natu/ui/Checkbox';
+import { Label } from '@natu/ui/Label';
+
+export const LabelDemo = () => {
+  return (
+    <div>
+      <div className="flex items-center space-x-2">
+        <Checkbox id="terms" />
+        <Label htmlFor="terms">Accept terms and conditions</Label>
+      </div>
+    </div>
+  );
+};
+```
+
 ### Layout
 
 Component rendering header, footer and `<main>` element with children inside. All elements will render in `div` wrapper with some basic
-classes implemented. Can be used ex. in [layout pattern ↗](https://nextjs.org/docs/pages/building-your-application/routing/pages-and-layouts#layout-pattern)
+classes implemented. Can be used ex. in [layout pattern](https://nextjs.org/docs/pages/building-your-application/routing/pages-and-layouts#layout-pattern)
 in app.
 
 Usage:
 
 ```tsx {1, 10-16}
-import { Layout } from '@natu/ui';
+import { Layout } from '@natu/ui/Layout';
 
 interface SampleProps {
   children?: ReactNode;
@@ -197,7 +259,7 @@ export const Sample = ({ header, footer, children }: SampleProps) => (
 
 ### Popover
 
-Ready-to-use popover component. Based on [Popover from shadcn/ui ↗](https://ui.shadcn.com/docs/components/popover)
+Ready-to-use popover component. Based on [Popover from shadcn/ui](https://ui.shadcn.com/docs/components/popover)
 (go there for all implementation & usage details). Usage:
 
 ```tsx
@@ -211,9 +273,37 @@ export const Sample = () => (
 );
 ```
 
+### RadioGroup
+
+A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time. Uses [Radio Group from shadcn/ui](https://ui.shadcn.com/docs/components/radio-group). Usage:
+
+```tsx
+import { Label } from '@natu/ui/Label';
+import { RadioGroup, RadioGroupItem } from '@natu/ui/RadioGroup';
+
+export const RadioGroupDemo = () => {
+  return (
+    <RadioGroup defaultValue="comfortable">
+      <div className="flex items-center gap-3">
+        <RadioGroupItem value="default" id="r1" />
+        <Label htmlFor="r1">Default</Label>
+      </div>
+      <div className="flex items-center gap-3">
+        <RadioGroupItem value="comfortable" id="r2" />
+        <Label htmlFor="r2">Comfortable</Label>
+      </div>
+      <div className="flex items-center gap-3">
+        <RadioGroupItem value="compact" id="r3" />
+        <Label htmlFor="r3">Compact</Label>
+      </div>
+    </RadioGroup>
+  );
+};
+```
+
 ### ResponsiveImage
 
-Simple [next/image ↗](https://nextjs.org/docs/pages/building-your-application/optimizing/images) wrapper.
+Simple [next/image](https://nextjs.org/docs/pages/building-your-application/optimizing/images) wrapper.
 Using the wrapper:
 
 - **Limits changes** to this one place in case of any default package updates
@@ -223,7 +313,7 @@ Usage:
 
 ```tsx {2, 8}
 import type { ImageProps } from 'next/image';
-import { ResponsiveImage } from '@natu/ui';
+import { ResponsiveImage } from '@natu/ui/ResponsiveImage';
 
 interface SampleProps {
   image: ImageProps;
@@ -242,29 +332,119 @@ to render Storyblok-specific richtext properly.
 
 Usage:
 
-```tsx {1, 9}
-import { Richtext } from '@natu/ui';
+```tsx {5, 44}
+import { convertAttributesInElement } from '@storyblok/react';
+import { richTextResolver, StoryblokRichTextNode } from '@storyblok/richtext';
+import { createElement, ReactElement } from 'react';
 
-interface SampleProps {
+import { Richtext } from '@natu/ui/Richtext';
+import { cn } from '@natu/utils/cn';
+
+export type StoryblokRichtextVariant = 'default' | 'prose';
+
+export interface ExampleComponentProps extends React.HTMLAttributes<HTMLDivElement> {
+  data?: StoryblokRichTextNode<ReactElement>;
+  variant?: StoryblokRichtextVariant;
+}
+
+export interface RichtextProps extends ComponentProps<'div'> {
   children?: ReactNode;
   html?: string | TrustedHTML;
 }
 
-export const Sample = ({ children, html }: SampleProps) => (
-  <Richtext html={html}>{children}</Richtext>
-);
+const options: StoryblokRichTextOptions<ReactElement> = {
+  renderFn: createElement,
+  keyedResolvers: true,
+  resolvers: {},
+};
+
+export const ExampleComponent = ({
+  data,
+  variant = 'prose',
+  className: externalClassName,
+  ...rest
+}: ExampleComponentProps) => {
+  const html = richTextResolver<ReactElement>(options).render(data);
+  const formattedHtml = convertAttributesInElement(html);
+
+  const combinedClassName = cn(
+    {
+      '': variant === 'default',
+      'prose dark:prose-invert max-w-none': variant === 'prose',
+    },
+    externalClassName,
+  );
+
+  return (
+    <Richtext className={combinedClassName} {...rest}>
+      {formattedHtml}
+    </Richtext>
+  );
+};
 ```
 
 ### ScrollArea
 
 Ready-to-use component which augments native scroll functionality for custom, cross-browser styling. Uses
-[Scroll Area from shadcn/ui ↗](https://ui.shadcn.com/docs/components/scroll-area)
+[Scroll Area from shadcn/ui](https://ui.shadcn.com/docs/components/scroll-area)
 (go there for all implementation & usage details). Usage:
 
 ```tsx
 import { ScrollArea } from '@natu/ui';
 
 export const Sample = () => <ScrollArea className={yourStyles}>{children}</ScrollArea>;
+```
+
+### Select
+
+Displays a list of options for the user to pick from—triggered by a button. Uses [Select from shadcn/ui](https://ui.shadcn.com/docs/components/select). Usage:
+
+```tsx
+import * as React from 'react';
+
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from '@natu/ui/Select';
+
+export const SelectDemo = () => {
+  return (
+    <Select>
+      <SelectTrigger className="w-[180px]">
+        <SelectValue placeholder="Select a fruit" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectGroup>
+          <SelectLabel>Fruits</SelectLabel>
+          <SelectItem value="apple">Apple</SelectItem>
+          <SelectItem value="banana">Banana</SelectItem>
+          <SelectItem value="blueberry">Blueberry</SelectItem>
+          <SelectItem value="grapes">Grapes</SelectItem>
+          <SelectItem value="pineapple">Pineapple</SelectItem>
+        </SelectGroup>
+      </SelectContent>
+    </Select>
+  );
+};
+```
+
+### Spinner
+
+Ready-to-use spinner component. Usage:
+
+```tsx
+import { Spinner } from '@natu/ui/Spinner';
+
+export const Sample = () => {
+  if (isLoading) return <Spinner className="h-4 w-4" />;
+
+  return <div>{/* Your content goes here */}</div>;
+};
 ```
 
 ### Table
@@ -310,7 +490,7 @@ export const Sample = () => (
 
 ### Tooltip
 
-Ready-to-use tooltip component. Uses [Tooltip from shadcn/ui ↗](https://ui.shadcn.com/docs/components/tooltip)
+Ready-to-use tooltip component. Uses [Tooltip from shadcn/ui](https://ui.shadcn.com/docs/components/tooltip)
 (go there for all implementation & usage details). Usage:
 
 ```tsx
@@ -329,7 +509,7 @@ export const Sample = () => (
 ### Typography
 
 Generic component for all the typography. Renders HTML element (`p` by default) with styling variant and children inside.
-Uses [Slot utility from radix-ui ↗](https://www.radix-ui.com/primitives/docs/utilities/slot).
+Uses [Slot utility from radix-ui](https://www.radix-ui.com/primitives/docs/utilities/slot).
 
 Mobile-first approach - the component is styled for mobile by default, and then it's adjusted for larger screens.
 
@@ -377,7 +557,7 @@ a desired typography variant.
 
 ### YoutubeVideo
 
-Ready-to-use Youtube player component. Uses [YouTubeEmbed from @next/third-parties/google ↗](https://nextjs.org/docs/app/building-your-application/optimizing/third-party-libraries#youtube-embed)
+Ready-to-use Youtube player component. Uses [YouTubeEmbed from @next/third-parties/google](https://nextjs.org/docs/app/building-your-application/optimizing/third-party-libraries#youtube-embed)
 (go there for detailed info about params). Usage:
 
 ```tsx {1, 10}
