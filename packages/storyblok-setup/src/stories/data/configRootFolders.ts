@@ -17,12 +17,6 @@ export const configRootFolders: FolderSchema[] = [
     disble_fe_editor: true,
   },
   {
-    name: 'Special pages',
-    slug: 'special-pages',
-    default_root: 'page',
-    is_folder: true,
-  },
-  {
     name: 'Layout',
     slug: 'layout',
     default_root: 'page',

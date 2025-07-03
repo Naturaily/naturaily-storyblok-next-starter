@@ -21,12 +21,6 @@
 - [x] Fix the bundle analyzer in `next.config.ts`
 - [x] Test `revalidateHandler` locally
 - [x] Add `form-builder` from Capitalise (copy the package) — change from `x-www-form` to JSON and remove Pardot form'
-- [x] Bump `nextra` packages and buld documentation
-- [] Component seo doesn't exist.
-- [] Render `<br />` in richtext.
-
-## 🔧 In Progress / To Do
-
-- [ ] Bump packages and build `Storybook`
-- [ ] Bump all packages
-- [ ] Update documentation
+- [x] Bump `nextra` packages and build documentation
+- [x] Update documentation
+- [ ] Bump all packages except `Storybook`
