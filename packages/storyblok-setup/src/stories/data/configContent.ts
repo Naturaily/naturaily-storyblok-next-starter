@@ -1,10 +1,9 @@
 interface ConfigContentInput {
   footerUUID?: string;
   headerUUID?: string;
-  notFoundUUID?: string;
 }
 
-export const configContent = ({ footerUUID, headerUUID, notFoundUUID }: ConfigContentInput) => ({
+export const configContent = ({ footerUUID, headerUUID }: ConfigContentInput) => ({
   name: 'Config',
   slug: '/',
   is_startpage: true,
@@ -13,7 +12,6 @@ export const configContent = ({ footerUUID, headerUUID, notFoundUUID }: ConfigCo
     _uid: 'e65982e5-ba09-4c88-87ed-45c47b8962c4',
     footer: footerUUID,
     header: headerUUID,
-    notFoundPage: notFoundUUID,
     siteName: 'Naturaily',
     component: 'config',
     defaultSeo: [

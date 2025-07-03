@@ -1,4 +1,3 @@
-/* eslint-disable consistent-return */
 import { storyblok } from '../../utils/client.ts';
 import { color } from '../../utils/color.ts';
 import { STORIES_ENDPOINT } from '../../utils/endpoints.ts';
@@ -22,7 +21,6 @@ export const createConfigElements = async ({
 
     return {
       layoutFolderID: null,
-      specialPagesFolderID: null,
     };
   }
 
@@ -39,7 +37,6 @@ export const createConfigElements = async ({
   }
 
   let layoutFolderID;
-  let specialPagesFolderID;
 
   try {
     const res = await Promise.all(configColderRequests);
@@ -52,13 +49,11 @@ export const createConfigElements = async ({
     }));
 
     layoutFolderID = folders.find(folder => folder.layout === 'layout')?.id;
-    specialPagesFolderID = folders.find(folder => folder.layout === 'special-pages')?.id;
   } catch (err) {
     console.error(color('danger', `🚨  CreateConfigElements - ${JSON.stringify(err)}`));
   }
 
   return {
     layoutFolderID,
-    specialPagesFolderID,
   };
 };

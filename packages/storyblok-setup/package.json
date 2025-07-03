@@ -5,19 +5,19 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "setup": "ts-node-esm -r dotenv/config ./src/setup.ts && cd ../../ && yarn dev",
+    "setup": "node --loader ts-node/esm -r dotenv/config ./src/setup.ts && cd ../../ && pnpm dev",
     "eslint:format": "eslint src --fix"
   },
   "dependencies": {
-    "dotenv": "16.4.5",
+    "dotenv": "17.0.0",
     "prompts": "2.4.2",
     "slugify": "1.6.6",
-    "storyblok-js-client": "^6.7.1",
+    "storyblok-js-client": "^7.0.2",
     "ts-node": "^10.9.2"
   },
   "devDependencies": {
     "@types/prompts": "2.4.9",
-    "eslint-config-custom": "*",
-    "tsconfig": "*"
+    "eslint-config-custom": "workspace:*",
+    "tsconfig": "workspace:*"
   }
 }

@@ -1,15 +1,13 @@
-/* eslint-disable react/no-array-index-key */
-
 'use client';
 
 import { Check, Copy } from 'lucide-react';
 import { Highlight, themes } from 'prism-react-renderer';
 import { useEffect, useState } from 'react';
 
-import { cn } from '@natu/utils';
+import { cn } from '@natu/utils/cn';
 
-import { Button } from '../Button';
-import { Typography } from '../Typography';
+import { Button } from '../Button/Button';
+import { Typography } from '../Typography/Typography';
 
 type Language =
   | 'jsx'
@@ -55,7 +53,7 @@ export const Code = ({ code, className, language = 'tsx', ...rest }: CodeProps) 
   };
 
   return (
-    <div className={cn('bg-slate-800 rounded-lg overflow-clip relative', className)} {...rest}>
+    <div className={cn('relative overflow-clip rounded-lg bg-slate-800', className)} {...rest}>
       <div className="absolute right-4 top-4">
         <Button variant="outline" size="icon" onClick={handleCopyToClipboard}>
           {isCopied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
@@ -68,7 +66,7 @@ export const Code = ({ code, className, language = 'tsx', ...rest }: CodeProps) 
             <code aria-hidden="true">
               {tokens.map((line, i) => (
                 <div key={i} {...getLineProps({ line, className: 'hover:bg-slate-900' })}>
-                  <span className={cn('w-5 inline-block mr-4')}>{i + 1}</span>
+                  <span className={cn('mr-4 inline-block w-5')}>{i + 1}</span>
                   {line.map((token, key) => (
                     <span key={key} {...getTokenProps({ token })} />
                   ))}
@@ -81,7 +79,7 @@ export const Code = ({ code, className, language = 'tsx', ...rest }: CodeProps) 
       <Typography
         component="span"
         variant="text-xs"
-        className="absolute text-slate-400 bottom-4 right-4"
+        className="absolute bottom-4 right-4 text-slate-400"
       >
         {language}
       </Typography>

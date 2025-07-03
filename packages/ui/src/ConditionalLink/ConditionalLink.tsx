@@ -1,9 +1,9 @@
 import { AnchorHTMLAttributes, Children, cloneElement, ReactElement } from 'react';
 
-import { Link } from '@natu/next-link';
-import { cn } from '@natu/utils';
+import { Link } from '@natu/next-link/Link';
+import { cn } from '@natu/utils/cn';
 
-export interface ConditionalLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {}
+export type ConditionalLinkProps = AnchorHTMLAttributes<HTMLAnchorElement>;
 
 export const ConditionalLink = ({ href, children, className, ...rest }: ConditionalLinkProps) => {
   if (href) {
@@ -17,6 +17,7 @@ export const ConditionalLink = ({ href, children, className, ...rest }: Conditio
   const child = Children.only(children);
 
   return cloneElement(child as ReactElement, {
+    // @ts-ignore
     className,
     ...rest,
   });

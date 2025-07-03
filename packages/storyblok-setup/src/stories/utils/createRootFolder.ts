@@ -48,7 +48,6 @@ export const createRootFolder = async (): Promise<CreateRootFolderOutput | undef
     console.log(err);
   }
 
-  // eslint-disable-next-line consistent-return
   return {
     rootAppFolderID,
     NEXT_PUBLIC_STORYBLOK_MAIN_APP_FOLDER: `${rootFolder}-root`,

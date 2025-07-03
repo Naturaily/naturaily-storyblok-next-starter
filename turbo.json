@@ -1,8 +1,9 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local"],
-  "pipeline": {
+  "tasks": {
     "build": {
+      "cache": true,
       "dependsOn": ["^build"],
       "outputs": [".next/**", "!.next/cache/**"],
       "env": [
@@ -14,17 +15,21 @@
         "NEXT_PUBLIC_STORYBLOK_MAIN_APP_FOLDER",
         "NEXT_PUBLIC_STORYBLOK_EXCLUDED_FOLDERS_FROM_ROUTING",
         "NEXT_PUBLIC_STORYBLOK_API_URL",
-        "STORYBLOK_MANAGEMENT_API_URL",
         "STORYBLOK_PERSONAL_ACCESS_TOKEN",
         "STORYBLOK_SPACE_ID",
-        "STORYBLOK_REGION"
+        "STORYBLOK_REGION",
+        "ANALYZE",
+        "STORYBLOK_WEBHOOK_SECRET"
       ]
     },
     "eslint:format": {
+      "dependsOn": ["^eslint:format"]
+    },
+    "dev": {
       "cache": false,
       "persistent": true
     },
-    "dev": {
+    "dev:https": {
       "cache": false,
       "persistent": true
     },

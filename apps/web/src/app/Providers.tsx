@@ -2,8 +2,8 @@
 
 import { ReactNode } from 'react';
 
-import { ThemeProvider } from '@natu/next-themes';
-import { DraftModeProvider } from '@natu/storyblok-preview';
+import { ThemeProvider } from '@natu/next-themes/ThemeProvider';
+import { DraftModeProvider } from '@natu/storyblok/DraftModeProvider';
 
 interface DarkModeOptions {
   defaultTheme?: 'light' | 'dark' | 'system' | null | string;

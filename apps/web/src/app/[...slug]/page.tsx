@@ -2,13 +2,15 @@ import { Metadata, ResolvingMetadata } from 'next';
 import { draftMode } from 'next/headers';
 import { notFound } from 'next/navigation';
 
-import { getStoryblokApi, relations } from '@natu/storyblok-api';
-import { getStoryblokSeoData } from '@natu/storyblok-seo';
-import {
-  DynamicRender,
-  getSlugWithAppName,
-  isSlugExcludedFromRouting,
-} from '@natu/storyblok-utils';
+import { env } from '@natu/env';
+import { getStoryblokSdk } from '@natu/storyblok/api';
+import { StoryblokStory } from '@natu/storyblok/DynamicRender';
+import { getSlugWithAppName } from '@natu/storyblok/getSlugWithAppName';
+import { getSlugWithoutAppName } from '@natu/storyblok/getSlugWithoutAppName';
+import { getStoryblokSeoData } from '@natu/storyblok/getStoryblokSeoData';
+import { isSlugExcludedFromRouting } from '@natu/storyblok/isSlugExcludedFromRouting';
+import { isExcludedSlugs } from '@natu/utils/isExcludedSlugs';
+import { tryCatch } from '@natu/utils/tryCatch';
 
 const getSlugFromParams = <T extends string[] | string>(slug?: T) => {
   const path = (slug && Array.isArray(slug) && slug.join('/')) || '';
@@ -26,40 +28,80 @@ export const generateMetadata = async (
   { params }: PageProps,
   parent: ResolvingMetadata,
 ): Promise<Metadata> => {
-  const { isEnabled } = draftMode();
-  const { getContentNode } = getStoryblokApi({ draftMode: isEnabled });
+  const { isEnabled } = await draftMode();
+  const { getContentNode } = getStoryblokSdk({ draftMode: isEnabled });
 
-  const slug = getSlugWithAppName({ slug: getSlugFromParams(params.slug) });
+  const awaitedParas = await params;
+
+  const slug = getSlugWithAppName({ slug: getSlugFromParams(awaitedParas.slug) });
 
   const prevData = await parent;
-  const configData = await getContentNode({
-    slug,
-    relations,
-  });
+  const { data } = await tryCatch(
+    getContentNode({
+      slug,
+    }),
+  );
 
-  return getStoryblokSeoData(configData.ContentNode?.content.seo, {
-    slug: `/${getSlugFromParams(params.slug)}`,
+  return getStoryblokSeoData(data?.data?.story?.content?.seo, {
+    slug: `/${getSlugFromParams(awaitedParas.slug)}`,
     prevData,
   });
 };
 
-const Page = async ({ params }: PageProps) => {
-  const { isEnabled } = draftMode();
-  const { getContentNode } = getStoryblokApi({ draftMode: isEnabled });
+export const generateStaticParams = async () => {
+  // * Please add more slugs to the `excludingSlugs` array if you want to exclude more slugs from routing.
+  const excludingSlugs = [`/${env.NEXT_PUBLIC_STORYBLOK_EXCLUDED_FOLDERS_FROM_ROUTING}`];
 
-  const slug = getSlugWithAppName({ slug: getSlugFromParams(params.slug) });
+  // https://www.storyblok.com/docs/api/content-delivery/v2/links/retrieve-multiple-links
+  const { getLinks } = getStoryblokSdk({ draftMode: false });
+
+  const { data } = await getLinks({
+    page: 1,
+    perPage: 1000,
+  });
+
+  if (!data) {
+    return [];
+  }
+
+  const links = Object.values(data.links!).map(value => ({
+    ...value,
+    slug: getSlugWithoutAppName(value.slug),
+  }));
+
+  return links
+    .filter(item => isExcludedSlugs({ item, excludedSlugs: excludingSlugs }))
+    .map(({ slug }) => {
+      if (!slug) {
+        return null;
+      }
+
+      return {
+        slug: slug.split('/').filter(Boolean),
+      };
+    })
+    .filter(Boolean);
+};
+
+const Page = async ({ params }: PageProps) => {
+  const { isEnabled } = await draftMode();
+  const { getContentNode } = getStoryblokSdk({ draftMode: isEnabled });
+
+  const awaitedParams = await params;
+
+  const slug = getSlugWithAppName({ slug: getSlugFromParams(awaitedParams.slug) });
 
   if (isSlugExcludedFromRouting(slug)) {
-    return notFound();
+    notFound();
   }
 
-  const story = await getContentNode({ slug, relations });
+  const { data } = await tryCatch(getContentNode({ slug }));
 
-  if (!story || !story?.ContentNode) {
-    return notFound();
+  if (!data || !data?.data?.story?.content) {
+    notFound();
   }
 
-  return <DynamicRender data={story?.ContentNode?.content} />;
+  return <StoryblokStory story={data?.data?.story} />;
 };
 
 export default Page;

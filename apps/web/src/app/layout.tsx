@@ -1,47 +1,36 @@
 import 'tailwind-config/global.css';
 import { Metadata } from 'next';
+import { Poppins } from 'next/font/google';
 import { draftMode } from 'next/headers';
 import { ReactNode } from 'react';
 
-import { env } from '@natu/env';
-import { poppinsFont } from '@natu/fonts';
-import { TAGS, getStoryblokApi, relations } from '@natu/storyblok-api';
-import { getStoryblokSeoData } from '@natu/storyblok-seo';
-import { DynamicRender, getSlugWithAppName } from '@natu/storyblok-utils';
-import { Layout } from '@natu/ui';
+import { getStoryblokSdk } from '@natu/storyblok/api';
+import { StoryblokStory } from '@natu/storyblok/DynamicRender';
+import { getStoryblokSeoData } from '@natu/storyblok/getStoryblokSeoData';
+import { Layout } from '@natu/ui/Layout';
 
 import { Providers } from './Providers';
 import { StoryblokProvider } from './StoryblokProvider';
 
+const poppinsFont = Poppins({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-poppins',
+});
+
 export const generateMetadata = async (): Promise<Metadata> => {
-  const { isEnabled } = draftMode();
-  const { getConfigNode } = getStoryblokApi({ draftMode: isEnabled });
+  const { isEnabled } = await draftMode();
+  const { getConfigNode } = getStoryblokSdk({ draftMode: isEnabled });
 
-  // get slug to root config in storyblok CMS
-  const configSlug = getSlugWithAppName({
-    slug: env.NEXT_PUBLIC_STORYBLOK_EXCLUDED_FOLDERS_FROM_ROUTING,
-  });
-  // get access to root config in storyblok CMS
-  const configData = await getConfigNode(
-    {
-      slug: configSlug,
-      skipNotFoundPage: true,
-      skipFooter: true,
-      skipHeader: true,
-      relations,
-    },
-    {
-      next: {
-        tags: [TAGS.SB_CONFIG],
-      },
-    },
-  );
+  const { data } = await getConfigNode();
 
-  return getStoryblokSeoData(configData.ConfigItem?.content?.defaultSeo, {
+  const configContent = data?.story?.content;
+
+  return getStoryblokSeoData(configContent?.defaultSeo, {
     slug: '/',
-    twitterCreator: configData.ConfigItem?.content?.twitterCreator || '',
-    googleVerificationId: configData.ConfigItem?.content?.googleVerificationId || '',
-    siteName: configData.ConfigItem?.content?.siteName || '',
+    googleVerificationId: configContent?.googleVerificationId || '',
+    twitterCreator: configContent?.twitterCreator || '',
+    siteName: configContent?.siteName || '',
   });
 };
 
@@ -50,33 +39,17 @@ interface RootLayoutProps {
 }
 
 const RootLayout = async ({ children }: RootLayoutProps) => {
-  const { isEnabled } = draftMode();
-  const { getConfigNode } = getStoryblokApi({ draftMode: isEnabled });
+  const { isEnabled } = await draftMode();
+  const { getConfigNode } = getStoryblokSdk({ draftMode: isEnabled });
 
-  const configSlug = getSlugWithAppName({
-    slug: env.NEXT_PUBLIC_STORYBLOK_EXCLUDED_FOLDERS_FROM_ROUTING,
-  });
+  const { data } = await getConfigNode();
 
-  const configData = await getConfigNode(
-    {
-      slug: configSlug,
-      skipNotFoundPage: true,
-      skipSeo: true,
-      relations,
-    },
-    {
-      next: {
-        tags: [TAGS.SB_CONFIG],
-      },
-    },
-  );
-
-  const { header, footer, defaultTheme, forcedTheme } = configData.ConfigItem?.content || {};
+  const { header, footer, defaultTheme, forcedTheme } = data?.story?.content || {};
 
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={poppinsFont.variable} suppressHydrationWarning>
-        <StoryblokProvider>
+    <StoryblokProvider>
+      <html lang="en" suppressHydrationWarning>
+        <body className={poppinsFont.variable} suppressHydrationWarning>
           <Providers
             darkModeOptions={{
               defaultTheme,
@@ -85,15 +58,15 @@ const RootLayout = async ({ children }: RootLayoutProps) => {
             draftMode={isEnabled}
           >
             <Layout
-              header={<DynamicRender data={header?.content} />}
-              footer={<DynamicRender data={footer?.content} />}
+              header={<StoryblokStory story={header} />}
+              footer={<StoryblokStory story={footer} />}
             >
               {children}
             </Layout>
           </Providers>
-        </StoryblokProvider>
-      </body>
-    </html>
+        </body>
+      </html>
+    </StoryblokProvider>
   );
 };
 

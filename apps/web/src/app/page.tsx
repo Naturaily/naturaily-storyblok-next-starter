@@ -3,43 +3,47 @@ import { draftMode } from 'next/headers';
 import { notFound } from 'next/navigation';
 
 import { env } from '@natu/env';
-import { relations, getStoryblokApi } from '@natu/storyblok-api';
-import { getStoryblokSeoData } from '@natu/storyblok-seo';
-import { DynamicRender } from '@natu/storyblok-utils';
+import { getStoryblokSdk } from '@natu/storyblok/api';
+import { StoryblokStory } from '@natu/storyblok/DynamicRender';
+import { getStoryblokSeoData } from '@natu/storyblok/getStoryblokSeoData';
+import { tryCatch } from '@natu/utils/tryCatch';
 
 export const generateMetadata = async (
   _: unknown,
   parent: ResolvingMetadata,
 ): Promise<Metadata> => {
-  const { isEnabled } = draftMode();
-  const { getContentNode } = getStoryblokApi({ draftMode: isEnabled });
+  const { isEnabled } = await draftMode();
+  const { getContentNode } = getStoryblokSdk({ draftMode: isEnabled });
 
   const prevData = await parent;
-  const configData = await getContentNode({
-    slug: env.NEXT_PUBLIC_STORYBLOK_MAIN_APP_FOLDER,
-    relations,
-  });
 
-  return getStoryblokSeoData(configData.ContentNode?.content.seo, {
+  const { data } = await tryCatch(
+    getContentNode({
+      slug: env.NEXT_PUBLIC_STORYBLOK_MAIN_APP_FOLDER,
+    }),
+  );
+
+  return getStoryblokSeoData(data?.data?.story?.content?.seo, {
     slug: '/',
     prevData,
   });
 };
 
 const Page = async () => {
-  const { isEnabled } = draftMode();
-  const { getContentNode } = getStoryblokApi({ draftMode: isEnabled });
+  const { isEnabled } = await draftMode();
+  const { getContentNode } = getStoryblokSdk({ draftMode: isEnabled });
 
-  const story = await getContentNode({
-    slug: env.NEXT_PUBLIC_STORYBLOK_MAIN_APP_FOLDER,
-    relations,
-  });
+  const { data } = await tryCatch(
+    getContentNode({
+      slug: env.NEXT_PUBLIC_STORYBLOK_MAIN_APP_FOLDER,
+    }),
+  );
 
-  if (!story || !story?.ContentNode) {
-    return notFound();
+  if (!data || !data?.data?.story?.content) {
+    notFound();
   }
 
-  return <DynamicRender data={story.ContentNode.content} />;
+  return <StoryblokStory story={data?.data?.story} />;
 };
 
 export default Page;

@@ -5,7 +5,6 @@ import { createConfigFolder } from './utils/createConfigFolder.ts';
 import { createHomepage } from './utils/createHomepage.ts';
 import { createLayoutsStories } from './utils/createLayoutsStories.ts';
 import { createRootFolder } from './utils/createRootFolder.ts';
-import { createSpecialPagesStories } from './utils/createSpecialPagesStories.ts';
 
 export const setStories = async () => {
   console.log(color('info', '▶️ Starting workshop on stories setup...'));
@@ -16,8 +15,7 @@ export const setStories = async () => {
   const { rootConfigFolderID, NEXT_PUBLIC_STORYBLOK_EXCLUDED_FOLDERS_FROM_ROUTING } =
     (await createConfigFolder({ parentID: rootAppFolderID })) || {};
 
-  const { layoutFolderID, specialPagesFolderID } =
-    (await createConfigElements({ rootConfigFolderID })) || {};
+  const { layoutFolderID } = (await createConfigElements({ rootConfigFolderID })) || {};
 
   const { homepageUUID } = await createHomepage({
     parentFolderID: rootAppFolderID,
@@ -29,13 +27,7 @@ export const setStories = async () => {
     NEXT_PUBLIC_STORYBLOK_MAIN_APP_FOLDER,
   });
 
-  const { specialPagesUUID } = await createSpecialPagesStories({
-    parentFolderID: specialPagesFolderID,
-    homepageUUID,
-    NEXT_PUBLIC_STORYBLOK_MAIN_APP_FOLDER,
-  });
-
-  await createConfig({ parentFolderID: rootConfigFolderID, layoutsUUID, specialPagesUUID });
+  await createConfig({ parentFolderID: rootConfigFolderID, layoutsUUID });
 
   console.log(color('success', '✅  Stories setup complete.'));
 

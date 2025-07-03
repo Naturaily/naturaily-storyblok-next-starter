@@ -2,30 +2,30 @@
   "name": "web",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbo",
+    "dev:https": "next dev --port 3000 --experimental-https",
+    "bundle:analyze": "ANALYZE=true pnpm build",
     "build": "next build",
     "start": "next start",
     "eslint:format": "eslint src --fix"
   },
   "dependencies": {
-    "@natu/env": "*",
-    "@natu/fonts": "*",
-    "@natu/middleware-chain": "*",
-    "@natu/next-themes": "*",
-    "@natu/storyblok-api": "*",
-    "@natu/storyblok-preview": "*",
-    "@natu/storyblok-revalidate": "*",
-    "@natu/storyblok-seo": "*",
-    "@natu/storyblok-ui": "*",
-    "@natu/storyblok-utils": "*",
-    "@natu/ui": "*",
-    "@natu/utils": "*",
-    "next": "^14.2.4"
+    "@natu/env": "workspace:*",
+    "@natu/next-themes": "workspace:*",
+    "@natu/storyblok": "workspace:*",
+    "@natu/ui": "workspace:*",
+    "@natu/utils": "workspace:*",
+    "@next/bundle-analyzer": "^15.3.4",
+    "next": "^15.3.4",
+    "react": "^19.1.0",
+    "storyblok-js-client": "7.0.2"
   },
   "devDependencies": {
-    "eslint-config-custom": "*",
-    "tailwind-config": "*",
-    "tsconfig": "*"
+    "@types/react": "19.1.8",
+    "eslint-config-custom": "workspace:*",
+    "tailwind-config": "workspace:*",
+    "tsconfig": "workspace:*"
   }
 }

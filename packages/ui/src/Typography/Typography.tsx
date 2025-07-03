@@ -1,10 +1,10 @@
 import { Slot } from '@radix-ui/react-slot';
 import { ComponentProps, ElementType, ReactNode, forwardRef } from 'react';
 
-import { cn } from '@natu/utils';
+import { cn } from '@natu/utils/cn';
 
 import { TypographyVariantProp } from './Typography.type';
-import { getTypographyVariantStyles } from './utils/getTypographyVariantStyles';
+import { getTypographyVariantStyles } from './utils/getTypographyVariantStyles/getTypographyVariantStyles';
 
 export interface TypographyProps extends ComponentProps<'p'> {
   children?: ReactNode;
@@ -27,3 +27,5 @@ export const Typography = forwardRef<HTMLParagraphElement, TypographyProps>(
     );
   },
 );
+
+Typography.displayName = 'Typography';

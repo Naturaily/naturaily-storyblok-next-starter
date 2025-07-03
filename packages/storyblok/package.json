@@ -1,0 +1,67 @@
+{
+  "name": "@natu/storyblok",
+  "version": "0.0.0",
+  "type": "module",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "eslint:format": "eslint src --fix"
+  },
+  "packageManager": "pnpm@10.11.1",
+  "dependencies": {
+    "@natu/env": "workspace:*",
+    "@natu/next-link": "workspace:*",
+    "@natu/next-themes": "workspace:*",
+    "@natu/ui": "workspace:*",
+    "@natu/utils": "workspace:*",
+    "@storyblok/react": "5.1.1",
+    "@storyblok/richtext": "^3.4.0",
+    "class-variance-authority": "0.7.1",
+    "lucide-react": "0.525.0",
+    "next": "^15.3.4",
+    "radash": "^12.1.1",
+    "react": "^19.1.0",
+    "storyblok-js-client": "7.0.2"
+  },
+  "devDependencies": {
+    "@types/react": "19.1.8",
+    "eslint-config-custom": "workspace:*",
+    "tsconfig": "workspace:*"
+  },
+  "exports": {
+    "./api": {
+      "import": "./src/api/api.ts",
+      "require": "./src/api/api.ts"
+    },
+    "./revalidateHandler": {
+      "import": "./src/storyblok-revalidate/revalidateHandler.ts",
+      "require": "./src/storyblok-revalidate/revalidateHandler.ts"
+    },
+    "./getSlugWithAppName": {
+      "import": "./src/utils/getSlugWithAppName/getSlugWithAppName.ts",
+      "require": "./src/utils/getSlugWithAppName/getSlugWithAppName.ts"
+    },
+    "./getStoryblokSeoData": {
+      "import": "./src/seo/src/utils/getStoryblokSeoData.ts",
+      "require": "./src/seo/src/utils/getStoryblokSeoData.ts"
+    },
+    "./isSlugExcludedFromRouting": {
+      "import": "./src/utils/isSlugExcludedFromRouting/isSlugExcludedFromRouting.ts",
+      "require": "./src/utils/isSlugExcludedFromRouting/isSlugExcludedFromRouting.ts"
+    },
+    "./DynamicRender": {
+      "import": "./src/utils/components/DynamicRender/DynamicRender.tsx",
+      "require": "./src/utils/components/DynamicRender/DynamicRender.tsx"
+    },
+    "./DraftModeProvider": {
+      "import": "./src/storyblok-preview/DraftModeProvider.tsx",
+      "require": "./src/storyblok-preview/DraftModeProvider.tsx"
+    },
+    "./getSlugWithoutAppName": {
+      "import": "./src/utils/getSlugWithoutAppName/getSlugWithoutAppName.ts",
+      "require": "./src/utils/getSlugWithoutAppName/getSlugWithoutAppName.ts"
+    }
+  }
+}

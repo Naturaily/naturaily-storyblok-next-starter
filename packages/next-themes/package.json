@@ -2,6 +2,7 @@
   "name": "@natu/next-themes",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "main": "./index.ts",
   "types": "./index.ts",
   "license": "MIT",
@@ -12,12 +13,22 @@
     "eslint:format": "eslint src --fix"
   },
   "devDependencies": {
-    "eslint-config-custom": "*",
-    "tsconfig": "*",
-    "tailwind-config": "*"
+    "eslint-config-custom": "workspace:*",
+    "tsconfig": "workspace:*"
   },
   "dependencies": {
-    "@natu/ui": "*",
-    "next-themes": "0.3.0"
+    "@natu/ui": "workspace:*",
+    "lucide-react": "0.525.0",
+    "next-themes": "0.4.6"
+  },
+  "exports": {
+    "./ThemeModeSwitcher": {
+      "import": "./src/ThemeModeSwitcher/ThemeModeSwitcher.tsx",
+      "require": "./src/ThemeModeSwitcher/ThemeModeSwitcher.tsx"
+    },
+    "./ThemeProvider": {
+      "import": "./src/ThemeProvider/ThemeProvider.tsx",
+      "require": "./src/ThemeProvider/ThemeProvider.tsx"
+    }
   }
 }

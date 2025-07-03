@@ -1,0 +1,30 @@
+{
+  "name": "@natu/form-builder",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "eslint:format": "eslint src --fix"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.8",
+    "eslint-config-custom": "workspace:*",
+    "tsconfig": "workspace:*"
+  },
+  "dependencies": {
+    "@natu/env": "workspace:*",
+    "@natu/ui": "workspace:*",
+    "@natu/utils": "workspace:*",
+    "@storyblok/js": "^4.1.1",
+    "next": "^15.3.4",
+    "react": "^19.1.0",
+    "react-hook-form": "^7.59.0",
+    "zod": "3.25.67"
+  },
+  "exports": {
+    "./form": "./src/Form/Form.tsx",
+    "./utils": "./src/utils.ts",
+    "./types": "./src/types.ts"
+  }
+}

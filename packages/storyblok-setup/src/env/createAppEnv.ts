@@ -39,7 +39,6 @@ export const createAppEnv = async ({
     NEXT_PUBLIC_STORYBLOK_EXCLUDED_FOLDERS_FROM_ROUTING,
   };
 
-  // eslint-disable-next-line @typescript-eslint/naming-convention, no-underscore-dangle
   const __dirname = dirname(fileURLToPath(import.meta.url));
   const envPath = resolve(__dirname, '../../../../apps/web/.env');
   try {
