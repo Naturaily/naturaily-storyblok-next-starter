@@ -12,7 +12,7 @@
     "@tailwindcss/line-clamp": "0.4.4",
     "@tailwindcss/typography": "0.5.10",
     "autoprefixer": "10.4.19",
-    "postcss": "8.4.36",
+    "postcss": "8.5.6",
     "prettier-plugin-tailwindcss": "0.5.12",
     "tailwindcss": "3.4.4",
     "tailwindcss-animate": "1.0.7"
