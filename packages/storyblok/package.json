@@ -30,6 +30,9 @@
     "eslint-config-custom": "workspace:*",
     "tsconfig": "workspace:*"
   },
+  "imports": {
+    "#components/*": "./src/*.ts"
+  },
   "exports": {
     "./api": {
       "import": "./src/api/api.ts",

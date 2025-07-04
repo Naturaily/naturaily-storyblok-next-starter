@@ -1,8 +1,10 @@
+// import { componentsMap } from '@/components/componentsMap';
 import { apiPlugin, ISbStoriesParams, storyblokInit } from '@storyblok/react/rsc';
+import { componentsMap } from '#components/components/componentsMap';
 
 import { env } from '@natu/env';
 
-import { componentsMap } from '../components/componentsMap';
+// import { componentsMap } from '../components/componentsMap';
 import { isDraftMode } from '../storyblok-preview/isDraftMode';
 import { relations } from './relations';
 import { getSdk, SdkFunctionWrapper } from './sdk';
