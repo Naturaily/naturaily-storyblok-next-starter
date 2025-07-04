@@ -112,6 +112,10 @@
       "import": "./src/Typography/Typography.tsx",
       "require": "./src/Typography/Typography.tsx"
     },
+    "./TypographyTypes": {
+      "import": "./src/Typography/Typography.type.ts",
+      "require": "./src/Typography/Typography.type.ts"
+    },
     "./YoutubeVideo": {
       "import": "./src/YoutubeVideo/YoutubeVideo.tsx",
       "require": "./src/YoutubeVideo/YoutubeVideo.tsx"

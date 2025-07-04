@@ -1,15 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ISbStoriesParams, StoryblokClient } from '@storyblok/react/rsc';
-
-import { env } from '@natu/env';
-
-import { getSlugWithAppName } from '../utils/getSlugWithAppName/getSlugWithAppName';
 import {
   GetConfigNodeQueryVariables,
   GetContentNodeQueryVariables,
   GetContentNodesQueryVariables,
   GetLinksQueryVariables,
-} from './sdk.types';
+} from '#storyblok/api/sdk.types';
+import { getSlugWithAppName } from '#storyblok/utils/getSlugWithAppName/getSlugWithAppName';
+
+import { env } from '@natu/env';
 
 export type SdkFunctionWrapper = <T>(
   action: (options?: ISbStoriesParams) => Promise<T>,

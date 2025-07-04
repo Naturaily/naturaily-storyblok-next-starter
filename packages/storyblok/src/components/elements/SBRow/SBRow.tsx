@@ -1,16 +1,11 @@
+import { DynamicRender } from '#storyblok/utils/components/DynamicRender/DynamicRender';
+import { Spacing, AlignItems, JustifyItems } from '#storyblok/utils/resolveStoryblokStyles/index';
+import { resolveStoryblokStyles } from '#storyblok/utils/resolveStoryblokStyles/resolveStoryblokStyles';
+import { sbEditable } from '#storyblok/utils/sbEditable/sbEditable';
+import { BlokItem, SBProps } from '#storyblok/utils/types/SBProps/SBProps';
 import type { ElementType } from 'react';
 
 import { cn } from '@natu/utils/cn';
-
-import { DynamicRender } from '../../../utils/components/DynamicRender/DynamicRender';
-import {
-  Spacing,
-  AlignItems,
-  JustifyItems,
-  resolveStoryblokStyles,
-} from '../../../utils/resolveStoryblokStyles';
-import { sbEditable } from '../../../utils/sbEditable/sbEditable';
-import { BlokItem, SBProps } from '../../../utils/types/SBProps/SBProps';
 
 interface SBRowProps {
   body?: BlokItem[];

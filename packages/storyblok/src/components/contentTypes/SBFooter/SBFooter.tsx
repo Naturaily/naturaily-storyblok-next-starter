@@ -1,6 +1,6 @@
-import { DynamicRender } from '../../../utils/components/DynamicRender/DynamicRender';
-import { sbEditable } from '../../../utils/sbEditable/sbEditable';
-import { BlokItem, SBProps } from '../../../utils/types/SBProps/SBProps';
+import { DynamicRender } from '#storyblok/utils/components/DynamicRender/DynamicRender';
+import { sbEditable } from '#storyblok/utils/sbEditable/sbEditable';
+import { BlokItem, SBProps } from '#storyblok/utils/types/SBProps/SBProps';
 
 interface SBFooterProps {
   body?: BlokItem[];

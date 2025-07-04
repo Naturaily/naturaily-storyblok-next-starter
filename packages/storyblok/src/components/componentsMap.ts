@@ -1,18 +1,17 @@
 import { SbReactComponentsMap } from '@storyblok/react/rsc';
-
-import { SBFooter } from './contentTypes/SBFooter/SBFooter';
-import { SBHeader } from './contentTypes/SBHeader/SBHeader';
-import { SBPage } from './contentTypes/SBPage/SBPage';
-import { SBColumn } from './elements/SBColumn/SBColumn';
-import { SBContainer } from './elements/SBContainer/SBContainer';
-import { SBCta } from './elements/SBCta/SBCta';
-import { SBGrid } from './elements/SBGrid/SBGrid';
-import { SBImage } from './elements/SBImage/SBImage';
-import { SBRichtext } from './elements/SBRichtext/SBRichtext';
-import { SBRow } from './elements/SBRow/SBRow';
-import { SBTable } from './elements/SBTable/SBTable';
-import { SBThemeModeSwitcher } from './elements/SBThemeModeSwitcher/SBThemeModeSwitcher';
-import { SBTypography } from './elements/SBTypography/SBTypography';
+import { SBFooter } from '#storyblok/components/contentTypes/SBFooter/SBFooter';
+import { SBHeader } from '#storyblok/components/contentTypes/SBHeader/SBHeader';
+import { SBPage } from '#storyblok/components/contentTypes/SBPage/SBPage';
+import { SBColumn } from '#storyblok/components/elements/SBColumn/SBColumn';
+import { SBContainer } from '#storyblok/components/elements/SBContainer/SBContainer';
+import { SBCta } from '#storyblok/components/elements/SBCta/SBCta';
+import { SBGrid } from '#storyblok/components/elements/SBGrid/SBGrid';
+import { SBImage } from '#storyblok/components/elements/SBImage/SBImage';
+import { SBRichtext } from '#storyblok/components/elements/SBRichtext/SBRichtext';
+import { SBRow } from '#storyblok/components/elements/SBRow/SBRow';
+import { SBTable } from '#storyblok/components/elements/SBTable/SBTable';
+import { SBThemeModeSwitcher } from '#storyblok/components/elements/SBThemeModeSwitcher/SBThemeModeSwitcher';
+import { SBTypography } from '#storyblok/components/elements/SBTypography/SBTypography';
 
 const elements = {
   cta: SBCta,

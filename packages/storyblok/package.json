@@ -30,6 +30,18 @@
     "eslint-config-custom": "workspace:*",
     "tsconfig": "workspace:*"
   },
+  "imports": {
+    "#storyblok/*": {
+      "types": [
+        "./src/*.tsx",
+        "./src/*.ts",
+        "./src/*"
+      ],
+      "default": [
+        "./src/*"
+      ]
+    }
+  },
   "exports": {
     "./api": {
       "import": "./src/api/api.ts",

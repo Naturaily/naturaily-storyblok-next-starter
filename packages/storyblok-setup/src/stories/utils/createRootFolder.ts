@@ -1,10 +1,9 @@
+import { capitalizeFirstLetter } from '#storyblok-setup/utils/capitalizeFirstLetter';
+import { storyblok } from '#storyblok-setup/utils/client';
+import { color } from '#storyblok-setup/utils/color';
+import { STORIES_ENDPOINT } from '#storyblok-setup/utils/endpoints';
 import prompts from 'prompts';
 import slugify from 'slugify';
-
-import { capitalizeFirstLetter } from '../../utils/capitalizeFirstLetter.ts';
-import { storyblok } from '../../utils/client.ts';
-import { color } from '../../utils/color.ts';
-import { STORIES_ENDPOINT } from '../../utils/endpoints.ts';
 
 interface CreateRootFolderOutput {
   rootAppFolderID?: number;

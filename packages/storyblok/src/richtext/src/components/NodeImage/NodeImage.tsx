@@ -1,11 +1,10 @@
 import { StoryblokRichTextNode } from '@storyblok/richtext';
+import { getAssetFromStoryblok } from '#storyblok/utils/getAssetFromStoryblok/getAssetFromStoryblok';
+import { StoryblokAsset } from '#storyblok/utils/types/StoryblokAsset/StoryblokAsset';
 import { uid } from 'radash';
 import { Fragment, ReactElement } from 'react';
 
 import { ResponsiveImage } from '@natu/ui/ResponsiveImage';
-
-import { getAssetFromStoryblok } from '../../../../utils/getAssetFromStoryblok/getAssetFromStoryblok';
-import { StoryblokAsset } from '../../../../utils/types/StoryblokAsset/StoryblokAsset';
 
 export const NodeImage = (node: StoryblokRichTextNode<ReactElement>) => {
   const { alt, src: imageSrc, title } = node.attrs || {};

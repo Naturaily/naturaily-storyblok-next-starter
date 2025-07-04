@@ -1,3 +1,9 @@
+import { Spacing } from '#storyblok/utils/resolveStoryblokStyles/index';
+import { resolveStoryblokStyles } from '#storyblok/utils/resolveStoryblokStyles/resolveStoryblokStyles';
+import { sbEditable } from '#storyblok/utils/sbEditable/sbEditable';
+import { SBProps } from '#storyblok/utils/types/SBProps/SBProps';
+import { StoryblokTable } from '#storyblok/utils/types/SBTable/SBTable';
+
 import {
   Table,
   TableBody,
@@ -7,11 +13,6 @@ import {
   TableHeader,
   TableRow,
 } from '@natu/ui/Table';
-
-import { resolveStoryblokStyles, Spacing } from '../../../utils/resolveStoryblokStyles';
-import { sbEditable } from '../../../utils/sbEditable/sbEditable';
-import { SBProps } from '../../../utils/types/SBProps/SBProps';
-import { StoryblokTable } from '../../../utils/types/SBTable/SBTable';
 
 interface SBTableProps {
   table?: StoryblokTable;

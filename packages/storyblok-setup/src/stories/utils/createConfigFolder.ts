@@ -1,6 +1,6 @@
-import { storyblok } from '../../utils/client.ts';
-import { color } from '../../utils/color.ts';
-import { STORIES_ENDPOINT } from '../../utils/endpoints.ts';
+import { storyblok } from '#storyblok-setup/utils/client';
+import { color } from '#storyblok-setup/utils/color';
+import { STORIES_ENDPOINT } from '#storyblok-setup/utils/endpoints';
 
 const rootSlug = 'configuration-a93cfcb3';
 

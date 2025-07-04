@@ -1,20 +1,16 @@
-import { ElementType } from 'react';
-
-import { Typography } from '@natu/ui/Typography';
-
-import {
-  TypographyVariant,
-  TypographyVariantProp,
-} from '../../../../../ui/src/Typography/Typography.type';
 import {
   FontWeight,
   TextAlign,
   FontFamily,
   Spacing,
-  resolveStoryblokStyles,
-} from '../../../utils/resolveStoryblokStyles';
-import { sbEditable } from '../../../utils/sbEditable/sbEditable';
-import { SBProps } from '../../../utils/types/SBProps/SBProps';
+} from '#storyblok/utils/resolveStoryblokStyles/index';
+import { resolveStoryblokStyles } from '#storyblok/utils/resolveStoryblokStyles/resolveStoryblokStyles';
+import { sbEditable } from '#storyblok/utils/sbEditable/sbEditable';
+import { SBProps } from '#storyblok/utils/types/SBProps/SBProps';
+import { ElementType } from 'react';
+
+import { Typography } from '@natu/ui/Typography';
+import { TypographyVariant, TypographyVariantProp } from '@natu/ui/TypographyTypes';
 
 interface SBTypographyProps {
   content?: string;

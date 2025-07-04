@@ -1,4 +1,4 @@
-import { SbComponentType } from '../SBProps/SBProps';
+import { SbComponentType } from '#storyblok/utils/types/SBProps/SBProps';
 
 interface StoryblokTableColumn extends SbComponentType<'_table_col'> {
   value?: string;

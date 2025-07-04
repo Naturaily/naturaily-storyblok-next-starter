@@ -1,4 +1,7 @@
 import { StoryblokRichTextNode } from '@storyblok/richtext';
+import { StoryblokRichtextVariant } from '#storyblok/richtext/src/components/StoryblokRichtext/StoryblokRichtext';
+import { getLinkPropsFromStoryblok } from '#storyblok/utils/getLinkPropsFromStoryblok/getLinkPropsFromStoryblok';
+import { StoryblokLink } from '#storyblok/utils/types/StoryblokLink/StoryblokLink';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { uid } from 'radash';
 import { ReactElement } from 'react';
@@ -7,10 +10,6 @@ import { env } from '@natu/env';
 import { Link } from '@natu/next-link/Link';
 import { buttonVariants } from '@natu/ui/Button';
 import { cn } from '@natu/utils/cn';
-
-import { getLinkPropsFromStoryblok } from '../../../../utils/getLinkPropsFromStoryblok/getLinkPropsFromStoryblok';
-import { StoryblokLink } from '../../../../utils/types/StoryblokLink/StoryblokLink';
-import { StoryblokRichtextVariant } from '../StoryblokRichtext/StoryblokRichtext';
 
 const markLinkVariants = cva('', {
   variants: {

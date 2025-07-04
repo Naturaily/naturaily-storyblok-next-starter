@@ -8,6 +8,18 @@
     "setup": "node --loader ts-node/esm -r dotenv/config ./src/setup.ts && cd ../../ && pnpm dev",
     "eslint:format": "eslint src --fix"
   },
+  "imports": {
+    "#storyblok-setup/*": {
+      "types": [
+        "./src/*.tsx",
+        "./src/*.ts",
+        "./src/*"
+      ],
+      "default": [
+        "./src/*"
+      ]
+    }
+  },
   "dependencies": {
     "dotenv": "17.0.0",
     "prompts": "2.4.2",
