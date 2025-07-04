@@ -1,3 +1,4 @@
+// import { componentsMap } from '@/components/componentsMap';
 import { apiPlugin, ISbStoriesParams, storyblokInit } from '@storyblok/react/rsc';
 import { relations } from '#storyblok/api/relations';
 import { getSdk, SdkFunctionWrapper } from '#storyblok/api/sdk';

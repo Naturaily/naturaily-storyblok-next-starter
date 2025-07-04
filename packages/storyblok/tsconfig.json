@@ -2,5 +2,5 @@
   "extends": "tsconfig/nextjs.json",
   "include": ["."],
   "exclude": ["node_modules", ".next", "coverage", ".turbo"],
-  "compilerOptions": { "moduleResolution": "bundler" }
+  "compilerOptions": { "moduleResolution": "bundler", "paths": { "#components/*": ["./src/*"] } }
 }
