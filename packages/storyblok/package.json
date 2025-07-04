@@ -31,7 +31,16 @@
     "tsconfig": "workspace:*"
   },
   "imports": {
-    "#components/*": "./src/*.ts"
+    "#storyblok/*": {
+      "types": [
+        "./src/*.tsx",
+        "./src/*.ts",
+        "./src/*"
+      ],
+      "default": [
+        "./src/*"
+      ]
+    }
   },
   "exports": {
     "./api": {

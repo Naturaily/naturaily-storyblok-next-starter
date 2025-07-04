@@ -1,6 +1,5 @@
 import { storyblokEditable, SbBlokData } from '@storyblok/react/rsc';
-
-import { SbComponentType } from '../types/SBProps/SBProps';
+import { SbComponentType } from '#storyblok/utils/types/SBProps/SBProps';
 
 /**
  * This TypeScript function checks if a given object has an "_ed itable" property and returns a

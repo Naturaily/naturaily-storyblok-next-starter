@@ -1,18 +1,13 @@
 import { StoryblokRichTextNode } from '@storyblok/richtext';
-import { ReactElement } from 'react';
-
 import {
   StoryblokRichtext,
   StoryblokRichtextVariant,
-} from '../../../richtext/src/components/StoryblokRichtext/StoryblokRichtext';
-import {
-  TextAlign,
-  FontFamily,
-  Spacing,
-  resolveStoryblokStyles,
-} from '../../../utils/resolveStoryblokStyles';
-import { sbEditable } from '../../../utils/sbEditable/sbEditable';
-import { SBProps } from '../../../utils/types/SBProps/SBProps';
+} from '#storyblok/richtext/src/components/StoryblokRichtext/StoryblokRichtext';
+import { TextAlign, FontFamily, Spacing } from '#storyblok/utils/resolveStoryblokStyles/index';
+import { resolveStoryblokStyles } from '#storyblok/utils/resolveStoryblokStyles/resolveStoryblokStyles';
+import { sbEditable } from '#storyblok/utils/sbEditable/sbEditable';
+import { SBProps } from '#storyblok/utils/types/SBProps/SBProps';
+import { ReactElement } from 'react';
 
 interface SBRichtextProps {
   variant?: StoryblokRichtextVariant;

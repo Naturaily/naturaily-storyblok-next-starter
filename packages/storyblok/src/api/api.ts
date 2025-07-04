@@ -1,13 +1,11 @@
 // import { componentsMap } from '@/components/componentsMap';
 import { apiPlugin, ISbStoriesParams, storyblokInit } from '@storyblok/react/rsc';
-import { componentsMap } from '#components/components/componentsMap';
+import { relations } from '#storyblok/api/relations';
+import { getSdk, SdkFunctionWrapper } from '#storyblok/api/sdk';
+import { componentsMap } from '#storyblok/components/componentsMap';
+import { isDraftMode } from '#storyblok/storyblok-preview/isDraftMode';
 
 import { env } from '@natu/env';
-
-// import { componentsMap } from '../components/componentsMap';
-import { isDraftMode } from '../storyblok-preview/isDraftMode';
-import { relations } from './relations';
-import { getSdk, SdkFunctionWrapper } from './sdk';
 
 export const getStoryblokApi = storyblokInit({
   accessToken: env.NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN,

@@ -1,5 +1,6 @@
-import { storyblok } from '../../utils/client.ts';
-import { STORIES_ENDPOINT } from '../../utils/endpoints.ts';
+import { storyblok } from '#storyblok-setup/utils/client';
+import { STORIES_ENDPOINT } from '#storyblok-setup/utils/endpoints';
+
 import { configContent } from '../data/configContent.ts';
 import { LayoutStoryData } from './createLayoutsStories.ts';
 

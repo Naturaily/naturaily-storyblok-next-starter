@@ -1,4 +1,4 @@
-import { StoryblokAsset } from '../types/StoryblokAsset/StoryblokAsset';
+import { StoryblokAsset } from '#storyblok/utils/types/StoryblokAsset/StoryblokAsset';
 
 interface Config {
   type: 'image' | 'video';

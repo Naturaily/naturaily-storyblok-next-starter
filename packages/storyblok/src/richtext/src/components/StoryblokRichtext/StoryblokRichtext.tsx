@@ -6,18 +6,17 @@ import {
   StoryblokRichTextNode,
   StoryblokRichTextOptions,
 } from '@storyblok/richtext';
-import { createElement, ReactElement } from 'react';
+import { MarkCode } from '#storyblok/richtext/src/components/MarkCode/MarkCode';
+import { MarkLink } from '#storyblok/richtext/src/components/MarkLink/MarkLink';
+import { NodeCodeblock } from '#storyblok/richtext/src/components/NodeCodeblock/NodeCodeblock';
+import { NodeHeading } from '#storyblok/richtext/src/components/NodeHeading/NodeHeading';
+import { NodeImage } from '#storyblok/richtext/src/components/NodeImage/NodeImage';
+import { NodeLi } from '#storyblok/richtext/src/components/NodeLi/NodeLi';
 import React from 'react';
+import { createElement, ReactElement } from 'react';
 
 import { Richtext } from '@natu/ui/Richtext';
 import { cn } from '@natu/utils/cn';
-
-import { MarkCode } from '../MarkCode/MarkCode';
-import { MarkLink } from '../MarkLink/MarkLink';
-import { NodeCodeblock } from '../NodeCodeblock/NodeCodeblock';
-import { NodeHeading } from '../NodeHeading/NodeHeading';
-import { NodeImage } from '../NodeImage/NodeImage';
-import { NodeLi } from '../NodeLi/NodeLi';
 
 export type StoryblokRichtextVariant = 'default' | 'prose';
 

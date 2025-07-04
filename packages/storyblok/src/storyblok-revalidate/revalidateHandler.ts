@@ -1,9 +1,8 @@
+import { TAGS } from '#storyblok/api/tags';
+import { getSlugWithoutAppName } from '#storyblok/utils/getSlugWithoutAppName/getSlugWithoutAppName';
 import { revalidatePath, revalidateTag } from 'next/cache';
 
 import { env } from '@natu/env';
-
-import { TAGS } from '../api/tags';
-import { getSlugWithoutAppName } from '../utils/getSlugWithoutAppName/getSlugWithoutAppName';
 
 export const revalidateHandler = async (request: Request): Promise<Response> => {
   const { searchParams } = new URL(request.url);

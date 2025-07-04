@@ -1,15 +1,16 @@
+import { getAssetFromStoryblok } from '#storyblok/utils/getAssetFromStoryblok/getAssetFromStoryblok';
+import { getLinkPropsFromStoryblok } from '#storyblok/utils/getLinkPropsFromStoryblok/getLinkPropsFromStoryblok';
+import { Spacing } from '#storyblok/utils/resolveStoryblokStyles/index';
+import { resolveStoryblokStyles } from '#storyblok/utils/resolveStoryblokStyles/resolveStoryblokStyles';
+import { sbEditable } from '#storyblok/utils/sbEditable/sbEditable';
+import { SBProps } from '#storyblok/utils/types/SBProps/SBProps';
+import { StoryblokAsset } from '#storyblok/utils/types/StoryblokAsset/StoryblokAsset';
+import { StoryblokLink } from '#storyblok/utils/types/StoryblokLink/StoryblokLink';
+
 import { AspectRatio } from '@natu/ui/AspectRatio';
 import { ConditionalLink } from '@natu/ui/ConditionalLink';
 import { ResponsiveImage } from '@natu/ui/ResponsiveImage';
 import { cn } from '@natu/utils/cn';
-
-import { getAssetFromStoryblok } from '../../../utils/getAssetFromStoryblok/getAssetFromStoryblok';
-import { getLinkPropsFromStoryblok } from '../../../utils/getLinkPropsFromStoryblok/getLinkPropsFromStoryblok';
-import { resolveStoryblokStyles, Spacing } from '../../../utils/resolveStoryblokStyles';
-import { sbEditable } from '../../../utils/sbEditable/sbEditable';
-import { SBProps } from '../../../utils/types/SBProps/SBProps';
-import { StoryblokAsset } from '../../../utils/types/StoryblokAsset/StoryblokAsset';
-import { StoryblokLink } from '../../../utils/types/StoryblokLink/StoryblokLink';
 
 interface SBImageProps {
   asset?: StoryblokAsset;
