@@ -16,7 +16,7 @@
     "@natu/next-themes": "workspace:*",
     "@natu/ui": "workspace:*",
     "@natu/utils": "workspace:*",
-    "@storyblok/react": "5.1.1",
+    "@storyblok/react": "5.1.2",
     "@storyblok/richtext": "^3.4.0",
     "class-variance-authority": "0.7.1",
     "lucide-react": "0.525.0",

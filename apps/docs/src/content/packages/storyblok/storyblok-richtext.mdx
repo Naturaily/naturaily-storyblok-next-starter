@@ -1,38 +1,51 @@
 import { Steps, Callout } from 'nextra/components';
 
-# @natu/storyblok-richtext
+# Richtext
 
 Handling the Storyblok-specific rich text. Already includes some basic resolvers and can be extended if needed.
 
-<Callout type="info" emoji="ℹ️">
-  Used in [storyblok-ui package](/packages/storyblok/storyblok-ui) component
-</Callout>
+<Callout type="info">Useful links for Storyblok Richtext</Callout>
+
+- [@storyblok/react package documentation](https://www.storyblok.com/docs/packages/storyblok-react)
+- [@storyblok/richtext package documentation](https://www.storyblok.com/docs/packages/storyblok-richtext)
 
 ## Usage
 
 <Steps>
-  ### Import package as dependency in package.json
+  ### Import package as dependency in package.json if used outside `packages/storyblok`
 
 ```json
 "dependencies": {
-    "@natu/storyblok-richtext": "*",
+    "@natu/storyblok": "workspace:*",
 }
 ```
 
 ### Use `StoryblokRichtext` component to render the richtext
 
-```tsx filename="packages/storyblok-ui/src/components/elements/SBRichtext/SBRichtext.tsx" {1, 11}
-import { type StoryblokRichTextData, StoryblokRichtext } from '@natu/storyblok-richtext';
-import { sbEditable } from '@natu/storyblok-utils';
+```tsx filename="packages/storyblok/src/components/elements/SBRichtext/SBRichtext.tsx" {1,2,3,4,5, 17}
+import { StoryblokRichTextNode } from '@storyblok/richtext';
+import {
+  StoryblokRichtext,
+  StoryblokRichtextVariant,
+} from '../../../richtext/src/components/StoryblokRichtext/StoryblokRichtext';
+import { sbEditable } from '../../../utils/sbEditable/sbEditable';
 
 interface SBRichtextProps {
-  content?: StoryblokRichTextData;
+  variant?: StoryblokRichtextVariant;
+  content?: StoryblokRichTextNode<ReactElement>;
 }
 
 export const SBRichtext = ({ blok }: SBProps<SBRichtextProps>) => {
   const { content } = blok;
 
-  return <StoryblokRichtext data={content} {...sbEditable(blok)} />;
+  return (
+    <StoryblokRichtext
+      variant={variant}
+      className={className}
+      data={content}
+      {...sbEditable(blok)}
+    />
+  );
 };
 ```
 
@@ -40,105 +53,131 @@ export const SBRichtext = ({ blok }: SBProps<SBRichtextProps>) => {
 
 ## Components included
 
-### DefaultBlokResolver
+### resolvers
 
-A catch-all solution for component not included in markResolvers and nodeResolvers
-[see docs ↗](https://github.com/claus/storyblok-rich-text-react-renderer/blob/master/README.md#advanced-usage).
-Usage:
+See `@storyblok/react` [Overriding default resolvers](https://www.storyblok.com/docs/packages/storyblok-react#example-overriding-default-resolvers)
+for more details. Already used in [StoryblokRichtext](/packages/storyblok/storyblok-richtext#storyblokrichtext) component. Resolvers included in the package:
 
-```tsx filename="/src/components/StoryblokRichtext/getStoryblokRichText.tsx" {2, 9}
-import type { ISbRichtext } from '@storyblok/react';
-import { DefaultBlokResolver } from '../DefaultBlokResolver';
-import { render } from 'storyblok-rich-text-react-renderer';
-
-export const getStoryblokRichText = (data: ISbRichtext) =>
-  render(data, {
-    markResolvers: ..., // custom resolvers
-    nodeResolvers: ..., // custom resolvers
-    defaultBlokResolver: DefaultBlokResolver,
-  });
-
-```
-
-### markResolvers
-
-See `storyblok-rich-text-react-renderer` [markResolvers docs ↗](https://github.com/claus/storyblok-rich-text-react-renderer/blob/master/README.md#mark-resolvers)
-for more details. Already used in [StoryblockRichtext](/packages/storyblok/storyblok-richtext#storyblokrichtext) component. Resolvers included in the package:
-
-- `MarkCode` - for the code component
 - `MarkLink` - for the link component
+- `MarkCode` - for the code component
+- `NodeCodeblock` - for the codeblock component
+- `NodeHeading` - for the richtext headings, uses `<Typography />` component
+- `NodeLi` - for the list item component
+- `NodeImage` - for the image component
 
 Usage:
 
-```tsx filename="/src/components/StoryblokRichtext/getStoryblokRichText.tsx" {4-5, 10-11}
-import type { ISbRichtext } from '@storyblok/react';
-import { render, MARK_CODE, MARK_LINK } from 'storyblok-rich-text-react-renderer';
-
-import { MarkCode } from '../MarkCode';
-import { MarkLink } from '../MarkLink';
-
-export const getStoryblokRichText = (data: ISbRichtext) =>
-  render(data, {
-    markResolvers: {
-      [MARK_CODE]: MarkCode,
-      [MARK_LINK]: MarkLink,
-    },
-  });
-```
-
-### nodeResolvers
-
-See `storyblok-rich-text-react-renderer` [nodeResolvers docs ↗](https://github.com/claus/storyblok-rich-text-react-renderer/blob/master/README.md#node-resolvers)
-for more details. Already used in [StoryblockRichtext](/packages/storyblok/storyblok-richtext#storyblokrichtext) component. Resolvers included in the package:
-
-- `NodeCodeblock` - for codeblock component
-- `NodeHeading` - for heading component
-- `NodeImage` - for image component
-- `NodeLi` - for list item component
-
-Usage:
-
-```tsx filename="/src/components/StoryblokRichtext/getStoryblokRichText.tsx" {10-13, 18-21}
-import type { ISbRichtext } from '@storyblok/react';
+```tsx filename="/packages/storyblok/src/richtext/src/components/StoryblokRichtext/StoryblokRichtext.tsx" {15-20, 33-52}
+import { convertAttributesInElement } from '@storyblok/react';
 import {
-  render,
-  NODE_IMAGE,
-  NODE_HEADING,
-  NODE_CODEBLOCK,
-  NODE_LI,
-} from 'storyblok-rich-text-react-renderer';
+  BlockTypes,
+  MarkTypes,
+  richTextResolver,
+  StoryblokRichTextNode,
+  StoryblokRichTextOptions,
+} from '@storyblok/richtext';
+import { createElement, ReactElement } from 'react';
+import React from 'react';
 
-import { NodeCodeblock } from '../NodeCodeblock';
-import { NodeHeading } from '../NodeHeading';
-import { NodeImage } from '../NodeImage';
-import { NodeLi } from '../NodeLi';
+import { Richtext } from '@natu/ui/Richtext';
+import { cn } from '@natu/utils/cn';
 
-export const getStoryblokRichText = (data: ISbRichtext) =>
-  render(data, {
-    nodeResolvers: {
-      [NODE_HEADING]: NodeHeading,
-      [NODE_IMAGE]: NodeImage,
-      [NODE_CODEBLOCK]: NodeCodeblock,
-      [NODE_LI]: NodeLi,
+import { MarkCode } from '../MarkCode/MarkCode';
+import { MarkLink } from '../MarkLink/MarkLink';
+import { NodeCodeblock } from '../NodeCodeblock/NodeCodeblock';
+import { NodeHeading } from '../NodeHeading/NodeHeading';
+import { NodeImage } from '../NodeImage/NodeImage';
+import { NodeLi } from '../NodeLi/NodeLi';
+
+export const StoryblokRichtext = ({
+  data,
+  variant = 'prose',
+  className: externalClassName,
+  ...rest
+}: StoryblokRichtextProps) => {
+  if (!data) return null;
+
+  const options: StoryblokRichTextOptions<ReactElement> = {
+    renderFn: createElement,
+    keyedResolvers: true,
+    resolvers: {
+      [MarkTypes.LINK]: (node: StoryblokRichTextNode<ReactElement>) => {
+        return MarkLink(node, { variant });
+      },
+      [MarkTypes.CODE]: (node: StoryblokRichTextNode<ReactElement>) => {
+        return MarkCode(node);
+      },
+      [BlockTypes.CODE_BLOCK]: (node: StoryblokRichTextNode<ReactElement>) => {
+        return NodeCodeblock(node);
+      },
+      [BlockTypes.HEADING]: (node: StoryblokRichTextNode<ReactElement>) => {
+        return NodeHeading(node, { variant });
+      },
+      [BlockTypes.LIST_ITEM]: (node: StoryblokRichTextNode<ReactElement>) => {
+        return NodeLi(node, { variant });
+      },
+      [BlockTypes.IMAGE]: (node: StoryblokRichTextNode<ReactElement>) => {
+        return NodeImage(node);
+      },
     },
-  });
+  };
+
+  const html = richTextResolver<ReactElement>(options).render(data);
+  const formattedHtml = convertAttributesInElement(html);
+
+  const combinedClassName = cn(
+    {
+      '': variant === 'default',
+      'prose dark:prose-invert max-w-none': variant === 'prose',
+    },
+    externalClassName,
+  );
+
+  return (
+    <Richtext className={combinedClassName} {...rest}>
+      {formattedHtml}
+    </Richtext>
+  );
+};
 ```
+
+### variant
+
+The `variant` prop allows you to choose between different styles of rendering the richtext content. Available variants include:
+
+- `default`: The standard styling for richtext content.
+- `prose`: A more visually rich styling, suitable for longer texts and articles.
+
+Additionally, you can create your own custom variant by extending the `StoryblokRichtext` component and passing a different `className` or `styles`.
 
 ### StoryblokRichtext
 
 The main component of this package aggregating all resolvers into one reusable component to render
 Storyblok richtext content type. Usage:
 
-```tsx {1, 10}
-import { type StoryblokRichTextData, StoryblokRichtext } from '@natu/storyblok-richtext';
+```tsx filename="packages/storyblok/src/components/elements/SBRichtext/SBRichtext.tsx" {1,2,3,4,5, 17}
+import { StoryblokRichTextNode } from '@storyblok/richtext';
+import {
+  StoryblokRichtext,
+  StoryblokRichtextVariant,
+} from '../../../richtext/src/components/StoryblokRichtext/StoryblokRichtext';
+import { sbEditable } from '../../../utils/sbEditable/sbEditable';
 
 interface SBRichtextProps {
-  content?: StoryblokRichTextData;
+  variant?: StoryblokRichtextVariant;
+  content?: StoryblokRichTextNode<ReactElement>;
 }
 
 export const SBRichtext = ({ blok }: SBProps<SBRichtextProps>) => {
   const { content } = blok;
 
-  return <StoryblokRichtext data={content} />;
+  return (
+    <StoryblokRichtext
+      variant={variant}
+      className={className}
+      data={content}
+      {...sbEditable(blok)}
+    />
+  );
 };
 ```

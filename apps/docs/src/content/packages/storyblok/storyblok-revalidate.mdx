@@ -1,6 +1,6 @@
 import { Steps, Callout } from 'nextra/components';
 
-# @natu/storyblok-revalidate
+# Storyblok revalidate
 
 Allows pages update without the need to rebuild the entire project.
 
@@ -14,14 +14,14 @@ Allows pages update without the need to rebuild the entire project.
 
 ```json
 "dependencies": {
-  "@natu/storyblok-revalidate": "*",
+  "@natu/storyblok": "workspace:*",
 }
 ```
 
 ### Use `revalidateHandler` in api route
 
 ```tsx filename="apps/web/src/app/api/revalidate/route.ts"
-import { revalidateHandler } from '@natu/storyblok-revalidate';
+import { revalidateHandler } from '@natu/storyblok/revalidateHandler';
 
 export { revalidateHandler as POST };
 ```
@@ -30,11 +30,11 @@ export { revalidateHandler as POST };
 
 As the endpoint URL, pass:
 
-`https://<your-domain>/api/revalidate?token=NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN`
+`https://<your-domain>/api/revalidate`
 
-You will find the token under the variable `NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN` in the file `apps/web/.env`
+You have to create a `STORYBLOK_WEBHOOK_SECRET` in the in the Vercel dashboard and paste value from created `apps/web/.env` file.
 
-![Vercel success](https://a.storyblok.com/f/218794/4074x2210/0826083bdc/screenshot-2024-02-07-at-1-21-22-pm.png)
+![Vercel success](/revalidate.webp)
 
 <Callout type="warning" emoji="⚠️">
   Remember to check all the checkboxes in the `Story` accordion

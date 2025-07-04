@@ -1,6 +1,6 @@
 import { Steps, Callout } from 'nextra/components';
 
-# @natu/storyblok-ui
+# Components
 
 Basic ready-to-use components.
 
@@ -21,33 +21,24 @@ The main foundations of this package:
 
 ```json
 "dependencies": {
-    "@natu/storyblok-ui": "*",
+    "@natu/storyblok": "workspace:*",
 }
 ```
 
-### Use `componentsMap` in Storyblok provider
+### Use `componentsMap` in `api.ts`
 
-```tsx filename="apps/web/src/app/StoryblokProvider.tsx" {4, 8}
-import StoryblokBridgeLoader from '@storyblok/react/bridge-loader';
-import { storyblokInit } from '@storyblok/react/rsc';
-import React, { ReactNode } from 'react';
-import { componentsMap } from '@natu/storyblok-ui';
+```tsx filename="apps/web/src/app/StoryblokProvider.tsx" {5, 10}
+import { env } from '@natu/env';
 
-storyblokInit({
-  accessToken: ...,
+import { apiPlugin } from '@storyblok/react/rsc';
+
+import { componentsMap } from '../components/componentsMap';
+
+export const getStoryblokApi = storyblokInit({
+  accessToken: env.NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN,
+  use: [apiPlugin],
   components: componentsMap,
 });
-
-interface StoryblokProviderProps {
-  children?: ReactNode;
-}
-
-export const StoryblokProvider = ({ children }: StoryblokProviderProps) => (
-  <>
-    {children}
-    <StoryblokBridgeLoader />
-  </>
-);
 ```
 
 </Steps>

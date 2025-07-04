@@ -1,3 +1,5 @@
+import { Callout } from 'nextra/components';
+
 # @natu/utils
 
 ## 🧩 Utils
@@ -16,14 +18,14 @@ To use utils defined within this package in other package or app, import it as a
 
 ```json
 "dependencies": {
-  "@natu/utils": "*",
+  "@natu/utils": "workspace:*",
 }
 ```
 
 Then import function(s) within package or app you added them to:
 
 ```tsx
-import { utilName } from '@natu/utils';
+import { utilName } from '@natu/utils/utilName';
 ```
 
 and use where needed:
@@ -40,8 +42,8 @@ utilName(utilProps);
 
 Merges Tailwind classes mixing functionalities of:
 
-- [tailwind-merge ↗](https://www.npmjs.com/package/tailwind-merge) - optimized merge of classes without style conflicts
-- [clsx ↗](https://www.npmjs.com/package/clsx) - optimized and convenient conditions handling
+- [tailwind-merge](https://www.npmjs.com/package/tailwind-merge) - optimized merge of classes without style conflicts
+- [clsx](https://www.npmjs.com/package/clsx) - optimized and convenient conditions handling
 
 Usage:
 
@@ -60,15 +62,38 @@ const className = cn(
 <div className={className} />;
 ```
 
+<Callout type="info" emoji="ℹ️">
+  If you use custom classes, you have to modify the `cn` function to include them.
+  Otherwise`twMerge` will not apply them. Example below shows how to use custom `text-...` classes
+</Callout>
+
+```tsx
+import { extendTailwindMerge } from 'tailwind-merge';
+
+export const twMerge = extendTailwindMerge({
+  extend: {
+    classGroups: {
+      'font-size': [
+        {
+          text: ['custom-heading', 'custom-subheading'],
+        },
+      ],
+    },
+  },
+});
+
+export const cn = (...classLists: ClassValue[]) => twMerge(clsx(classLists));
+```
+
 #### getNextRouteWithDomain
 
 Returns next route path with a domain prefix taken from [env](/packages/env).
 Usage:
 
 ```tsx
-// in @natu/env > env.mjs: NEXT_PUBLIC_APP_URL = https://yourdomain.com
+// in @natu/env > env.ts: NEXT_PUBLIC_APP_URL = https://yourdomain.com
 
-import { getNextRouteWithDomain } from '@natu/utils';
+import { getNextRouteWithDomain } from '@natu/utils/getNextRouteWithDomain';
 
 const routeWithDomain = getNextRouteWithDomain('/route'); // https://yourdomain.com/route
 ```
@@ -79,7 +104,7 @@ Checks if the provided prop is array with length > 0. Useful to check if there's
 errors in mappers or unnecessary renders. Usage:
 
 ```tsx
-import { isArrayWithLength } from '@natu/utils';
+import { isArrayWithLength } from '@natu/utils/isArrayWithLength';
 
 const check1 = isArrayWithLength([1, 2]); // true
 const check2 = isArrayWithLength(['apple', 'banana']); // true
@@ -88,14 +113,127 @@ const check4 = isArrayWithLength('pear'); // false (not array)
 const check5 = isArrayWithLength(undefined); // false (not array)
 ```
 
+#### isExcludedSlugs
+
+Use this function when you want to exclude certain paths (e.g. blog, docs, etc.) from navigation or sitemap generation.
+
+Skips items where:
+
+- The slug is '/' (homepage)
+- The item is a folder (item.is_folder === true)
+
+Usage Example:
+
+```tsx {1, 14}
+import { isExcludedSlugs } from '@natu/utils/isExcludedSlugs';
+
+const links = [
+  { slug: '/', is_folder: false },
+  { slug: 'about', is_folder: false },
+  { slug: 'blog', is_folder: true },
+  { slug: 'blog/post-1', is_folder: false },
+  { slug: 'contact', is_folder: false },
+];
+
+const excludingSlugs = ['blog'];
+
+const filtered = links
+  .filter(item => isExcludedSlugs({ item, excludedSlugs: excludingSlugs }))
+  .map(({ slug }) => {
+    if (!slug) return null;
+
+    return {
+      slug: slug.split('/').filter(Boolean),
+    };
+  })
+  .filter(Boolean);
+
+console.log(filtered);
+```
+
+```tsx
+Output: [{ slug: ['about'] }, { slug: ['contact'] }];
+```
+
+#### `safeAction` and `useAction`
+
+This setup uses [`next-safe-action`](https://next-safe-action.dev/) to **safely execute server actions from the client**, with full input validation and typed success/error handling.
+
+Usage:
+
+```tsx {5, 11}
+// greet-action.ts
+'use server';
+
+import { z } from 'zod';
+import { actionClient } from '@natu/utils/safeAction';
+
+const inputSchema = z.object({
+  name: z.string().min(1),
+});
+
+export const greetAction = actionClient
+  .inputSchema(inputSchema)
+  .action(async ({ parsedInput: { name } }) => {
+    return {
+      message: `Hello, ${name}!`,
+    };
+  });
+```
+
+```tsx {4, 8}
+// greet.tsx
+'use client';
+
+import { useAction } from '@natu/utils/useAction';
+import { greetAction } from './greet-action';
+
+export function Greet() {
+  const { execute, result, reset } = useAction(greetAction);
+
+  return (
+    <div>
+      <button onClick={() => execute({ name: 'John Doe' })}>Click here</button>
+      <button onClick={() => reset()}>Reset</button>
+    </div>
+  );
+}
+```
+
+#### `tryCatch` Utility
+
+A small helper function that wraps a `Promise` and returns a consistent **success/error result** format.
+Useful for replacing `try/catch` blocks with cleaner, more predictable async handling.
+
+✅ What it does
+
+- Wraps any `Promise`
+- Returns an object with:
+  - `data`: the resolved value, or `null` on error
+  - `error`: the caught error, or `null` on success
+
+Example usage:
+
+```tsx {1, 3}
+import { tryCatch } from '@natu/utils/tryCatch';
+
+const { data } = await tryCatch(
+  getContentNode({
+    slug: env.NEXT_PUBLIC_STORYBLOK_MAIN_APP_FOLDER,
+  }),
+);
+```
+
+---
+
 ### Hooks
 
 #### useToggle
 
-It takes a parameter with value true or false and toggles that value to opposite. It’s useful when we want to take some action into its opposite action, for example: show and hide modal, show more/show less text, open/close side menu.
+It takes a parameter with value true or false and toggles that value to opposite. It's useful when we want to take some action into its opposite action, for example: show and hide modal, show more/show less text, open/close side menu.
 
 ```tsx copy /useToggle/
-import { useToggle } from '@natu/utils';
+import { useToggle } from '@natu/utils/useToggle';
 
 function ToggleDemo({ on, toggle }) {
   return (
@@ -140,7 +278,7 @@ export default function App() {
 One source of truth for all paths. Used to avoid any path hardcoding throughout the project.
 
 ```tsx /{ paths }/ /{paths.homepage}/
-import { paths } from '@natu/utils';
+import { paths } from '@natu/utils/paths';
 
 // use path variable as paths.path_name where needed, ex.
 export const Sample = () => <Link href={paths.homepage}>...</Link>;

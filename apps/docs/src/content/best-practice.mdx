@@ -1,7 +1,187 @@
-import { Callout } from 'nextra/components';
+import { Steps } from 'nextra/components';
 
 # Best practice
 
-<Callout type="warning" emoji="🚧">
-  Under construction
-</Callout>
+## Exports in `package.json`
+
+When you are using a function or a component outside of the package where it is defined, you should use the `exports` field in the `package.json` to allow importing it.
+
+Usage:
+
+```tsx copy filename="packages/ui/package.json"
+  "exports": {
+    "./Button": {
+      "import": "./src/Button/Button.tsx",
+      "require": "./src/Button/Button.tsx"
+    }
+  }
+```
+
+```tsx copy filename="packages/storyblok/components/ExampleButton/ExampleButton.tsx"
+import { Button } from '@natu/ui/Button';
+
+export const ExampleButton = () => {
+  return <Button>Click me</Button>;
+};
+```
+
+## Using TanStack Query with Storyblok
+
+When fetching dynamic content from Storyblok beyond standard page data (such as blog posts, categories, job listings, or custom content types), TanStack Query provides an elegant solution for data management. This approach enhances performance through caching, simplifies state management, and improves the user experience.
+
+<Steps>
+
+### Configure a Query Client
+
+Create a `getQueryClient.ts` file in storyblok directory to provide consistent query client configuration:
+
+```tsx copy filename="packages/storyblok/getQueryClient.ts"
+import { QueryClient, defaultShouldDehydrateQuery, isServer } from '@tanstack/react-query';
+
+/**
+ * Creates a new QueryClient with optimized settings for Storyblok content
+ */
+function makeQueryClient() {
+  return new QueryClient({
+    defaultOptions: {
+      queries: {
+        // Cache results for 60 seconds to reduce API calls to Storyblok
+        staleTime: 60 * 1000,
+
+        // Enable refetching when window regains focus for fresh content
+        refetchOnWindowFocus: true,
+      },
+      dehydrate: {
+        // Include pending queries in server hydration payload
+        shouldDehydrateQuery: query =>
+          defaultShouldDehydrateQuery(query) || query.state.status === 'pending',
+      },
+    },
+  });
+}
+
+// Singleton pattern for browser client to maintain cache across renders
+let browserQueryClient: QueryClient | undefined = undefined;
+
+/**
+ * Returns the appropriate QueryClient instance for current environment
+ * Creates a new instance on the server, maintains singleton on client
+ */
+export function getQueryClient() {
+  if (isServer) {
+    // Always create fresh query client on server to prevent cross-request state leakage
+    return makeQueryClient();
+  } else {
+    // Reuse existing client in browser to maintain cache
+    if (!browserQueryClient) browserQueryClient = makeQueryClient();
+    return browserQueryClient;
+  }
+}
+```
+
+### Prefetch Content in Server Components
+
+Implement data prefetching in your Storyblok components to ensure content is available during initial page load:
+
+```tsx copy filename="packages/storyblok/components/SBArticles/SBArticles.tsx"
+import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
+import { Suspense } from 'react';
+
+import { getQueryClient } from '@natu/storyblok/getQueryClient';
+import { sbEditable } from '@natu/storyblok/sbEditable';
+import { ArticlesByFiltersSkeleton } from './ArticlesByFiltersSkeleton';
+import { ArticlesList } from './ArticlesList';
+
+/**
+ * Storyblok Articles component with server-side data prefetching
+ */
+export const SBArticles = ({ blok }) => {
+  const { author, category, page = 1 } = blok || {};
+  const queryClient = getQueryClient();
+
+  // Prefetch data during server rendering to optimize initial load
+  queryClient.prefetchQuery({
+    queryKey: ['articles', { filters: { author, category }, page, draft: false }],
+    queryFn: async () =>
+      getArticlesByFilters({
+        filters: { author, category },
+        page,
+        draftMode: false,
+      }),
+  });
+
+  return (
+    <section className="bg-background py-12" {...sbEditable(blok)}>
+      <div className="container">
+        {/* Hydration boundary preserves server-fetched data during client hydration */}
+        <HydrationBoundary state={dehydrate(queryClient)}>
+          <Suspense fallback={<ArticlesByFiltersSkeleton />}>
+            <ArticlesList author={author} category={category} page={page} />
+          </Suspense>
+        </HydrationBoundary>
+      </div>
+    </section>
+  );
+};
+```
+
+### Consume Data in Client Components
+
+Create client components that leverage the prefetched data with seamless draft mode integration:
+
+```tsx copy filename="packages/storyblok/components/SBArticles/ArticlesList.tsx"
+'use client';
+
+import { useSuspenseQuery } from '@tanstack/react-query';
+import { useDraftModeContext } from '@natu/storyblok/DraftModeProvider';
+import { isArrayWithLength } from '@natu/utils/isArrayWithLength';
+
+import { getArticlesByFilters } from '../getArticlesByFilters';
+import { Article } from '@/types';
+
+interface ArticlesListProps {
+  author?: string;
+  category?: string;
+  page: number;
+}
+
+/**
+ * Client-side component to display articles with draft mode awareness
+ */
+export const ArticlesList = ({ author, category, page }: ArticlesListProps) => {
+  const { draftMode } = useDraftModeContext();
+
+  // Use suspense query to handle both initial data and subsequent fetches
+  const { data } = useSuspenseQuery<Article[]>({
+    queryKey: ['articles', { filters: { author, category }, page, draft: draftMode }],
+    queryFn: async () =>
+      getArticlesByFilters({
+        filters: { author, category },
+        page,
+        draftMode,
+      }),
+  });
+
+  // Handle empty state gracefully
+  if (!isArrayWithLength(data)) {
+    return (
+      <div className="py-12 text-center">
+        <p className="text-muted-foreground text-lg">No articles found matching your criteria.</p>
+      </div>
+    );
+  }
+
+  // Render articles grid
+  return (
+    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {data.map(article => (
+        <ArticleCard key={article.id} article={article} />
+      ))}
+    </div>
+  );
+};
+```
+
+You can read more about using TanStackQuery in Next.js [here](https://tanstack.com/query/latest/docs/framework/react/examples/nextjs-app-prefetching)
+
+</Steps>
